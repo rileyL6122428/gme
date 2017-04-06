@@ -17,6 +17,11 @@
 	<context:annotation-config/>
    
    <bean id="app" class="l2kstudios.gme.App" scope="singleton" />
+   
+   <bean id="demoLevel" class="l2kstudios.gme.level.Level" scope="singleton" >
+   	<property name="gridWidth" value="10"></property>
+   	<property name="gridHeight" value="20"></property>
+   </bean>
    <!-- <bean id="pAppletConfig" class="rl6122428.thegame.game.DemoConfig" scope="singleton" />
    <bean id="levelRunner" class="rl6122428.thegame.game.DemoLevelRunner" scope="prototype" />
    <bean id="level" class="rl6122428.thegame.models.level.DemoLevel" scope="singleton" /> -->
