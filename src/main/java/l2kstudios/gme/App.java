@@ -5,8 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import l2kstudios.gme.level.Level;
-import l2kstudios.gme.level.LevelCtrl;
-import l2kstudios.gme.level.LevelView;
+import l2kstudios.gme.levelctrl.LevelCtrl;
+import l2kstudios.gme.levelview.LevelView;
 import processing.core.PApplet;
 
 public class App extends PApplet {
@@ -14,6 +14,7 @@ public class App extends PApplet {
 	@Autowired
 	private Level level;
 	
+	@Autowired
 	private LevelView levelView;
 	private LevelCtrl levelController;
 	
@@ -33,8 +34,7 @@ public class App extends PApplet {
     }
     
     public void draw() {
-    	fill(0);
-    	text("height = " + level.getGridHeight(), 100, 100);
-    	text("width = " + level.getGridWidth(), 100, 200);
+    	
+    	levelView.draw();
     }
 }
