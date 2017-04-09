@@ -18,16 +18,17 @@
    
    <bean id="app" class="l2kstudios.gme.App" scope="singleton" />
    
-   <bean id="demoLevel" class="l2kstudios.gme.level.Level" scope="singleton" >
-   	<property name="gridWidth" value="12"></property>
-   	<property name="gridHeight" value="12"></property>
+   <bean id="demoLevel" class="l2kstudios.gme.level.Level" scope="singleton" ></bean>
+   
+   <bean id="demoPlayingGrid" class="l2kstudios.gme.level.Grid" scope="prototype">
+   	<property name="width" value="12"></property>
+   	<property name="height" value="12"></property>
    </bean>
+   
+   <bean id="demoLevelCtrl" class="l2kstudios.gme.levelctrl.LevelCtrl" scope="singleton"></bean>
    
    <bean id="demoView" class="l2kstudios.gme.levelview.LevelView" scope="singleton"></bean>
    
-   <bean id="demoGridView" class="l2kstudios.gme.levelview.GridView" scope="singleton"></bean>
-   <!-- <bean id="pAppletConfig" class="rl6122428.thegame.game.DemoConfig" scope="singleton" />
-   <bean id="levelRunner" class="rl6122428.thegame.game.DemoLevelRunner" scope="prototype" />
-   <bean id="level" class="rl6122428.thegame.models.level.DemoLevel" scope="singleton" /> -->
+   <bean id="demoGridView" class="l2kstudios.gme.levelview.PlayingGridView" scope="singleton"></bean>
    
 </beans>

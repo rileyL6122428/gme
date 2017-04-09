@@ -13,9 +13,9 @@ public class App extends PApplet {
 	
 	@Autowired
 	private Level level;
-	
 	@Autowired
 	private LevelView levelView;
+	@Autowired
 	private LevelCtrl levelController;
 	
     public static void main( String[] args ) {
@@ -34,7 +34,10 @@ public class App extends PApplet {
     }
     
     public void draw() {
-    	
     	levelView.draw();
+    }
+    
+    public void keyReleased() {
+    	levelController.keyReleased();
     }
 }

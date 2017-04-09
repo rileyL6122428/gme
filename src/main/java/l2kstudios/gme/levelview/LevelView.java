@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class LevelView {
 	
 	@Autowired
-	GridView gridView;
+	PlayingGridView gridView;
 	
 	public void draw() {
 		gridView.draw();

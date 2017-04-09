@@ -1,20 +1,22 @@
 package l2kstudios.gme.level;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Level {
 	
-	private int gridHeight;
-	private int gridWidth;
+	@Autowired
+	private Grid playingGrid;
+	
+	public Position getCursorPosition() {
+		return playingGrid.getCursorPosition();
+	}
 	
 	public int getGridWidth() {
-		return gridWidth;
+		return playingGrid.getWidth();
 	}
-	public void setGridWidth(int gridWidth) {
-		this.gridWidth = gridWidth;
-	}
+	
 	public int getGridHeight() {
-		return gridHeight;
+		return playingGrid.getHeight();
 	}
-	public void setGridHeight(int gridHeight) {
-		this.gridHeight = gridHeight;
-	}
+	
 }
