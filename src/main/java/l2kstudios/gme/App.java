@@ -12,6 +12,8 @@ import processing.core.PApplet;
 public class App extends PApplet {
 	
 	@Autowired
+	private Config config;
+	@Autowired
 	private Level level;
 	@Autowired
 	private LevelView levelView;
@@ -25,13 +27,11 @@ public class App extends PApplet {
     }
     
     public void settings() {
-    	fullScreen();
+    	config.settings();
     }
     
     public void setup() {
-    	ellipseMode(CORNER);
-    	frameRate(30);
-    	background(255, 255, 255);
+    	config.setup();
     }
     
     public void draw() {

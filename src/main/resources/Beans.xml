@@ -18,6 +18,8 @@
    
    <bean id="app" class="l2kstudios.gme.App" scope="singleton" />
    
+   <bean id="demoConfig" class="l2kstudios.gme.Config" scope="singleton" />
+   
    <bean id="demoLevel" class="l2kstudios.gme.level.Level" scope="singleton" ></bean>
    
    <bean id="demoLevelControlDispatcher" class="l2kstudios.gme.level.InputDispatcher" scope="singleton"></bean>
@@ -26,8 +28,6 @@
    	<property name="width" value="12"></property>
    	<property name="height" value="12"></property>
    </bean>
-  
-  
    
    <bean id="demoLevelCtrl" class="l2kstudios.gme.levelctrl.LevelCtrl" scope="singleton"></bean>
   
