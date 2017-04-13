@@ -24,7 +24,7 @@
    
    <bean id="demoLevelControlDispatcher" class="l2kstudios.gme.level.InputDispatcher" scope="singleton"></bean>
    
-   <bean id="demoPlayingGrid" class="l2kstudios.gme.level.Grid" scope="singleton">
+   <bean id="demoPlayingGrid" class="l2kstudios.gme.level.grid.PlayingGrid" scope="singleton">
    	<property name="width" value="12"></property>
    	<property name="height" value="12"></property>
    </bean>

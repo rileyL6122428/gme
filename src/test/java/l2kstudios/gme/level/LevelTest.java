@@ -5,14 +5,17 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import l2kstudios.gme.level.grid.Grid;
+import l2kstudios.gme.level.grid.PlayingGrid;
+
 public class LevelTest {
 	
 	private Level level;
-	private Grid playingGrid;
+	private PlayingGrid playingGrid;
 	
 	@Before
 	public void setup() {
-		playingGrid = new Grid();
+		playingGrid = new PlayingGrid();
 		playingGrid.setHeight(12);
 		playingGrid.setWidth(6);
 		

@@ -1,4 +1,4 @@
-package l2kstudios.gme.level;
+package l2kstudios.gme.level.grid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,12 +6,15 @@ import java.util.function.Consumer;
 
 import org.springframework.beans.factory.InitializingBean;
 
+import l2kstudios.gme.level.Cursor;
+import l2kstudios.gme.level.Position;
+import l2kstudios.gme.level.Unit;
+
 public class Grid implements InitializingBean {
 	
-	private Cursor cursor;
-	private int width, height;
-	private List<Unit> units;
-	private List<List<Unit>> spaces;
+	protected Cursor cursor;
+	protected int width, height;
+	protected List<List<Placeable>> spaces;
 	
 	public Grid() {
 		this.cursor = new Cursor();
@@ -52,35 +55,21 @@ public class Grid implements InitializingBean {
 		return cursor.getPosition();
 	}
 	
-	public void addUnit(Unit unit) {
-		Position position = unit.getPosition();
+	public void addElement(Placeable placeable) {
+		Position position = placeable.getPosition();
 		int x = position.getX();
 		int y = position.getY();
 		
-		spaces.get(y).set(x, unit);
-		units.add(unit);
-	}
-	
-	public List<Unit> getUnits() {
-		return units;
-	}
-
-	public Unit getUnitAt(int x, int y) {
-		return spaces.get(y).get(x);
+		spaces.get(y).set(x, placeable);
 	}
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		initializeSpaces();
-		initializeUnits();
-	}
-	
-	private void initializeUnits() {
-		this.units = new ArrayList<Unit>();
 	}
 	
 	private void initializeSpaces() {
-		spaces = new ArrayList<List<Unit>>();
+		spaces = new ArrayList<List<Placeable>>();
 		
 		for(int rowIdx = 0; rowIdx < height; rowIdx++) {
 			List row = new ArrayList<Unit>();

@@ -1,8 +1,10 @@
 package l2kstudios.gme.level;
 
-public class Unit {
+import l2kstudios.gme.level.grid.Placeable;
+
+public class Unit implements Placeable {
 	
-	enum Team {
+	public enum Team {
 		ALLY, ENEMY
 	}
 	

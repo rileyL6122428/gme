@@ -2,6 +2,8 @@ package l2kstudios.gme.level;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import l2kstudios.gme.level.grid.Grid;
+
 public class InputDispatcher {
 	
 	public enum Input { UP, RIGHT, LEFT, DOWN }
