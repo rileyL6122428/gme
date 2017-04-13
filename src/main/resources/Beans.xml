@@ -20,15 +20,21 @@
    
    <bean id="demoLevel" class="l2kstudios.gme.level.Level" scope="singleton" ></bean>
    
-   <bean id="demoPlayingGrid" class="l2kstudios.gme.level.Grid" scope="prototype">
+   <bean id="demoLevelControlDispatcher" class="l2kstudios.gme.level.InputDispatcher" scope="singleton"></bean>
+   
+   <bean id="demoPlayingGrid" class="l2kstudios.gme.level.Grid" scope="singleton">
    	<property name="width" value="12"></property>
    	<property name="height" value="12"></property>
    </bean>
+  
+  
    
    <bean id="demoLevelCtrl" class="l2kstudios.gme.levelctrl.LevelCtrl" scope="singleton"></bean>
+  
+  
    
    <bean id="demoView" class="l2kstudios.gme.levelview.LevelView" scope="singleton"></bean>
-   
+  
    <bean id="demoGridView" class="l2kstudios.gme.levelview.PlayingGridView" scope="singleton"></bean>
    
 </beans>

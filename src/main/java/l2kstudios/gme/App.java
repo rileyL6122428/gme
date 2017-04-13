@@ -29,6 +29,7 @@ public class App extends PApplet {
     }
     
     public void setup() {
+    	ellipseMode(CORNER);
     	frameRate(30);
     	background(255, 255, 255);
     }
@@ -37,7 +38,7 @@ public class App extends PApplet {
     	levelView.draw();
     }
     
-    public void keyReleased() {
-    	levelController.keyReleased();
+    public void keyPressed() {
+    	levelController.keyPressed();
     }
 }

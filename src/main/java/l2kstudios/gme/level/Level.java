@@ -1,11 +1,33 @@
 package l2kstudios.gme.level;
 
+import java.util.List;
+
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class Level {
-	
+import l2kstudios.gme.level.InputDispatcher.Input;
+
+public class Level implements InitializingBean {
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		Unit testUnit = new Unit();
+		testUnit.setPosition(new Position(1, 1));
+		playingGrid.addUnit(testUnit);
+	}	
+
 	@Autowired
 	private Grid playingGrid;
+	
+	@Autowired
+	private InputDispatcher inputDispatcher;
+	
+	public void registerInput(Input input) {
+		inputDispatcher.dispatchInput(input);
+	}	
+	
+	public void moveCursorPositionBy(int deltaX, int deltaY) {
+		playingGrid.moveCursorBy(deltaX, deltaY);
+	}
 	
 	public Position getCursorPosition() {
 		return playingGrid.getCursorPosition();
@@ -19,4 +41,12 @@ public class Level {
 		return playingGrid.getHeight();
 	}
 	
+	void setPlayingGrid(Grid grid) {
+		this.playingGrid = grid;
+	}
+	
+	public List<Unit> getUnits() {
+		return playingGrid.getUnits();
+	}
+
 }

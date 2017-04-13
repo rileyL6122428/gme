@@ -8,8 +8,8 @@ import processing.core.PApplet;
 
 public class PlayingGridView {
 	
-	private static final int GRID_BOX_WIDTH = 50;
-	private static final int GRID_BOX_HEIGHT = 50;
+	public static final int GRID_BOX_WIDTH = 50;
+	public static final int GRID_BOX_HEIGHT = 50;
 
 	@Autowired
 	private Level level;
@@ -26,7 +26,7 @@ public class PlayingGridView {
 	private void drawCursorPosition() {
 		ctx.fill(0, 255, 255);
 		Position cursorPosition = level.getCursorPosition();
-		ctx.rect(cursorPosition.getX(), cursorPosition.getY(), GRID_BOX_WIDTH, GRID_BOX_HEIGHT);
+		ctx.rect(cursorPosition.getX() * GRID_BOX_WIDTH, cursorPosition.getY() * GRID_BOX_HEIGHT, GRID_BOX_WIDTH, GRID_BOX_HEIGHT);
 	}
 
 	private void drawVerticalGridLines() {
