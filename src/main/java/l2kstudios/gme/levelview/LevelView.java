@@ -11,7 +11,7 @@ import l2kstudios.gme.level.Position;
 import l2kstudios.gme.level.Unit;
 import processing.core.PApplet;
 
-public class LevelView implements InitializingBean {
+public class LevelView {
 
 	@Autowired
 	private Level level;
@@ -22,22 +22,14 @@ public class LevelView implements InitializingBean {
 	@Autowired
 	private PlayingGridView gridView;
 	
-	private List<UnitView> unitView;
+	@Autowired
+	private UnitViewList unitViews;
 	
 	public void draw() {
 		ctx.background(255, 255, 255);
 		gridView.draw();
-		unitView.forEach(UnitView::draw);
+		unitViews.draw();
 	}
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		unitView = new ArrayList<UnitView>();
-		
-		List<Unit> units = level.getUnits();
-		
-		level.getUnits().forEach((unit) -> {
-			unitView.add(new UnitView(ctx, unit));						
-		});
-	}
+
 }

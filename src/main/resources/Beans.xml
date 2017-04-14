@@ -37,4 +37,6 @@
   
    <bean id="demoGridView" class="l2kstudios.gme.levelview.PlayingGridView" scope="singleton"></bean>
    
+   <bean id="unitViewList" class="l2kstudios.gme.levelview.UnitViewList" scope="singleton"></bean>
+   
 </beans>
