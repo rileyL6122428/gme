@@ -37,8 +37,13 @@ public class LongArithmetic {
 		return numsProduct;
 	}
 
-	public static Long invertDivisors(Long speedLCM, List<Long> unitSpeeds) {
-		// TODO Auto-generated method stub
-		return null;
+	public static List<Long> invertDivisors(Long num, List<Long> divisors) {
+		List<Long> invertedDivisors = new ArrayList<Long>(divisors.size());
+		
+		for(Long divisor : divisors) {
+			invertedDivisors.add(num / divisor);
+		}
+		
+		return invertedDivisors;
 	}
 }

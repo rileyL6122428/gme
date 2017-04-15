@@ -18,7 +18,7 @@ public class MovementCycle {
 	public void setUnits(List<Unit> units) {
 		List<Long> unitSpeeds = unitSpeeds(units);
 		Long speedLCM = LongArithmetic.lcm(unitSpeeds);
-		Long invertedSpeeds = LongArithmetic.invertDivisors(speedLCM, unitSpeeds);
+		List<Long> invertedSpeeds = LongArithmetic.invertDivisors(speedLCM, unitSpeeds);
 	}
 	
 	private List<Long> unitSpeeds(List<Unit> units) {

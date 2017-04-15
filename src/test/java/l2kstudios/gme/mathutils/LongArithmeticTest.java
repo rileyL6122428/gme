@@ -104,13 +104,39 @@ public class LongArithmeticTest {
 		}
 	}
 	
-	List<InvertDivisorsTestData> invertDivisorsTestData = new ArrayList<InvertDivisorsTestData>() {{
-		
+	private List<InvertDivisorsTestData> invertDivisorsTestData = new ArrayList<InvertDivisorsTestData>() {{
+		add(new InvertDivisorsTestData(){{
+			setNum(12);
+			setDivisors(new ArrayList<Long>() {{
+				add(12l);
+				add(6l);
+				add(4l);
+				add(3l);
+				add(2l);
+				add(1l);
+			}});
+			
+			setExpectedInvertedDivisors(new ArrayList<Long>() {{
+				add(1l);
+				add(2l);
+				add(3l);
+				add(4l);
+				add(6l);
+				add(12l);
+			}});
+		}});
 	}};
 	
-	@Ignore
 	@Test
 	public void invertDivisors__returnsTheExpectedInvertedDivisors() {
-		
+		invertDivisorsTestData.forEach((data) -> {
+			List<Long> invertedDivisors = LongArithmetic.invertDivisors(data.getNum(), data.getDivisors());
+			List<Long> expectedInvertedDivisors = data.getExpectedInvertedDivisors();
+			
+			assertEquals(expectedInvertedDivisors.size(), invertedDivisors.size());
+			for(int idx = 0; idx < invertedDivisors.size(); idx++) {
+				assertEquals(expectedInvertedDivisors.get(idx), invertedDivisors.get(idx));
+			}
+		});
 	}
 }
