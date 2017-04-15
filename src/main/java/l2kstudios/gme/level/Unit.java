@@ -36,4 +36,8 @@ public class Unit implements Placeable {
 	public void setSpeed(long speed) {
 		this.speed = speed;
 	}
+	
+	public String toString() {
+		return "Unit with speed = " + speed;
+	}
 }
