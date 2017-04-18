@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import l2kstudios.mathutils.LongArithmetic;
 
@@ -37,11 +38,11 @@ public class UnitMovementData {
 		return invertedUnitSpeeds.get(unit);
 	}
 	
-	public Iterator<Unit> getUnitInterator() {
-		return (Iterator<Unit>) invertedUnitSpeeds.keySet();
+	public Set<Unit> getUnitInterator() {
+		return invertedUnitSpeeds.keySet();
 	}
 	
-	public long getLCM() {
+	public long getSpeedLCM() {
 		return speedLCM;
 	}
 }
