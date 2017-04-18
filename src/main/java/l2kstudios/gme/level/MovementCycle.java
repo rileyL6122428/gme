@@ -5,18 +5,14 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collector;
 
 import l2kstudios.mathutils.LongArithmetic;
 
 public class MovementCycle {
 	
-	private int peekCount;
 	private Map<Unit, Long> invertedUnitSpeeds;
 	private long speedLCM;
 	private List<List<Unit>> moveSpread;
-	private List<Unit> collectedMoveSpreed;
 	private List<Unit> moveOrder;
 	
 	public void setUnits(List<Unit> units) {
@@ -61,7 +57,7 @@ public class MovementCycle {
 	private void populateMoveSpread() {
 		for(Unit unit : invertedUnitSpeeds.keySet()) {
 			long invertedSpeed = invertedUnitSpeeds.get(unit);
-			for(long speedMultiple = invertedSpeed; speedMultiple < speedLCM; speedMultiple += invertedSpeed) {
+			for(long speedMultiple = invertedSpeed; speedMultiple <= speedLCM; speedMultiple += invertedSpeed) {
 				List<Unit> moveSpreadNode = moveSpread.get((int)speedMultiple - 1);
 				moveSpreadNode.add(unit);
 			}

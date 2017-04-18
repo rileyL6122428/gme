@@ -20,9 +20,9 @@ public class MovementCycleTest {
 	
 	@Test
 	public void getCycle__returnsAInverseSpeedMultipleListOfUnits() {
-		Unit fastestUnit = new Unit(){{setSpeed(11);}};
-		Unit midSpeedUnit = new Unit(){{setSpeed(7);}};
-		Unit slowestUnit = new Unit(){{setSpeed(3);}};
+		Unit fastestUnit = new Unit(){{setSpeed(7);}};
+		Unit midSpeedUnit = new Unit(){{setSpeed(3);}};
+		Unit slowestUnit = new Unit(){{setSpeed(2);}};
 		List<Unit> units = Arrays.asList(slowestUnit, midSpeedUnit, fastestUnit);
 		
 		moveCycle = new MovementCycle();
@@ -31,28 +31,18 @@ public class MovementCycleTest {
 		List<Unit> moveOrder = moveCycle.getOrder();
 		
 		List<Unit> expectedOrder = Arrays.asList(
-				fastestUnit, 
-				midSpeedUnit, 
-				fastestUnit, 
-				fastestUnit, 
-				midSpeedUnit, 
-				slowestUnit, 
-				slowestUnit, 
-				fastestUnit, 
-				midSpeedUnit, 
-				fastestUnit,
-				fastestUnit,
-				midSpeedUnit,
-				fastestUnit,
-				slowestUnit,
-				midSpeedUnit,
-				fastestUnit,
-				fastestUnit,
-				midSpeedUnit,
-				fastestUnit,
-				slowestUnit,
-				midSpeedUnit,
-				fastestUnit);
+				fastestUnit, //6
+				fastestUnit, //12
+				midSpeedUnit, //14
+				fastestUnit, //18
+				slowestUnit, //21
+				fastestUnit, //24
+				midSpeedUnit, //28
+				fastestUnit, //30
+				fastestUnit, //36
+				slowestUnit, //42
+				midSpeedUnit, //42
+				fastestUnit); //42
 		assertEquals(expectedOrder.size(), moveOrder.size());
 		
 		for(int idx = 0; idx < expectedOrder.size(); idx++) {
