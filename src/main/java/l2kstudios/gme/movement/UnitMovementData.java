@@ -1,4 +1,4 @@
-package l2kstudios.gme.level;
+package l2kstudios.gme.movement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import l2kstudios.gme.level.Unit;
 import l2kstudios.mathutils.LongArithmetic;
 
 public class UnitMovementData {

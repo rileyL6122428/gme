@@ -1,4 +1,4 @@
-package l2kstudios.gme.level;
+package l2kstudios.gme.movement;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,6 +8,9 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import l2kstudios.gme.level.Unit;
+import l2kstudios.gme.movement.MovementCycle;
 
 public class MovementCycleTest {
 	
