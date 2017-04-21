@@ -16,23 +16,13 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	private List<Unit> units;
 	private MovementCycle moveCycle;
 	
-	public void addUnit(Unit unit) {
-		Position position = unit.getPosition();
-		int x = position.getX();
-		int y = position.getY();
-		
-		spaces.get(y).set(x, unit);
-		getUnits().add(unit);
-	}
-	
 	public Unit getUnitAt(int x, int y) {
 		return (Unit)spaces.get(y).get(x);
 	}
 	
-	public List<Unit> getUnits() {
-		return units;
+	public List<Unit> getMoveOrder() {
+		return moveCycle.getOrder();
 	}
-
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -42,5 +32,9 @@ public class PlayingGrid extends Grid implements InitializingBean {
 
 	public void setUnits(List<Unit> units) {
 		this.units = units;
+	}
+	
+	public List<Unit> getUnits() {
+		return units;
 	}
 }

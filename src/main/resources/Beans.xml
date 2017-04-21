@@ -37,11 +37,24 @@
     	<list>
     		<bean class="${UNIT}">
     			<property name="speed" value="2" />
+    			<property name="name" value="slower" />
     			
     			<property name="position">
     				<bean class="${POSITION}">
     					<property name="x" value="1" />
     					<property name="y" value="2" />
+    				</bean>
+    			</property>
+    		</bean>
+    		
+    		<bean class="${UNIT}">
+    			<property name="speed" value="3" />
+    			<property name="name" value="faster" />
+    			
+    			<property name="position">
+    				<bean class="${POSITION}">
+    					<property name="x" value="4" />
+    					<property name="y" value="4" />
     				</bean>
     			</property>
     		</bean>
@@ -56,5 +69,8 @@
    <bean id="demoView" class="${LEVEL_VIEW}" scope="singleton" />
    <bean id="demoGridView" class="${PLAYING_GRID_VIEW}" scope="singleton" />
    <bean id="unitViewList" class="${UNIT_VIEW_LIST}" scope="singleton" />
-   
+   <bean id="moveOrderView" class="${MOVE_ORDER_VIEW}" scope="singleton" >
+   		<property name="verticalOffset" value="20" />
+   		<property name="verticalMargin" value="15" />	
+   </bean>
 </beans>

@@ -25,9 +25,13 @@ public class LevelView {
 	@Autowired
 	private UnitViewList unitViews;
 	
+	@Autowired
+	private MoveOrderView moveOrderView;
+	
 	public void draw() {
 		ctx.background(255, 255, 255);
 		gridView.draw();
+		moveOrderView.draw();
 		unitViews.draw();
 		
 		testDrawMoveOrder();
