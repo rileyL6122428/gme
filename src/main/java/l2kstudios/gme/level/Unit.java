@@ -5,6 +5,7 @@ import l2kstudios.gme.level.grid.Placeable;
 public class Unit implements Placeable {
 	
 	private long speed;
+	private String name;
 	
 	public enum Team {
 		ALLY, ENEMY
@@ -37,7 +38,15 @@ public class Unit implements Placeable {
 		this.speed = speed;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public String toString() {
-		return "Unit with speed = " + speed;
+		return "Unit: " + name;
 	}
 }

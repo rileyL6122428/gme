@@ -29,7 +29,15 @@ public class LevelView {
 		ctx.background(255, 255, 255);
 		gridView.draw();
 		unitViews.draw();
+		
+		testDrawMoveOrder();
 	}
 
+	private void testDrawMoveOrder() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }

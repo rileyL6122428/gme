@@ -15,28 +15,46 @@
 					  http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
 
 	<context:annotation-config/>
+	<context:property-placeholder location="classpath*:l2k.properties"/>
    
-   <bean id="app" class="l2kstudios.gme.App" scope="singleton" />
+   <bean id="app" class="${APP}" scope="singleton" />
    
-   <bean id="demoConfig" class="l2kstudios.gme.Config" scope="singleton" />
+   <bean id="demoConfig" class="${CONFIG}" scope="singleton" />
    
-   <bean id="demoLevel" class="l2kstudios.gme.level.Level" scope="singleton" ></bean>
+   <bean id="demoLevel" class="${LEVEL}" scope="singleton" />
    
-   <bean id="demoLevelControlDispatcher" class="l2kstudios.gme.level.InputDispatcher" scope="singleton"></bean>
+   <bean id="demoLevelControlDispatcher" class="${INPUT_DISPATCHER}" scope="singleton" />
    
-   <bean id="demoPlayingGrid" class="l2kstudios.gme.level.grid.PlayingGrid" scope="singleton">
-   	<property name="width" value="12"></property>
-   	<property name="height" value="12"></property>
+   <bean id="demoPlayingGrid" class="${PLAYING_GRID}" scope="singleton">
+   	<property name="dimensions">
+         <bean class="${DIMENSION}">
+		   	<property name="width" value="6" />
+		   	<property name="height" value="6" />         	
+         </bean>
+      </property>
+      
+    <property name="units">
+    	<list>
+    		<bean class="${UNIT}">
+    			<property name="speed" value="2" />
+    			
+    			<property name="position">
+    				<bean class="${POSITION}">
+    					<property name="x" value="1" />
+    					<property name="y" value="2" />
+    				</bean>
+    			</property>
+    		</bean>
+    	</list>
+    </property>
    </bean>
    
-   <bean id="demoLevelCtrl" class="l2kstudios.gme.levelctrl.LevelCtrl" scope="singleton"></bean>
+   <bean id="demoLevelCtrl" class="${LEVEL_CONTROLLER}" scope="singleton"></bean>
   
   
    
-   <bean id="demoView" class="l2kstudios.gme.levelview.LevelView" scope="singleton"></bean>
-  
-   <bean id="demoGridView" class="l2kstudios.gme.levelview.PlayingGridView" scope="singleton"></bean>
-   
-   <bean id="unitViewList" class="l2kstudios.gme.levelview.UnitViewList" scope="singleton"></bean>
+   <bean id="demoView" class="${LEVEL_VIEW}" scope="singleton" />
+   <bean id="demoGridView" class="${PLAYING_GRID_VIEW}" scope="singleton" />
+   <bean id="unitViewList" class="${UNIT_VIEW_LIST}" scope="singleton" />
    
 </beans>

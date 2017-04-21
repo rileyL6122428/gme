@@ -5,15 +5,17 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.level.Cursor;
 import l2kstudios.gme.level.Position;
 import l2kstudios.gme.level.Unit;
 
 public class Grid implements InitializingBean {
+
+	private Dimension dimensions;
 	
 	protected Cursor cursor;
-	protected int width, height;
 	protected List<List<Placeable>> spaces;
 	
 	public Grid() {
@@ -21,34 +23,28 @@ public class Grid implements InitializingBean {
 	}
 	
 	public void moveCursorBy(int deltaX, int deltaY) {
-		moveCursorField(cursor::setX, cursor.getX() + deltaX, width);
-		moveCursorField(cursor::setY, cursor.getY() + deltaY, height);
+		moveCursorField(cursor::setX, cursor.getX() + deltaX, getDimensions().getWidth());
+		moveCursorField(cursor::setY, cursor.getY() + deltaY, getDimensions().getHeight());
 	}
 	
 	private void moveCursorField(Consumer<Integer> setter, int nextCursorVal, int gridDimension) {
 		if(nextCursorVal < 0) {
-			setter.accept(height + nextCursorVal);
+			setter.accept(gridDimension + nextCursorVal);
 		} else if(nextCursorVal >= gridDimension){
 			setter.accept(nextCursorVal % gridDimension);
 		} else {
 			setter.accept(nextCursorVal);
 		}
 	}
-
+	
+	
+	
 	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
+		return getDimensions().getWidth();
 	}
 
 	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
+		return getDimensions().getHeight();
 	}
 	
 	public Position getCursorPosition() {
@@ -68,15 +64,23 @@ public class Grid implements InitializingBean {
 		initializeSpaces();
 	}
 	
-	private void initializeSpaces() {
+	protected void initializeSpaces() {
 		spaces = new ArrayList<List<Placeable>>();
 		
-		for(int rowIdx = 0; rowIdx < height; rowIdx++) {
+		for(int rowIdx = 0; rowIdx < getDimensions().getHeight(); rowIdx++) {
 			List row = new ArrayList<Unit>();
-			for(int colIdx = 0; colIdx < width; colIdx++) {
+			for(int colIdx = 0; colIdx < getDimensions().getWidth(); colIdx++) {
 				row.add(null);
 			}
 			spaces.add(row);
 		}
+	}
+
+	public Dimension getDimensions() {
+		return dimensions;
+	}
+
+	public void setDimensions(Dimension dimensions) {
+		this.dimensions = dimensions;
 	}
 }

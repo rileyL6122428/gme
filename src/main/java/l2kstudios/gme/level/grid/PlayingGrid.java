@@ -9,10 +9,12 @@ import org.springframework.beans.factory.InitializingBean;
 import l2kstudios.gme.level.Cursor;
 import l2kstudios.gme.level.Position;
 import l2kstudios.gme.level.Unit;
+import l2kstudios.gme.movement.MovementCycle;
 
 public class PlayingGrid extends Grid implements InitializingBean {
 	
-	List<Unit> units;
+	private List<Unit> units;
+	private MovementCycle moveCycle;
 	
 	public void addUnit(Unit unit) {
 		Position position = unit.getPosition();
@@ -20,7 +22,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 		int y = position.getY();
 		
 		spaces.get(y).set(x, unit);
-		units.add(unit);
+		getUnits().add(unit);
 	}
 	
 	public Unit getUnitAt(int x, int y) {
@@ -35,6 +37,10 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		super.afterPropertiesSet();
-		units = new ArrayList<Unit>();
+		moveCycle = new MovementCycle(getUnits());
+	}
+
+	public void setUnits(List<Unit> units) {
+		this.units = units;
 	}
 }
