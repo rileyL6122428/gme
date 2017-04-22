@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import l2kstudios.gme.level.Level;
-import l2kstudios.gme.levelctrl.LevelCtrl;
-import l2kstudios.gme.levelview.LevelView;
+import l2kstudios.gme.ctrl.LevelCtrl;
+import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.view.LevelView;
 import processing.core.PApplet;
 
 public class App extends PApplet {
