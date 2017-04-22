@@ -13,25 +13,28 @@ public class UnitView implements View {
 	private PApplet ctx;
 	private Unit unit;
 	private PlayingGrid playingGrid;
+	private UnitOverView unitOverView;
 	
 	public UnitView(PApplet ctx, Unit unit, PlayingGrid playingGrid) {
 		this.ctx = ctx;
 		this.unit = unit;
 		this.playingGrid = playingGrid;
+		unitOverView = new UnitOverView(unit, ctx, playingGrid);
 	}
 	
 	public void draw() {
 		drawMovementGrid();
+		unitOverView.draw();
 		setUnitFill();
 		drawUnit();
 	}
-	
+
 	private void drawMovementGrid() {
 		if(!playingGrid.isActingUnit(unit)) return;
 		
 		ctx.fill(150, 100);
 		Position unitPos = unit.getPosition();
-		int remainingEnergy = (int)unit.getEndurance();
+		int remainingEnergy = (int)unit.getEnergy();
 		for(int vertical = -remainingEnergy; vertical <= remainingEnergy; vertical++) {
 			int horizontalCap = Math.abs(remainingEnergy - Math.abs(vertical));
 			for(int horizontal = -horizontalCap; horizontal <= horizontalCap; horizontal++) {

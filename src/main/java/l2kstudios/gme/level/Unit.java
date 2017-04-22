@@ -1,22 +1,30 @@
 package l2kstudios.gme.level;
 
+import org.springframework.beans.factory.InitializingBean;
+
+import l2kstudios.gme.level.grid.GridUtils;
 import l2kstudios.gme.level.grid.Placeable;
 
-public class Unit implements Placeable {
+public class Unit implements Placeable, InitializingBean {
 	
 	public enum Team {
 		ALLY, ENEMY
 	}
 
 	private long speed;
-	private long endurance;
+	
+	private long healthCap;
+	private long health;
+	
+	private long energyCap;
+	private long energy;
+	
 	private String name;
 	private Position position;
 	private Team team;
 	
 	public boolean canMoveTo(Position position) {
-		int distance = Math.abs(position.getX() - this.position.getX()) + Math.abs(position.getY() - this.position.getY());
-		return distance <= endurance;
+		return GridUtils.distanceBetween(position, this.position) <= energy;
 	}
 
 	public Position getPosition() {
@@ -55,11 +63,42 @@ public class Unit implements Placeable {
 		return "Unit: " + name;
 	}
 
-	public long getEndurance() {
-		return endurance;
+	public long getEnergy() {
+		return energy;
 	}
 
-	public void setEndurance(long endurance) {
-		this.endurance = endurance;
+	public void setEnergy(long energy) {
+		this.energy = energy;
+	}
+
+	public long getEnergyCap() {
+		return energyCap;
+	}
+
+	public void setEnergyCap(long energyCap) {
+		this.energyCap = energyCap;
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		energy = energyCap;
+		health = healthCap;
+		
+	}
+
+	public long getHealthCap() {
+		return healthCap;
+	}
+
+	public void setHealthCap(long healthPointsCap) {
+		this.healthCap = healthPointsCap;
+	}
+
+	public long getHealth() {
+		return health;
+	}
+
+	public void setHealth(long healthPoints) {
+		this.health = healthPoints;
 	}
 }

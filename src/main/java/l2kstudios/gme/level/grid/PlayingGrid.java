@@ -26,9 +26,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 		Unit unit = (Unit)getHovered();
 		Position cursorPos = cursor.getPosition();
 		
-		//Move Unit To Selected Position
 		if(unit == null && actingUnit.canMoveTo(cursorPos)) {
-			System.out.println("UNIT CAN MOVE TO THIS POSITION");
 			moveActingUnitTo(cursorPos);
 		}
 	}
@@ -45,9 +43,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		super.afterPropertiesSet();
-		
 		units.forEach(this::place);
-		
 		moveCycle = new MovementCycle(getUnits());
 		actingUnit = moveCycle.getNext();
 	}
@@ -66,5 +62,9 @@ public class PlayingGrid extends Grid implements InitializingBean {
 
 	public boolean isInBounds(Position position) {
 		return dimensions.isInBounds(position);
+	}
+
+	public boolean unitIsHovered(Unit unit) {
+		return (Unit)getHovered() == unit;
 	}
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import l2kstudios.gme.level.grid.Dimension;
 import l2kstudios.gme.level.grid.Grid;
 import l2kstudios.gme.level.grid.PlayingGrid;
 
@@ -14,10 +15,10 @@ public class LevelTest {
 	private PlayingGrid playingGrid;
 	
 	@Before
-	public void setup() {
+	public void setup() throws Exception {
 		playingGrid = new PlayingGrid();
-		playingGrid.setHeight(12);
-		playingGrid.setWidth(6);
+		playingGrid.setDimensions(new Dimension(6, 12));
+		playingGrid.afterPropertiesSet();
 		
 		level = new Level();
 		level.setPlayingGrid(playingGrid);

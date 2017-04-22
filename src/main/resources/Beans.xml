@@ -38,7 +38,8 @@
     		<bean class="${UNIT}">
     			<property name="speed" value="2" />
     			<property name="name" value="slower" />
-    			<property name="endurance" value="1" />
+    			<property name="energyCap" value="1" />
+    			<property name="healthCap" value="5" />
     			
     			<property name="position">
     				<bean class="${POSITION}">
@@ -51,7 +52,8 @@
     		<bean class="${UNIT}">
     			<property name="speed" value="3" />
     			<property name="name" value="faster" />
- 				<property name="endurance" value="2" />
+ 				<property name="energyCap" value="2" />
+ 				<property name="healthCap" value="10" />
     			
     			<property name="position">
     				<bean class="${POSITION}">
@@ -65,8 +67,6 @@
    </bean>
    
    <bean id="demoLevelCtrl" class="${LEVEL_CONTROLLER}" scope="singleton" />
-  
-  
    
    <bean id="demoView" class="${LEVEL_VIEW}" scope="singleton" >
    	<property name="subViews">
