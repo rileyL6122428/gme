@@ -28,8 +28,6 @@ public class UnitViewList implements InitializingBean, View {
 	public void afterPropertiesSet() throws Exception {
 		unitViews = new ArrayList<UnitView>();
 		
-		List<Unit> units = level.getUnits();
-		
 		level.getUnits().forEach((unit) -> {
 			unitViews.add(new UnitView(ctx, unit));						
 		});
