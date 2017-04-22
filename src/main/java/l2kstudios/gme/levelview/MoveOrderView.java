@@ -8,7 +8,7 @@ import l2kstudios.gme.level.Unit;
 import l2kstudios.gme.level.grid.PlayingGrid;
 import processing.core.PApplet;
 
-public class MoveOrderView {
+public class MoveOrderView implements View{
 	
 	@Autowired
 	private PlayingGrid playingGrid;

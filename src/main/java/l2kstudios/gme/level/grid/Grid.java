@@ -5,11 +5,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.level.Cursor;
 import l2kstudios.gme.level.Position;
-import l2kstudios.gme.level.Unit;
 
 public class Grid implements InitializingBean {
 

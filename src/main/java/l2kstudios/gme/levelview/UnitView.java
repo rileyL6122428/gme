@@ -6,7 +6,7 @@ import processing.core.PApplet;
 
 import static l2kstudios.gme.levelview.PlayingGridView.*;
 
-public class UnitView {
+public class UnitView implements View {
 	
 	private PApplet ctx;
 	private Unit unit;

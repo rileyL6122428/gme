@@ -10,7 +10,7 @@ import l2kstudios.gme.level.Level;
 import l2kstudios.gme.level.Unit;
 import processing.core.PApplet;
 
-public class UnitViewList implements InitializingBean {
+public class UnitViewList implements InitializingBean, View {
 	
 	@Autowired
 	private Level level;

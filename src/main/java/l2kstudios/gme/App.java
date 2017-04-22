@@ -20,10 +20,11 @@ public class App extends PApplet {
 	@Autowired
 	private LevelCtrl levelController;
 	
-    public static void main( String[] args ) {
+    @SuppressWarnings("resource")
+	public static void main( String[] args ) {
     	ApplicationContext appContext = new ClassPathXmlApplicationContext("Beans.xml");
     	PApplet papplet = (PApplet) appContext.getBean("app");
-    	papplet.runSketch(new String[]{ "PraxisLIVE" }, papplet);
+    	PApplet.runSketch(new String[]{ "PraxisLIVE" }, papplet);
     }
     
     public void settings() {

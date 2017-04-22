@@ -7,7 +7,7 @@ import l2kstudios.gme.level.Position;
 import l2kstudios.gme.level.grid.PlayingGrid;
 import processing.core.PApplet;
 
-public class PlayingGridView {
+public class PlayingGridView implements View {
 	
 	public static final int GRID_BOX_WIDTH = 50;
 	public static final int GRID_BOX_HEIGHT = 50;

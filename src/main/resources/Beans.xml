@@ -62,15 +62,21 @@
     </property>
    </bean>
    
-   <bean id="demoLevelCtrl" class="${LEVEL_CONTROLLER}" scope="singleton"></bean>
+   <bean id="demoLevelCtrl" class="${LEVEL_CONTROLLER}" scope="singleton" />
   
   
    
-   <bean id="demoView" class="${LEVEL_VIEW}" scope="singleton" />
-   <bean id="demoGridView" class="${PLAYING_GRID_VIEW}" scope="singleton" />
-   <bean id="unitViewList" class="${UNIT_VIEW_LIST}" scope="singleton" />
-   <bean id="moveOrderView" class="${MOVE_ORDER_VIEW}" scope="singleton" >
-   		<property name="verticalOffset" value="20" />
-   		<property name="verticalMargin" value="15" />	
+   <bean id="demoView" class="${LEVEL_VIEW}" scope="singleton" >
+   	<property name="subViews">
+   		<list>
+		   <bean  class="${PLAYING_GRID_VIEW}" scope="singleton" />
+		   <bean  class="${UNIT_VIEW_LIST}" scope="singleton" />
+		   <bean  class="${MOVE_ORDER_VIEW}" scope="singleton" >
+		   		<property name="verticalOffset" value="20" />
+		   		<property name="verticalMargin" value="15" />	
+		   </bean>   			
+   		</list>
+   	</property>
    </bean>
+   
 </beans>
