@@ -27,14 +27,6 @@ public class Level {
 		return playingGrid.getCursorPosition();
 	}
 	
-	public int getGridWidth() {
-		return playingGrid.getWidth();
-	}
-	
-	public int getGridHeight() {
-		return playingGrid.getHeight();
-	}
-	
 	void setPlayingGrid(PlayingGrid grid) {
 		this.playingGrid = grid;
 	}

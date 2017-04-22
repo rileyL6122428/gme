@@ -68,7 +68,7 @@ public class Grid implements InitializingBean {
 		spaces = new ArrayList<List<Placeable>>();
 		
 		for(int rowIdx = 0; rowIdx < getDimensions().getHeight(); rowIdx++) {
-			List row = new ArrayList<Unit>();
+			List<Placeable> row = new ArrayList<Placeable>();
 			for(int colIdx = 0; colIdx < getDimensions().getWidth(); colIdx++) {
 				row.add(null);
 			}
