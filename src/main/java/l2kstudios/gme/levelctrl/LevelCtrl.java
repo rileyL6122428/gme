@@ -19,5 +19,6 @@ public class LevelCtrl {
     	if(ctx.key =='s') level.registerInput(DOWN);
     	if(ctx.key == 'd') level.registerInput(RIGHT);
     	if(ctx.key =='w') level.registerInput(UP);
+    	if(ctx.key == ' ') level.registerInput(SPACE);
 	}
 }

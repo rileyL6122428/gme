@@ -38,6 +38,7 @@
     		<bean class="${UNIT}">
     			<property name="speed" value="2" />
     			<property name="name" value="slower" />
+    			<property name="endurance" value="1" />
     			
     			<property name="position">
     				<bean class="${POSITION}">
@@ -50,6 +51,7 @@
     		<bean class="${UNIT}">
     			<property name="speed" value="3" />
     			<property name="name" value="faster" />
+ 				<property name="endurance" value="2" />
     			
     			<property name="position">
     				<bean class="${POSITION}">

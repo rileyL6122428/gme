@@ -2,14 +2,14 @@ package l2kstudios.gme.level;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import l2kstudios.gme.level.grid.Grid;
+import l2kstudios.gme.level.grid.PlayingGrid;
 
 public class InputDispatcher {
 	
-	public enum Input { UP, RIGHT, LEFT, DOWN }
+	public enum Input { UP, RIGHT, LEFT, DOWN, SPACE }
 	
 	@Autowired
-	private Grid playingGrid;
+	private PlayingGrid playingGrid;
 	
 	public void dispatchInput(Input input) {
 		switch(input) {
@@ -24,6 +24,9 @@ public class InputDispatcher {
 				break;
 			case DOWN:
 				playingGrid.moveCursorBy(0, 1);
+				break;
+			case SPACE:
+				playingGrid.selectSpace();
 				break;
 		}
 	}

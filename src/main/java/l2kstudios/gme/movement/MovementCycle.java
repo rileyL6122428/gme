@@ -33,6 +33,6 @@ public class MovementCycle {
 	}
 	
 	public List<Unit> getOrder() {
-		return moveSpread.getCondensed();
+		return moveOrder;
 	}
 }

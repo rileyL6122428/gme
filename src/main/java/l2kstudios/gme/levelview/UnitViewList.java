@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.level.Level;
 import l2kstudios.gme.level.Unit;
+import l2kstudios.gme.level.grid.PlayingGrid;
 import processing.core.PApplet;
 
 public class UnitViewList implements InitializingBean, View {
@@ -17,6 +18,9 @@ public class UnitViewList implements InitializingBean, View {
 	
 	@Autowired 
 	private PApplet ctx; 
+	
+	@Autowired
+	private PlayingGrid playingGrid;
 	
 	private List<UnitView> unitViews;
 	
@@ -29,7 +33,7 @@ public class UnitViewList implements InitializingBean, View {
 		unitViews = new ArrayList<UnitView>();
 		
 		level.getUnits().forEach((unit) -> {
-			unitViews.add(new UnitView(ctx, unit));						
+			unitViews.add(new UnitView(ctx, unit, playingGrid));						
 		});
 		
 	}

@@ -4,15 +4,20 @@ import l2kstudios.gme.level.grid.Placeable;
 
 public class Unit implements Placeable {
 	
-	private long speed;
-	private String name;
-	
 	public enum Team {
 		ALLY, ENEMY
 	}
-	
+
+	private long speed;
+	private long endurance;
+	private String name;
 	private Position position;
 	private Team team;
+	
+	public boolean canMoveTo(Position position) {
+		int distance = Math.abs(position.getX() - this.position.getX()) + Math.abs(position.getY() - this.position.getY());
+		return distance <= endurance;
+	}
 
 	public Position getPosition() {
 		return position;
@@ -48,5 +53,13 @@ public class Unit implements Placeable {
 	
 	public String toString() {
 		return "Unit: " + name;
+	}
+
+	public long getEndurance() {
+		return endurance;
+	}
+
+	public void setEndurance(long endurance) {
+		this.endurance = endurance;
 	}
 }

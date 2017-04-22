@@ -11,8 +11,7 @@ import l2kstudios.gme.level.Position;
 
 public class Grid implements InitializingBean {
 
-	private Dimension dimensions;
-	
+	protected Dimension dimensions;
 	protected Cursor cursor;
 	protected List<List<Placeable>> spaces;
 	
@@ -35,8 +34,6 @@ public class Grid implements InitializingBean {
 		}
 	}
 	
-	
-	
 	public int getWidth() {
 		return getDimensions().getWidth();
 	}
@@ -49,7 +46,7 @@ public class Grid implements InitializingBean {
 		return cursor.getPosition();
 	}
 	
-	public void addElement(Placeable placeable) {
+	public void place(Placeable placeable) {
 		Position position = placeable.getPosition();
 		int x = position.getX();
 		int y = position.getY();
@@ -80,5 +77,12 @@ public class Grid implements InitializingBean {
 
 	public void setDimensions(Dimension dimensions) {
 		this.dimensions = dimensions;
+	}
+	
+	public Placeable getHovered() {
+		int x = cursor.getX();
+		int y = cursor.getY();
+		
+		return spaces.get(y).get(x);
 	}
 }
