@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.mathutils.LongArithmetic;
 
 public class UnitMovementData {

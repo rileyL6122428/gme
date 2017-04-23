@@ -8,8 +8,8 @@ import org.junit.Test;
 import l2kstudios.gme.model.grid.Dimension;
 import l2kstudios.gme.model.grid.Grid;
 import l2kstudios.gme.model.grid.PlayingGrid;
+import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.level.Level;
-import l2kstudios.gme.model.level.Position;
 
 public class LevelTest {
 	

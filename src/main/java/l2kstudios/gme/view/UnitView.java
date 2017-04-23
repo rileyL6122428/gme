@@ -1,7 +1,7 @@
 package l2kstudios.gme.view;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.unit.Unit;
 import processing.core.PApplet;
 
 public class UnitView implements View {

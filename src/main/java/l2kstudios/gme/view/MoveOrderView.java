@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.unit.Unit;
 import processing.core.PApplet;
 
 public class MoveOrderView implements View{

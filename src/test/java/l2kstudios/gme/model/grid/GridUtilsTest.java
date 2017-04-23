@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.GridUtils;
-import l2kstudios.gme.model.level.Position;
 
 public class GridUtilsTest {
 	

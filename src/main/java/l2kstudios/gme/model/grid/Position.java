@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.level;
+package l2kstudios.gme.model.grid;
 
 public class Position {
 	private int x, y;

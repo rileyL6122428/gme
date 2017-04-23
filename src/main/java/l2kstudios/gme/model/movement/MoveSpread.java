@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.unit.Unit;
 
 public class MoveSpread {
 	private List<List<Unit>> uncondensedSpread;

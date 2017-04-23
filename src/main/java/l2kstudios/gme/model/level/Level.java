@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
+import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.level.InputDispatcher.Input;
+import l2kstudios.gme.model.unit.Unit;
 
 public class Level {
 	

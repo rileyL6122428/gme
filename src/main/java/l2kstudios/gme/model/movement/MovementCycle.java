@@ -2,7 +2,7 @@ package l2kstudios.gme.model.movement;
 
 import java.util.List;
 
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.unit.Unit;
 
 public class MovementCycle {
 	

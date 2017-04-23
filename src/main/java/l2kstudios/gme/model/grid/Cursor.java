@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.level;
+package l2kstudios.gme.model.grid;
 
 public class Cursor {
 	private int x, y;

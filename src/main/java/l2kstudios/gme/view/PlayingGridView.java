@@ -3,8 +3,8 @@ package l2kstudios.gme.view;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
+import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.level.Level;
-import l2kstudios.gme.model.level.Position;
 import processing.core.PApplet;
 
 public class PlayingGridView implements View {

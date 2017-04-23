@@ -1,7 +1,7 @@
 package l2kstudios.gme.view;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.unit.Unit;
 import processing.core.PApplet;
 
 public class UnitOverView implements View {
@@ -22,7 +22,7 @@ public class UnitOverView implements View {
 		
 		if(playingGrid.unitIsHovered(unit)) {
 			ctx.text(unit.getName(), ctx.width - 100, ctx.height - 100);
-			ctx.text("HP: " + unit.getHealth(), ctx.width - 100, ctx.height - 80);
+			ctx.text("HP: " + unit.getHealth().getVal(), ctx.width - 100, ctx.height - 80);
 		}
 	}
 }

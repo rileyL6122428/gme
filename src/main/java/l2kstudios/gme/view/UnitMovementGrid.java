@@ -4,8 +4,8 @@ import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_HEIGHT;
 import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_WIDTH;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.level.Position;
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.unit.Unit;
 import processing.core.PApplet;
 
 public class UnitMovementGrid {
@@ -25,7 +25,7 @@ public class UnitMovementGrid {
 		
 		ctx.fill(150, 100);
 		Position unitPos = unit.getPosition();
-		int remainingEnergy = (int)unit.getEnergy();
+		int remainingEnergy = (int)unit.getEnergy().getVal();
 		for(int vertical = -remainingEnergy; vertical <= remainingEnergy; vertical++) {
 			int horizontalCap = Math.abs(remainingEnergy - Math.abs(vertical));
 			for(int horizontal = -horizontalCap; horizontal <= horizontalCap; horizontal++) {

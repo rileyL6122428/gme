@@ -4,11 +4,11 @@ import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_HEIGHT;
 import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_WIDTH;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.level.Position;
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.unit.Unit;
 import processing.core.PApplet;
 
-public class UnitGridAvatar {
+public class UnitGridAvatar implements View {
 	
 	private PlayingGrid playingGrid;
 	private PApplet ctx;

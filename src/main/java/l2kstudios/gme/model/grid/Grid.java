@@ -6,9 +6,6 @@ import java.util.function.Consumer;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import l2kstudios.gme.model.level.Cursor;
-import l2kstudios.gme.model.level.Position;
-
 public class Grid implements InitializingBean {
 
 	protected Dimension dimensions;

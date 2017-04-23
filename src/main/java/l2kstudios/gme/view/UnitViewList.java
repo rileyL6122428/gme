@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
-import l2kstudios.gme.model.level.Unit;
+import l2kstudios.gme.model.unit.Unit;
 import processing.core.PApplet;
 
 public class UnitViewList implements InitializingBean, View {
