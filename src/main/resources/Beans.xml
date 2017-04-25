@@ -24,6 +24,8 @@
 
 	<bean id="demoLevelControlDispatcher" class="${INPUT_DISPATCHER}"
 		scope="singleton" />
+	
+	<bean id="demoActionMenu" class="l2kstudios.gme.model.grid.ActionMenu" />
 
 	<bean id="demoPlayingGrid" class="${PLAYING_GRID}" scope="singleton">
 		<property name="dimensions">
@@ -97,6 +99,7 @@
 					<property name="verticalOffset" value="20" />
 					<property name="verticalMargin" value="15" />
 				</bean>
+				<bean class="l2kstudios.gme.view.ActionMenuView" scope="singleton" />
 			</list>
 		</property>
 	</bean>

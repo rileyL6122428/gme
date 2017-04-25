@@ -6,7 +6,7 @@ import l2kstudios.gme.model.grid.PlayingGrid;
 
 public class InputDispatcher {
 	
-	public enum Input { UP, RIGHT, LEFT, DOWN, SPACE }
+	public enum Input { UP, RIGHT, LEFT, DOWN, SPACE, BACK }
 	
 	@Autowired
 	private PlayingGrid playingGrid;
@@ -28,6 +28,8 @@ public class InputDispatcher {
 			case SPACE:
 				playingGrid.selectSpace();
 				break;
+			case BACK:
+				System.out.println("BACK INPUT RECEIVED");
 		}
 	}
 }

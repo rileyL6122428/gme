@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.level.Level;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class LevelCtrl {
 	
@@ -20,5 +21,7 @@ public class LevelCtrl {
     	if(ctx.key == 'd') level.registerInput(RIGHT);
     	if(ctx.key =='w') level.registerInput(UP);
     	if(ctx.key == ' ') level.registerInput(SPACE);
+    	
+    	if(ctx.key == PConstants.BACKSPACE) level.registerInput(BACK);
 	}
 }
