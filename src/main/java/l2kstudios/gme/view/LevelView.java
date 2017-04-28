@@ -15,7 +15,7 @@ public class LevelView {
 	
 	public void draw() {
 		ctx.background(255, 255, 255);
-		getSubViews().forEach(View::draw);
+		subViews.forEach(View::draw);
 	}
 
 	public List<View> getSubViews() {

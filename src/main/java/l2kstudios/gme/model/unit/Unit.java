@@ -12,7 +12,7 @@ import static l2kstudios.gme.model.unit.Unit.BoardState.*;
 public class Unit implements Placeable {
 	
 	public enum BoardState {
-		STAND_BY, ACTING, AWAINTING_NEXT_TURN
+		STAND_BY, MOVING, CHOOSING_ACTION, ACTING, AWAINTING_NEXT_TURN
 	}
 	
 	public enum Team {
@@ -45,6 +45,11 @@ public class Unit implements Placeable {
 		return position;
 	}
 
+	public void moveTo(Position position) {
+		this.boardState = CHOOSING_ACTION;
+		this.position = position;
+	}
+	
 	public void setPosition(Position position) {
 		this.position = position;
 	}
@@ -94,14 +99,18 @@ public class Unit implements Placeable {
 	}
 	
 	public void registerTurnStart() {
-		this.boardState = ACTING;
+		this.boardState = MOVING;
 	}
 	
 	public void registerTurnEnd() {
 		this.boardState = STAND_BY;
 	}
 	
-	public boolean stillMoving() {
+	public boolean isInBoardState(BoardState state) {
+		return this.boardState == state;
+	}
+	
+	public boolean turnOver() {
 		return boardState != STAND_BY;
 	}
 

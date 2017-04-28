@@ -33,26 +33,21 @@ public class PlayingGrid extends Grid implements InitializingBean {
 		Unit unit = (Unit)getHovered();
 		Position cursorPos = cursor.getPosition();
 		
-		if(unit == null && actingUnit.canMoveTo(cursorPos)) {
+		if(unit == null && actingUnit.canMoveTo(cursorPos)) 
 			moveActingUnitTo(cursorPos);
-			actionMenu.showFor(actingUnit);
-//			queueNextUnit();
-		}
 	}
 	
 	private void moveActingUnitTo(Position position) {
 		Position actingUnitPos = actingUnit.getPosition();
 		spaces.get(actingUnitPos.getY()).set(actingUnitPos.getX(), null);
 		spaces.get(position.getY()).set(position.getX(), actingUnit);
-		actingUnit.setPosition(position);
+		actingUnit.moveTo(position);
 	}
 	
 	private void queueNextUnit() {
-		actingUnit.registerTurnEnd();
-		
-		moveCycle.shift();
 		actingUnit = moveCycle.getNext();
 		actingUnit.registerTurnStart();
+		actionMenu.attachTo(actingUnit);
 	}
 
 	@Override
@@ -60,7 +55,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 		super.afterPropertiesSet();
 		units.forEach(this::place);
 		moveCycle = new MovementCycle(getUnits());
-		actingUnit = moveCycle.getNext();
+		queueNextUnit();
 	}
 
 	public void setUnits(List<Unit> units) {

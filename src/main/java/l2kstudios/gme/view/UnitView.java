@@ -6,9 +6,13 @@ import processing.core.PApplet;
 
 public class UnitView implements View {
 	
-	private UnitOverView unitOverView;
-	private UnitMovementGrid unitMovementGrid;
-	private UnitGridAvatar gridAvatar;
+	private UnitOverView unitOverView = new UnitOverView();
+	private UnitMovementGrid unitMovementGrid = new UnitMovementGrid();
+	private UnitGridAvatar gridAvatar = new UnitGridAvatar();
+	
+	public UnitView() {
+		
+	}
 	
 	public UnitView(PApplet ctx, Unit unit, PlayingGrid playingGrid) {
 		unitOverView = new UnitOverView(unit, ctx, playingGrid);
@@ -20,5 +24,27 @@ public class UnitView implements View {
 		unitMovementGrid.draw();
 		unitOverView.draw();
 		gridAvatar.draw();
+	}
+	
+	public void setUnit(Unit unit) {
+		unitOverView.setUnit(unit);
+		unitMovementGrid.setUnit(unit);
+		gridAvatar.setUnit(unit);
+	}
+	
+	public void setDrawingContext(PApplet ctx) {
+		unitOverView.setCtx(ctx);
+		unitMovementGrid.setCtx(ctx);
+		gridAvatar.setCtx(ctx);
+	}
+	
+	public void setPlayingGrid(PlayingGrid grid) {
+		unitOverView.setPlayingGrid(grid);
+		unitMovementGrid.setPlayingGrid(grid);
+		gridAvatar.setPlayingGrid(grid);
+	}
+	
+	public void setGridDrawingUtil(GridDrawingUtil util) {
+		gridAvatar.setGridDrawingUtil(util);
 	}
 }

@@ -1,15 +1,12 @@
 package l2kstudios.gme.view;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
-import l2kstudios.gme.model.unit.Unit;
-import processing.core.PApplet;
 
 public class UnitViewList implements InitializingBean, View {
 	
@@ -17,10 +14,7 @@ public class UnitViewList implements InitializingBean, View {
 	private Level level;
 	
 	@Autowired 
-	private PApplet ctx; 
-	
-	@Autowired
-	private PlayingGrid playingGrid;
+	private UnitViewFactory unitViewFactory;
 	
 	private List<UnitView> unitViews;
 	
@@ -29,12 +23,9 @@ public class UnitViewList implements InitializingBean, View {
 	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
-		unitViews = new ArrayList<UnitView>();
-		
-		level.getUnits().forEach((unit) -> {
-			unitViews.add(new UnitView(ctx, unit, playingGrid));						
-		});
-		
+	public void afterPropertiesSet() throws Exception {		
+		unitViews = level.getUnits().stream()
+									.map(unitViewFactory::newUnitView)
+									.collect(Collectors.toList());
 	}
 }

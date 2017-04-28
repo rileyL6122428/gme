@@ -1,5 +1,6 @@
 package l2kstudios.gme.model.grid;
 
+import static l2kstudios.gme.model.unit.Unit.BoardState.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,12 +9,10 @@ import l2kstudios.gme.model.unit.Unit;
 
 public class ActionMenu {
 	
-	private boolean active;
 	private Unit actingUnit;
 	private List<Action> selectableActions;
 	
-	public void showFor(Unit unit) {
-		active = true;
+	public void attachTo(Unit unit) {
 		selectableActions = unit.getActions().stream()
 											.filter(Action::ableToExecute)
 											.collect(Collectors.toList());
@@ -22,11 +21,10 @@ public class ActionMenu {
 	
 	private void chooseAction(int actionIdx) {
 		selectableActions.get(actionIdx).execute();
-		active = false;
 	}
 
-	public boolean isActive() {
-		return active;
+	public boolean shouldDraw() {
+		return actingUnit.isInBoardState(CHOOSING_ACTION);
 	}
 	
 	public Position getActiveUnitPosition() {

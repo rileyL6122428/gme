@@ -11,18 +11,46 @@ public class UnitOverView implements View {
 	private PlayingGrid playingGrid;
 	
 	public UnitOverView(Unit unit, PApplet ctx, PlayingGrid playingGrid) {
-		this.unit = unit;
-		this.ctx = ctx;
-		this.playingGrid = playingGrid;
+		this.setUnit(unit);
+		this.setCtx(ctx);
+		this.setPlayingGrid(playingGrid);
+	}
+
+	public UnitOverView() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void draw() {
-		ctx.fill(0);
+		getCtx().fill(0);
 		
-		if(playingGrid.unitIsHovered(unit)) {
-			ctx.text(unit.getName(), ctx.width - 100, ctx.height - 100);
-			ctx.text("HP: " + unit.getHealth().getVal(), ctx.width - 100, ctx.height - 80);
+		if(getPlayingGrid().unitIsHovered(getUnit())) {
+			getCtx().text(getUnit().getName(), getCtx().width - 100, getCtx().height - 100);
+			getCtx().text("HP: " + getUnit().getHealth().getVal(), getCtx().width - 100, getCtx().height - 80);
 		}
+	}
+
+	public Unit getUnit() {
+		return unit;
+	}
+
+	public void setUnit(Unit unit) {
+		this.unit = unit;
+	}
+
+	public PApplet getCtx() {
+		return ctx;
+	}
+
+	public void setCtx(PApplet ctx) {
+		this.ctx = ctx;
+	}
+
+	public PlayingGrid getPlayingGrid() {
+		return playingGrid;
+	}
+
+	public void setPlayingGrid(PlayingGrid playingGrid) {
+		this.playingGrid = playingGrid;
 	}
 }

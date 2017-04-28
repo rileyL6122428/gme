@@ -104,4 +104,6 @@
 		</property>
 	</bean>
 
+	<bean id="demoUnitViewList" class="l2kstudios.gme.view.UnitViewFactory" scope="singleton" />
+	<bean id="demoGridDrawingFactory" class="l2kstudios.gme.view.GridDrawingUtil" scope="singleton" />
 </beans>
