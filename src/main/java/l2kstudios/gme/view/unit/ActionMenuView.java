@@ -1,11 +1,12 @@
-package l2kstudios.gme.view;
+package l2kstudios.gme.view.unit;
+
+import static l2kstudios.gme.view.constants.GridConstants.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static l2kstudios.gme.view.GridConstants.*;
-
 import l2kstudios.gme.model.grid.ActionMenu;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.view.View;
 import processing.core.PApplet;
 
 public class ActionMenuView implements View {

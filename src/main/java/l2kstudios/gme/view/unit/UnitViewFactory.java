@@ -1,9 +1,10 @@
-package l2kstudios.gme.view;
+package l2kstudios.gme.view.unit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.view.GridDrawingUtil;
 import processing.core.PApplet;
 
 public class UnitViewFactory {

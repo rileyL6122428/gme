@@ -99,11 +99,11 @@
 					<property name="verticalOffset" value="20" />
 					<property name="verticalMargin" value="15" />
 				</bean>
-				<bean class="l2kstudios.gme.view.ActionMenuView" scope="singleton" />
+				<bean class="l2kstudios.gme.view.unit.ActionMenuView" scope="singleton" />
 			</list>
 		</property>
 	</bean>
 
-	<bean id="demoUnitViewList" class="l2kstudios.gme.view.UnitViewFactory" scope="singleton" />
+	<bean id="demoUnitViewList" class="l2kstudios.gme.view.unit.UnitViewFactory" scope="singleton" />
 	<bean id="demoGridDrawingFactory" class="l2kstudios.gme.view.GridDrawingUtil" scope="singleton" />
 </beans>

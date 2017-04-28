@@ -1,7 +1,8 @@
-package l2kstudios.gme.view;
+package l2kstudios.gme.view.unit;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.view.View;
 import processing.core.PApplet;
 
 public class UnitOverView implements View {

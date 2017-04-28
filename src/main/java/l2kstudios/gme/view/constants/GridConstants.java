@@ -1,4 +1,4 @@
-package l2kstudios.gme.view;
+package l2kstudios.gme.view.constants;
 
 public class GridConstants {
 	

@@ -22,7 +22,7 @@ public class GridDrawingUtil {
 		);
 	}
 	
-	static class Offsets {
+	public static class Offsets {
 		private int vertical;
 		private int horizontal;
 		
