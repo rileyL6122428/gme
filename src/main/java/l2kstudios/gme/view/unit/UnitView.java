@@ -3,7 +3,6 @@ package l2kstudios.gme.view.unit;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.GridDrawingUtil;
-import l2kstudios.gme.view.UnitMovementGrid;
 import l2kstudios.gme.view.View;
 import processing.core.PApplet;
 
@@ -12,16 +11,6 @@ public class UnitView implements View {
 	private UnitOverView unitOverView = new UnitOverView();
 	private UnitMovementGrid unitMovementGrid = new UnitMovementGrid();
 	private UnitGridAvatar gridAvatar = new UnitGridAvatar();
-	
-	public UnitView() {
-		
-	}
-	
-	public UnitView(PApplet ctx, Unit unit, PlayingGrid playingGrid) {
-		unitOverView = new UnitOverView(unit, ctx, playingGrid);
-		unitMovementGrid = new UnitMovementGrid(unit, ctx, playingGrid);
-		gridAvatar = new UnitGridAvatar(unit, ctx, playingGrid);
-	}
 	
 	public void draw() {
 		unitMovementGrid.draw();

@@ -23,16 +23,6 @@ public class UnitGridAvatar implements View {
 			setHorizontal(0);
 		}};
 	}
-	
-	public UnitGridAvatar(Unit unit, PApplet ctx, PlayingGrid playingGrid) {
-		this.setUnit(unit);
-		this.setCtx(ctx);
-		this.setPlayingGrid(playingGrid);
-	}
-
-	public UnitGridAvatar() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public void draw() {
 		setUnitFill();
@@ -49,8 +39,7 @@ public class UnitGridAvatar implements View {
 	
 	private void drawUnit() {
 		Position unitPos = getUnit().getPosition();
-		getGridDrawingUtil().drawEllipseAt(getUnit().getPosition(), SPACE_OFFSETS, 1, 1);
-//		ctx.ellipse(unitPos.getX() * GRID_BOX_WIDTH, unitPos.getY() * GRID_BOX_HEIGHT, GRID_BOX_WIDTH, GRID_BOX_HEIGHT);		
+		getGridDrawingUtil().drawEllipseAt(unitPos, SPACE_OFFSETS, 1, 1);		
 	}
 
 	public GridDrawingUtil getGridDrawingUtil() {

@@ -10,16 +10,6 @@ public class UnitOverView implements View {
 	private Unit unit;
 	private PApplet ctx;
 	private PlayingGrid playingGrid;
-	
-	public UnitOverView(Unit unit, PApplet ctx, PlayingGrid playingGrid) {
-		this.setUnit(unit);
-		this.setCtx(ctx);
-		this.setPlayingGrid(playingGrid);
-	}
-
-	public UnitOverView() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public void draw() {

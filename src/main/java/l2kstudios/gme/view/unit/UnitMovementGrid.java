@@ -1,8 +1,7 @@
-package l2kstudios.gme.view;
+package l2kstudios.gme.view.unit;
 
 import static l2kstudios.gme.model.unit.Unit.BoardState.*;
-import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_HEIGHT;
-import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_WIDTH;
+import static l2kstudios.gme.view.constants.GridConstants.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +16,9 @@ public class UnitMovementGrid {
 	private PlayingGrid playingGrid;
 	private PApplet ctx;
 	private Unit unit;
-	
-	public UnitMovementGrid(Unit unit, PApplet ctx, PlayingGrid playingGrid) {
-		this.setUnit(unit);
-		this.setCtx(ctx);
-		this.setPlayingGrid(playingGrid);
-	}
-	
-	public UnitMovementGrid() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public void draw() {
-		if(!isChoosingMove(getUnit())) return;
+		if(!isChoosingMove(unit)) return;
 		
 		getCtx().fill(150, 100);
 		movementOptions().forEach(this::fillInGridSpace);
@@ -56,7 +45,7 @@ public class UnitMovementGrid {
 	
 	private void fillInGridSpace(Position moveOptionPos) {
 		if(getPlayingGrid().isInBounds(moveOptionPos))
-			getCtx().rect(moveOptionPos.getX() * GRID_BOX_WIDTH, moveOptionPos.getY() * GRID_BOX_WIDTH, GRID_BOX_WIDTH, GRID_BOX_HEIGHT);					
+			getCtx().rect(moveOptionPos.getX() * SPACE_WIDTH, moveOptionPos.getY() * SPACE_WIDTH, SPACE_WIDTH, SPACE_HEIGHT);					
 	}
 
 	public PlayingGrid getPlayingGrid() {

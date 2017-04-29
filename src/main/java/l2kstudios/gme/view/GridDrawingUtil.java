@@ -1,7 +1,7 @@
 package l2kstudios.gme.view;
 
-import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_HEIGHT;
-import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_WIDTH;
+import static l2kstudios.gme.view.constants.GridConstants.*;
+//import static l2kstudios.gme.view.PlayingGridView.GRID_BOX_WIDTH;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,10 +15,19 @@ public class GridDrawingUtil {
 	
 	public void drawEllipseAt(Position spacePos, Offsets offsets, float widthRatio, float  heightRatio) {
 		ctx.ellipse(
-			spacePos.getX() * GRID_BOX_WIDTH + offsets.getHorizontal(), 
-			spacePos.getY() * GRID_BOX_HEIGHT + offsets.getVertical(), 
-			GRID_BOX_WIDTH * widthRatio, 
-			GRID_BOX_HEIGHT * heightRatio
+			spacePos.getX() * SPACE_WIDTH + offsets.getHorizontal(), 
+			spacePos.getY() * SPACE_HEIGHT + offsets.getVertical(), 
+			SPACE_WIDTH * widthRatio, 
+			SPACE_HEIGHT * heightRatio
+		);
+	}
+	
+	public void drawRectAt(Position spacePos) {
+		ctx.rect(
+			spacePos.getX() * SPACE_WIDTH, 
+			spacePos.getY() * SPACE_HEIGHT, 
+			SPACE_WIDTH,
+			SPACE_HEIGHT
 		);
 	}
 	
