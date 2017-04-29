@@ -1,7 +1,5 @@
 package l2kstudios.gme.model.level;
 
-import static l2kstudios.gme.model.level.Level.State.*;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,6 @@ public class Level {
 	
 	@Autowired
 	private PlayingGrid playingGrid;
-	
-	private State currentState = MAKIN_PLAYS;
 	
 	public void registerInput(Input input) {
 		inputDispatcher.dispatchInput(input);

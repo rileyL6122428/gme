@@ -47,7 +47,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	private void queueNextUnit() {
 		actingUnit = moveCycle.getNext();
 		actingUnit.registerTurnStart();
-		actionMenu.attachTo(actingUnit);
+		getActionMenu().attachTo(actingUnit);
 	}
 
 	@Override
@@ -76,5 +76,13 @@ public class PlayingGrid extends Grid implements InitializingBean {
 
 	public boolean unitIsHovered(Unit unit) {
 		return (Unit)getHovered() == unit;
+	}
+
+	public ActionMenu getActionMenu() {
+		return actionMenu;
+	}
+
+	public void setActionMenu(ActionMenu actionMenu) {
+		this.actionMenu = actionMenu;
 	}
 }
