@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.unit.Unit;
 
+import static l2kstudios.gme.model.grid.PlayingGrid.State.*;
+
 public class PlayingGrid extends Grid implements InitializingBean {
 	
 	public enum State {
@@ -17,6 +19,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	private List<Unit> units;
 	private MovementCycle moveCycle;
 	private Unit actingUnit;
+	private State state;
 	
 	@Autowired
 	private ActionMenu actionMenu;
@@ -42,6 +45,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 		spaces.get(actingUnitPos.getY()).set(actingUnitPos.getX(), null);
 		spaces.get(position.getY()).set(position.getX(), actingUnit);
 		actingUnit.moveTo(position);
+		state = SELECTING_ACTION;
 	}
 	
 	private void queueNextUnit() {
@@ -56,6 +60,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 		units.forEach(this::place);
 		moveCycle = new MovementCycle(getUnits());
 		queueNextUnit();
+		state = MOVING_UNIT;
 	}
 
 	public void setUnits(List<Unit> units) {
@@ -84,5 +89,9 @@ public class PlayingGrid extends Grid implements InitializingBean {
 
 	public void setActionMenu(ActionMenu actionMenu) {
 		this.actionMenu = actionMenu;
+	}
+	
+	public boolean inInPlayingGridState(PlayingGrid.State state) {
+		return this.state == state;
 	}
 }
