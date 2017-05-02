@@ -19,7 +19,6 @@ public class LevelTest {
 	@Before
 	public void setup() throws Exception {
 		playingGrid = new PlayingGrid();
-		playingGrid.setDimensions(new Dimension(6, 12));
 		playingGrid.afterPropertiesSet();
 		
 		level = new Level();

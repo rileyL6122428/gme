@@ -1,24 +1,28 @@
 package l2kstudios.gme.model.grid;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
-import org.springframework.beans.factory.InitializingBean;
+public class Grid {
 
-public class Grid implements InitializingBean {
-
-	protected Dimension dimensions;
 	protected Cursor cursor;
-	protected List<List<Placeable>> spaces;
+	protected List<List<Space>> spaces;
+	private Map<Space, Position> spaceToPosition;
+	
 	
 	public Grid() {
 		this.cursor = new Cursor();
 	}
 	
+	public void select() {
+		throw new RuntimeException("SELECT METHOD NOT IMPLEMENTED ON GRID");
+	}
+	
 	public void moveCursorBy(int deltaX, int deltaY) {
-		moveCursorField(cursor::setX, cursor.getX() + deltaX, getDimensions().getWidth());
-		moveCursorField(cursor::setY, cursor.getY() + deltaY, getDimensions().getHeight());
+		moveCursorField(cursor::setX, cursor.getX() + deltaX, getWidth());
+		moveCursorField(cursor::setY, cursor.getY() + deltaY, getHeight());
 	}
 	
 	private void moveCursorField(Consumer<Integer> setter, int nextCursorVal, int gridDimension) {
@@ -32,54 +36,65 @@ public class Grid implements InitializingBean {
 	}
 	
 	public int getWidth() {
-		return getDimensions().getWidth();
+		return spaces.get(0).size();
 	}
 
 	public int getHeight() {
-		return getDimensions().getHeight();
+		return spaces.size();
 	}
 	
 	public Position getCursorPosition() {
 		return cursor.getPosition();
 	}
 	
-	public void place(Placeable placeable) {
-		Position position = placeable.getPosition();
-		int x = position.getX();
-		int y = position.getY();
-		
-		spaces.get(y).set(x, placeable);
-	}
-	
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		initializeSpaces();
-	}
-	
-	protected void initializeSpaces() {
-		spaces = new ArrayList<List<Placeable>>();
-		
-		for(int rowIdx = 0; rowIdx < getDimensions().getHeight(); rowIdx++) {
-			List<Placeable> row = new ArrayList<Placeable>();
-			for(int colIdx = 0; colIdx < getDimensions().getWidth(); colIdx++) {
-				row.add(null);
-			}
-			spaces.add(row);
-		}
-	}
-
-	public Dimension getDimensions() {
-		return dimensions;
-	}
-
-	public void setDimensions(Dimension dimensions) {
-		this.dimensions = dimensions;
+	public void place(Placeable placeable, int x, int y) {
+		getSpaces().get(y).get(x).setOccupier(placeable);
 	}
 	
 	public Placeable getHovered() {
 		int x = cursor.getX();
 		int y = cursor.getY();
 		
-		return spaces.get(y).get(x);
+		return getSpaces().get(y).get(x).getOccupier();
+	}
+
+	public List<List<Space>> getSpaces() {
+		return spaces;
+	}
+
+	public Position positionOf(Space space) {
+		return spaceToPosition.get(space);
+	}
+	
+	public void setSpaces(List<List<Space>> spaces) {
+		this.spaces = spaces;
+		validateDimensions();
+		setPositionsToSpacesMap();
+		passGridReferenceToSpaces();
+	}
+	
+	private void validateDimensions() {
+		for(List<Space> row : spaces) {
+			if(row.size() != getWidth())
+				throw new RuntimeException("GRID NOT AN EVEN RECTANGLE");
+		}
+	}
+	
+	private void setPositionsToSpacesMap() {
+		spaceToPosition = new HashMap<Space, Position>();
+		
+		for(int y = 0; y < spaces.size(); y++) {
+			for(int x = 0; x < spaces.get(y).size(); x++) {
+				spaceToPosition.put(spaces.get(y).get(x), new Position(x, y));
+			}
+		}
+	}
+	
+	private void passGridReferenceToSpaces() {
+		for(int y = 0; y < spaces.size(); y++) {
+			for(int x = 0; x < spaces.get(y).size(); x++) {
+				spaces.get(y).get(x).setGrid(this);
+			}
+		}
 	}
 }

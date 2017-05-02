@@ -6,6 +6,7 @@ import java.util.List;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.Space;
 
 import static l2kstudios.gme.model.unit.Unit.BoardState.*; 
 
@@ -25,7 +26,6 @@ public class Unit implements Placeable {
 	}
 
 	private String name;
-	private Position position;
 	private Team team;
 	
 	private long speed;
@@ -35,23 +35,15 @@ public class Unit implements Placeable {
 	private List<Action> actions;
 	
 	private BoardState boardState = STAND_BY;
+	private Space occupiedSpace;
 	
 	
 	public boolean canMoveTo(Position position) {
-		return GridUtils.distanceBetween(position, this.position) <= getEnergy().getVal();
+		return GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
 	}
 
 	public Position getPosition() {
-		return position;
-	}
-
-	public void moveTo(Position position) {
-		this.boardState = CHOOSING_ACTION;
-		this.position = position;
-	}
-	
-	public void setPosition(Position position) {
-		this.position = position;
+		return occupiedSpace.getPosition();
 	}
 
 	public Team getTeam() {
@@ -116,6 +108,11 @@ public class Unit implements Placeable {
 
 	public List<Action> getActions() {
 		return actions;
+	}
+
+	@Override
+	public void place(Space space) {
+		occupiedSpace = space;
 	}
 	
 }

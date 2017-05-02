@@ -3,11 +3,7 @@ package l2kstudios.gme.model.grid;
 public class Space {
 	
 	private Placeable occupier;
-	private PlayingGrid playingGrid;
-	
-	public Space(PlayingGrid playingGrid) {
-		this.playingGrid = playingGrid;
-	}
+	private Grid grid;
 	
 	public boolean isOccupied() {
 		return occupier != null;
@@ -23,15 +19,15 @@ public class Space {
 	}
 	
 	public Position getPosition() {
-		return getPlayingGrid().positionOf(this);
+		return getGrid().positionOf(this);
 	}
 
-	public PlayingGrid getPlayingGrid() {
-		return playingGrid;
+	public Grid getGrid() {
+		return grid;
 	}
 
-	public void setPlayingGrid(PlayingGrid playingGrid) {
-		this.playingGrid = playingGrid;
+	public void setGrid(Grid grid) {
+		this.grid = grid;
 	}
 	
 }

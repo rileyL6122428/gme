@@ -1,11 +1,16 @@
 package l2kstudios.gme.model.grid;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
 public class SpaceTest {
 	
@@ -19,7 +24,7 @@ public class SpaceTest {
 		playingGrid = mock(PlayingGrid.class);
 		placeable = mock(Placeable.class);
 		
-		space = new Space(playingGrid);
+		space = new Space();
 	}
 
 	
@@ -27,7 +32,7 @@ public class SpaceTest {
 	public void getPosition__returnsTheResultOfPlayingGridsPositionOfMethod() {
 		Position position = new Position(0,0);
 		when(playingGrid.positionOf(space)).thenReturn(position);
-		
+		space.setGrid(playingGrid);
 		Position spacePosition = space.getPosition();
 		assertEquals(position, spacePosition);
 	}
