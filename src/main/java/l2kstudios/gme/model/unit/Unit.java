@@ -38,8 +38,9 @@ public class Unit implements Placeable {
 	private Space occupiedSpace;
 	
 	
-	public boolean canMoveTo(Position position) {
-		return GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
+	public boolean canMoveTo(Space space) {
+		Position position = space.getPosition();
+		return !space.isOccupied() && GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
 	}
 
 	public Position getPosition() {
@@ -94,6 +95,12 @@ public class Unit implements Placeable {
 		this.boardState = MOVING;
 	}
 	
+	public void moveTo(Space space) {
+		occupiedSpace.setOccupier(null);
+		place(space);
+		boardState = CHOOSING_ACTION;
+	}
+	
 	public void registerTurnEnd() {
 		this.boardState = STAND_BY;
 	}
@@ -113,6 +120,7 @@ public class Unit implements Placeable {
 	@Override
 	public void place(Space space) {
 		occupiedSpace = space;
+		occupiedSpace.setOccupier(this);
 	}
 	
 }

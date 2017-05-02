@@ -51,11 +51,11 @@ public class Grid {
 		getSpaces().get(y).get(x).setOccupier(placeable);
 	}
 	
-	public Placeable getHovered() {
+	public Space hoveredSpace() {
 		int x = cursor.getX();
 		int y = cursor.getY();
 		
-		return getSpaces().get(y).get(x).getOccupier();
+		return getSpaces().get(y).get(x);
 	}
 
 	public List<List<Space>> getSpaces() {

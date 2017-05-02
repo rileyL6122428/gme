@@ -14,159 +14,159 @@ public class DemoPlayingGrid extends PlayingGrid {
 		
 		spaces.add(new ArrayList<Space>(){{
 			add(new Space());
-			add(new Space(){{
-				setOccupier(new Unit() {{
-					setName("slower");
-					setSpeed(2);
-					setEnergy(new ConsummableStat() {{
-						setCap(1);
-						setVal(1);
-					}});
-					setHealth(new ConsummableStat() {{
-						setCap(5);
-						setVal(5);
-					}});
-				}});
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		spaces.add(new ArrayList<Space>(){{
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+			add(new Space());
+		}});
+		
+		new Unit() {{
+			setName("slower");
+			setSpeed(2);
+			setEnergy(new ConsummableStat() {{
+				setCap(1);
+				setVal(1);
 			}});
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space(){{
-				setOccupier(new Unit() {{
-					setName("faster");
-					setSpeed(3);
-					setEnergy(new ConsummableStat(){{
-						setCap(2);
-						setVal(2);
-					}});
-					setHealth(new ConsummableStat(){{
-						setCap(10);
-						setVal(10);
-					}});
-				}});
+			setHealth(new ConsummableStat() {{
+				setCap(5);
+				setVal(5);
 			}});
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
+		}}.place(spaces.get(1).get(1));
 		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
+		new Unit() {{
+			setName("faster");
+			setSpeed(3);
+			setEnergy(new ConsummableStat(){{
+				setCap(2);
+				setVal(2);
+			}});
+			setHealth(new ConsummableStat(){{
+				setCap(10);
+				setVal(10);
+			}});
+		}}.place(spaces.get(3).get(5));
 		
 		setSpaces(spaces);
 	}

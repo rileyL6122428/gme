@@ -30,14 +30,8 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	}
 
 	private void moveActingUnit() {
-		Unit unit = (Unit)getHovered();
-		Position cursorPos = cursor.getPosition();
-		
-		if(unit == null && actingUnit.canMoveTo(cursorPos)) {
-			Position actingUnitPos = actingUnit.getPosition();
-			getSpaces().get(actingUnitPos.getY()).set(actingUnitPos.getX(), null);
-			getSpaces().get(cursorPos.getY()).get(cursorPos.getX()).setOccupier(actingUnit);		
-		}
+		if(actingUnit.canMoveTo(hoveredSpace()))
+			actingUnit.moveTo(hoveredSpace());
 	}
 	
 	private void queueNextUnit() {
@@ -73,7 +67,7 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	}
 
 	public boolean unitIsHovered(Unit unit) {
-		return (Unit)getHovered() == unit;
+		return hoveredSpace().getOccupier() == unit;
 	}
 
 	public ActionMenu getActionMenu() {
