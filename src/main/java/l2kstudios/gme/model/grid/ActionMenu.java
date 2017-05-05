@@ -1,8 +1,7 @@
 package l2kstudios.gme.model.grid;
 
-import static l2kstudios.gme.model.unit.Unit.BoardState.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,9 +10,9 @@ import l2kstudios.gme.model.unit.Unit;
 
 public class ActionMenu extends Grid {
 	
+	private static int SINGLE_ROW_IDX = 0;
+	
 	private Unit actingUnit;
-	private List<Action> selectableActions;
-	private int actionIdx;
 	private boolean shouldDraw;
 	
 	private ActingUnitTracker actingUnitTracker;
@@ -23,33 +22,32 @@ public class ActionMenu extends Grid {
 		this.actingUnitTracker = actingUnitTracker;
 	}
 	
-	public void attachTo(Unit unit) {
-		actingUnit = unit;
-	}
-	
 	public void initialize() {
-		selectableActions = actingUnitTracker.getActingUnit()
-											.getActions()
-											.stream()
-											.filter(Action::ableToExecute)
-											.collect(Collectors.toList());
-		
+		setSpacesToExecutableActions(actingUnitTracker.getActingUnit());
 		shouldDraw = true;
 	}
 	
+	private void setSpacesToExecutableActions(Unit unit) {
+		spaces = new ArrayList<List<Space>>();
+		spaces.add(new ArrayList<Space>());
+		for(Action action: unit.getActions()) {
+			if(action.ableToExecute()) {
+				Space space = new Space();
+				action.place(space);
+				spaces.get(SINGLE_ROW_IDX).add(space);				
+			}
+		}
+	}
+	
 	public boolean select() {
-		getSelectableActions().get(actionIdx).execute();
+		executeHoveredAction();
 		shouldDraw = false;
-		actionIdx = 0;
 		return true;
 	}
 	
-	public void scrollUp() {
-		actionIdx--;
-	}
-	
-	public void scrollDown() {
-		actionIdx++;
+	private void executeHoveredAction() {
+		Action action = (Action)hoveredSpace().getOccupier();
+		action.execute();		
 	}
 
 	public boolean getShouldDraw() {
@@ -61,6 +59,12 @@ public class ActionMenu extends Grid {
 	}
 	
 	public List<Action> getSelectableActions() {
+		List<Action> selectableActions = new ArrayList<Action>();
+		
+		for(Space space : spaces.get(SINGLE_ROW_IDX)) {
+			selectableActions.add((Action)space.getOccupier());
+		}
+		
 		return selectableActions;
 	}
 }

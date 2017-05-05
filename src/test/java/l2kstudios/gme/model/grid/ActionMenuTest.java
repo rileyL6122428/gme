@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import l2kstudios.gme.model.unit.Action;
@@ -25,9 +26,10 @@ public class ActionMenuTest {
 	@Before
 	public void setup() {
 		actingUnitActions = new ArrayList<Action>() {{
-			add(mock(Action.class));
-			add(mock(Action.class));
-			add(mock(Action.class));
+			add(new DummyAction(true));
+			add(new DummyAction(false));
+			add(new DummyAction(true));
+			add(new DummyAction(true));
 		}};
 		
 		actingUnit = mock(Unit.class);
@@ -39,22 +41,11 @@ public class ActionMenuTest {
 		actionMenu = new ActionMenu(actingUnitTracker);
 	}
 	
+	
 	@Test
-	public void getSelectableActions__returnsTheSetOfActionsExecutableByTheUnit() {
-		when(actingUnitActions.get(0).ableToExecute()).thenReturn(true);
-		when(actingUnitActions.get(1).ableToExecute()).thenReturn(false);
-		when(actingUnitActions.get(2).ableToExecute()).thenReturn(true);
-		
-		actionMenu.initialize();
-		
-		List<Action> selectableActions = actionMenu.getSelectableActions();
-		
-		assertEquals(2, selectableActions.size());
-		assertEquals(actingUnitActions.get(0), selectableActions.get(0));
-		assertEquals(actingUnitActions.get(2), selectableActions.get(1));
+	public void shouldDraw_beforeInitialization_returnsFalse() {
+		assertFalse(actionMenu.getShouldDraw());
 	}
-	
-	
 	
 	@Test
 	public void shouldDraw_afterInitializationCall_returnsTrue() {
@@ -63,13 +54,59 @@ public class ActionMenuTest {
 	}
 	
 	@Test
-	public void shouldDraw_afterSelection_returnsFalse() {
-		when(actingUnitActions.get(0).ableToExecute()).thenReturn(true);
-		when(actingUnitActions.get(1).ableToExecute()).thenReturn(true);
-		when(actingUnitActions.get(2).ableToExecute()).thenReturn(true);
+	public void getSelectableActions__returnsTheSetOfActionsExecutableByTheUnit() {
+		actionMenu.initialize();
 		
+		List<Action> selectableActions = actionMenu.getSelectableActions();
+		
+		assertEquals(3, selectableActions.size());
+		assertEquals(actingUnitActions.get(0), selectableActions.get(0));
+		assertEquals(actingUnitActions.get(2), selectableActions.get(1));
+		assertEquals(actingUnitActions.get(3), selectableActions.get(2));
+	}
+	
+	@Test
+	public void select__setsShouldDrawToFalse() {
 		actionMenu.initialize();
 		actionMenu.select();
 		assertFalse(actionMenu.getShouldDraw());
 	}
+	
+	@Test
+	public void select__executesTheHoveredAction() {		
+		actionMenu.initialize();
+		actionMenu.select();
+		assertEquals(1, ((DummyAction)actingUnitActions.get(0)).getCallCount());
+		assertEquals(0, ((DummyAction)actingUnitActions.get(2)).getCallCount());
+		assertEquals(0, ((DummyAction)actingUnitActions.get(3)).getCallCount());
+		
+		actionMenu.initialize();
+		actionMenu.moveCursorBy(1, 0);
+		actionMenu.select();
+		assertEquals(1, ((DummyAction)actingUnitActions.get(0)).getCallCount());
+		assertEquals(1, ((DummyAction)actingUnitActions.get(2)).getCallCount());
+		assertEquals(0, ((DummyAction)actingUnitActions.get(3)).getCallCount());
+	}
+	
+	static class DummyAction extends Action {
+		private int callCount = 0;
+		private boolean ableToExecute;
+		
+		public DummyAction(boolean ableToExecute) {
+			this.ableToExecute = ableToExecute;
+		}
+		
+		public boolean ableToExecute() {
+			return ableToExecute;
+		}
+		
+		public void execute() {
+			callCount++;
+		}
+		
+		public int getCallCount() {
+			return callCount;
+		}
+	}
+	
 }
