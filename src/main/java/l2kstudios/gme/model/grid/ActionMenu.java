@@ -24,11 +24,14 @@ public class ActionMenu extends Grid {
 	
 	public void initialize() {
 		setSpacesToExecutableActions(actingUnitTracker.getActingUnit());
+		Space firstSpaceInList = spaces.get(SINGLE_ROW_IDX).get(0);
+		cursor.setPosition(firstSpaceInList.getPosition());
 		shouldDraw = true;
 	}
 	
 	private void setSpacesToExecutableActions(Unit unit) {
-		spaces = new ArrayList<List<Space>>();
+		List<List<Space>> spaces = new ArrayList<List<Space>>();
+		
 		spaces.add(new ArrayList<Space>());
 		for(Action action: unit.getActions()) {
 			if(action.ableToExecute()) {
@@ -37,6 +40,8 @@ public class ActionMenu extends Grid {
 				spaces.get(SINGLE_ROW_IDX).add(space);				
 			}
 		}
+		
+		setSpaces(spaces);
 	}
 	
 	public boolean select() {

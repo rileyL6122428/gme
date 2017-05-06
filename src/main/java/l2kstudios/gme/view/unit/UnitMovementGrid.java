@@ -6,6 +6,7 @@ import static l2kstudios.gme.view.constants.GridConstants.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.Unit;
@@ -25,7 +26,7 @@ public class UnitMovementGrid {
 	}
 	
 	private boolean isChoosingMove(Unit unit) {
-		return getPlayingGrid().isActingUnit(unit) && unit.isInBoardState(MOVING);
+		return unit.isInBoardState(MOVING);
 	}
 	
 	private List<Position> movementOptions() {

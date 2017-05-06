@@ -45,6 +45,10 @@ public class PlayingGrid extends Grid implements InitializingBean {
 		return units;
 	}
 	
+	public boolean unitIsHovered(Unit unit) {
+		return unit == hoveredSpace().getOccupier();
+	}
+	
 	public Unit getUnitAt(int x, int y) {
 		return (Unit)getSpaces().get(y).get(x).getOccupier();
 	}

@@ -3,12 +3,21 @@ package l2kstudios.gme.model.grid.beandefinition;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 
 public class DemoPlayingGrid extends PlayingGrid {
+	
+	@Autowired
+	public DemoPlayingGrid(ActingUnitTracker actingUnitTracker) {
+		super(actingUnitTracker);
+	}
+
 	{
 		List<List<Space>> spaces = new ArrayList<List<Space>>();
 		

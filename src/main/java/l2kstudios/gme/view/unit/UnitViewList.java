@@ -6,13 +6,14 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.view.View;
 
 public class UnitViewList implements InitializingBean, View {
 	
 	@Autowired
-	private Level level;
+	private PlayingGrid playingGrid;
 	
 	@Autowired 
 	private UnitViewFactory unitViewFactory;
@@ -25,7 +26,7 @@ public class UnitViewList implements InitializingBean, View {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {		
-		unitViews = level.getUnits().stream()
+		unitViews = playingGrid.getUnits().stream()
 									.map(unitViewFactory::newUnitView)
 									.collect(Collectors.toList());
 	}

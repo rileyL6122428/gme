@@ -1,5 +1,6 @@
 package l2kstudios.gme.view.unit;
 
+import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.Unit;
@@ -12,7 +13,7 @@ public class UnitGridAvatar implements View {
 	
 	private static final Offsets SPACE_OFFSETS;
 	
-	private PlayingGrid playingGrid;
+	private ActingUnitTracker actingUnitTracker;
 	private PApplet ctx;
 	private Unit unit;
 	private GridDrawingUtil gridDrawingUtil;
@@ -30,7 +31,7 @@ public class UnitGridAvatar implements View {
 	}
 	
 	private void setUnitFill() {
-		if(getPlayingGrid().isActingUnit(getUnit())) {
+		if(actingUnitTracker.getActingUnit() == getUnit()) {
 			getCtx().fill(0, 0, 255);			
 		} else {
 			getCtx().fill(0, 255, 0);
@@ -48,14 +49,6 @@ public class UnitGridAvatar implements View {
 
 	public void setGridDrawingUtil(GridDrawingUtil gridDrawingUtil) {
 		this.gridDrawingUtil = gridDrawingUtil;
-	}
-
-	public PlayingGrid getPlayingGrid() {
-		return playingGrid;
-	}
-
-	public void setPlayingGrid(PlayingGrid playingGrid) {
-		this.playingGrid = playingGrid;
 	}
 
 	public PApplet getCtx() {

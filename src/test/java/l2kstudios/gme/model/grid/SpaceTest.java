@@ -36,13 +36,6 @@ public class SpaceTest {
 		Position spacePosition = space.getPosition();
 		assertEquals(position, spacePosition);
 	}
-	
-	@Test
-	public void setOccupier__callsPlaceMethodOnThePlaceable() {
-		doNothing().when(placeable).place(any());
-		space.setOccupier(placeable);
-		verify(placeable).place(space);
-	}
 
 	@Test
 	public void isOccupied_occupierSet_returnsTrue() {

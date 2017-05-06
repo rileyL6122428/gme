@@ -1,5 +1,7 @@
 package l2kstudios.gme.model.grid;
 
+import java.util.List;
+
 import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.unit.Unit;
 
@@ -25,5 +27,9 @@ public class ActingUnitTracker {
 	private void getNextActingUnit() {
 		actingUnit = movementCycle.getNext();
 		actingUnit.registerTurnStart();
+	}
+	
+	public List<Unit> getUnitMoveOrder() {
+		return movementCycle.getOrder();
 	}
 }

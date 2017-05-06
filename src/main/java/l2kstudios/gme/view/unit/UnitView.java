@@ -33,7 +33,6 @@ public class UnitView implements View {
 	public void setPlayingGrid(PlayingGrid grid) {
 		unitOverView.setPlayingGrid(grid);
 		unitMovementGrid.setPlayingGrid(grid);
-		gridAvatar.setPlayingGrid(grid);
 	}
 	
 	public void setGridDrawingUtil(GridDrawingUtil util) {

@@ -23,16 +23,16 @@ public class InputDispatcher implements InitializingBean {
 	public void dispatchInput(Input input) {
 		switch(input) {
 			case UP:    
-				selectedGrid.moveCursorBy( 0, -1); 
+				selectedGrid.moveCursorUp(); 
 				break;
 			case RIGHT: 
-				selectedGrid.moveCursorBy( 1,  0); 
+				selectedGrid.moveCursorRight(); 
 				break;
 			case LEFT:
-				selectedGrid.moveCursorBy(-1, 0);
+				selectedGrid.moveCursorLeft();
 				break;
 			case DOWN:
-				selectedGrid.moveCursorBy(0, 1);
+				selectedGrid.moveCursorRight();
 				break;
 			case SPACE:
 				if(selectedGrid.select()) toggleSelectedGrid();
