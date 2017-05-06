@@ -81,7 +81,7 @@ public class ActionMenuTest {
 		assertEquals(0, ((DummyAction)actingUnitActions.get(3)).getCallCount());
 		
 		actionMenu.initialize();
-		actionMenu.moveCursorBy(1, 0);
+		actionMenu.moveCursorRight();
 		actionMenu.select();
 		assertEquals(1, ((DummyAction)actingUnitActions.get(0)).getCallCount());
 		assertEquals(1, ((DummyAction)actingUnitActions.get(2)).getCallCount());

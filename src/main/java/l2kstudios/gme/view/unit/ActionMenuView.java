@@ -21,7 +21,7 @@ public class ActionMenuView implements View {
 	
 	@Override
 	public void draw() {
-		if(actionMenu.shouldDraw()) {
+		if(actionMenu.getShouldDraw()) {
 			Position position = actionMenu.getActiveUnitPosition();
 			
 			ctx.fill(0);

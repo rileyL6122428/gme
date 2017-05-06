@@ -5,34 +5,65 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import l2kstudios.gme.customerror.MethodNotImplementedException;
+
 public class Grid {
 
 	protected Cursor cursor;
 	protected List<List<Space>> spaces;
 	private Map<Space, Position> spaceToPosition;
 	
-	
 	public Grid() {
 		this.cursor = new Cursor();
 	}
 	
-	public void select() {
-		throw new RuntimeException("SELECT METHOD NOT IMPLEMENTED ON GRID");
+	public void initialize() {
+		throw new MethodNotImplementedException();
 	}
 	
-	public void moveCursorBy(int deltaX, int deltaY) {
-		moveCursorField(cursor::setX, cursor.getX() + deltaX, getWidth());
-		moveCursorField(cursor::setY, cursor.getY() + deltaY, getHeight());
+	public boolean select() {
+		throw new MethodNotImplementedException();
 	}
 	
-	private void moveCursorField(Consumer<Integer> setter, int nextCursorVal, int gridDimension) {
-		if(nextCursorVal < 0) {
-			setter.accept(gridDimension + nextCursorVal);
-		} else if(nextCursorVal >= gridDimension){
-			setter.accept(nextCursorVal % gridDimension);
-		} else {
-			setter.accept(nextCursorVal);
-		}
+	public void moveCursorTo(Position position) {
+		cursor.setPosition(position);
+	}
+	
+	public void moveCursorTo(Space space) {
+		cursor.setPosition(space.getPosition());
+	}
+	
+	public void moveCursorDown() {
+		Position cursorPosition = cursor.getPosition();
+		int nextYCoord = (cursorPosition.getY() >= getHeight() - 1) ? 0 : cursorPosition.getY() + 1; 
+		Position nextCursorPosition = getSpaceAt(cursorPosition.getX(), nextYCoord).getPosition(); 
+		cursor.setPosition(nextCursorPosition);
+	}
+	
+	public void moveCursorUp() {
+		Position cursorPosition = cursor.getPosition();
+		int nextYCoord = (cursorPosition.getY() == 0) ? getHeight() - 1 : cursorPosition.getY() - 1; 
+		Position nextCursorPosition = getSpaceAt(cursorPosition.getX(), nextYCoord).getPosition(); 
+		cursor.setPosition(nextCursorPosition);
+	}
+	
+	public void moveCursorRight() {
+		Position cursorPosition = cursor.getPosition();
+		int nextXCoord = (cursorPosition.getX() >= getWidth() - 1) ? 0 : cursorPosition.getX() + 1; 
+		Position nextCursorPosition = getSpaceAt(nextXCoord, cursorPosition.getY()).getPosition(); 
+		cursor.setPosition(nextCursorPosition);
+	}
+	
+	public void moveCursorLeft() {
+		Position cursorPosition = cursor.getPosition();
+		int nextXCoord = (cursorPosition.getX() == 0) ? getWidth() - 1 : cursorPosition.getX() - 1; 
+		Position nextCursorPosition = getSpaceAt(nextXCoord, cursorPosition.getY()).getPosition(); 
+		cursor.setPosition(nextCursorPosition);
+	}
+	
+	public void place(Placeable placeable, int x, int y) {
+		Space space = getSpaces().get(y).get(x);
+		placeable.place(space);
 	}
 	
 	public int getWidth() {
@@ -47,23 +78,32 @@ public class Grid {
 		return cursor.getPosition();
 	}
 	
-	public void place(Placeable placeable, int x, int y) {
-		getSpaces().get(y).get(x).setOccupier(placeable);
+	
+	public Space getSpaceAt(int x, int y) {
+		return getSpaces().get(y).get(x);
+	}
+	
+	public Space getSpaceAt(Position position) {
+		int x = position.getX();
+		int y = position.getY();
+		return getSpaces().get(y).get(x);
 	}
 	
 	public Space hoveredSpace() {
-		int x = cursor.getX();
-		int y = cursor.getY();
-		
-		return getSpaces().get(y).get(x);
+		return getSpaceAt(cursor.getPosition());
 	}
 
-	public List<List<Space>> getSpaces() {
-		return spaces;
-	}
 
 	public Position positionOf(Space space) {
 		return spaceToPosition.get(space);
+	}
+	
+	public boolean isInBounds(Position position) {
+		return spaces.size() > position.getY() && spaces.get(position.getY()).size() > position.getX();
+	}
+	
+	public List<List<Space>> getSpaces() {
+		return spaces;
 	}
 	
 	public void setSpaces(List<List<Space>> spaces) {

@@ -6,8 +6,6 @@ public class WaitAction extends Action {
 		name = "Wait";
 	}
 	
-	public WaitAction() {}
-	
 	public WaitAction(Unit unit) {
 		this.executingUnit = unit;
 	}

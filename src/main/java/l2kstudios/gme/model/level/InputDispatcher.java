@@ -35,11 +35,20 @@ public class InputDispatcher implements InitializingBean {
 				selectedGrid.moveCursorBy(0, 1);
 				break;
 			case SPACE:
-				selectedGrid.select();
+				if(selectedGrid.select()) toggleSelectedGrid();
 				break;
 			case BACK:
 				System.out.println("BACK INPUT RECEIVED");
 		}
+	}
+
+	private void toggleSelectedGrid() {
+		if(selectedGrid == playingGrid)
+			selectedGrid = actionMenu;
+		else
+			selectedGrid = playingGrid;
+		
+		selectedGrid.initialize();
 	}
 
 	@Override

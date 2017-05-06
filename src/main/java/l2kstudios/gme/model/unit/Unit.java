@@ -10,7 +10,7 @@ import l2kstudios.gme.model.grid.Space;
 
 import static l2kstudios.gme.model.unit.Unit.BoardState.*; 
 
-public class Unit implements Placeable {
+public class Unit extends Placeable {
 	
 	public enum BoardState {
 		STAND_BY, MOVING, CHOOSING_ACTION, ACTING, AWAINTING_NEXT_TURN
@@ -21,8 +21,8 @@ public class Unit implements Placeable {
 	}
 	
 	public Unit() {
-		actions = new ArrayList<Action>();
-		actions.add(new WaitAction(this));	
+		setActions(new ArrayList<Action>());
+		getActions().add(new WaitAction(this));	
 	}
 
 	private String name;
@@ -35,12 +35,14 @@ public class Unit implements Placeable {
 	private List<Action> actions;
 	
 	private BoardState boardState = STAND_BY;
-	private Space occupiedSpace;
-	
 	
 	public boolean canMoveTo(Space space) {
 		Position position = space.getPosition();
 		return !space.isOccupied() && GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
+	}
+	
+	public void endTurn() {
+		actions.get(actions.size() - 1).execute();
 	}
 
 	public Position getPosition() {
@@ -101,7 +103,7 @@ public class Unit implements Placeable {
 		boardState = CHOOSING_ACTION;
 	}
 	
-	public void registerTurnEnd() {
+	void registerTurnEnd() {
 		this.boardState = STAND_BY;
 	}
 	
@@ -110,17 +112,15 @@ public class Unit implements Placeable {
 	}
 	
 	public boolean turnOver() {
-		return boardState != STAND_BY;
+		return boardState == STAND_BY;
 	}
 
 	public List<Action> getActions() {
 		return actions;
 	}
 
-	@Override
-	public void place(Space space) {
-		occupiedSpace = space;
-		occupiedSpace.setOccupier(this);
+	public void setActions(List<Action> actions) {
+		this.actions = actions;
 	}
 	
 }

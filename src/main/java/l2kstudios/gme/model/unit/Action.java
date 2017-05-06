@@ -1,10 +1,18 @@
 package l2kstudios.gme.model.unit;
 
-public abstract class Action {
+import l2kstudios.gme.model.grid.Placeable;
+
+public class Action extends Placeable {
 	
 	protected Unit executingUnit;
 	protected String name;
 	
-	public abstract void execute();
-	public abstract boolean ableToExecute();
+	public void execute() {
+		throw new RuntimeException("Method Not Implemented");
+	}
+	
+	public boolean ableToExecute() {
+		throw new RuntimeException("Method Not Implemented");
+	}
+
 }
