@@ -11,41 +11,28 @@ import l2kstudios.gme.model.unit.Unit;
 
 public class PlayingGrid extends Grid implements InitializingBean {
 	
-	private MovementCycle moveCycle;
-	private Unit actingUnit;
+	private ActingUnitTracker actingUnitTracker;
 	
-	@Autowired
-	private ActionMenu actionMenu;
-	
-	public Unit getUnitAt(int x, int y) {
-		return (Unit)getSpaces().get(y).get(x).getOccupier();
+	public PlayingGrid(ActingUnitTracker actingUnitTracker) {
+		this.actingUnitTracker = actingUnitTracker;
 	}
 	
-	public List<Unit> getMoveOrder() {
-		return moveCycle.getOrder();
+	public void initialize() {
+		Unit actingUnit = actingUnitTracker.getActingUnit();
+		moveCursorTo(actingUnit.getPosition());
 	}
 	
-	public void select() {
-		moveActingUnit();
-	}
-
-	private void moveActingUnit() {
-		if(actingUnit.canMoveTo(hoveredSpace()))
+	public boolean select() {
+		Unit actingUnit = actingUnitTracker.getActingUnit();
+		
+		if(actingUnit.canMoveTo(hoveredSpace())) {
 			actingUnit.moveTo(hoveredSpace());
+			return true;
+		}
+		
+		return false;
 	}
 	
-	private void queueNextUnit() {
-		actingUnit = moveCycle.getNext();
-		actingUnit.registerTurnStart();
-		getActionMenu().attachTo(actingUnit);
-	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		moveCycle = new MovementCycle(getUnits());
-		queueNextUnit();
-	}
-
 	public List<Unit> getUnits() {
 		List<Unit> units = new ArrayList<Unit>();
 		
@@ -57,25 +44,17 @@ public class PlayingGrid extends Grid implements InitializingBean {
 		
 		return units;
 	}
-
-	public boolean isActingUnit(Unit unit) {
-		return unit == actingUnit;
+	
+	public Unit getUnitAt(int x, int y) {
+		return (Unit)getSpaces().get(y).get(x).getOccupier();
+	}
+	
+	public Space getSpaceAt(int x, int y) {
+		return getSpaces().get(y).get(x);
 	}
 
-	public boolean isInBounds(Position position) {
-		return spaces.size() > position.getY() && spaces.get(position.getY()).size() > position.getX();
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		initialize();
 	}
-
-	public boolean unitIsHovered(Unit unit) {
-		return hoveredSpace().getOccupier() == unit;
-	}
-
-	public ActionMenu getActionMenu() {
-		return actionMenu;
-	}
-
-	public void setActionMenu(ActionMenu actionMenu) {
-		this.actionMenu = actionMenu;
-	}
-
 }
