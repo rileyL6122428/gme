@@ -2,7 +2,7 @@ package l2kstudios.gme.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import l2kstudios.gme.customerror.MethodNotImplementedException;
+import l2kstudios.gme.model.customerror.MethodNotImplementedException;
 import processing.core.PApplet;
 
 public class View {

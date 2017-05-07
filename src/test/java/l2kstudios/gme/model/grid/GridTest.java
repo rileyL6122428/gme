@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import l2kstudios.gme.customerror.MethodNotImplementedException;
+import l2kstudios.gme.model.customerror.MethodNotImplementedException;
 import l2kstudios.gme.testutils.RowFactory;
 
 public class GridTest {

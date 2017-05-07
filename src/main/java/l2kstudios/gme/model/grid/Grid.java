@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import l2kstudios.gme.customerror.MethodNotImplementedException;
+import l2kstudios.gme.model.customerror.MethodNotImplementedException;
 
 public class Grid {
 
