@@ -9,13 +9,9 @@ import l2kstudios.gme.customerror.MethodNotImplementedException;
 
 public class Grid {
 
-	protected Cursor cursor;
+	protected Cursor cursor = new Cursor();
 	protected List<List<Space>> spaces;
 	private Map<Space, Position> spaceToPosition;
-	
-	public Grid() {
-		this.cursor = new Cursor();
-	}
 	
 	public void initialize() {
 		throw new MethodNotImplementedException();

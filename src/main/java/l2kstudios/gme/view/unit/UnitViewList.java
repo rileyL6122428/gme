@@ -10,7 +10,7 @@ import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.view.View;
 
-public class UnitViewList implements InitializingBean, View {
+public class UnitViewList extends View implements InitializingBean {
 	
 	@Autowired
 	private PlayingGrid playingGrid;

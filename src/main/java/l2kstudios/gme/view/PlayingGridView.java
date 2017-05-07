@@ -9,15 +9,15 @@ import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import processing.core.PApplet;
 
-public class PlayingGridView implements View {
+public class PlayingGridView extends View {
 
 	@Autowired
 	private PlayingGrid playingGrid;
-	@Autowired
-	private PApplet ctx;
+
 	@Autowired
 	private GridDrawingUtil gridDrawingUtil;
 	
+
 	public void draw() {
 		ctx.fill(0);
 		drawHorizontalGridLines();
@@ -41,5 +41,13 @@ public class PlayingGridView implements View {
 		for(int vertIdx = 0; vertIdx <= playingGrid.getHeight(); vertIdx++) {
 			ctx.line(0, vertIdx * SPACE_HEIGHT, SPACE_HEIGHT * playingGrid.getWidth(), vertIdx * SPACE_HEIGHT);
 		}		
+	}
+	
+	public void setPlayingGrid(PlayingGrid playingGrid) {
+		this.playingGrid = playingGrid;
+	}
+	
+	public void setGridDrawingUtil(GridDrawingUtil gridDrawingUtil) {
+		this.gridDrawingUtil = gridDrawingUtil;
 	}
 }

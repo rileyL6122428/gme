@@ -11,7 +11,9 @@ import l2kstudios.gme.model.unit.Unit;
 
 public class PlayingGrid extends Grid implements InitializingBean {
 	
-	private ActingUnitTracker actingUnitTracker;
+	protected ActingUnitTracker actingUnitTracker;
+	
+	public PlayingGrid() {}
 	
 	public PlayingGrid(ActingUnitTracker actingUnitTracker) {
 		this.actingUnitTracker = actingUnitTracker;
@@ -56,9 +58,13 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	public Space getSpaceAt(int x, int y) {
 		return getSpaces().get(y).get(x);
 	}
+	
+	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
+		this.actingUnitTracker = actingUnitTracker;
+	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() {
 		initialize();
 	}
 }

@@ -9,14 +9,12 @@ import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 import processing.core.PApplet;
 
-public class MoveOrderView implements View{
+public class MoveOrderView extends View {
 	
 	@Autowired
 	private PlayingGrid playingGrid;
 	@Autowired
 	private ActingUnitTracker actingUnitTracker;
-	@Autowired
-	private PApplet ctx;
 	
 	private int verticalOffset;
 	private int verticalMargin;

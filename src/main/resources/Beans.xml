@@ -22,29 +22,8 @@
 
 	<bean id="demoLevel" class="${LEVEL}" scope="singleton" />
 
-	<bean id="demoLevelControlDispatcher" class="${INPUT_DISPATCHER}"
-		scope="singleton" />
-	
-	<bean id="demoActionMenu" class="l2kstudios.gme.model.grid.ActionMenu" />
-
-	<bean id="demoPlayingGrid" class="l2kstudios.gme.model.grid.beandefinition.DemoPlayingGrid" scope="singleton" />
-
 	<bean id="demoLevelCtrl" class="${LEVEL_CONTROLLER}" scope="singleton" />
 
-	<bean id="demoView" class="${LEVEL_VIEW}" scope="singleton">
-		<property name="subViews">
-			<list>
-				<bean class="${PLAYING_GRID_VIEW}" scope="singleton" />
-				<bean class="${UNIT_VIEW_LIST}" scope="singleton" />
-				<bean class="${MOVE_ORDER_VIEW}" scope="singleton">
-					<property name="verticalOffset" value="20" />
-					<property name="verticalMargin" value="15" />
-				</bean>
-				<bean class="l2kstudios.gme.view.unit.ActionMenuView" scope="singleton" />
-			</list>
-		</property>
-	</bean>
+	<bean id="demoView" class="${LEVEL_VIEW}" scope="singleton" />
 
-	<bean id="demoUnitViewList" class="l2kstudios.gme.view.unit.UnitViewFactory" scope="singleton" />
-	<bean id="demoGridDrawingFactory" class="l2kstudios.gme.view.GridDrawingUtil" scope="singleton" />
 </beans>

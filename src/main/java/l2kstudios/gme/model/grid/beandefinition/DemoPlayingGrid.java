@@ -8,150 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 
 public class DemoPlayingGrid extends PlayingGrid {
 	
-	@Autowired
-	public DemoPlayingGrid(ActingUnitTracker actingUnitTracker) {
-		super(actingUnitTracker);
-	}
+	static int GRID_WIDTH = 10;
+	static int GRID_HEIGHT = 10;
 
 	{
 		List<List<Space>> spaces = new ArrayList<List<Space>>();
 		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
+		for(int heightIdx = 0; heightIdx < GRID_HEIGHT; heightIdx++) {
+			List<Space> row = new ArrayList<Space>();
+			for(int widthIdx = 0; widthIdx < GRID_WIDTH; widthIdx++) {
+				row.add(new Space());
+			}
+			spaces.add(row);
+		}
 		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
+		setSpaces(spaces);
 		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
 		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
 		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		spaces.add(new ArrayList<Space>(){{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
-		}});
-		
-		new Unit() {{
+		Unit unit1 = new Unit() {{
 			setName("slower");
 			setSpeed(2);
 			setEnergy(new ConsummableStat() {{
@@ -162,9 +43,10 @@ public class DemoPlayingGrid extends PlayingGrid {
 				setCap(5);
 				setVal(5);
 			}});
-		}}.place(spaces.get(1).get(1));
+		}};
+		unit1.place(spaces.get(1).get(1));
 		
-		new Unit() {{
+		Unit unit2 = new Unit() {{
 			setName("faster");
 			setSpeed(3);
 			setEnergy(new ConsummableStat(){{
@@ -175,8 +57,8 @@ public class DemoPlayingGrid extends PlayingGrid {
 				setCap(10);
 				setVal(10);
 			}});
-		}}.place(spaces.get(3).get(5));
+		}};
+		unit2.place(spaces.get(3).get(5));
 		
-		setSpaces(spaces);
 	}
 }

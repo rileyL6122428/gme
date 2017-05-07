@@ -30,7 +30,11 @@ public class GridDrawingUtil {
 			SPACE_HEIGHT
 		);
 	}
-	
+
+	public void setCtx(PApplet ctx) {
+		this.ctx = ctx;
+	}
+
 	public static class Offsets {
 		private int vertical;
 		private int horizontal;

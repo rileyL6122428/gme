@@ -9,12 +9,9 @@ import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.view.View;
 import processing.core.PApplet;
 
-public class ActionMenuView implements View {
+public class ActionMenuView extends View {
 
 	public static int HORIZONTAL_OFFSET = 75;
-	
-	@Autowired
-	private PApplet ctx;
 	
 	@Autowired
 	private ActionMenu actionMenu;

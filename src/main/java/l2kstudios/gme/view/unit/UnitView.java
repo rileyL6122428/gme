@@ -6,7 +6,7 @@ import l2kstudios.gme.view.GridDrawingUtil;
 import l2kstudios.gme.view.View;
 import processing.core.PApplet;
 
-public class UnitView implements View {
+public class UnitView extends View {
 	
 	private UnitOverView unitOverView = new UnitOverView();
 	private UnitMovementGrid unitMovementGrid = new UnitMovementGrid();
@@ -25,9 +25,9 @@ public class UnitView implements View {
 	}
 	
 	public void setDrawingContext(PApplet ctx) {
-		unitOverView.setCtx(ctx);
+		unitOverView.setDrawingContext(ctx);
 		unitMovementGrid.setCtx(ctx);
-		gridAvatar.setCtx(ctx);
+		gridAvatar.setDrawingContext(ctx);
 	}
 	
 	public void setPlayingGrid(PlayingGrid grid) {

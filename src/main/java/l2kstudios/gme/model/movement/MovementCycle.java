@@ -1,5 +1,6 @@
 package l2kstudios.gme.model.movement;
 
+import java.util.Arrays;
 import java.util.List;
 
 import l2kstudios.gme.model.unit.Unit;
@@ -14,6 +15,10 @@ public class MovementCycle {
 	
 	public MovementCycle(List<Unit> units) {
 		setUnits(units);
+	}
+	
+	public MovementCycle(Unit... units) {
+		setUnits(Arrays.asList(units));
 	}
 	
 	public void setUnits(List<Unit> units) {

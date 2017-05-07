@@ -3,21 +3,19 @@ package l2kstudios.gme.model.grid;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import l2kstudios.gme.model.unit.Action;
 import l2kstudios.gme.model.unit.Unit;
 
 public class ActionMenu extends Grid {
 	
 	private static int SINGLE_ROW_IDX = 0;
-	
-	private Unit actingUnit;
+
 	private boolean shouldDraw;
 	
 	private ActingUnitTracker actingUnitTracker;
 	
-	@Autowired
+	public ActionMenu() { }
+	
 	public ActionMenu(ActingUnitTracker actingUnitTracker) {
 		this.actingUnitTracker = actingUnitTracker;
 	}
@@ -60,7 +58,7 @@ public class ActionMenu extends Grid {
 	}
 	
 	public Position getActiveUnitPosition() {
-		return actingUnit.getPosition();
+		return actingUnitTracker.getActingUnit().getPosition();
 	}
 	
 	public List<Action> getSelectableActions() {
@@ -71,5 +69,9 @@ public class ActionMenu extends Grid {
 		}
 		
 		return selectableActions;
+	}
+	
+	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
+		this.actingUnitTracker = actingUnitTracker;
 	}
 }

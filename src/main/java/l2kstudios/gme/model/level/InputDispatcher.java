@@ -10,14 +10,26 @@ public class InputDispatcher implements InitializingBean {
 	
 	public enum Input { UP, RIGHT, LEFT, DOWN, SPACE, BACK }
 	
-	@Autowired
-	@Qualifier("demoPlayingGrid")
 	private Grid playingGrid;
 	
-	@Autowired
-	@Qualifier("demoActionMenu")
 	private Grid actionMenu;
 	
+	public Grid getActionMenu() {
+		return actionMenu;
+	}
+
+	public void setActionMenu(Grid actionMenu) {
+		this.actionMenu = actionMenu;
+	}
+
+	public void setPlayingGrid(Grid playingGrid) {
+		this.playingGrid = playingGrid;
+	}
+
+	public void setSelectedGrid(Grid selectedGrid) {
+		this.selectedGrid = selectedGrid;
+	}
+
 	private Grid selectedGrid;
 	
 	public void dispatchInput(Input input) {
@@ -32,7 +44,7 @@ public class InputDispatcher implements InitializingBean {
 				selectedGrid.moveCursorLeft();
 				break;
 			case DOWN:
-				selectedGrid.moveCursorRight();
+				selectedGrid.moveCursorDown();
 				break;
 			case SPACE:
 				if(selectedGrid.select()) toggleSelectedGrid();
@@ -52,7 +64,7 @@ public class InputDispatcher implements InitializingBean {
 	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() {
 		selectedGrid = playingGrid;
 	}
 }

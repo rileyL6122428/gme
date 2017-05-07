@@ -5,19 +5,18 @@ import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.View;
 import processing.core.PApplet;
 
-public class UnitOverView implements View {
+public class UnitOverView extends View {
 	
 	private Unit unit;
-	private PApplet ctx;
 	private PlayingGrid playingGrid;
 
 	@Override
 	public void draw() {
-		getCtx().fill(0);
+		ctx.fill(0);
 		
 		if(getPlayingGrid().unitIsHovered(getUnit())) {
-			getCtx().text(getUnit().getName(), getCtx().width - 100, getCtx().height - 100);
-			getCtx().text("HP: " + getUnit().getHealth().getVal(), getCtx().width - 100, getCtx().height - 80);
+			ctx.text(getUnit().getName(), ctx.width - 100, ctx.height - 100);
+			ctx.text("HP: " + getUnit().getHealth().getVal(), ctx.width - 100, ctx.height - 80);
 		}
 	}
 
@@ -27,14 +26,6 @@ public class UnitOverView implements View {
 
 	public void setUnit(Unit unit) {
 		this.unit = unit;
-	}
-
-	public PApplet getCtx() {
-		return ctx;
-	}
-
-	public void setCtx(PApplet ctx) {
-		this.ctx = ctx;
 	}
 
 	public PlayingGrid getPlayingGrid() {

@@ -9,12 +9,11 @@ import l2kstudios.gme.view.View;
 import l2kstudios.gme.view.GridDrawingUtil.Offsets;
 import processing.core.PApplet;
 
-public class UnitGridAvatar implements View {
+public class UnitGridAvatar extends View {
 	
 	private static final Offsets SPACE_OFFSETS;
 	
 	private ActingUnitTracker actingUnitTracker;
-	private PApplet ctx;
 	private Unit unit;
 	private GridDrawingUtil gridDrawingUtil;
 	
@@ -32,9 +31,9 @@ public class UnitGridAvatar implements View {
 	
 	private void setUnitFill() {
 		if(actingUnitTracker.getActingUnit() == getUnit()) {
-			getCtx().fill(0, 0, 255);			
+			ctx.fill(0, 0, 255);			
 		} else {
-			getCtx().fill(0, 255, 0);
+			ctx.fill(0, 255, 0);
 		}		
 	}
 	
@@ -49,14 +48,6 @@ public class UnitGridAvatar implements View {
 
 	public void setGridDrawingUtil(GridDrawingUtil gridDrawingUtil) {
 		this.gridDrawingUtil = gridDrawingUtil;
-	}
-
-	public PApplet getCtx() {
-		return ctx;
-	}
-
-	public void setCtx(PApplet ctx) {
-		this.ctx = ctx;
 	}
 
 	public Unit getUnit() {
