@@ -7,6 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.view.unit.ActionMenuView;
 import l2kstudios.gme.view.unit.UnitViewFactory;
 import l2kstudios.gme.view.unit.UnitViewList;
 import processing.core.PApplet;
@@ -51,9 +52,20 @@ public class LevelView extends View implements InitializingBean {
 		unitViewList.setUnitViewFactory(unitViewFactory);
 		unitViewList.afterPropertiesSet();
 		
+		MoveOrderView moveOrderView = new MoveOrderView();
+		moveOrderView.setDrawingContext(ctx);
+		moveOrderView.setActingUnitTracker(level.getActingUnitTracker());
+		
+		ActionMenuView actionMenuView = new ActionMenuView();
+		actionMenuView.setDrawingContext(ctx);
+		actionMenuView.setActionMenu(level.getActionMenu());
+		
 		subViews = new ArrayList<View>();
 		subViews.add(playingGridView);
 		subViews.add(unitViewList);
+		subViews.add(moveOrderView);
+		subViews.add(actionMenuView);
+		
 	}
 
 }

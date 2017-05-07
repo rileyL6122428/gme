@@ -57,7 +57,7 @@ public class ActionMenuTest {
 	public void getSelectableActions__returnsTheSetOfActionsExecutableByTheUnit() {
 		actionMenu.initialize();
 		
-		List<Action> selectableActions = actionMenu.getSelectableActions();
+		List<Action> selectableActions = actionMenu.getExecutableActions();
 		
 		assertEquals(3, selectableActions.size());
 		assertEquals(actingUnitActions.get(0), selectableActions.get(0));

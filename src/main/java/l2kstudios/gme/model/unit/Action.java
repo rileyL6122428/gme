@@ -14,5 +14,8 @@ public class Action extends Placeable {
 	public boolean ableToExecute() {
 		throw new RuntimeException("Method Not Implemented");
 	}
-
+	
+	public String getName() {
+		return name;
+	}
 }

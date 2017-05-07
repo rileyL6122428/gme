@@ -22,6 +22,7 @@ public class Unit extends Placeable {
 	
 	public Unit() {
 		setActions(new ArrayList<Action>());
+		getActions().add(new BasicAttackAction(this));
 		getActions().add(new WaitAction(this));	
 	}
 
@@ -43,10 +44,6 @@ public class Unit extends Placeable {
 	
 	public void endTurn() {
 		actions.get(actions.size() - 1).execute();
-	}
-
-	public Position getPosition() {
-		return occupiedSpace.getPosition();
 	}
 
 	public Team getTeam() {

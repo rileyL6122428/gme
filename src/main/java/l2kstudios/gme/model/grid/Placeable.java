@@ -12,4 +12,8 @@ public class Placeable {
 	public Space getOccupiedSpace() {
 		return occupiedSpace;
 	}
+	
+	public Position getPosition() {
+		return occupiedSpace.getPosition();
+	}
 }

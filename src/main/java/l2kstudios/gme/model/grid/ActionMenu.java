@@ -14,14 +14,29 @@ public class ActionMenu extends Grid {
 	
 	private ActingUnitTracker actingUnitTracker;
 	
+	private List<Action> executableActions;
+	
 	public ActionMenu() { }
 	
 	public ActionMenu(ActingUnitTracker actingUnitTracker) {
 		this.actingUnitTracker = actingUnitTracker;
 	}
 	
+	public void moveCursorRight() { }
+	
+	public void moveCursorLeft() { }
+	
+	public void moveCursorDown() {
+		super.moveCursorRight();
+	}
+	
+	public void moveCursorUp() {
+		super.moveCursorLeft();
+	}
+	
 	public void initialize() {
 		setSpacesToExecutableActions(actingUnitTracker.getActingUnit());
+		cacheExecutableActions();
 		Space firstSpaceInList = spaces.get(SINGLE_ROW_IDX).get(0);
 		cursor.setPosition(firstSpaceInList.getPosition());
 		shouldDraw = true;
@@ -61,17 +76,19 @@ public class ActionMenu extends Grid {
 		return actingUnitTracker.getActingUnit().getPosition();
 	}
 	
-	public List<Action> getSelectableActions() {
-		List<Action> selectableActions = new ArrayList<Action>();
-		
-		for(Space space : spaces.get(SINGLE_ROW_IDX)) {
-			selectableActions.add((Action)space.getOccupier());
-		}
-		
-		return selectableActions;
+	public List<Action> getExecutableActions() {
+		return executableActions;
 	}
 	
 	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
 		this.actingUnitTracker = actingUnitTracker;
+	}
+	
+	private void cacheExecutableActions() {
+		executableActions = new ArrayList<Action>();
+		
+		for(Space space : spaces.get(SINGLE_ROW_IDX)) {
+			executableActions.add((Action)space.getOccupier());
+		}
 	}
 }

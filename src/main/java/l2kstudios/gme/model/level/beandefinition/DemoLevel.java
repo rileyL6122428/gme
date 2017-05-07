@@ -12,7 +12,7 @@ public class DemoLevel extends Level {
 	{
 		playingGrid = new DemoPlayingGrid();
 		MovementCycle movementCycle = new MovementCycle(playingGrid.getUnits()); 
-		ActingUnitTracker actingUnitTracker = new ActingUnitTracker(movementCycle);
+		actingUnitTracker = new ActingUnitTracker(movementCycle);
 		playingGrid.setActingUnitTracker(actingUnitTracker);
 		playingGrid.afterPropertiesSet();
 		

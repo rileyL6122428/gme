@@ -5,19 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.grid.ActingUnitTracker;
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
-import processing.core.PApplet;
 
 public class MoveOrderView extends View {
-	
-	@Autowired
-	private PlayingGrid playingGrid;
+
 	@Autowired
 	private ActingUnitTracker actingUnitTracker;
 	
-	private int verticalOffset;
-	private int verticalMargin;
+
+	private int verticalOffset = 15;
+	private int verticalMargin = 15;
 	
 	public void draw() {
 		List<Unit> moveOrder = actingUnitTracker.getUnitMoveOrder();
@@ -42,5 +39,9 @@ public class MoveOrderView extends View {
 
 	public void setVerticalMargin(int verticalMargin) {
 		this.verticalMargin = verticalMargin;
+	}
+	
+	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
+		this.actingUnitTracker = actingUnitTracker;
 	}
 }
