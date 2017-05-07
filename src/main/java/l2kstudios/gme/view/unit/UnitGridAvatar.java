@@ -30,7 +30,7 @@ public class UnitGridAvatar extends View {
 	}
 	
 	private void setUnitFill() {
-		if(actingUnitTracker.getActingUnit() == getUnit()) {
+		if(!getUnit().isInBoardState(Unit.BoardState.STAND_BY)) {
 			ctx.fill(0, 0, 255);			
 		} else {
 			ctx.fill(0, 255, 0);

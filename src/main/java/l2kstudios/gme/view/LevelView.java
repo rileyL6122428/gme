@@ -7,6 +7,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.view.unit.UnitViewFactory;
+import l2kstudios.gme.view.unit.UnitViewList;
 import processing.core.PApplet;
 
 public class LevelView extends View implements InitializingBean {
@@ -39,9 +41,19 @@ public class LevelView extends View implements InitializingBean {
 		playingGridView.setPlayingGrid(level.getPlayingGrid());
 		playingGridView.setGridDrawingUtil(gridDrawingUtil);
 		
+		UnitViewFactory unitViewFactory = new UnitViewFactory();
+		unitViewFactory.setCtx(ctx);
+		unitViewFactory.setGridDrawingUtil(gridDrawingUtil);
+		unitViewFactory.setPlayingGrid(level.getPlayingGrid());
+		
+		UnitViewList unitViewList = new UnitViewList();
+		unitViewList.setPlayingGrid(level.getPlayingGrid());
+		unitViewList.setUnitViewFactory(unitViewFactory);
+		unitViewList.afterPropertiesSet();
+		
 		subViews = new ArrayList<View>();
 		subViews.add(playingGridView);
-		
+		subViews.add(unitViewList);
 	}
 
 }

@@ -19,11 +19,23 @@ public class UnitViewFactory {
 	private GridDrawingUtil gridDrawingUtil;
 	
 	public UnitView newUnitView(Unit unit) {
-		return new UnitView() {{
-			setDrawingContext(ctx);
-			setPlayingGrid(playingGrid);
-			setGridDrawingUtil(gridDrawingUtil);
-			setUnit(unit);
-		}};
+		UnitView unitView = new UnitView();
+		unitView.setDrawingContext(ctx);
+		unitView.setPlayingGrid(playingGrid);
+		unitView.setGridDrawingUtil(gridDrawingUtil);
+		unitView.setUnit(unit);
+		return unitView;
+	}
+
+	public void setCtx(PApplet ctx) {
+		this.ctx = ctx;
+	}
+
+	public void setPlayingGrid(PlayingGrid playingGrid) {
+		this.playingGrid = playingGrid;
+	}
+
+	public void setGridDrawingUtil(GridDrawingUtil gridDrawingUtil) {
+		this.gridDrawingUtil = gridDrawingUtil;
 	}
 }

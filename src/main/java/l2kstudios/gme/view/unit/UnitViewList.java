@@ -14,7 +14,7 @@ public class UnitViewList extends View implements InitializingBean {
 	
 	@Autowired
 	private PlayingGrid playingGrid;
-	
+
 	@Autowired 
 	private UnitViewFactory unitViewFactory;
 	
@@ -25,9 +25,17 @@ public class UnitViewList extends View implements InitializingBean {
 	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {		
+	public void afterPropertiesSet() {		
 		unitViews = playingGrid.getUnits().stream()
 									.map(unitViewFactory::newUnitView)
 									.collect(Collectors.toList());
+	}
+
+	public void setPlayingGrid(PlayingGrid playingGrid) {
+		this.playingGrid = playingGrid;
+	}
+	
+	public void setUnitViewFactory(UnitViewFactory unitViewFactory) {
+		this.unitViewFactory = unitViewFactory;
 	}
 }
