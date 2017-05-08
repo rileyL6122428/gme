@@ -13,12 +13,6 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	
 	protected ActingUnitTracker actingUnitTracker;
 	
-	public PlayingGrid() {}
-	
-	public PlayingGrid(ActingUnitTracker actingUnitTracker) {
-		this.actingUnitTracker = actingUnitTracker;
-	}
-	
 	public void initialize() {
 		Unit actingUnit = actingUnitTracker.getActingUnit();
 		moveCursorTo(actingUnit.getPosition());
@@ -61,6 +55,10 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	
 	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
 		this.actingUnitTracker = actingUnitTracker;
+	}
+	
+	public ActingUnitTracker getActingUnitTracker() {
+		return actingUnitTracker;
 	}
 
 	@Override

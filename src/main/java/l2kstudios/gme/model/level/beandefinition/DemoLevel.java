@@ -4,24 +4,24 @@ import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.ActionMenu;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.beandefinition.DemoPlayingGrid;
-import l2kstudios.gme.model.level.InputDispatcher;
-import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.model.level.factory.InputDispatcher;
+import l2kstudios.gme.model.level.factory.Level;
 import l2kstudios.gme.model.movement.MovementCycle;
 
 public class DemoLevel extends Level {
 	{
-		playingGrid = new DemoPlayingGrid();
-		MovementCycle movementCycle = new MovementCycle(playingGrid.getUnits()); 
+		setPlayingGrid(new DemoPlayingGrid());
+		MovementCycle movementCycle = new MovementCycle(getPlayingGrid().getUnits()); 
 		actingUnitTracker = new ActingUnitTracker(movementCycle);
-		playingGrid.setActingUnitTracker(actingUnitTracker);
-		playingGrid.afterPropertiesSet();
+		getPlayingGrid().setActingUnitTracker(actingUnitTracker);
+		getPlayingGrid().afterPropertiesSet();
 		
-		actionMenu = new ActionMenu();
-		actionMenu.setActingUnitTracker(actingUnitTracker);
+		setActionMenu(new ActionMenu());
+		getActionMenu().setActingUnitTracker(actingUnitTracker);
 		
-		inputDispatcher = new InputDispatcher();
-		inputDispatcher.setActionMenu(actionMenu);
-		inputDispatcher.setPlayingGrid(playingGrid);
-		inputDispatcher.afterPropertiesSet();
+		setInputDispatcher(new InputDispatcher());
+		getInputDispatcher().setActionMenu(getActionMenu());
+		getInputDispatcher().setPlayingGrid(getPlayingGrid());
+		getInputDispatcher().afterPropertiesSet();
 	}
 }

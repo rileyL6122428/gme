@@ -57,6 +57,14 @@ public class ActionMenu extends Grid {
 		setSpaces(spaces);
 	}
 	
+	private void cacheExecutableActions() {
+		executableActions = new ArrayList<Action>();
+		
+		for(Space space : spaces.get(SINGLE_ROW_IDX)) {
+			executableActions.add((Action)space.getOccupier());
+		}
+	}
+	
 	public boolean select() {
 		executeHoveredAction();
 		shouldDraw = false;
@@ -84,11 +92,8 @@ public class ActionMenu extends Grid {
 		this.actingUnitTracker = actingUnitTracker;
 	}
 	
-	private void cacheExecutableActions() {
-		executableActions = new ArrayList<Action>();
-		
-		for(Space space : spaces.get(SINGLE_ROW_IDX)) {
-			executableActions.add((Action)space.getOccupier());
-		}
+	public ActingUnitTracker getActingUnitTracker() {
+		return actingUnitTracker;
 	}
+
 }

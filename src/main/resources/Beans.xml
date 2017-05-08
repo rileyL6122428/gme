@@ -20,7 +20,12 @@
 
 	<bean id="demoConfig" class="${CONFIG}" scope="singleton" />
 
-	<bean id="demoLevel" class="${LEVEL}" scope="singleton" />
+	<bean id="demoLevel" class="l2kstudios.gme.model.level.Level" scope="prototype">
+		<property></property>
+	</bean>
+	
+	<bean id="demoInputDispatcher" class="l2kstudios.gme.model.level.InputDispatcher" scope="prototype" />
+	
 
 	<bean id="demoLevelCtrl" class="${LEVEL_CONTROLLER}" scope="singleton" />
 

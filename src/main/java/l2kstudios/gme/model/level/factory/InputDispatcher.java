@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.level;
+package l2kstudios.gme.model.level.factory;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +13,6 @@ public class InputDispatcher implements InitializingBean {
 	private Grid playingGrid;
 	
 	private Grid actionMenu;
-	
-	public Grid getActionMenu() {
-		return actionMenu;
-	}
-
-	public void setActionMenu(Grid actionMenu) {
-		this.actionMenu = actionMenu;
-	}
-
-	public void setPlayingGrid(Grid playingGrid) {
-		this.playingGrid = playingGrid;
-	}
-
-	public void setSelectedGrid(Grid selectedGrid) {
-		this.selectedGrid = selectedGrid;
-	}
 
 	private Grid selectedGrid;
 	
@@ -62,9 +46,26 @@ public class InputDispatcher implements InitializingBean {
 		
 		selectedGrid.initialize();
 	}
+	
+	public Grid getActionMenu() {
+		return actionMenu;
+	}
 
+	public void setActionMenu(Grid actionMenu) {
+		this.actionMenu = actionMenu;
+	}
+
+	public void setPlayingGrid(Grid playingGrid) {
+		this.playingGrid = playingGrid;
+	}
+
+	public void setSelectedGrid(Grid selectedGrid) {
+		this.selectedGrid = selectedGrid;
+	}
+	
 	@Override
 	public void afterPropertiesSet() {
 		selectedGrid = playingGrid;
+		selectedGrid.initialize();
 	}
 }
