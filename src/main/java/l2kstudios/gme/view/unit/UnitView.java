@@ -6,7 +6,7 @@ import l2kstudios.gme.view.GridDrawingUtil;
 import l2kstudios.gme.view.View;
 import processing.core.PApplet;
 
-public class UnitView extends View {
+public class UnitView extends View<Unit> {
 	
 	private UnitOverView unitOverView = new UnitOverView();
 	private UnitMovementGrid unitMovementGrid = new UnitMovementGrid();
@@ -18,7 +18,7 @@ public class UnitView extends View {
 		gridAvatar.draw();
 	}
 	
-	public void setUnit(Unit unit) {
+	public void setModel(Unit unit) {
 		unitOverView.setUnit(unit);
 		unitMovementGrid.setUnit(unit);
 		gridAvatar.setUnit(unit);
@@ -33,9 +33,5 @@ public class UnitView extends View {
 	public void setPlayingGrid(PlayingGrid grid) {
 		unitOverView.setPlayingGrid(grid);
 		unitMovementGrid.setPlayingGrid(grid);
-	}
-	
-	public void setGridDrawingUtil(GridDrawingUtil util) {
-		gridAvatar.setGridDrawingUtil(util);
 	}
 }

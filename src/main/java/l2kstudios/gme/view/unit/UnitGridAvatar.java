@@ -11,11 +11,15 @@ import processing.core.PApplet;
 
 public class UnitGridAvatar extends View {
 	
+	{
+		gridDrawingUtil = GridDrawingUtil.getInstance();
+	}
+	
 	private static final Offsets SPACE_OFFSETS;
 	
+	private GridDrawingUtil gridDrawingUtil;
 	private ActingUnitTracker actingUnitTracker;
 	private Unit unit;
-	private GridDrawingUtil gridDrawingUtil;
 	
 	static {
 		SPACE_OFFSETS = new Offsets() {{
@@ -39,15 +43,7 @@ public class UnitGridAvatar extends View {
 	
 	private void drawUnit() {
 		Position unitPos = getUnit().getPosition();
-		getGridDrawingUtil().drawEllipseAt(unitPos, SPACE_OFFSETS, 1, 1);		
-	}
-
-	public GridDrawingUtil getGridDrawingUtil() {
-		return gridDrawingUtil;
-	}
-
-	public void setGridDrawingUtil(GridDrawingUtil gridDrawingUtil) {
-		this.gridDrawingUtil = gridDrawingUtil;
+		gridDrawingUtil.drawEllipseAt(unitPos, SPACE_OFFSETS, 1, 1);		
 	}
 
 	public Unit getUnit() {

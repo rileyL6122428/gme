@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.unit.Unit;
 
-public class MoveOrderView extends View {
+public class MoveOrderView extends View<List<Unit>> {
 
-	@Autowired
-	private ActingUnitTracker actingUnitTracker;
-	
+	private ActingUnitTracker actingUnitTracker;	
 
 	private int verticalOffset = 15;
 	private int verticalMargin = 15;

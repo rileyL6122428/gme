@@ -12,23 +12,18 @@ import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.Action;
 import l2kstudios.gme.view.View;
 
-public class ActionMenuView extends View {
+public class ActionMenuView extends View<ActionMenu> {
 
 	public static int HORIZONTAL_OFFSET = 75;
 	
-	@Autowired
-	private ActionMenu actionMenu;
-	
 	@Override
 	public void draw() {
-		if(actionMenu.getShouldDraw()) {
-			drawActionNames();
-		}
+		if(model.getShouldDraw()) drawActionNames();
 	}
 	
 	private void drawActionNames() {
-		Position activeUnitPosition = actionMenu.getActiveUnitPosition();
-		List<Action> actions = actionMenu.getExecutableActions();
+		Position activeUnitPosition = model.getActiveUnitPosition();
+		List<Action> actions = model.getExecutableActions();
 		
 		for(int actionIdx = 0; actionIdx < actions.size(); actionIdx++) {
 			Action action = actions.get(actionIdx);
@@ -44,14 +39,10 @@ public class ActionMenuView extends View {
 	}
 	
 	private void setFillColorForActionName(Action action) {
-		if(actionMenu.getCursorPosition() == action.getPosition())
+		if(model.getCursorPosition() == action.getPosition())
 			ctx.fill(0, 255, 255);
 		else
 			ctx.fill(0);
-	}
-
-	public void setActionMenu(ActionMenu actionMenu) {
-		this.actionMenu = actionMenu;
 	}
 	
 }

@@ -4,65 +4,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import l2kstudios.gme.model.grid.ActingUnitTracker;
+import l2kstudios.gme.model.grid.ActionMenu;
+import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.factory.Level;
+import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.unit.ActionMenuView;
-import l2kstudios.gme.view.unit.UnitViewFactory;
-import l2kstudios.gme.view.unit.UnitViewList;
-import processing.core.PApplet;
+import l2kstudios.gme.view.unit.UnitView;
 
 public class LevelView extends View<Level> implements InitializingBean {
-	
-	private List<View> subViews;
-	
+
+	private View<PlayingGrid> playingGridView;
+	private List<View<Unit>> unitViewList;
+	private MoveOrderView moveOrderView;
+	private ActionMenuView actionMenuView;
+
 	public void draw() {
 		ctx.background(255, 255, 255);
-		subViews.forEach(View::draw);
-	}
-
-	public List<View> getSubViews() {
-		return subViews;
-	}
-
-	public void setSubViews(List<View> subViews) {
-		this.subViews = subViews;
+		playingGridView.draw();
+		unitViewList.forEach(View<Unit>::draw);
+		moveOrderView.draw();
+		actionMenuView.draw();
 	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		GridDrawingUtil gridDrawingUtil = new GridDrawingUtil();
-		gridDrawingUtil.setCtx(ctx);
-		
-		PlayingGridView playingGridView = new PlayingGridView();
-		playingGridView.setDrawingContext(ctx);
-		playingGridView.setPlayingGrid(model.getPlayingGrid());
-		playingGridView.setGridDrawingUtil(gridDrawingUtil);
-		
-		UnitViewFactory unitViewFactory = new UnitViewFactory();
-		unitViewFactory.setCtx(ctx);
-		unitViewFactory.setGridDrawingUtil(gridDrawingUtil);
-		unitViewFactory.setPlayingGrid(model.getPlayingGrid());
-		
-		UnitViewList unitViewList = new UnitViewList();
-		unitViewList.setPlayingGrid(model.getPlayingGrid());
-		unitViewList.setUnitViewFactory(unitViewFactory);
-		unitViewList.afterPropertiesSet();
-		
-		MoveOrderView moveOrderView = new MoveOrderView();
-		moveOrderView.setDrawingContext(ctx);
-		moveOrderView.setActingUnitTracker(model.getActingUnitTracker());
-		
-		ActionMenuView actionMenuView = new ActionMenuView();
-		actionMenuView.setDrawingContext(ctx);
-		actionMenuView.setActionMenu(model.getActionMenu());
-		
-		subViews = new ArrayList<View>();
-		subViews.add(playingGridView);
-		subViews.add(unitViewList);
-		subViews.add(moveOrderView);
-		subViews.add(actionMenuView);
-		
+		setupGridDrawingUtil();
+		setupPlayingGridView();		
+		setupUnitViewList();
+		setupMoveOrderView();
+		setupActionMenuView();
 	}
 
+	private void setupGridDrawingUtil() {
+		GridDrawingUtil.getInstance().setDrawingContext(ctx);
+	}
+
+
+	private void setupPlayingGridView() {
+		playingGridView = new PlayingGridView();
+		playingGridView.setModel(model.getPlayingGrid());
+	}
+
+	private void setupUnitViewList() {
+		List<Unit> units = model.getPlayingGrid().getUnits();
+		final PlayingGrid playingGrid = model.getPlayingGrid();
+		final List<View<Unit>> unitViewList = new ArrayList<View<Unit>>();
+		units.forEach((unit) -> {
+			UnitView unitView = new UnitView();
+			unitView.setDrawingContext(ctx);
+			unitView.setModel(unit);
+			unitView.setPlayingGrid(playingGrid);
+		});
+		
+		this.unitViewList = unitViewList;
+	}
+
+	private void setupMoveOrderView() {
+		ActingUnitTracker actingUnitTracker = model.getActingUnitTracker();
+		moveOrderView = new MoveOrderView();
+		moveOrderView.setActingUnitTracker(actingUnitTracker);
+		moveOrderView.setDrawingContext(ctx);
+	}
+	
+	private void setupActionMenuView() {
+		ActionMenu actionMenu = model.getActionMenu();
+		actionMenuView = new ActionMenuView();
+		actionMenuView.setDrawingContext(ctx);
+		actionMenuView.setModel(actionMenu);
+	}
 }

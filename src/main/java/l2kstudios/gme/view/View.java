@@ -15,10 +15,6 @@ public class View<Model> {
 	public void draw() {
 		throw new MethodNotImplementedException();
 	}
-	
-	public void setDrawingContext(PApplet ctx) {
-		this.ctx = ctx;
-	}
 
 	public Model getModel() {
 		return model;
@@ -26,6 +22,10 @@ public class View<Model> {
 
 	public void setModel(Model model) {
 		this.model = model;
+	}
+	
+	public void setDrawingContext(PApplet ctx) {
+		this.ctx = ctx;
 	}
 	
 }

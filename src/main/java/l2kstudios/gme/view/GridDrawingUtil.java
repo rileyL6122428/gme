@@ -10,8 +10,18 @@ import processing.core.PApplet;
 
 public class GridDrawingUtil {
 	
-	@Autowired
+	static private GridDrawingUtil gridDrawingUtil;
+			
 	private PApplet ctx;
+	
+	private GridDrawingUtil() {}
+	
+	static public GridDrawingUtil getInstance() {
+		if(gridDrawingUtil == null)
+			gridDrawingUtil = new GridDrawingUtil();
+		
+		return gridDrawingUtil;
+	}
 	
 	public void drawEllipseAt(Position spacePos, Offsets offsets, float widthRatio, float  heightRatio) {
 		ctx.ellipse(
@@ -31,7 +41,7 @@ public class GridDrawingUtil {
 		);
 	}
 
-	public void setCtx(PApplet ctx) {
+	public void setDrawingContext(PApplet ctx) {
 		this.ctx = ctx;
 	}
 
