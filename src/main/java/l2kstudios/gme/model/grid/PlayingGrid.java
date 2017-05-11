@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.unit.Unit;
 
-public class PlayingGrid extends Grid implements InitializingBean {
+public class PlayingGrid extends Grid {
 	
 	protected ActingUnitTracker actingUnitTracker;
 	
@@ -59,10 +59,5 @@ public class PlayingGrid extends Grid implements InitializingBean {
 	
 	public ActingUnitTracker getActingUnitTracker() {
 		return actingUnitTracker;
-	}
-
-	@Override
-	public void afterPropertiesSet() {
-		initialize();
 	}
 }

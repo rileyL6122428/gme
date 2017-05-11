@@ -3,8 +3,6 @@ package l2kstudios.gme.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.InitializingBean;
-
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.ActionMenu;
 import l2kstudios.gme.model.grid.PlayingGrid;
@@ -13,7 +11,7 @@ import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.unit.ActionMenuView;
 import l2kstudios.gme.view.unit.UnitView;
 
-public class LevelView extends View<Level> implements InitializingBean {
+public class LevelView extends View<Level>  {
 
 	private View<PlayingGrid> playingGridView;
 	private List<View<Unit>> unitViewList;
@@ -28,8 +26,12 @@ public class LevelView extends View<Level> implements InitializingBean {
 		actionMenuView.draw();
 	}
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void setModel(Level model) {
+		this.model = model;
+		afterPropertiesSet();
+	}
+	
+	public void afterPropertiesSet() {
 		setupGridDrawingUtil();
 		setupPlayingGridView();		
 		setupUnitViewList();
@@ -45,6 +47,7 @@ public class LevelView extends View<Level> implements InitializingBean {
 	private void setupPlayingGridView() {
 		playingGridView = new PlayingGridView();
 		playingGridView.setModel(model.getPlayingGrid());
+		playingGridView.setDrawingContext(ctx);
 	}
 
 	private void setupUnitViewList() {
@@ -56,6 +59,7 @@ public class LevelView extends View<Level> implements InitializingBean {
 			unitView.setDrawingContext(ctx);
 			unitView.setModel(unit);
 			unitView.setPlayingGrid(playingGrid);
+			unitViewList.add(unitView);
 		});
 		
 		this.unitViewList = unitViewList;

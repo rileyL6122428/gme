@@ -95,7 +95,10 @@ public class Grid {
 	}
 	
 	public boolean isInBounds(Position position) {
-		return spaces.size() > position.getY() && spaces.get(position.getY()).size() > position.getX();
+		return spaces.size() > position.getY() && 
+				position.getY() >= 0 && 
+				spaces.get(position.getY()).size() > position.getX() &&
+				position.getX() >= 0;
 	}
 	
 	public List<List<Space>> getSpaces() {

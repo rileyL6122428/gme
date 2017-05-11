@@ -16,19 +16,84 @@
 	<context:annotation-config />
 	<context:property-placeholder location="classpath*:l2k.properties" />
 
-	<bean id="app" class="${APP}" scope="singleton" />
+	<bean id="app" class="${APP}" scope="singleton" >
+		<property name="level">
+			<bean class="l2kstudios.gme.model.level.Level">
+				<property name="playingGrid">
+					<bean class="l2kstudios.gme.model.grid.PlayingGrid">
+						<property name="spaces">
+							<list>
+								<list>
+									<bean class="${SPACE}" />
+									<bean class="${SPACE}" />
+									<bean class="${SPACE}" />
+								</list>
+								
+								<list>
+									<bean class="${SPACE}" >
+										<property name="occupier">
+											<bean class="${UNIT}" >
+												<property name="name" value="faster UNIT" />
+												<property name="speed" value="3" />
+												<property name="energy">
+													<bean class="${CONSUMMABLE_STAT}">
+														<property name="cap" value="2" />
+														<property name="val" value="2" />
+													</bean>
+												</property>
+												<property name="health">
+													<bean class="${CONSUMMABLE_STAT}">
+														<property name="cap" value="2" />
+														<property name="val" value="2" />
+													</bean>
+												</property>
+											</bean>
+										</property>
+									</bean>
+									<bean class="${SPACE}" />
+									<bean class="${SPACE}" >
+										<property name="occupier">
+											<bean class="${UNIT}" >
+												<property name="name" value="slower UNIT" />
+												<property name="speed" value="2" />
+												<property name="energy">
+													<bean class="${CONSUMMABLE_STAT}">
+														<property name="cap" value="1" />
+														<property name="val" value="1" />
+													</bean>
+												</property>
+												<property name="health">
+													<bean class="${CONSUMMABLE_STAT}">
+														<property name="cap" value="2" />
+														<property name="val" value="2" />
+													</bean>
+												</property>
+											</bean>
+										</property>
+									</bean>
+								</list>
+								
+								<list>
+									<bean class="${SPACE}" />
+									<bean class="${SPACE}" />
+									<bean class="${SPACE}" />
+								</list>
+							</list>
+						</property>
+					</bean> 
+				</property>
+			</bean>		
+		</property>
+		
+		<property name="levelController" >
+			<bean class="${LEVEL_CONTROLLER}" />
+		</property>
+
+		<property name="levelView" >
+			<bean class="${LEVEL_VIEW}" />
+		</property>		
+	</bean>
 
 	<bean id="demoConfig" class="${CONFIG}" scope="singleton" />
-
-	<bean id="demoLevel" class="l2kstudios.gme.model.level.Level" scope="prototype">
-		<property></property>
-	</bean>
 	
-	<bean id="demoInputDispatcher" class="l2kstudios.gme.model.level.InputDispatcher" scope="prototype" />
-	
-
-	<bean id="demoLevelCtrl" class="${LEVEL_CONTROLLER}" scope="singleton" />
-
-	<bean id="demoView" class="${LEVEL_VIEW}" scope="singleton" />
-
 </beans>

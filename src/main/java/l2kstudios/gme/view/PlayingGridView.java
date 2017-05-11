@@ -9,14 +9,13 @@ import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import processing.core.PApplet;
 
-public class PlayingGridView extends View {
+public class PlayingGridView extends View<PlayingGrid> {
 
-	@Autowired
-	private PlayingGrid playingGrid;
-
-	@Autowired
-	private GridDrawingUtil gridDrawingUtil;
+	{
+		gridDrawingUtil = GridDrawingUtil.getInstance();
+	}
 	
+	private GridDrawingUtil gridDrawingUtil;
 
 	public void draw() {
 		ctx.fill(0);
@@ -27,24 +26,24 @@ public class PlayingGridView extends View {
 	
 	private void drawCursorPosition() {
 		ctx.fill(0, 255, 255);
-		Position cursorPosition = playingGrid.getCursorPosition();
+		Position cursorPosition = model.getCursorPosition();
 		gridDrawingUtil.drawRectAt(cursorPosition);
 	}
 
 	private void drawVerticalGridLines() {
-		for(int horizIdx = 0; horizIdx <= playingGrid.getWidth(); horizIdx++) {
-			ctx.line(horizIdx * SPACE_WIDTH, 0, horizIdx * SPACE_WIDTH, SPACE_HEIGHT * playingGrid.getHeight());
+		for(int horizIdx = 0; horizIdx <= model.getWidth(); horizIdx++) {
+			ctx.line(horizIdx * SPACE_WIDTH, 0, horizIdx * SPACE_WIDTH, SPACE_HEIGHT * model.getHeight());
 		}
 	}
 
 	private void drawHorizontalGridLines() {
-		for(int vertIdx = 0; vertIdx <= playingGrid.getHeight(); vertIdx++) {
-			ctx.line(0, vertIdx * SPACE_HEIGHT, SPACE_HEIGHT * playingGrid.getWidth(), vertIdx * SPACE_HEIGHT);
+		for(int vertIdx = 0; vertIdx <= model.getHeight(); vertIdx++) {
+			ctx.line(0, vertIdx * SPACE_HEIGHT, SPACE_HEIGHT * model.getWidth(), vertIdx * SPACE_HEIGHT);
 		}		
 	}
 	
 	public void setPlayingGrid(PlayingGrid playingGrid) {
-		this.playingGrid = playingGrid;
+		this.model = playingGrid;
 	}
 	
 	public void setGridDrawingUtil(GridDrawingUtil gridDrawingUtil) {

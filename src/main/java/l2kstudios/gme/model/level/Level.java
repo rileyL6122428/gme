@@ -59,5 +59,6 @@ public class Level implements InitializingBean {
 		inputDispatcher = new InputDispatcher();
 		inputDispatcher.setActionMenu(actionMenu);
 		inputDispatcher.setPlayingGrid(playingGrid);
+		inputDispatcher.afterPropertiesSet();
 	}
 }
