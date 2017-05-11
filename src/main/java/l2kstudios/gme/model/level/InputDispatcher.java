@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.level.factory;
+package l2kstudios.gme.model.level;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

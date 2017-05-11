@@ -15,6 +15,9 @@ public class Space {
 
 	public void setOccupier(Placeable occupier) {
 		this.occupier = occupier;
+		
+		if(occupier != null)
+			occupier.setOccupiedSpace(this);
 	}
 	
 	public Position getPosition() {

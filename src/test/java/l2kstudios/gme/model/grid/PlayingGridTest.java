@@ -94,7 +94,8 @@ public class PlayingGridTest {
 	}
 	
 	private void setupGrid() throws Exception {
-		playingGrid = new PlayingGrid(actingUnitTracker);
+		playingGrid = new PlayingGrid();
+		playingGrid.setActingUnitTracker(actingUnitTracker);
 		playingGrid.setSpaces(new ArrayList<List<Space>>(){{
 			add(row1);
 			add(row2);
@@ -115,7 +116,7 @@ public class PlayingGridTest {
 	}
 	
 	@Test
-	public void selectSpace_cursorOnPositionActingUnitCannotMoveTo_actingUnitDoesNotMoveAndReturnsFalse() {
+	public void selectSpace_cursorOnSpaceActingUnitCannotMoveTo_actingUnitDoesNotMoveAndReturnsFalse() {
 		playingGrid.initialize();
 		
 		Position actingUnitInitialPosition = actingUnit.getPosition();
@@ -132,14 +133,13 @@ public class PlayingGridTest {
 	}
 	
 	@Test
-	public void selectSpace_cursorOnPositionActingUnitCanMoveTo_actingUnitMovesToSpaceAndReturnsTrue() {
+	public void selectSpace_cursorOnSpaceActingUnitCanMoveTo_actingUnitMovesToSpaceAndReturnsTrue() {
 		playingGrid.initialize();
 		
 		Position actingUnitInitialPosition = actingUnit.getPosition();
 		
 		playingGrid.moveCursorDown();
 		playingGrid.moveCursorDown();
-
 		
 		assertTrue(playingGrid.select());
 		Position actingUnitPosition = actingUnit.getPosition();

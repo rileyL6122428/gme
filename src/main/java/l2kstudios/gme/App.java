@@ -7,7 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import l2kstudios.gme.ctrl.Controller;
 import l2kstudios.gme.ctrl.LevelCtrl;
-import l2kstudios.gme.model.level.factory.Level;
+import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.view.LevelView;
 import l2kstudios.gme.view.View;
 import processing.core.PApplet;

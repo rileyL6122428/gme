@@ -1,14 +1,11 @@
-package l2kstudios.gme.model.level.factory;
-
-import java.util.List;
+package l2kstudios.gme.model.level;
 
 import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.ActionMenu;
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.level.factory.InputDispatcher.Input;
-import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.model.level.InputDispatcher.Input;
 
 public class Level implements InitializingBean {
 	
@@ -21,7 +18,7 @@ public class Level implements InitializingBean {
 	protected ActingUnitTracker actingUnitTracker;
 	
 	public void registerInput(Input input) {
-		getInputDispatcher().dispatchInput(input);
+		inputDispatcher.dispatchInput(input);
 	}
 
 	public PlayingGrid getPlayingGrid() {
@@ -36,30 +33,31 @@ public class Level implements InitializingBean {
 		return actingUnitTracker;
 	}
 
-	public void setActionMenu(ActionMenu actionMenu) {
-		this.actionMenu = actionMenu;
-	}
-
 	public void setPlayingGrid(PlayingGrid playingGrid) {
 		this.playingGrid = playingGrid;
 	}
 
-	public InputDispatcher getInputDispatcher() {
-		return inputDispatcher;
-	}
-
-	public void setInputDispatcher(InputDispatcher inputDispatcher) {
-		this.inputDispatcher = inputDispatcher;
-	}
-
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		inputDispatcher.setActionMenu(actionMenu);
-		inputDispatcher.setPlayingGrid(playingGrid);
-		
+		setupActingUnitTracker();
 		playingGrid.setActingUnitTracker(actingUnitTracker);
-		
+		setupActionMenu();
+		setupInputDispatcher();
+	}
+
+	private void setupActingUnitTracker() {
+		actingUnitTracker = new ActingUnitTracker();
+		actingUnitTracker.configureMovementCycle(playingGrid.getUnits());
+	}
+	
+	private void setupActionMenu() {
+		actionMenu = new ActionMenu();
 		actionMenu.setActingUnitTracker(actingUnitTracker);
 	}
 	
+	private void setupInputDispatcher() {
+		inputDispatcher = new InputDispatcher();
+		inputDispatcher.setActionMenu(actionMenu);
+		inputDispatcher.setPlayingGrid(playingGrid);
+	}
 }

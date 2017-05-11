@@ -9,6 +9,10 @@ public class Placeable {
 		occupiedSpace.setOccupier(this);
 	}
 	
+	public void setOccupiedSpace(Space occupiedSpace) {
+		this.occupiedSpace = occupiedSpace;
+	}
+	
 	public Space getOccupiedSpace() {
 		return occupiedSpace;
 	}

@@ -16,20 +16,18 @@ public class ActionMenu extends Grid {
 	
 	private List<Action> executableActions;
 	
-	public ActionMenu() { }
-	
-	public ActionMenu(ActingUnitTracker actingUnitTracker) {
-		this.actingUnitTracker = actingUnitTracker;
-	}
-	
+	@Override
 	public void moveCursorRight() { }
 	
+	@Override
 	public void moveCursorLeft() { }
 	
+	@Override
 	public void moveCursorDown() {
 		super.moveCursorRight();
 	}
 	
+	@Override
 	public void moveCursorUp() {
 		super.moveCursorLeft();
 	}

@@ -3,6 +3,7 @@ package l2kstudios.gme.model.grid;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -26,14 +27,13 @@ public class ActiveUnitTrackerTest {
 		fastest = new Unit(){{ setSpeed(9); }};
 		medium = new Unit(){{ setSpeed(8); }};
 		slowest = new Unit(){{ setSpeed(7); }};
+		List<Unit> units = new ArrayList<Unit>();
+		units.add(fastest);
+		units.add(medium);
+		units.add(slowest);
 		
-		movementCycle = new MovementCycle(new ArrayList<Unit>(){{
-			add(fastest);
-			add(medium);
-			add(slowest);
-		}});
-		
-		actingUnitTracker = new ActingUnitTracker(movementCycle);
+		actingUnitTracker = new ActingUnitTracker();
+		actingUnitTracker.configureMovementCycle(units);
 	}
 	
 	@Test

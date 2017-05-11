@@ -38,7 +38,8 @@ public class ActionMenuTest {
 		actingUnitTracker = mock(ActingUnitTracker.class);
 		when(actingUnitTracker.getActingUnit()).thenReturn(actingUnit);
 		
-		actionMenu = new ActionMenu(actingUnitTracker);
+		actionMenu = new ActionMenu();
+		actionMenu.setActingUnitTracker(actingUnitTracker);
 	}
 	
 	
@@ -81,7 +82,7 @@ public class ActionMenuTest {
 		assertEquals(0, ((DummyAction)actingUnitActions.get(3)).getCallCount());
 		
 		actionMenu.initialize();
-		actionMenu.moveCursorRight();
+		actionMenu.moveCursorDown();
 		actionMenu.select();
 		assertEquals(1, ((DummyAction)actingUnitActions.get(0)).getCallCount());
 		assertEquals(1, ((DummyAction)actingUnitActions.get(2)).getCallCount());

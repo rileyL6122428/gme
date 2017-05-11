@@ -9,11 +9,6 @@ public class ActingUnitTracker {
 	
 	private MovementCycle movementCycle;
 	private Unit actingUnit;
-	
-	public ActingUnitTracker(MovementCycle movementCycle) {
-		this.movementCycle = movementCycle;
-		getNextActingUnit();
-	}
 
 	public Unit getActingUnit() {
 		if(actingUnit.isInBoardState(Unit.BoardState.STAND_BY)) {
@@ -31,5 +26,11 @@ public class ActingUnitTracker {
 	
 	public List<Unit> getUnitMoveOrder() {
 		return movementCycle.getOrder();
+	}
+	
+	public void configureMovementCycle(List<Unit> units) {
+		movementCycle = new MovementCycle(units);
+		actingUnit = movementCycle.getNext();
+		actingUnit.registerTurnStart();
 	}
 }

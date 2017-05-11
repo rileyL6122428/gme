@@ -8,7 +8,7 @@ import org.springframework.beans.factory.InitializingBean;
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.ActionMenu;
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.level.factory.Level;
+import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.unit.ActionMenuView;
 import l2kstudios.gme.view.unit.UnitView;

@@ -1,10 +1,10 @@
 package l2kstudios.gme.ctrl;
 
-import static l2kstudios.gme.model.level.factory.InputDispatcher.Input.*;
+import static l2kstudios.gme.model.level.InputDispatcher.Input.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import l2kstudios.gme.model.level.factory.Level;
+import l2kstudios.gme.model.level.Level;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
