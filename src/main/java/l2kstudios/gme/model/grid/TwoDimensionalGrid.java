@@ -7,11 +7,11 @@ import java.util.function.Consumer;
 
 import l2kstudios.gme.model.customerror.MethodNotImplementedException;
 
-public class Grid {
+public class TwoDimensionalGrid implements RectangularGrid {
 
 	protected Cursor cursor = new Cursor();
 	protected List<List<Space>> spaces;
-	private Map<Space, Position> spaceToPosition;
+	protected Map<Space, Position> spaceToPosition;
 	
 	public void initialize() {
 		throw new MethodNotImplementedException();

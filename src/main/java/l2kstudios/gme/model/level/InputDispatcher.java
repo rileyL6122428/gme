@@ -4,17 +4,18 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import l2kstudios.gme.model.grid.Grid;
+import l2kstudios.gme.model.grid.RectangularGrid;
+import l2kstudios.gme.model.grid.TwoDimensionalGrid;
 
 public class InputDispatcher implements InitializingBean {
 	
 	public enum Input { UP, RIGHT, LEFT, DOWN, SPACE, BACK }
 	
-	private Grid playingGrid;
+	private RectangularGrid playingGrid;
 	
-	private Grid actionMenu;
+	private RectangularGrid actionMenu;
 
-	private Grid selectedGrid;
+	private RectangularGrid selectedGrid;
 	
 	public void dispatchInput(Input input) {
 		switch(input) {
@@ -46,20 +47,16 @@ public class InputDispatcher implements InitializingBean {
 		
 		selectedGrid.initialize();
 	}
-	
-	public Grid getActionMenu() {
-		return actionMenu;
-	}
 
-	public void setActionMenu(Grid actionMenu) {
+	public void setActionMenu(TwoDimensionalGrid actionMenu) {
 		this.actionMenu = actionMenu;
 	}
 
-	public void setPlayingGrid(Grid playingGrid) {
+	public void setPlayingGrid(TwoDimensionalGrid playingGrid) {
 		this.playingGrid = playingGrid;
 	}
 
-	public void setSelectedGrid(Grid selectedGrid) {
+	public void setSelectedGrid(TwoDimensionalGrid selectedGrid) {
 		this.selectedGrid = selectedGrid;
 	}
 	

@@ -6,9 +6,7 @@ import java.util.List;
 import l2kstudios.gme.model.unit.Action;
 import l2kstudios.gme.model.unit.Unit;
 
-public class ActionMenu extends Grid {
-	
-	private static int SINGLE_ROW_IDX = 0;
+public class ActionMenu extends SingleRowGrid {
 
 	private boolean shouldDraw;
 	
@@ -16,49 +14,32 @@ public class ActionMenu extends Grid {
 	
 	private List<Action> executableActions;
 	
-	@Override
-	public void moveCursorRight() { }
-	
-	@Override
-	public void moveCursorLeft() { }
-	
-	@Override
-	public void moveCursorDown() {
-		super.moveCursorRight();
-	}
-	
-	@Override
-	public void moveCursorUp() {
-		super.moveCursorLeft();
-	}
-	
 	public void initialize() {
 		setSpacesToExecutableActions(actingUnitTracker.getActingUnit());
 		cacheExecutableActions();
-		Space firstSpaceInList = spaces.get(SINGLE_ROW_IDX).get(0);
+		Space firstSpaceInList = getSpaceAt(0);
 		cursor.setPosition(firstSpaceInList.getPosition());
 		shouldDraw = true;
 	}
 	
 	private void setSpacesToExecutableActions(Unit unit) {
-		List<List<Space>> spaces = new ArrayList<List<Space>>();
+		List<Space> row = new ArrayList<Space>();
 		
-		spaces.add(new ArrayList<Space>());
 		for(Action action: unit.getActions()) {
 			if(action.ableToExecute()) {
 				Space space = new Space();
 				action.place(space);
-				spaces.get(SINGLE_ROW_IDX).add(space);				
+				row.add(space);				
 			}
 		}
 		
-		setSpaces(spaces);
+		setRow(row);
 	}
 	
 	private void cacheExecutableActions() {
 		executableActions = new ArrayList<Action>();
 		
-		for(Space space : spaces.get(SINGLE_ROW_IDX)) {
+		for(Space space : getRow()) {
 			executableActions.add((Action)space.getOccupier());
 		}
 	}

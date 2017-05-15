@@ -90,17 +90,17 @@ public class Unit extends Placeable {
 		this.energy = energy;
 	}
 	
-	public void registerTurnStart() {
-		this.boardState = MOVING;
-	}
-	
 	public void moveTo(Space space) {
 		occupiedSpace.setOccupier(null);
 		place(space);
 		boardState = CHOOSING_ACTION;
 	}
 	
-	void registerTurnEnd() {
+	public void registerTurnStart() {
+		this.boardState = MOVING;
+	}
+	
+	public void registerTurnEnd() {
 		this.boardState = STAND_BY;
 	}
 	

@@ -102,8 +102,6 @@ public class PlayingGridTest {
 			add(row3);
 			add(row4);
 		}});
-		
-		playingGrid.afterPropertiesSet();
 	}
 	
 	@Test

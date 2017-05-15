@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.unit.Unit;
 
-public class PlayingGrid extends Grid {
+public class PlayingGrid extends TwoDimensionalGrid {
 	
 	protected ActingUnitTracker actingUnitTracker;
 	

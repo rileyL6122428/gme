@@ -13,7 +13,7 @@ import l2kstudios.gme.testutils.RowFactory;
 
 public class GridTest {
 	
-	private Grid grid;
+	private TwoDimensionalGrid grid;
 	private List<List<Space>> spaces;
 	
 	private static int GRID_WIDTH = 5;
@@ -23,7 +23,7 @@ public class GridTest {
 	public void before() {
 		spaces = RowFactory.emptyGridSpaces(GRID_WIDTH, GRID_HEIGHT);
 		
-		grid = new Grid();
+		grid = new TwoDimensionalGrid();
 		grid.setSpaces(spaces);
 	}
 	

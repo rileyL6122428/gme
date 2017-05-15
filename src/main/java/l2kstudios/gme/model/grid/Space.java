@@ -3,7 +3,7 @@ package l2kstudios.gme.model.grid;
 public class Space {
 	
 	private Placeable occupier;
-	private Grid grid;
+	private TwoDimensionalGrid grid;
 	
 	public boolean isOccupied() {
 		return occupier != null;
@@ -24,11 +24,11 @@ public class Space {
 		return getGrid().positionOf(this);
 	}
 
-	public Grid getGrid() {
+	public TwoDimensionalGrid getGrid() {
 		return grid;
 	}
 
-	public void setGrid(Grid grid) {
+	public void setGrid(TwoDimensionalGrid grid) {
 		this.grid = grid;
 	}
 	
