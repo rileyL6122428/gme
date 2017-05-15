@@ -15,7 +15,7 @@ public class BasicAttack extends Attack {
 		
 		range = Range.closed(1, 1);
 		
-		affectedSpaces = new ArrayList<Delta>(){{
+		rangeOfEffect = new ArrayList<Delta>(){{
 			add(new Delta(0, 0));
 		}};
 		

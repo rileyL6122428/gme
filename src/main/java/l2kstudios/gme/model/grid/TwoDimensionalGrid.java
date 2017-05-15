@@ -101,6 +101,13 @@ public class TwoDimensionalGrid implements RectangularGrid {
 				position.getX() >= 0;
 	}
 	
+	public boolean isInBounds(int x, int y) {
+		return spaces.size() > y && 
+				y >= 0 && 
+				spaces.get(y).size() > x &&
+				x >= 0;
+	}
+	
 	public List<List<Space>> getSpaces() {
 		return spaces;
 	}

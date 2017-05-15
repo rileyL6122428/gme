@@ -12,8 +12,12 @@ public class Delta {
 		this.y = y;
 	}
 	
-//	public Space getDeltaSpace(Space space) {
-//		return space.getRelativeSpace(x, y);
-//	}
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
 	
 }
