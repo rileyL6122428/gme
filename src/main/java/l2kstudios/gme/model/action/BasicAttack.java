@@ -2,37 +2,28 @@ package l2kstudios.gme.model.action;
 
 import java.util.ArrayList;
 
+import com.google.common.collect.Range;
+
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Delta;
 import l2kstudios.gme.model.unit.Unit;
 
-public class BasicAttack extends AttackAction {
+public class BasicAttack extends Attack {
 	
 	{
 		name = "Basic Attack";
 		
-		rangeDeltas = new ArrayList<Delta>() {{
-			add(new Delta(0, 1));
-			add(new Delta(1, 0));
-			add(new Delta(-1, 0));
-			add(new Delta(0, -1));
+		range = Range.closed(1, 1);
+		
+		affectedSpaces = new ArrayList<Delta>(){{
+			add(new Delta(0, 0));
 		}};
+		
+		baseDamage = 1;
 	}
 	
-	public BasicAttack(Unit unit, PlayingGrid playingGrid) {
-		executingUnit = unit;
-		this.playingGrid = playingGrid;
+	public BasicAttack(Unit executingUnit, PlayingGrid playingGrid) {
+		super(executingUnit, playingGrid);
 	}
-	
-//	public boolean ableToExecute() {
-//		return getAttackSpaces().size() != 0;
-//	}
-	
-//	public void execute(Unit target) {
-//		long damage = executingUnit.getAttack() - executingUnit.getDefense();
-//		ConsummableStat targetHealth = target.getHealth();
-//		targetHealth.setVal(targetHealth.getVal() - damage);
-//	}
 	
 }
