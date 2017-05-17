@@ -3,17 +3,25 @@ package l2kstudios.gme.model.unit;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.InitializingBean;
+
+import l2kstudios.gme.model.action.Action;
+import l2kstudios.gme.model.action.attack.Attack;
+import l2kstudios.gme.model.action.attack.BasicAttack;
+import l2kstudios.gme.model.action.postmove.AttackAction;
+import l2kstudios.gme.model.action.postmove.WaitAction;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
+import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 
 import static l2kstudios.gme.model.unit.Unit.BoardState.*; 
 
-public class Unit extends Placeable {
+public class Unit extends Placeable implements InitializingBean {
 	
 	public enum BoardState {
-		STAND_BY, MOVING, CHOOSING_ACTION, ACTING, AWAINTING_NEXT_TURN
+		STAND_BY, MOVING, CHOOSING_ACTION, ACTING, CHOOSING_ATTACK, AWAINTING_NEXT_TURN
 	}
 	
 	public enum Team {
@@ -21,9 +29,12 @@ public class Unit extends Placeable {
 	}
 	
 	public Unit() {
-		setActions(new ArrayList<Action>());
-		getActions().add(new BasicAttackAction(this));
-		getActions().add(new WaitAction(this));	
+		postMoveActions = new ArrayList<Action>();
+		postMoveActions.add(new AttackAction(this));
+		postMoveActions.add(new WaitAction(this));	
+		
+		attacks = new ArrayList<Attack>();
+		attacks.add(new BasicAttack(this));
 	}
 
 	private String name;
@@ -33,7 +44,9 @@ public class Unit extends Placeable {
 	private ConsummableStat health;
 	private ConsummableStat energy;
 	
-	private List<Action> actions;
+	private List<Action> postMoveActions;
+	
+	private List<Attack> attacks;
 	
 	private BoardState boardState = STAND_BY;
 	
@@ -43,7 +56,7 @@ public class Unit extends Placeable {
 	}
 	
 	public void endTurn() {
-		actions.get(actions.size() - 1).execute();
+		postMoveActions.get(postMoveActions.size() - 1).execute();
 	}
 
 	public Team getTeam() {
@@ -81,6 +94,14 @@ public class Unit extends Placeable {
 	public void setHealth(ConsummableStat health) {
 		this.health = health;
 	}
+	
+	public void setRemainingHealth(long remainingHealth) {
+		health.setVal(remainingHealth);
+	}
+	
+	public long getRemainingHealth() {
+		return health.getVal();
+	}
 
 	public ConsummableStat getEnergy() {
 		return energy;
@@ -104,6 +125,10 @@ public class Unit extends Placeable {
 		this.boardState = STAND_BY;
 	}
 	
+	public void registerChoosingAttack() {
+		this.boardState = CHOOSING_ATTACK;
+	}
+	
 	public boolean isInBoardState(BoardState state) {
 		return this.boardState == state;
 	}
@@ -112,12 +137,34 @@ public class Unit extends Placeable {
 		return boardState == STAND_BY;
 	}
 
-	public List<Action> getActions() {
-		return actions;
+	public List<Action> getPostMoveActions() {
+		return postMoveActions;
 	}
 
-	public void setActions(List<Action> actions) {
-		this.actions = actions;
+	public void setPostMoveActions(List<Action> actions) {
+		this.postMoveActions = actions;
+	}
+
+	public int getAttack() {
+		return 1;
+	}
+
+	public int getDefence() {
+		return 1;
+	}
+
+	public List<Attack> getAttacks() {
+		return attacks;
+	}
+
+	public void setAttacks(List<Attack> attacks) {
+		this.attacks = attacks;
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

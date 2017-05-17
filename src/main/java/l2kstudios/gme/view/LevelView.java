@@ -5,10 +5,12 @@ import java.util.List;
 
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.ActionMenu;
+import l2kstudios.gme.model.grid.AttackOptions;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.unit.ActionMenuView;
+import l2kstudios.gme.view.unit.AttackOptionsView;
 import l2kstudios.gme.view.unit.UnitView;
 
 public class LevelView extends View<Level>  {
@@ -17,6 +19,7 @@ public class LevelView extends View<Level>  {
 	private List<View<Unit>> unitViewList;
 	private MoveOrderView moveOrderView;
 	private ActionMenuView actionMenuView;
+	private View<AttackOptions> attackOptionsView;
 
 	public void draw() {
 		ctx.background(255, 255, 255);
@@ -24,6 +27,7 @@ public class LevelView extends View<Level>  {
 		unitViewList.forEach(View<Unit>::draw);
 		moveOrderView.draw();
 		actionMenuView.draw();
+		attackOptionsView.draw();
 	}
 
 	public void setModel(Level model) {
@@ -37,7 +41,9 @@ public class LevelView extends View<Level>  {
 		setupUnitViewList();
 		setupMoveOrderView();
 		setupActionMenuView();
+		setupAttackOptionsView();
 	}
+
 
 	private void setupGridDrawingUtil() {
 		GridDrawingUtil.getInstance().setDrawingContext(ctx);
@@ -77,5 +83,11 @@ public class LevelView extends View<Level>  {
 		actionMenuView = new ActionMenuView();
 		actionMenuView.setDrawingContext(ctx);
 		actionMenuView.setModel(actionMenu);
+	}
+	
+	private void setupAttackOptionsView() {
+		attackOptionsView = new AttackOptionsView();
+		attackOptionsView.setModel(model.getAttackOptions());
+		attackOptionsView.setDrawingContext(ctx);
 	}
 }

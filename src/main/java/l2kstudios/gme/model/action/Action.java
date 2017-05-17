@@ -8,6 +8,10 @@ public class Action extends Placeable {
 	protected Unit executingUnit;
 	protected String name;
 	
+	public Action(Unit executinUnit) {
+		this.executingUnit = executinUnit;
+	}
+	
 	public void execute() {
 		throw new RuntimeException("Method Not Implemented");
 	}

@@ -33,7 +33,7 @@ public class ActionMenuTest {
 		}};
 		
 		actingUnit = mock(Unit.class);
-		when(actingUnit.getActions()).thenReturn(actingUnitActions);
+		when(actingUnit.getPostMoveActions()).thenReturn(actingUnitActions);
 
 		actingUnitTracker = mock(ActingUnitTracker.class);
 		when(actingUnitTracker.getActingUnit()).thenReturn(actingUnit);

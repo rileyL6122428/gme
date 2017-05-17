@@ -5,11 +5,9 @@ import static l2kstudios.gme.view.constants.GridConstants.SPACE_WIDTH;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.grid.ActionMenu;
 import l2kstudios.gme.model.grid.Position;
-import l2kstudios.gme.model.unit.Action;
 import l2kstudios.gme.view.View;
 
 public class ActionMenuView extends View<ActionMenu> {

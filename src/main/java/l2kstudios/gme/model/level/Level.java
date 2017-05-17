@@ -4,6 +4,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.ActionMenu;
+import l2kstudios.gme.model.grid.AttackOptions;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.InputDispatcher.Input;
 
@@ -14,6 +15,8 @@ public class Level implements InitializingBean {
 	private PlayingGrid playingGrid;
 	
 	private ActionMenu actionMenu;
+	
+	private AttackOptions attackOptions;
 	
 	protected ActingUnitTracker actingUnitTracker;
 	
@@ -37,13 +40,19 @@ public class Level implements InitializingBean {
 		this.playingGrid = playingGrid;
 	}
 
+	public AttackOptions getAttackOptions() {
+		return attackOptions;
+	}
+	
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		setupActingUnitTracker();
 		playingGrid.setActingUnitTracker(actingUnitTracker);
 		setupActionMenu();
+		setupAttackOptionsMenu();
 		setupInputDispatcher();
 	}
+
 
 	private void setupActingUnitTracker() {
 		actingUnitTracker = new ActingUnitTracker();
@@ -55,10 +64,18 @@ public class Level implements InitializingBean {
 		actionMenu.setActingUnitTracker(actingUnitTracker);
 	}
 	
+	private void setupAttackOptionsMenu() {
+		attackOptions = new AttackOptions();
+		attackOptions.setActingUnitTracker(actingUnitTracker);
+	}
+	
 	private void setupInputDispatcher() {
 		inputDispatcher = new InputDispatcher();
 		inputDispatcher.setActionMenu(actionMenu);
 		inputDispatcher.setPlayingGrid(playingGrid);
+		inputDispatcher.setAttackOptions(attackOptions);
+		inputDispatcher.setActingUnitTracker(actingUnitTracker);
 		inputDispatcher.afterPropertiesSet();
 	}
+
 }

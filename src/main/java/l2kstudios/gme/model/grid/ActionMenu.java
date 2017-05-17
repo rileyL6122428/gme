@@ -3,7 +3,7 @@ package l2kstudios.gme.model.grid;
 import java.util.ArrayList;
 import java.util.List;
 
-import l2kstudios.gme.model.unit.Action;
+import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.unit.Unit;
 
 public class ActionMenu extends SingleRowGrid {
@@ -25,7 +25,7 @@ public class ActionMenu extends SingleRowGrid {
 	private void setSpacesToExecutableActions(Unit unit) {
 		List<Space> row = new ArrayList<Space>();
 		
-		for(Action action: unit.getActions()) {
+		for(Action action: unit.getPostMoveActions()) {
 			if(action.ableToExecute()) {
 				Space space = new Space();
 				action.place(space);

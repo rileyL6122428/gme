@@ -26,8 +26,8 @@ public class App extends PApplet implements InitializingBean {
     @SuppressWarnings("resource")
 	public static void main( String[] args ) {
     	ApplicationContext appContext = new ClassPathXmlApplicationContext("Beans.xml");
-    	PApplet papplet = (PApplet) appContext.getBean("app");
-    	PApplet.runSketch(new String[]{ "PraxisLIVE" }, papplet);
+    	App game = (App) appContext.getBean("app");
+    	PApplet.runSketch(new String[]{ "PraxisLIVE" }, game);
     }
     
     public void settings() {
@@ -72,6 +72,8 @@ public class App extends PApplet implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		GameModelService.setGame(this);
+		
 		levelView.setDrawingContext(this);
 		levelView.setModel(level);
 		

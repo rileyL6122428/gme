@@ -4,18 +4,25 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import l2kstudios.gme.model.grid.ActingUnitTracker;
+import l2kstudios.gme.model.grid.AttackOptions;
 import l2kstudios.gme.model.grid.RectangularGrid;
 import l2kstudios.gme.model.grid.TwoDimensionalGrid;
+import l2kstudios.gme.model.unit.Unit;
 
 public class InputDispatcher implements InitializingBean {
 	
 	public enum Input { UP, RIGHT, LEFT, DOWN, SPACE, BACK }
+	
+	private ActingUnitTracker actingUnitTracker;
 	
 	private RectangularGrid playingGrid;
 	
 	private RectangularGrid actionMenu;
 
 	private RectangularGrid selectedGrid;
+	
+	private RectangularGrid attackOptions;
 	
 	public void dispatchInput(Input input) {
 		switch(input) {
@@ -32,18 +39,23 @@ public class InputDispatcher implements InitializingBean {
 				selectedGrid.moveCursorDown();
 				break;
 			case SPACE:
-				if(selectedGrid.select()) toggleSelectedGrid();
+				if(selectedGrid.select()) selectNextGrid();
 				break;
 			case BACK:
 				System.out.println("BACK INPUT RECEIVED");
 		}
 	}
 
-	private void toggleSelectedGrid() {
-		if(selectedGrid == playingGrid)
+	private void selectNextGrid() {
+		Unit actingUnit = getActingUnitTracker().getActingUnit();
+		
+		if(selectedGrid == playingGrid) {
 			selectedGrid = actionMenu;
-		else
+		} else if(actingUnit.isInBoardState(Unit.BoardState.CHOOSING_ATTACK)) {
+			selectedGrid = attackOptions;
+		} else if(actingUnit.isInBoardState(Unit.BoardState.MOVING)) {
 			selectedGrid = playingGrid;
+		}
 		
 		selectedGrid.initialize();
 	}
@@ -60,9 +72,22 @@ public class InputDispatcher implements InitializingBean {
 		this.selectedGrid = selectedGrid;
 	}
 	
+	public void setAttackOptions(AttackOptions attackOptions) {
+		this.attackOptions = attackOptions;
+	}
+	
+	public ActingUnitTracker getActingUnitTracker() {
+		return actingUnitTracker;
+	}
+
+	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
+		this.actingUnitTracker = actingUnitTracker;
+	}
+
 	@Override
 	public void afterPropertiesSet() {
 		selectedGrid = playingGrid;
 		selectedGrid.initialize();
 	}
+
 }

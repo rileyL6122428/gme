@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.action;
+package l2kstudios.gme.model.action.attack;
 
 import java.util.ArrayList;
 
@@ -22,8 +22,8 @@ public class BasicAttack extends Attack {
 		baseDamage = 1;
 	}
 	
-	public BasicAttack(Unit executingUnit, PlayingGrid playingGrid) {
-		super(executingUnit, playingGrid);
+	public BasicAttack(Unit executingUnit) {
+		super(executingUnit);
 	}
 	
 }
