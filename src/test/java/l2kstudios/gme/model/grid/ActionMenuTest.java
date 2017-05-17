@@ -10,10 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import l2kstudios.gme.model.unit.Action;
+import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.unit.Unit;
 
 public class ActionMenuTest {	
@@ -25,18 +24,19 @@ public class ActionMenuTest {
 	
 	@Before
 	public void setup() {
-		actingUnitActions = new ArrayList<Action>() {{
-			add(new DummyAction(true));
-			add(new DummyAction(false));
-			add(new DummyAction(true));
-			add(new DummyAction(true));
-		}};
-		
 		actingUnit = mock(Unit.class);
+		actingUnitActions = new ArrayList<Action>() {{
+			add(new DummyAction(actingUnit, true){{ name="DummyAction 1";}});
+			add(new DummyAction(actingUnit, false){{ name="DummyAction 2";}});
+			add(new DummyAction(actingUnit, true){{ name="DummyAction 3";}});
+			add(new DummyAction(actingUnit, true){{ name="DummyAction 4";}});
+		}};
 		when(actingUnit.getPostMoveActions()).thenReturn(actingUnitActions);
-
+		
 		actingUnitTracker = mock(ActingUnitTracker.class);
 		when(actingUnitTracker.getActingUnit()).thenReturn(actingUnit);
+		
+		
 		
 		actionMenu = new ActionMenu();
 		actionMenu.setActingUnitTracker(actingUnitTracker);
@@ -82,7 +82,7 @@ public class ActionMenuTest {
 		assertEquals(0, ((DummyAction)actingUnitActions.get(3)).getCallCount());
 		
 		actionMenu.initialize();
-		actionMenu.moveCursorDown();
+		actionMenu.moveCursorRight();
 		actionMenu.select();
 		assertEquals(1, ((DummyAction)actingUnitActions.get(0)).getCallCount());
 		assertEquals(1, ((DummyAction)actingUnitActions.get(2)).getCallCount());
@@ -93,7 +93,8 @@ public class ActionMenuTest {
 		private int callCount = 0;
 		private boolean ableToExecute;
 		
-		public DummyAction(boolean ableToExecute) {
+		public DummyAction(Unit executingUnit, boolean ableToExecute) {
+			super(executingUnit);
 			this.ableToExecute = ableToExecute;
 		}
 		
