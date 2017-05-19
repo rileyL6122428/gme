@@ -1,8 +1,8 @@
 package l2kstudios.gme.model.action.attack;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -21,6 +21,8 @@ import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.services.GameModelService;
 import l2kstudios.gme.testutils.SpacesFactory;
+import l2kstudios.gme.model.unit.ConsummableStat;
+import l2kstudios.gme.model.unit.Delta;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(GameModelService.class)
@@ -37,7 +39,13 @@ public class AttackTest {
 		executingUnit = new Unit();
 		
 		attack = new Attack(executingUnit){{
+			baseDamage = 2;
+			
 			executionRange = Range.closed(2, 3);
+			
+			rangeOfEffect = new ArrayList<Delta>(){{
+				add(new Delta(0, 0));
+			}};
 		}};
 		
 		playingGrid = new PlayingGrid();
@@ -55,17 +63,25 @@ public class AttackTest {
 		assertFalse(attack.executeAt(new Position(3, 2)));
 	}
 	
-//	@Ignore
 	@Test
 	public void executeAt_suppliedPositionInExecutionRange_returnsTrue() {
 		assertTrue(attack.executeAt(new Position(2, 2)));
 		assertTrue(attack.executeAt(new Position(1, 2)));
 	}
 	
-	@Ignore
 	@Test
 	public void executeAt_suppliedPositionInExecutionRange_inflictsDamageOnUnitsInRangeOfAffect() {
-		fail("Not yet implemented");
+		Unit willReceiveDamage = new Unit(){{
+			setHealth(new ConsummableStat(){{
+				setCap(20);
+				setVal(20);
+			}});
+		}};
+		playingGrid.place(willReceiveDamage, 2, 2);
+		
+		attack.executeAt(new Position(2,2));
+		
+		assertEquals(willReceiveDamage.getRemainingHealth(), 18);
 	}
 	
 	@Ignore
