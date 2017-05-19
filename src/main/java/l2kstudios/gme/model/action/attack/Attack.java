@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.google.common.collect.Range;
 
-import l2kstudios.gme.GameModelService;
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.PlayingGrid;
@@ -13,14 +12,13 @@ import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.Delta;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.services.GameModelService;
 
 public class Attack extends Action {
 	
-	protected Unit executingUnit;
-	
 	protected List<Delta> rangeOfEffect;
 	
-	protected Range<Integer> range;
+	protected Range<Integer> executionRange;
 	
 	protected int baseDamage;
 	
@@ -29,7 +27,7 @@ public class Attack extends Action {
 	}
 	
 	public Range<Integer> getRange() {
-		return range;
+		return executionRange;
 	}
 	
 	public boolean executeAt(Position position) {
@@ -47,7 +45,7 @@ public class Attack extends Action {
 	
 	private boolean outOfRange(Position position) {
 		int distanceToExecution = GridUtils.distanceBetween(position, executingUnit.getPosition());
-		return !range.contains(distanceToExecution);
+		return !executionRange.contains(distanceToExecution);
 	}
 	
 	private long inflictedDamage(Unit occupier) {

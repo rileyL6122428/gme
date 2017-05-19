@@ -1,5 +1,6 @@
-package l2kstudios.gme;
+package l2kstudios.gme.services;
 
+import l2kstudios.gme.App;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 

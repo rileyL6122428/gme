@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import l2kstudios.gme.model.customerror.MethodNotImplementedException;
-import l2kstudios.gme.testutils.RowFactory;
+import l2kstudios.gme.testutils.SpacesFactory;
 
 public class GridTest {
 	
@@ -21,7 +21,7 @@ public class GridTest {
 	
 	@Before
 	public void before() {
-		spaces = RowFactory.emptyGridSpaces(GRID_WIDTH, GRID_HEIGHT);
+		spaces = SpacesFactory.emptyGridSpaces(GRID_WIDTH, GRID_HEIGHT);
 		
 		grid = new TwoDimensionalGrid();
 		grid.setSpaces(spaces);

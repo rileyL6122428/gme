@@ -13,7 +13,7 @@ public class BasicAttack extends Attack {
 	{
 		name = "Basic Attack";
 		
-		range = Range.closed(1, 1);
+		executionRange = Range.closed(1, 1);
 		
 		rangeOfEffect = new ArrayList<Delta>(){{
 			add(new Delta(0, 0));
