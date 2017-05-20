@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.unit;
+package l2kstudios.gme.model.action.rangeofeffect;
 
 import l2kstudios.gme.model.grid.Space;
 

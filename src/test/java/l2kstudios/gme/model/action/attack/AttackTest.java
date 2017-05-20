@@ -1,37 +1,43 @@
 package l2kstudios.gme.model.action.attack;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.powermock.*;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.collect.Range;
 
-import l2kstudios.gme.model.action.rangeofeffect.Delta;
+import l2kstudios.gme.model.action.rangeofeffect.Cross;
+import l2kstudios.gme.model.action.rangeofeffect.SingleSpace;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.services.GameModelService;
 import l2kstudios.gme.testutils.SpacesFactory;
-import l2kstudios.gme.model.unit.ConsummableStat;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(GameModelService.class)
 public class AttackTest {
 	
+	private static int ATTACKED_UNIT_STARTING_HEALTH = 20;
+	private static int ATTACKED_UNIT_DEFENSE = 1;
+	private static int ATTACKING_UNIT_OFFENSE = 1;
+	private static int BASE_DAMAGE = 2;
+	private static int MINIMUM_DAMAGE = 1;
+	
 	private Unit executingUnit;
-	
 	private PlayingGrid playingGrid;
-	
 	private Attack attack;
 	
 	@Before
@@ -39,13 +45,9 @@ public class AttackTest {
 		executingUnit = new Unit();
 		
 		attack = new Attack(executingUnit){{
-			baseDamage = 2;
-			
+			baseDamage = BASE_DAMAGE;
 			executionRange = Range.closed(2, 3);
-			
-			rangeOfEffect = new ArrayList<Delta>(){{
-				add(new Delta(0, 0));
-			}};
+			rangeOfEffect = new SingleSpace();
 		}};
 		
 		playingGrid = new PlayingGrid();
@@ -59,61 +61,63 @@ public class AttackTest {
 	
 	@Test
 	public void executeAt_suppliedPositionOutOfExecutionRange_returnsFalse() {
-		assertFalse(attack.executeAt(new Position(0,0)));
-		assertFalse(attack.executeAt(new Position(3, 2)));
+		List<Position> outOfExecutionRange = new ArrayList<Position>(){{
+			add(new Position(0, 0));
+			add(new Position(3, 2));
+		}};
+		
+		outOfExecutionRange.forEach((position) -> {
+			assertFalse(attack.executeAt(position));
+		});
 	}
 	
 	@Test
 	public void executeAt_suppliedPositionInExecutionRange_returnsTrue() {
-		assertTrue(attack.executeAt(new Position(2, 2)));
-		assertTrue(attack.executeAt(new Position(1, 2)));
+		List<Position> inExecutionRange = new ArrayList<Position>() {{
+			add(new Position(2, 2));
+			add(new Position(1, 2));
+		}};
+		
+		inExecutionRange.forEach((position) -> {
+			assertTrue(attack.executeAt(position));
+		});
 	}
 	
 	@Test
-	public void executeAt_suppliedPositionInExecutionRange_inflictsDamageOnUnitsInRangeOfAffect() {
-		Unit willReceiveDamage = new Unit(){{
-			setHealth(new ConsummableStat(){{
-				setCap(20);
-				setVal(20);
-			}});
-		}};
+	public void executeAt_suppliedPositionInExecutionRange_inflictsDamageOnUnitsInRangeOfEffect() {
+		Unit willReceiveDamage = newUnitWithHealthSetTo(ATTACKED_UNIT_STARTING_HEALTH);
 		playingGrid.place(willReceiveDamage, 2, 2);
 		
 		attack.executeAt(new Position(2,2));
 		
-		assertEquals(willReceiveDamage.getRemainingHealth(), 18);
+		assertEquals(expectedRemainingHealth(), willReceiveDamage.getRemainingHealth());
 	}
 	
-//	@Ignore
 	@Test
-	public void executeAt_suppliedPositionInExecutionRangeAndMultipleUnitsInRangeOfEffect_inflictsDamageOnUnitsInRangeOfAffect() {
-		Unit willReceiveDamage1 = new Unit(){{
-			setHealth(new ConsummableStat(){{
-				setCap(20);
-				setVal(20);
-			}});
-		}};
+	public void executeAt_suppliedPositionInExecutionRangeAndMultipleUnitsInRangeOfEffect_inflictsDamageOnUnitsInRangeOfEffect() {
+		Unit willReceiveDamage1 = newUnitWithHealthSetTo(ATTACKED_UNIT_STARTING_HEALTH);
 		playingGrid.place(willReceiveDamage1, 2, 2);
 		
-		Unit willReceiveDamage2 = new Unit(){{
-			setHealth(new ConsummableStat(){{
-				setCap(20);
-				setVal(20);
-			}});
-		}};
+		Unit willReceiveDamage2 = newUnitWithHealthSetTo(ATTACKED_UNIT_STARTING_HEALTH);
 		playingGrid.place(willReceiveDamage2, 2, 3);
 		
-		attack.rangeOfEffect = new ArrayList<Delta>(){{
-			add(new Delta(0, 0));
-			add(new Delta(1, 0));
-			add(new Delta(-1, 0));
-			add(new Delta(0, 1));
-			add(new Delta(0, -1));
-		}};
-		
+		attack.setRangeOfEffect(new Cross(1));
 		
 		attack.executeAt(new Position(2, 2));
-		assertEquals(willReceiveDamage1.getRemainingHealth(), 18);
-		assertEquals(willReceiveDamage2.getRemainingHealth(), 18);
+		assertEquals(expectedRemainingHealth(), willReceiveDamage1.getRemainingHealth());
+		assertEquals(expectedRemainingHealth(), willReceiveDamage2.getRemainingHealth());
+	}
+	
+	private Unit newUnitWithHealthSetTo(int healthVal) {
+		return new Unit(){{
+			setHealth(new ConsummableStat(){{
+				setCap(healthVal);
+				setVal(healthVal);
+			}});
+		}};
+	}
+	
+	private int expectedRemainingHealth() {
+		return ATTACKED_UNIT_STARTING_HEALTH - Math.max(BASE_DAMAGE + ATTACKING_UNIT_OFFENSE - ATTACKED_UNIT_DEFENSE, MINIMUM_DAMAGE);
 	}
 }
