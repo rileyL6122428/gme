@@ -6,11 +6,11 @@ import java.util.List;
 import com.google.common.collect.Range;
 
 import l2kstudios.gme.model.action.Action;
+import l2kstudios.gme.model.action.rangeofeffect.Delta;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
-import l2kstudios.gme.model.unit.Delta;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.services.GameModelService;
 
