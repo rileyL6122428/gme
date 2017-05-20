@@ -16,6 +16,10 @@
 * Interface Navigator framework (rework input dispatcher)
 
 
+# Right Now
+	- refactor Attack Test
+	- add unit tests for Range Of Effect 
+
 #DESIGN PLANS
 
 GRID HIERACHY
