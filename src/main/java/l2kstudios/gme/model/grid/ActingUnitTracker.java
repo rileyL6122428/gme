@@ -11,7 +11,7 @@ public class ActingUnitTracker {
 	private Unit actingUnit;
 
 	public Unit getActingUnit() {
-		if(actingUnit.isInBoardState(Unit.BoardState.STAND_BY)) {
+		if(actingUnit.turnIsOver()) {
 			movementCycle.shift();
 			getNextActingUnit();
 		}
@@ -21,7 +21,7 @@ public class ActingUnitTracker {
 	
 	private void getNextActingUnit() {
 		actingUnit = movementCycle.getNext();
-		actingUnit.registerTurnStart();
+		actingUnit.beginTurn();
 	}
 	
 	public List<Unit> getUnitMoveOrder() {
@@ -31,6 +31,6 @@ public class ActingUnitTracker {
 	public void configureMovementCycle(List<Unit> units) {
 		movementCycle = new MovementCycle(units);
 		actingUnit = movementCycle.getNext();
-		actingUnit.registerTurnStart();
+		actingUnit.beginTurn();
 	}
 }

@@ -22,7 +22,7 @@ import static l2kstudios.gme.model.unit.Unit.BoardState.*;
 public class Unit extends Placeable implements InitializingBean {
 	
 	public enum BoardState {
-		STAND_BY, MOVING, CHOOSING_ACTION, ACTING, CHOOSING_ATTACK, AWAINTING_NEXT_TURN
+		STAND_BY, MOVING, MAKING_POST_MOVE_DECISION, ACTING, CHOOSING_ATTACK, AWAINTING_NEXT_TURN
 	}
 	
 	public enum Team {
@@ -56,7 +56,7 @@ public class Unit extends Placeable implements InitializingBean {
 		return !space.isOccupied() && GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
 	}
 	
-	public void endTurn() {
+	public void decideToWait() {
 		postMoveDecisions.get(postMoveDecisions.size() - 1).execute();
 	}
 
@@ -115,14 +115,17 @@ public class Unit extends Placeable implements InitializingBean {
 	public void moveTo(Space space) {
 		occupiedSpace.setOccupier(null);
 		place(space);
-		boardState = CHOOSING_ACTION;
+		boardState = MAKING_POST_MOVE_DECISION;
 	}
 	
-	public void registerTurnStart() {
+	
+	
+	
+	public void beginTurn() {
 		this.boardState = MOVING;
 	}
 	
-	public void registerTurnEnd() {
+	public void endTurn() {
 		this.boardState = STAND_BY;
 	}
 	
@@ -130,13 +133,20 @@ public class Unit extends Placeable implements InitializingBean {
 		this.boardState = CHOOSING_ATTACK;
 	}
 	
-	public boolean isInBoardState(BoardState state) {
-		return this.boardState == state;
-	}
-	
-	public boolean turnOver() {
+	public boolean turnIsOver() {
 		return boardState == STAND_BY;
 	}
+	
+	public boolean isMoving() {
+		return boardState == MOVING;
+	}
+	
+	public boolean isChoosingAttack() {
+		return boardState == BoardState.CHOOSING_ATTACK;
+	}
+	
+	
+	
 
 	public List<PostMoveDecision> getPostMoveDecisions() {
 		return postMoveDecisions;

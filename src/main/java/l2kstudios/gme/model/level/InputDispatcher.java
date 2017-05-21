@@ -51,9 +51,9 @@ public class InputDispatcher implements InitializingBean {
 		
 		if(selectedGrid == playingGrid) {
 			selectedGrid = actionMenu;
-		} else if(actingUnit.isInBoardState(Unit.BoardState.CHOOSING_ATTACK)) {
+		} else if(actingUnit.isChoosingAttack()) {
 			selectedGrid = attackOptions;
-		} else if(actingUnit.isInBoardState(Unit.BoardState.MOVING)) {
+		} else if(actingUnit.isMoving()) {
 			selectedGrid = playingGrid;
 		}
 		

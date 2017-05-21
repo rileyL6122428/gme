@@ -1,12 +1,11 @@
 package l2kstudios.gme.view.unit;
 
-import static l2kstudios.gme.model.unit.Unit.BoardState.*;
-import static l2kstudios.gme.view.constants.GridConstants.*;
+import static l2kstudios.gme.view.constants.GridConstants.SPACE_HEIGHT;
+import static l2kstudios.gme.view.constants.GridConstants.SPACE_WIDTH;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.Unit;
@@ -19,14 +18,10 @@ public class UnitMovementGrid {
 	private Unit unit;
 
 	public void draw() {
-		if(!isChoosingMove(unit)) return;
+		if(!unit.isMoving()) return;
 		
 		getCtx().fill(150, 100);
 		movementOptions().forEach(this::fillInGridSpace);
-	}
-	
-	private boolean isChoosingMove(Unit unit) {
-		return unit.isInBoardState(MOVING);
 	}
 	
 	private List<Position> movementOptions() {

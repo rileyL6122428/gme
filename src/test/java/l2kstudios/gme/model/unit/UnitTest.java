@@ -16,16 +16,16 @@ public class UnitTest {
 	}
 	
 	@Test
-	public void instantiation__unitStartsInStandby() {
-		assertTrue(unit.isInBoardState(Unit.BoardState.STAND_BY));
+	public void instantiation__unitStartsWithTurnOver() {
+		assertTrue(unit.turnIsOver());
 	}
 	
 	@Test
 	public void registerTurnStart__turnOverReturnsFalseUntilRegisterTurnEndIsCalled() {
-		unit.registerTurnStart();
-		assertFalse(unit.turnOver());
-		unit.registerTurnEnd();
-		assertTrue(unit.turnOver());
+		unit.beginTurn();
+		assertFalse(unit.turnIsOver());
+		unit.endTurn();
+		assertTrue(unit.turnIsOver());
 	}
 
 }

@@ -36,7 +36,7 @@ public class AttackOptions extends SingleRowGrid {
 	}
 	
 	public boolean shouldRender() {
-		return actingUnitTracker.getActingUnit().isInBoardState(Unit.BoardState.CHOOSING_ATTACK);
+		return actingUnitTracker.getActingUnit().isChoosingAttack();
 	}
 
 

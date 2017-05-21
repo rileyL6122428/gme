@@ -1,15 +1,12 @@
 package l2kstudios.gme.view.unit;
 
-import l2kstudios.gme.model.grid.ActingUnitTracker;
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.GridDrawingUtil;
-import l2kstudios.gme.view.View;
 import l2kstudios.gme.view.GridDrawingUtil.Offsets;
-import processing.core.PApplet;
+import l2kstudios.gme.view.View;
 
-public class UnitGridAvatar extends View {
+public class UnitGridAvatar extends View<Unit> {
 	
 	{
 		gridDrawingUtil = GridDrawingUtil.getInstance();
@@ -18,7 +15,6 @@ public class UnitGridAvatar extends View {
 	private static final Offsets SPACE_OFFSETS;
 	
 	private GridDrawingUtil gridDrawingUtil;
-	private ActingUnitTracker actingUnitTracker;
 	private Unit unit;
 	
 	static {
@@ -34,11 +30,11 @@ public class UnitGridAvatar extends View {
 	}
 	
 	private void setUnitFill() {
-		if(!getUnit().isInBoardState(Unit.BoardState.STAND_BY)) {
+		if(!unit.turnIsOver())
 			ctx.fill(0, 0, 255);			
-		} else {
+		else 
 			ctx.fill(0, 255, 0);
-		}		
+				
 	}
 	
 	private void drawUnit() {

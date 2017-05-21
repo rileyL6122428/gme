@@ -14,7 +14,7 @@ public class WaitDecision extends PostMoveDecision {
 
 	@Override
 	public void execute() {
-		executingUnit.registerTurnEnd();
+		executingUnit.endTurn();
 		
 	}
 

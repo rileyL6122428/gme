@@ -17,8 +17,7 @@
 
 
 # Right Now
-- refactor post move actions into PostMoveClass
-- change Action Menu -> PostMoveDecision
+	- decouple Unit from BoardState Enum From outerworld
 
 #DESIGN PLANS
 

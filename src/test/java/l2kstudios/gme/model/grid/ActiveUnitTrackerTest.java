@@ -49,7 +49,7 @@ public class ActiveUnitTrackerTest {
 	
 	@Test
 	public void getActiveUnit_notInitialCallAndUnitRevertedToStandBy_returnsTheNextUnitInTheMoveCycle() {
-		fastest.endTurn();
+		fastest.decideToWait();
 		assertEquals(medium, actingUnitTracker.getActingUnit());
 	}
 
