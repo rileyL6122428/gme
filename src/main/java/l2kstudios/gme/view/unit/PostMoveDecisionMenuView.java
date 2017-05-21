@@ -6,11 +6,12 @@ import static l2kstudios.gme.view.constants.GridConstants.SPACE_WIDTH;
 import java.util.List;
 
 import l2kstudios.gme.model.action.Action;
-import l2kstudios.gme.model.grid.ActionMenu;
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
+import l2kstudios.gme.model.grid.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.view.View;
 
-public class ActionMenuView extends View<ActionMenu> {
+public class PostMoveDecisionMenuView extends View<PostMoveDecisionMenu> {
 
 	public static int HORIZONTAL_OFFSET = 75;
 	
@@ -21,7 +22,7 @@ public class ActionMenuView extends View<ActionMenu> {
 	
 	private void drawActionNames() {
 		Position activeUnitPosition = model.getActiveUnitPosition();
-		List<Action> actions = model.getExecutableActions();
+		List<PostMoveDecision> actions = model.getDecisions();
 		
 		for(int actionIdx = 0; actionIdx < actions.size(); actionIdx++) {
 			Action action = actions.get(actionIdx);

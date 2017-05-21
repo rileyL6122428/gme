@@ -1,15 +1,14 @@
 package l2kstudios.gme.model.action.postmove;
 
-import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.unit.Unit;
 
-public class AttackAction extends Action {
+public class AttackDecision extends PostMoveDecision {
 	
 	{
 		name = "Attack";
 	}
 	
-	public AttackAction(Unit executingUnit) {
+	public AttackDecision(Unit executingUnit) {
 		super(executingUnit);
 	}
 	

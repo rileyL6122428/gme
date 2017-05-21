@@ -8,8 +8,9 @@ import org.springframework.beans.factory.InitializingBean;
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.attack.Attack;
 import l2kstudios.gme.model.action.attack.BasicAttack;
-import l2kstudios.gme.model.action.postmove.AttackAction;
-import l2kstudios.gme.model.action.postmove.WaitAction;
+import l2kstudios.gme.model.action.postmove.AttackDecision;
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
+import l2kstudios.gme.model.action.postmove.WaitDecision;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.grid.PlayingGrid;
@@ -29,9 +30,9 @@ public class Unit extends Placeable implements InitializingBean {
 	}
 	
 	public Unit() {
-		postMoveActions = new ArrayList<Action>();
-		postMoveActions.add(new AttackAction(this));
-		postMoveActions.add(new WaitAction(this));	
+		postMoveDecisions = new ArrayList<PostMoveDecision>();
+		postMoveDecisions.add(new AttackDecision(this));
+		postMoveDecisions.add(new WaitDecision(this));	
 		
 		attacks = new ArrayList<Attack>();
 		attacks.add(new BasicAttack(this));
@@ -44,7 +45,7 @@ public class Unit extends Placeable implements InitializingBean {
 	private ConsummableStat health;
 	private ConsummableStat energy;
 	
-	private List<Action> postMoveActions;
+	private List<PostMoveDecision> postMoveDecisions;
 	
 	private List<Attack> attacks;
 	
@@ -56,7 +57,7 @@ public class Unit extends Placeable implements InitializingBean {
 	}
 	
 	public void endTurn() {
-		postMoveActions.get(postMoveActions.size() - 1).execute();
+		postMoveDecisions.get(postMoveDecisions.size() - 1).execute();
 	}
 
 	public Team getTeam() {
@@ -137,12 +138,12 @@ public class Unit extends Placeable implements InitializingBean {
 		return boardState == STAND_BY;
 	}
 
-	public List<Action> getPostMoveActions() {
-		return postMoveActions;
+	public List<PostMoveDecision> getPostMoveDecisions() {
+		return postMoveDecisions;
 	}
 
-	public void setPostMoveActions(List<Action> actions) {
-		this.postMoveActions = actions;
+	public void setPostMoveDecisions(List<PostMoveDecision> postMoveDecisions) {
+		this.postMoveDecisions = postMoveDecisions;
 	}
 
 	public int getAttack() {

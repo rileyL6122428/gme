@@ -1,15 +1,14 @@
 package l2kstudios.gme.model.action.postmove;
 
-import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.unit.Unit;
 
-public class WaitAction extends Action {
+public class WaitDecision extends PostMoveDecision {
 	
 	{
 		name = "Wait";
 	}
 	
-	public WaitAction(Unit executingUnit) {
+	public WaitDecision(Unit executingUnit) {
 		super(executingUnit);
 	}
 

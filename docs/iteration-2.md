@@ -17,8 +17,8 @@
 
 
 # Right Now
-	- refactor Attack Test
-	- add unit tests for Range Of Effect 
+- refactor post move actions into PostMoveClass
+- change Action Menu -> PostMoveDecision
 
 #DESIGN PLANS
 

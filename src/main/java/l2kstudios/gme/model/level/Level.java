@@ -3,7 +3,7 @@ package l2kstudios.gme.model.level;
 import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.grid.ActingUnitTracker;
-import l2kstudios.gme.model.grid.ActionMenu;
+import l2kstudios.gme.model.grid.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.AttackOptions;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.InputDispatcher.Input;
@@ -14,7 +14,7 @@ public class Level implements InitializingBean {
 	
 	private PlayingGrid playingGrid;
 	
-	private ActionMenu actionMenu;
+	private PostMoveDecisionMenu actionMenu;
 	
 	private AttackOptions attackOptions;
 	
@@ -28,7 +28,7 @@ public class Level implements InitializingBean {
 		return playingGrid;
 	}
 
-	public ActionMenu getActionMenu() {
+	public PostMoveDecisionMenu getActionMenu() {
 		return actionMenu;
 	}
 
@@ -60,7 +60,7 @@ public class Level implements InitializingBean {
 	}
 	
 	private void setupActionMenu() {
-		actionMenu = new ActionMenu();
+		actionMenu = new PostMoveDecisionMenu();
 		actionMenu.setActingUnitTracker(actingUnitTracker);
 	}
 	

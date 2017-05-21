@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import l2kstudios.gme.model.grid.ActingUnitTracker;
-import l2kstudios.gme.model.grid.ActionMenu;
+import l2kstudios.gme.model.grid.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.AttackOptions;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.view.unit.ActionMenuView;
+import l2kstudios.gme.view.unit.PostMoveDecisionMenuView;
 import l2kstudios.gme.view.unit.AttackOptionsView;
 import l2kstudios.gme.view.unit.UnitView;
 
@@ -18,7 +18,7 @@ public class LevelView extends View<Level>  {
 	private View<PlayingGrid> playingGridView;
 	private List<View<Unit>> unitViewList;
 	private MoveOrderView moveOrderView;
-	private ActionMenuView actionMenuView;
+	private PostMoveDecisionMenuView actionMenuView;
 	private View<AttackOptions> attackOptionsView;
 
 	public void draw() {
@@ -79,8 +79,8 @@ public class LevelView extends View<Level>  {
 	}
 	
 	private void setupActionMenuView() {
-		ActionMenu actionMenu = model.getActionMenu();
-		actionMenuView = new ActionMenuView();
+		PostMoveDecisionMenu actionMenu = model.getActionMenu();
+		actionMenuView = new PostMoveDecisionMenuView();
 		actionMenuView.setDrawingContext(ctx);
 		actionMenuView.setModel(actionMenu);
 	}

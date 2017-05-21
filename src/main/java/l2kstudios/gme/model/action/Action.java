@@ -12,10 +12,6 @@ public class Action extends Placeable {
 		this.executingUnit = executinUnit;
 	}
 	
-	public void execute() {
-		throw new RuntimeException("Method Not Implemented");
-	}
-	
 	public boolean ableToExecute() {
 		throw new RuntimeException("Method Not Implemented");
 	}
