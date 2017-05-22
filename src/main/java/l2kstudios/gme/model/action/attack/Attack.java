@@ -6,6 +6,7 @@ import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.Unit;
 
 public class Attack extends Action {
@@ -22,6 +23,10 @@ public class Attack extends Action {
 		super(executingUnit);
 	}
 	
+	public boolean executeAt(Space space) {
+		return executeAt(space.getPosition());
+	}
+	
 	public boolean executeAt(Position position) {
 		if(outOfRange(position)) return false;
 		
@@ -35,7 +40,6 @@ public class Attack extends Action {
 		return true;
 	}
 	
-
 	private boolean outOfRange(Position position) {
 		int distanceToExecution = GridUtils.distanceBetween(position, executingUnit.getPosition());
 		return !executionRange.contains(distanceToExecution);
@@ -49,4 +53,7 @@ public class Attack extends Action {
 		this.rangeOfEffect = rangeOfEffect;
 	}
 	
+	public Range<Integer> getExecutionRange() {
+		return executionRange;
+	}
 }
