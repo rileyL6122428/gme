@@ -5,6 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.AttackOptions;
+import l2kstudios.gme.model.grid.AttackPlacement;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.InputDispatcher.Input;
 
@@ -17,6 +18,8 @@ public class Level implements InitializingBean {
 	private PostMoveDecisionMenu actionMenu;
 	
 	private AttackOptions attackOptions;
+	
+	private AttackPlacement attackPlacement;
 	
 	protected ActingUnitTracker actingUnitTracker;
 	
@@ -44,15 +47,19 @@ public class Level implements InitializingBean {
 		return attackOptions;
 	}
 	
+	public AttackPlacement getAttackPlacement() {
+		return attackPlacement;
+	}
+	
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		setupActingUnitTracker();
 		playingGrid.setActingUnitTracker(actingUnitTracker);
 		setupActionMenu();
 		setupAttackOptionsMenu();
+		setupAttackPlacementGrid();
 		setupInputDispatcher();
 	}
-
 
 	private void setupActingUnitTracker() {
 		actingUnitTracker = new ActingUnitTracker();
@@ -69,6 +76,11 @@ public class Level implements InitializingBean {
 		attackOptions.setActingUnitTracker(actingUnitTracker);
 	}
 	
+	private void setupAttackPlacementGrid() {
+		attackPlacement = new AttackPlacement();
+		attackPlacement.setActingUnitTracker(actingUnitTracker);
+	}
+
 	private void setupInputDispatcher() {
 		inputDispatcher = new InputDispatcher();
 		inputDispatcher.setActionMenu(actionMenu);

@@ -5,15 +5,25 @@ import java.util.List;
 
 import l2kstudios.gme.model.action.attack.Attack;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.services.GameModelService;
 
 public class AttackOptions extends SingleRowGrid {
 	
 	private ActingUnitTracker actingUnitTracker;
 	
-	private List<Attack> attacks;
-	
 	public List<Attack> getAttacks() {
 		return actingUnitTracker.getActingUnit().getAttacks();
+	}
+	
+	public boolean select() {
+		passSelectedAttackToPlacementGrid();
+		return true;
+	}
+	
+	private void passSelectedAttackToPlacementGrid() {
+		AttackPlacement attackPlacement = GameModelService.getAttackPlacementGrid();
+		Attack selectedAttack = (Attack)hoveredSpace().getOccupier();
+		attackPlacement.setAttackToPlace(selectedAttack);
 	}
 
 

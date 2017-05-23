@@ -22,7 +22,12 @@ import static l2kstudios.gme.model.unit.Unit.BoardState.*;
 public class Unit extends Placeable implements InitializingBean {
 	
 	public enum BoardState {
-		STAND_BY, MOVING, MAKING_POST_MOVE_DECISION, ACTING, CHOOSING_ATTACK, AWAINTING_NEXT_TURN
+		STAND_BY, 
+		MOVING, 
+		MAKING_POST_MOVE_DECISION, 
+		CHOOSING_ATTACK, 
+		PLACING_ATTACK,
+		AWAINTING_NEXT_TURN
 	}
 	
 	public enum Team {
@@ -142,7 +147,15 @@ public class Unit extends Placeable implements InitializingBean {
 	}
 	
 	public boolean isChoosingAttack() {
-		return boardState == BoardState.CHOOSING_ATTACK;
+		return boardState == CHOOSING_ATTACK;
+	}
+	
+	public void registerPlacingAttack() {
+		this.boardState = BoardState.PLACING_ATTACK;
+	}
+	
+	public boolean isPlacingAttack() {
+		return boardState == BoardState.PLACING_ATTACK;
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.AttackOptions;
+import l2kstudios.gme.model.grid.AttackPlacement;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
@@ -20,6 +21,7 @@ public class LevelView extends View<Level>  {
 	private MoveOrderView moveOrderView;
 	private PostMoveDecisionMenuView actionMenuView;
 	private View<AttackOptions> attackOptionsView;
+	private View<AttackPlacement> attackPlacementView;
 
 	public void draw() {
 		ctx.background(255, 255, 255);
@@ -28,6 +30,7 @@ public class LevelView extends View<Level>  {
 		moveOrderView.draw();
 		actionMenuView.draw();
 		attackOptionsView.draw();
+		attackPlacementView.draw();
 	}
 
 	public void setModel(Level model) {
@@ -42,8 +45,8 @@ public class LevelView extends View<Level>  {
 		setupMoveOrderView();
 		setupActionMenuView();
 		setupAttackOptionsView();
+		setupAttackPlacementView();
 	}
-
 
 	private void setupGridDrawingUtil() {
 		GridDrawingUtil.getInstance().setDrawingContext(ctx);
@@ -89,5 +92,11 @@ public class LevelView extends View<Level>  {
 		attackOptionsView = new AttackOptionsView();
 		attackOptionsView.setModel(model.getAttackOptions());
 		attackOptionsView.setDrawingContext(ctx);
+	}
+	
+	private void setupAttackPlacementView() {
+		attackPlacementView = new AttackPlacementView();
+		attackPlacementView.setModel(model.getAttackPlacement());
+		attackPlacementView.setDrawingContext(ctx);
 	}
 }

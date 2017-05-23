@@ -17,7 +17,9 @@
 
 
 # Right Now
-	- decouple Unit from BoardState Enum From outerworld
+	- implement placing attacks
+	- refactor two dimensional grid and rectangular Grid
+	- implement undoing action (with decision tree)
 
 #DESIGN PLANS
 

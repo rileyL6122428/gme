@@ -24,6 +24,8 @@ public class InputDispatcher implements InitializingBean {
 	
 	private RectangularGrid attackOptions;
 	
+	private RectangularGrid attackPlacement;
+	
 	public void dispatchInput(Input input) {
 		switch(input) {
 			case UP:    
@@ -53,7 +55,9 @@ public class InputDispatcher implements InitializingBean {
 			selectedGrid = actionMenu;
 		} else if(actingUnit.isChoosingAttack()) {
 			selectedGrid = attackOptions;
-		} else if(actingUnit.isMoving()) {
+		} else if(actingUnit.isPlacingAttack()) {
+			selectedGrid = attackPlacement; 
+		} else if(actingUnit.isMoving()) {  
 			selectedGrid = playingGrid;
 		}
 		
@@ -82,6 +86,10 @@ public class InputDispatcher implements InitializingBean {
 
 	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
 		this.actingUnitTracker = actingUnitTracker;
+	}
+
+	public void setAttackPlacement(RectangularGrid attackPlacement) {
+		this.attackPlacement = attackPlacement;
 	}
 
 	@Override
