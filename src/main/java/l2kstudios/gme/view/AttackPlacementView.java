@@ -47,7 +47,8 @@ public class AttackPlacementView extends View<AttackPlacement> {
 			int x = executingUnitPosition.getX() + idx;
 			int y = executingUnitPosition.getY() + idx - executionRange.upperEndpoint();
 			
-			gridDrawingUtil.drawRectTopRightOutlineAt(x, y);
+			gridDrawingUtil.drawRectOutlineTop(x, y);
+			gridDrawingUtil.drawRectOutlineRight(x, y);
 		}
 	}
 

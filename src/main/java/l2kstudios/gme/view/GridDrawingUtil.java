@@ -41,18 +41,38 @@ public class GridDrawingUtil {
 		);
 	}
 	
-	public void drawRectTopRightOutlineAt(int x, int y) {
+	public void drawRectOutlineTop(int x, int y) {
 		ctx.line(
 				x * SPACE_WIDTH, 
 				y * SPACE_HEIGHT, 
 				(x + 1) * SPACE_WIDTH, 
 				y * SPACE_HEIGHT 
 		);
-		
+	}
+	
+	public void drawRectOutlineRight(int x, int y) {
 		ctx.line(
 				(x + 1) * SPACE_WIDTH, 
 				y * SPACE_HEIGHT, 
 				(x + 1) * SPACE_WIDTH, 
+				(y + 1) * SPACE_HEIGHT
+		);
+	}
+	
+	public void drawRectOutlineBottom(int x, int y) {
+		ctx.line(
+				x * SPACE_WIDTH, 
+				(y + 1) * SPACE_HEIGHT, 
+				(x + 1) * SPACE_WIDTH, 
+				(y + 1) * SPACE_HEIGHT
+		);
+	}
+	
+	public void drawRectOutlineLeft(int x, int y) {
+		ctx.line(
+				x * SPACE_WIDTH, 
+				y * SPACE_HEIGHT, 
+				x * SPACE_WIDTH, 
 				(y + 1) * SPACE_HEIGHT
 		);
 	}
