@@ -17,6 +17,7 @@ public class AttackOptions extends SingleRowGrid {
 	
 	public boolean select() {
 		passSelectedAttackToPlacementGrid();
+		actingUnitTracker.getActingUnit().registerPlacingAttack();
 		return true;
 	}
 	
@@ -25,7 +26,6 @@ public class AttackOptions extends SingleRowGrid {
 		Attack selectedAttack = (Attack)hoveredSpace().getOccupier();
 		attackPlacement.setAttackToPlace(selectedAttack);
 	}
-
 
 	public void initialize() {
 		final List<Space> row = new ArrayList<Space>();

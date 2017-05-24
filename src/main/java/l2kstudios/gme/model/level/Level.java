@@ -87,6 +87,7 @@ public class Level implements InitializingBean {
 		inputDispatcher.setPlayingGrid(playingGrid);
 		inputDispatcher.setAttackOptions(attackOptions);
 		inputDispatcher.setActingUnitTracker(actingUnitTracker);
+		inputDispatcher.setAttackPlacement(attackPlacement);
 		inputDispatcher.afterPropertiesSet();
 	}
 

@@ -40,6 +40,22 @@ public class GridDrawingUtil {
 			SPACE_HEIGHT
 		);
 	}
+	
+	public void drawRectTopRightOutlineAt(int x, int y) {
+		ctx.line(
+				x * SPACE_WIDTH, 
+				y * SPACE_HEIGHT, 
+				(x + 1) * SPACE_WIDTH, 
+				y * SPACE_HEIGHT 
+		);
+		
+		ctx.line(
+				(x + 1) * SPACE_WIDTH, 
+				y * SPACE_HEIGHT, 
+				(x + 1) * SPACE_WIDTH, 
+				(y + 1) * SPACE_HEIGHT
+		);
+	}
 
 	public void setDrawingContext(PApplet ctx) {
 		this.ctx = ctx;
