@@ -28,18 +28,17 @@ public class AttackPlacementView extends View<AttackPlacement> {
 	}
 	
 	private void drawPlaceableOutline() {
-		
-		
-		drawOuterOutline();
-		drawInnerOutline();
-	}
-	
-	private void drawOuterOutline() {
 		ctx.stroke(0, 255, 0);
 		drawOuterOutlineCorners();
 		drawOuterOutlineEdges();
+		drawInnerOutlineCorners();
+		drawInnerOutlineEdges();
 		ctx.stroke(0);
+		
+		
 	}
+
+
 
 	private void drawOuterOutlineCorners() {
 		Position unitPosition = model.getExecutingUnitPosition();
@@ -102,9 +101,64 @@ public class AttackPlacementView extends View<AttackPlacement> {
 		
 	}
 
-	private void drawInnerOutline() {
-		// TODO Auto-generated method stub
+	private void drawInnerOutlineCorners() {
+		Position unitPosition = model.getExecutingUnitPosition();
+		Range<Integer> executionRange = model.getExectuionRange();
 		
+		gridDrawingUtil.drawRectOutline(
+				unitPosition.getX(), 
+				unitPosition.getY() - executionRange.lowerEndpoint(), 
+				false, false, true, false
+		);
+		
+		gridDrawingUtil.drawRectOutline(
+				unitPosition.getX() + executionRange.lowerEndpoint(), 
+				unitPosition.getY(), 
+				false, false, false, true
+		);
+		
+		gridDrawingUtil.drawRectOutline(
+				unitPosition.getX(), 
+				unitPosition.getY() + executionRange.lowerEndpoint(), 
+				true, false, false, false
+		);
+		
+		gridDrawingUtil.drawRectOutline(
+				unitPosition.getX() - executionRange.lowerEndpoint(), 
+				unitPosition.getY(), 
+				false, true, false, false
+		);
+	}
+	
+	private void drawInnerOutlineEdges() {
+		Position unitPosition = model.getExecutingUnitPosition();
+		Range<Integer> executionRange = model.getExectuionRange();
+		
+		for(int edgeIdx = 1; edgeIdx < executionRange.lowerEndpoint(); edgeIdx++) {
+			gridDrawingUtil.drawRectOutline(
+					unitPosition.getX() + edgeIdx, 
+					unitPosition.getY() - executionRange.lowerEndpoint() + edgeIdx, 
+					false, false, true, true
+			);
+			
+			gridDrawingUtil.drawRectOutline(
+					unitPosition.getX() + executionRange.lowerEndpoint() - edgeIdx, 
+					unitPosition.getY() + edgeIdx, 
+					true, false, false, true
+			);
+			
+			gridDrawingUtil.drawRectOutline(
+					unitPosition.getX() - edgeIdx, 
+					unitPosition.getY() + executionRange.lowerEndpoint() - edgeIdx, 
+					true, true, false, false
+			);
+			
+			gridDrawingUtil.drawRectOutline(
+					unitPosition.getX() - executionRange.lowerEndpoint() + edgeIdx, 
+					unitPosition.getY() - edgeIdx, 
+					false, true, true, false
+			);
+		}
 	}
 
 	private void drawAreaOfEffect() {

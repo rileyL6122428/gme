@@ -9,7 +9,7 @@ public class BasicAttackWithRange extends Attack {
 	{
 		name = "Basic Attack With Range";
 		
-		executionRange = Range.closed(1, 3);
+		executionRange = Range.closed(2, 3);
 		
 		rangeOfEffect = new SingleSpace();
 		
