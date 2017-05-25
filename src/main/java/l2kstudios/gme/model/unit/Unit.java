@@ -8,6 +8,7 @@ import org.springframework.beans.factory.InitializingBean;
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.attack.Attack;
 import l2kstudios.gme.model.action.attack.BasicAttack;
+import l2kstudios.gme.model.action.attack.BasicAttackWithRange;
 import l2kstudios.gme.model.action.postmove.AttackDecision;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
@@ -41,6 +42,7 @@ public class Unit extends Placeable implements InitializingBean {
 		
 		attacks = new ArrayList<Attack>();
 		attacks.add(new BasicAttack(this));
+		attacks.add(new BasicAttackWithRange(this));
 	}
 
 	private String name;

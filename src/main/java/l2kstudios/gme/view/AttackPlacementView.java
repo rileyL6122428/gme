@@ -36,20 +36,70 @@ public class AttackPlacementView extends View<AttackPlacement> {
 	
 	private void drawOuterOutline() {
 		ctx.stroke(0, 255, 0);
-		drawTopRightOuterOutline();
+		drawOuterOutlineCorners();
+		drawOuterOutlineEdges();
 		ctx.stroke(0);
 	}
 
-	private void drawTopRightOuterOutline() {
-		Position executingUnitPosition = model.getExecutingUnitPosition();
+	private void drawOuterOutlineCorners() {
+		Position unitPosition = model.getExecutingUnitPosition();
 		Range<Integer> executionRange = model.getExectuionRange();
-		for(int idx = 0; idx <= executionRange.upperEndpoint(); idx++) {
-			int x = executingUnitPosition.getX() + idx;
-			int y = executingUnitPosition.getY() + idx - executionRange.upperEndpoint();
+		
+		gridDrawingUtil.drawRectOutline(
+				unitPosition.getX(), 
+				unitPosition.getY() - executionRange.upperEndpoint(), 
+				true, true, false, true
+		);
+		
+		gridDrawingUtil.drawRectOutline(
+				unitPosition.getX() + executionRange.upperEndpoint(), 
+				unitPosition.getY(), 
+				true, true, true, false
+		);
+		
+		gridDrawingUtil.drawRectOutline(
+				unitPosition.getX(), 
+				unitPosition.getY() + executionRange.upperEndpoint(), 
+				false, true, true, true
+		);
+		
+		gridDrawingUtil.drawRectOutline(
+				unitPosition.getX() - executionRange.upperEndpoint(), 
+				unitPosition.getY(), 
+				true, false, true, true
+		);
+	}
+	
+	private void drawOuterOutlineEdges() {
+		Position unitPosition = model.getExecutingUnitPosition();
+		Range<Integer> executionRange = model.getExectuionRange();
+		
+		for(int edgeIdx = 1; edgeIdx < executionRange.upperEndpoint(); edgeIdx++) {
+			gridDrawingUtil.drawRectOutline(
+					unitPosition.getX() + edgeIdx, 
+					unitPosition.getY() - executionRange.upperEndpoint() + edgeIdx, 
+					true, true, false, false
+			);
 			
-			gridDrawingUtil.drawRectOutlineTop(x, y);
-			gridDrawingUtil.drawRectOutlineRight(x, y);
+			gridDrawingUtil.drawRectOutline(
+					unitPosition.getX() + executionRange.upperEndpoint() - edgeIdx, 
+					unitPosition.getY() + edgeIdx, 
+					false, true, true, false
+			);
+			
+			gridDrawingUtil.drawRectOutline(
+					unitPosition.getX() - edgeIdx, 
+					unitPosition.getY() + executionRange.upperEndpoint() - edgeIdx, 
+					false, false, true, true
+			);
+			
+			gridDrawingUtil.drawRectOutline(
+					unitPosition.getX() - executionRange.upperEndpoint() + edgeIdx, 
+					unitPosition.getY() - edgeIdx, 
+					true, false, false, true
+			);
 		}
+		
 	}
 
 	private void drawInnerOutline() {
