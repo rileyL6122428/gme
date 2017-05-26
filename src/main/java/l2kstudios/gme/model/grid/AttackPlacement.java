@@ -3,6 +3,7 @@ package l2kstudios.gme.model.grid;
 import com.google.common.collect.Range;
 
 import l2kstudios.gme.model.action.attack.Attack;
+import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.services.GameModelService;
 
@@ -41,5 +42,9 @@ public class AttackPlacement extends TwoDimensionalGrid {
 
 	public Range<Integer> getExectuionRange() {
 		return attack.getExecutionRange();
+	}
+	
+	public RangeOfEffect getRangeOfEffect() {
+		return attack.getRangeOfEffect();
 	}
 }

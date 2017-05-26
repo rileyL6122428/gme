@@ -41,6 +41,15 @@ public class GridDrawingUtil {
 		);
 	}
 	
+	public void drawRectAt(int x, int y) {
+		ctx.rect(
+				x * SPACE_WIDTH, 
+				y * SPACE_HEIGHT, 
+				SPACE_WIDTH,
+				SPACE_HEIGHT
+			);
+	}
+	
 	public void drawRectOutline(int x, int y, boolean drawTop, boolean drawRight, boolean drawBottom, boolean drawLeft) {
 		if(drawTop) drawRectOutlineTop(x, y);
 		if(drawRight) drawRectOutlineRight(x, y);

@@ -53,7 +53,12 @@ public class Attack extends Action {
 		this.rangeOfEffect = rangeOfEffect;
 	}
 	
+	public RangeOfEffect getRangeOfEffect() {
+		return rangeOfEffect;
+	}
+	
 	public Range<Integer> getExecutionRange() {
 		return executionRange;
 	}
+
 }
