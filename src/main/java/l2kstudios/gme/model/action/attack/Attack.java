@@ -37,6 +37,8 @@ public class Attack extends Action {
 			}
 		});
 		
+		executingUnit.endTurn();
+		
 		return true;
 	}
 	
