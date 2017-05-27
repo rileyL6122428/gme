@@ -143,4 +143,9 @@ public class TwoDimensionalGrid implements RectangularGrid {
 			}
 		}
 	}
+
+	@Override
+	public boolean revert() {
+		return false;
+	}
 }

@@ -136,7 +136,7 @@
 			</bean>		
 		</property>
 		
-		<property name="levelController" >
+		<property name="controller" >
 			<bean class="${LEVEL_CONTROLLER}" />
 		</property>
 

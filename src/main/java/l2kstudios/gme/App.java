@@ -6,7 +6,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import l2kstudios.gme.ctrl.Controller;
-import l2kstudios.gme.ctrl.LevelCtrl;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.services.GameModelService;
 import l2kstudios.gme.view.LevelView;
@@ -22,7 +21,7 @@ public class App extends PApplet implements InitializingBean {
 	
 	private View<Level> levelView;
 	
-	private Controller<Level> levelController;
+	private Controller controller;
 	
     @SuppressWarnings("resource")
 	public static void main( String[] args ) {
@@ -40,11 +39,11 @@ public class App extends PApplet implements InitializingBean {
     }
     
     public void draw() {
-    	getLevelView().draw();
+    	levelView.draw();
     }
     
     public void keyPressed() {
-    	getLevelController().keyPressed();
+    	getController().keyPressed();
     }
 
 	public Level getLevel() {
@@ -63,12 +62,12 @@ public class App extends PApplet implements InitializingBean {
 		this.levelView = levelView;
 	}
 
-	public Controller<Level> getLevelController() {
-		return levelController;
+	public Controller getController() {
+		return controller;
 	}
 
-	public void setLevelController(LevelCtrl levelController) {
-		this.levelController = levelController;
+	public void setController(Controller controller) {
+		this.controller = controller;
 	}
 
 	@Override
@@ -78,7 +77,7 @@ public class App extends PApplet implements InitializingBean {
 		levelView.setDrawingContext(this);
 		levelView.setModel(level);
 		
-		levelController.setControlContext(this);
-		levelController.setModel(level);
+		getController().setControlContext(this);
+		getController().setInteractable(level);
 	}
 }

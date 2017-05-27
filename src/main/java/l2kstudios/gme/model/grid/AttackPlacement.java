@@ -14,13 +14,16 @@ public class AttackPlacement extends TwoDimensionalGrid {
 	
 	public void setAttackToPlace(Attack attack) {
 		this.attack = attack;
-		
-		PlayingGrid playingGrid = GameModelService.getCurrentPlayingGrid();
-		setSpaces(playingGrid.getSpaces());
 	}
 	
 	public boolean select() {
 		return attack.executeAt(hoveredSpace());
+	}
+	
+	public boolean revert() {
+		
+		
+		return true;
 	}
 	
 	public boolean shouldDraw() {

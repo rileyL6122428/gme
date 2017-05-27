@@ -84,6 +84,15 @@ public class AttackTest {
 	}
 	
 	@Test
+	public void executeAt_suppliedPositionInExecutionRange_executingUnitEndsTurn() {
+		Unit willReceiveDamage = newUnitWithHealthSetTo(ATTACKED_UNIT_STARTING_HEALTH);
+		playingGrid.place(willReceiveDamage, 2, 2);
+		
+		attack.executeAt(new Position(2,2));
+		assertTrue(executingUnit.turnIsOver());
+	}
+	
+	@Test
 	public void executeAt_suppliedPositionInExecutionRange_inflictsDamageOnUnitsInRangeOfEffect() {
 		Unit willReceiveDamage = newUnitWithHealthSetTo(ATTACKED_UNIT_STARTING_HEALTH);
 		playingGrid.place(willReceiveDamage, 2, 2);

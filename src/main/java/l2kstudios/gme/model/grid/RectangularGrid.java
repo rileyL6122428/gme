@@ -8,6 +8,8 @@ public interface RectangularGrid {
 	
 	public boolean select();
 	
+	public boolean revert();
+	
 	public void moveCursorTo(Position position);
 	
 	public void moveCursorTo(Space space);

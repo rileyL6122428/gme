@@ -4,14 +4,15 @@ import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.grid.ActingUnitTracker;
 import l2kstudios.gme.model.grid.PostMoveDecisionMenu;
+import l2kstudios.gme.model.grid.RectangularGrid;
+import l2kstudios.gme.model.interaction.Input;
+import l2kstudios.gme.model.interaction.Interactable;
+import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.model.grid.AttackOptions;
 import l2kstudios.gme.model.grid.AttackPlacement;
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.level.InputDispatcher.Input;
 
-public class Level implements InitializingBean {
-	
-	private InputDispatcher inputDispatcher;
+public class Level implements Interactable, InitializingBean {
 	
 	private PlayingGrid playingGrid;
 	
@@ -23,9 +24,7 @@ public class Level implements InitializingBean {
 	
 	protected ActingUnitTracker actingUnitTracker;
 	
-	public void registerInput(Input input) {
-		inputDispatcher.dispatchInput(input);
-	}
+	private RectangularGrid selectedGrid;
 
 	public PlayingGrid getPlayingGrid() {
 		return playingGrid;
@@ -58,7 +57,8 @@ public class Level implements InitializingBean {
 		setupActionMenu();
 		setupAttackOptionsMenu();
 		setupAttackPlacementGrid();
-		setupInputDispatcher();
+		selectedGrid = playingGrid;
+		selectedGrid.initialize();
 	}
 
 	private void setupActingUnitTracker() {
@@ -78,17 +78,49 @@ public class Level implements InitializingBean {
 	
 	private void setupAttackPlacementGrid() {
 		attackPlacement = new AttackPlacement();
+		attackPlacement.setSpaces(playingGrid.getSpaces());
 		attackPlacement.setActingUnitTracker(actingUnitTracker);
 	}
 
-	private void setupInputDispatcher() {
-		inputDispatcher = new InputDispatcher();
-		inputDispatcher.setActionMenu(actionMenu);
-		inputDispatcher.setPlayingGrid(playingGrid);
-		inputDispatcher.setAttackOptions(attackOptions);
-		inputDispatcher.setActingUnitTracker(actingUnitTracker);
-		inputDispatcher.setAttackPlacement(attackPlacement);
-		inputDispatcher.afterPropertiesSet();
+	@Override
+	public void receiveInput(Input input) {
+		switch(input) {
+		case UP:    
+			selectedGrid.moveCursorUp(); 
+			break;
+		case RIGHT: 
+			selectedGrid.moveCursorRight(); 
+			break;
+		case LEFT:
+			selectedGrid.moveCursorLeft();
+			break;
+		case DOWN:
+			selectedGrid.moveCursorDown();
+			break;
+		case SPACE:
+			if(selectedGrid.select()) selectNextGrid();
+			break;
+		case BACK:
+			
+			System.out.println("BACK INPUT RECEIVED");
+	}
+		
+	}
+	
+	private void selectNextGrid() {
+		Unit actingUnit = getActingUnitTracker().getActingUnit();
+		
+		if(selectedGrid == playingGrid) {
+			selectedGrid = actionMenu;
+		} else if(actingUnit.isChoosingAttack()) {
+			selectedGrid = attackOptions;
+		} else if(actingUnit.isPlacingAttack()) {
+			selectedGrid = attackPlacement; 
+		} else if(actingUnit.isMoving()) {  
+			selectedGrid = playingGrid;
+		}
+		
+		selectedGrid.initialize();
 	}
 
 }
