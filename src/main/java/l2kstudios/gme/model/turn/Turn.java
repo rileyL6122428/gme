@@ -14,11 +14,13 @@ public class Turn implements Interactable {
 	
 	private RectangularGrid actionMenu;
 
-	private RectangularGrid selectedGrid;
+	RectangularGrid selectedGrid;
 	
 	private RectangularGrid attackOptions;
 	
 	private RectangularGrid attackPlacement;
+	
+	private boolean finished = false;
 
 	@Override
 	public void receiveInput(Input input) {
@@ -48,6 +50,7 @@ public class Turn implements Interactable {
 	private void selectNextGrid() {
 		Unit actingUnit = actingUnitTracker.getActingUnit();
 		
+		
 		if(selectedGrid == playingGrid) {
 			selectedGrid = actionMenu;
 		} else if(actingUnit.isChoosingAttack()) {
@@ -59,6 +62,34 @@ public class Turn implements Interactable {
 		}
 		
 		selectedGrid.initialize();
+	}
+
+	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
+		this.actingUnitTracker = actingUnitTracker;
+	}
+
+	public void setPlayingGrid(RectangularGrid playingGrid) {
+		this.playingGrid = playingGrid;
+	}
+
+	public void setActionMenu(RectangularGrid actionMenu) {
+		this.actionMenu = actionMenu;
+	}
+
+	public void setSelectedGrid(RectangularGrid selectedGrid) {
+		this.selectedGrid = selectedGrid;
+	}
+
+	public void setAttackOptions(RectangularGrid attackOptions) {
+		this.attackOptions = attackOptions;
+	}
+
+	public void setAttackPlacement(RectangularGrid attackPlacement) {
+		this.attackPlacement = attackPlacement;
+	}
+
+	public boolean isFinished() {
+		return finished;
 	}
 	
 }
