@@ -18,3 +18,13 @@
 **Design Refactor: 
 	A Level Is an interactable, and it generates turns
 	The Input Dispatcher should go at a higher layer of abstraction
+	
+**TODOS
+	0. rangeOfEffect in action Interface
+	1. movement action interface
+	
+	
+	CONTINUE REDESIGN
+		1. MAKE AN ACTING UNIT VIEW
+		2. finish actionInterface stuff
+	

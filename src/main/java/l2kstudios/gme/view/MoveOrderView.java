@@ -4,18 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import l2kstudios.gme.model.grid.ActingUnitTracker;
+import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.unit.Unit;
 
-public class MoveOrderView extends View<List<Unit>> {
-
-	private ActingUnitTracker actingUnitTracker;	
+public class MoveOrderView extends View<MovementCycle> {
 
 	private int verticalOffset = 15;
 	private int verticalMargin = 15;
 	
 	public void draw() {
-		List<Unit> moveOrder = actingUnitTracker.getUnitMoveOrder();
+		List<Unit> moveOrder = model.getOrder();
 		
 		for(int idx = 0; idx < moveOrder.size(); idx++) {
 			Unit nextUnit = moveOrder.get(idx);
@@ -37,9 +35,5 @@ public class MoveOrderView extends View<List<Unit>> {
 
 	public void setVerticalMargin(int verticalMargin) {
 		this.verticalMargin = verticalMargin;
-	}
-	
-	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
-		this.actingUnitTracker = actingUnitTracker;
 	}
 }

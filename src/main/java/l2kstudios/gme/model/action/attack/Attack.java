@@ -3,7 +3,9 @@ package l2kstudios.gme.model.action.attack;
 import com.google.common.collect.Range;
 
 import l2kstudios.gme.model.action.Action;
+import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
+import l2kstudios.gme.model.actioninterface.AttackPlacement;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
@@ -18,6 +20,8 @@ public class Attack extends Action {
 	protected Range<Integer> executionRange;
 	
 	protected int baseDamage;
+	
+	protected Space spaceToExecuteAt;
 	
 	public Attack(Unit executingUnit) {
 		super(executingUnit);
@@ -36,8 +40,6 @@ public class Attack extends Action {
 				occupier.setRemainingHealth(occupier.getRemainingHealth() - inflictedDamage(occupier));
 			}
 		});
-		
-		executingUnit.endTurn();
 		
 		return true;
 	}
@@ -62,5 +64,26 @@ public class Attack extends Action {
 	public Range<Integer> getExecutionRange() {
 		return executionRange;
 	}
+	
+	public Unit getExecutingUnit() {
+		return executingUnit;
+	}
+	
+	public boolean isTurnEnding() {
+		return true;
+	}
+	
+	public Class getNextActionInterfaceType() {
+		return AttackPlacement.class;
+	}
 
+	@Override
+	public Class getPrecedingActionInterfaceType() {
+		return PostMoveDecisionMenu.class;
+	}
+
+	@Override
+	public void execute() {
+		executeAt(spaceToExecuteAt);
+	}
 }

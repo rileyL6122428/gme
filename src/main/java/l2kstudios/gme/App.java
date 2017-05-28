@@ -7,7 +7,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import l2kstudios.gme.ctrl.Controller;
 import l2kstudios.gme.model.level.Level;
-import l2kstudios.gme.services.GameModelService;
 import l2kstudios.gme.view.LevelView;
 import l2kstudios.gme.view.View;
 import processing.core.PApplet;
@@ -72,8 +71,6 @@ public class App extends PApplet implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		GameModelService.setGame(this);
-		
 		levelView.setDrawingContext(this);
 		levelView.setModel(level);
 		

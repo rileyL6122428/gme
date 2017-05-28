@@ -1,12 +1,14 @@
-package l2kstudios.gme.model.grid;
+package l2kstudios.gme.model.actioninterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SingleRowGrid extends TwoDimensionalGrid {
+import l2kstudios.gme.model.grid.Space;
+
+public class SingleRowActionInterface extends ActionInterface {
 	
 	private static int SINGLE_ROW_IDX = 0;
-		
+	
 	@Override
 	public void moveCursorDown() {
 		super.moveCursorLeft();

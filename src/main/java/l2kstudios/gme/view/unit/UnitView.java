@@ -1,6 +1,7 @@
 package l2kstudios.gme.view.unit;
 
 import l2kstudios.gme.model.grid.PlayingGrid;
+import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.GridDrawingUtil;
 import l2kstudios.gme.view.View;
@@ -33,5 +34,9 @@ public class UnitView extends View<Unit> {
 	public void setPlayingGrid(PlayingGrid grid) {
 		unitOverView.setPlayingGrid(grid);
 		unitMovementGrid.setPlayingGrid(grid);
+	}
+	
+	public void setMovementCycle(MovementCycle movementCycle) {
+		gridAvatar.setMovementCycle(movementCycle);
 	}
 }

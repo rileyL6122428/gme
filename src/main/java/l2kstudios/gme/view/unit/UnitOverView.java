@@ -14,10 +14,10 @@ public class UnitOverView extends View {
 	public void draw() {
 		ctx.fill(0);
 		
-		if(getPlayingGrid().unitIsHovered(getUnit())) {
-			ctx.text(getUnit().getName(), ctx.width - 100, ctx.height - 100);
-			ctx.text("HP: " + getUnit().getHealth().getVal(), ctx.width - 100, ctx.height - 80);
-		}
+//		if(getPlayingGrid().unitIsHovered(getUnit())) {
+//			ctx.text(getUnit().getName(), ctx.width - 100, ctx.height - 100);
+//			ctx.text("HP: " + getUnit().getHealth().getVal(), ctx.width - 100, ctx.height - 80);
+//		}
 	}
 
 	public Unit getUnit() {

@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
+import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PostMoveDecisionMenuTest {	

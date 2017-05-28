@@ -14,13 +14,21 @@ public class WaitDecision extends PostMoveDecision {
 
 	@Override
 	public void execute() {
-		executingUnit.endTurn();
+		System.out.println("OUT ACTION EXECUTED");
 		
+	}
+	
+	public boolean isTurnEnding() {
+		return true;
+	}
+
+	@Override
+	public Class getNextActionInterfaceType() {
+		return null;
 	}
 
 	@Override
 	public boolean ableToExecute() {
 		return true;
 	}
-
 }

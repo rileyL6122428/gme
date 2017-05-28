@@ -3,7 +3,7 @@ package l2kstudios.gme.model.action;
 import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.unit.Unit;
 
-public class Action extends Placeable {
+public abstract class Action extends Placeable {
 	
 	protected Unit executingUnit;
 	protected String name;
@@ -12,9 +12,13 @@ public class Action extends Placeable {
 		this.executingUnit = executinUnit;
 	}
 	
-	public boolean ableToExecute() {
-		throw new RuntimeException("Method Not Implemented");
-	}
+	public abstract void execute();
+	
+	public abstract boolean isTurnEnding();
+	
+	public abstract Class getNextActionInterfaceType(); 
+	
+	public abstract Class getPrecedingActionInterfaceType();
 	
 	public String getName() {
 		return name;

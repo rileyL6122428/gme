@@ -1,44 +1,44 @@
 package l2kstudios.gme.model.turn;
 
-import l2kstudios.gme.model.grid.ActingUnitTracker;
-import l2kstudios.gme.model.grid.RectangularGrid;
+import l2kstudios.gme.model.action.Action;
+import l2kstudios.gme.model.actioninterface.ActionInterface;
+import l2kstudios.gme.model.actioninterface.MovementGrid;
+import l2kstudios.gme.model.grid.PlayingGrid;
+import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.TwoDimensionalGrid;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.unit.Unit;
 
 public class Turn implements Interactable {
-	
-	private ActingUnitTracker actingUnitTracker;
-	
-	private RectangularGrid playingGrid;
-	
-	private RectangularGrid actionMenu;
 
-	RectangularGrid selectedGrid;
-	
-	private RectangularGrid attackOptions;
-	
-	private RectangularGrid attackPlacement;
+	private Transaction transaction = new Transaction();
 	
 	private boolean finished = false;
+	
+	private Unit actingUnit;
+	
+	private PlayingGrid playingGrid;
+
+	private ActionInterface actionInterface;	
 
 	@Override
 	public void receiveInput(Input input) {
 		switch(input) {
 		case UP:    
-			selectedGrid.moveCursorUp(); 
+			actionInterface.moveCursorUp(); 
 			break;
 		case RIGHT: 
-			selectedGrid.moveCursorRight(); 
+			actionInterface.moveCursorRight(); 
 			break;
 		case LEFT:
-			selectedGrid.moveCursorLeft();
+			actionInterface.moveCursorLeft();
 			break;
 		case DOWN:
-			selectedGrid.moveCursorDown();
+			actionInterface.moveCursorDown();
 			break;
 		case SPACE:
-			if(selectedGrid.select()) selectNextGrid();
+			if(actionInterface.select()) setNextActionInterface();
 			break;
 		case BACK:
 			
@@ -47,49 +47,76 @@ public class Turn implements Interactable {
 		
 	}
 	
-	private void selectNextGrid() {
-		Unit actingUnit = actingUnitTracker.getActingUnit();
+	private void setNextActionInterface() {
+		Action lastSelectedAction = transaction.lastActionInQueue();
 		
-		
-		if(selectedGrid == playingGrid) {
-			selectedGrid = actionMenu;
-		} else if(actingUnit.isChoosingAttack()) {
-			selectedGrid = attackOptions;
-		} else if(actingUnit.isPlacingAttack()) {
-			selectedGrid = attackPlacement; 
-		} else if(actingUnit.isMoving()) {  
-			selectedGrid = playingGrid;
+		if(lastSelectedAction != null && lastSelectedAction.isTurnEnding()) {
+			transaction.commit();
+			finished = true;
+		} else {
+			actionInterface = nextActionInterface(lastSelectedAction);
 		}
 		
-		selectedGrid.initialize();
 	}
 
-	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
-		this.actingUnitTracker = actingUnitTracker;
-	}
-
-	public void setPlayingGrid(RectangularGrid playingGrid) {
-		this.playingGrid = playingGrid;
-	}
-
-	public void setActionMenu(RectangularGrid actionMenu) {
-		this.actionMenu = actionMenu;
-	}
-
-	public void setSelectedGrid(RectangularGrid selectedGrid) {
-		this.selectedGrid = selectedGrid;
-	}
-
-	public void setAttackOptions(RectangularGrid attackOptions) {
-		this.attackOptions = attackOptions;
-	}
-
-	public void setAttackPlacement(RectangularGrid attackPlacement) {
-		this.attackPlacement = attackPlacement;
+	private ActionInterface nextActionInterface(Action action) {
+		try {
+			ActionInterface actionInterface = (ActionInterface) action.getNextActionInterfaceType().newInstance();
+			actionInterface.initialize(this);
+			return actionInterface;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	public boolean isFinished() {
-		return finished;
+		return transaction.readyToCommit();
 	}
 	
+	public void setActingUnit(Unit unit) {
+		this.actingUnit = unit;
+	}
+
+	public ActionInterface getCurrentActionInterface() {
+		return actionInterface;
+	}
+
+	public Unit getActingUnit() {
+		return actingUnit;
+	}	
+	
+	public void setPlayingGrid(PlayingGrid playingGrid) {
+		this.playingGrid = playingGrid;
+	}
+
+	public PlayingGrid getPlayingGrid() {
+		return playingGrid;
+	}
+	
+	public void afterPropertiesSet() {
+		actionInterface = new MovementGrid();
+		actionInterface.initialize(this);
+	}
+
+	public Transaction getTransaction() {
+		return transaction;
+	}
+	
+	public Space getTargetSpace() {
+		if(transaction.getTargetSpace() != null) {
+			return transaction.getTargetSpace();			
+		} else {
+			return actingUnit.getOccupiedSpace();
+		}
+	}
+
+	public void commit() {
+		transaction.commit();
+	}
+	
+	public void addAction(Action action) {
+		transaction.addAction(action);
+	}
 }

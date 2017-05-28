@@ -18,10 +18,10 @@ public class UnitMovementGrid {
 	private Unit unit;
 
 	public void draw() {
-		if(!unit.isMoving()) return;
-		
-		getCtx().fill(150, 100);
-		movementOptions().forEach(this::fillInGridSpace);
+//		if(!unit.isMoving()) return;
+//		
+//		getCtx().fill(150, 100);
+//		movementOptions().forEach(this::fillInGridSpace);
 	}
 	
 	private List<Position> movementOptions() {

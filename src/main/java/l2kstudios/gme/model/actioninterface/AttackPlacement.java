@@ -1,16 +1,19 @@
-package l2kstudios.gme.model.grid;
+package l2kstudios.gme.model.actioninterface;
 
 import com.google.common.collect.Range;
 
 import l2kstudios.gme.model.action.attack.Attack;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
+import l2kstudios.gme.model.grid.RectangularGrid;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.services.GameModelService;
 
-public class AttackPlacement extends TwoDimensionalGrid {
+public class AttackPlacement extends PlayingGridOverlayInterface {
 		
 	private Attack attack;
-	private ActingUnitTracker actingUnitTracker;
+	
+	public AttackPlacement(Attack attack) {
+		this.attack = attack;
+	}
 	
 	public void setAttackToPlace(Attack attack) {
 		this.attack = attack;
@@ -21,26 +24,16 @@ public class AttackPlacement extends TwoDimensionalGrid {
 	}
 	
 	public boolean revert() {
-		
-		
 		return true;
 	}
 	
 	public boolean shouldDraw() {
-		return actingUnitTracker.getActingUnit().isPlacingAttack();
+		return false;
 	}
 	
 	public void initialize() {
-		Unit actingUnit = actingUnitTracker.getActingUnit();
+		Unit actingUnit = attack.getExecutingUnit();
 		moveCursorTo(actingUnit.getPosition());
-	}
-	
-	public void setActingUnitTracker(ActingUnitTracker actingUnitTracker) {
-		this.actingUnitTracker = actingUnitTracker;
-	}
-
-	public Position getExecutingUnitPosition() {
-		return actingUnitTracker.getActingUnit().getPosition();
 	}
 
 	public Range<Integer> getExectuionRange() {

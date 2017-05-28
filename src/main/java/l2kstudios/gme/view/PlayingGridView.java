@@ -21,13 +21,6 @@ public class PlayingGridView extends View<PlayingGrid> {
 		ctx.fill(0);
 		drawHorizontalGridLines();
 		drawVerticalGridLines();
-		drawCursorPosition();
-	}
-	
-	private void drawCursorPosition() {
-		ctx.fill(0, 255, 255);
-		Position cursorPosition = model.getCursorPosition();
-		gridDrawingUtil.drawRectAt(cursorPosition);
 	}
 
 	private void drawVerticalGridLines() {
@@ -40,10 +33,6 @@ public class PlayingGridView extends View<PlayingGrid> {
 		for(int vertIdx = 0; vertIdx <= model.getHeight(); vertIdx++) {
 			ctx.line(0, vertIdx * SPACE_HEIGHT, SPACE_HEIGHT * model.getWidth(), vertIdx * SPACE_HEIGHT);
 		}		
-	}
-	
-	public void setPlayingGrid(PlayingGrid playingGrid) {
-		this.model = playingGrid;
 	}
 	
 	public void setGridDrawingUtil(GridDrawingUtil gridDrawingUtil) {

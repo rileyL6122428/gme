@@ -1,19 +1,15 @@
 package l2kstudios.gme.model.turn;
 
-import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.model.grid.PlayingGrid;
+import l2kstudios.gme.model.unit.Unit;
 
 public class TurnFactory {
 	
-	public static Turn newTurn(Level level) {
+	public static Turn newTurn(Unit actingUnit, PlayingGrid playingGrid) {
 		return new Turn(){{
-			setActingUnitTracker(level.getActingUnitTracker());
-			setActionMenu(level.getActionMenu());
-			setAttackOptions(level.getAttackOptions());
-			setAttackPlacement(level.getAttackPlacement());
-			setPlayingGrid(level.getPlayingGrid());
-			
-			selectedGrid = level.getPlayingGrid();
-			selectedGrid.initialize();
+			setPlayingGrid(playingGrid);
+			setActingUnit(actingUnit);
+			afterPropertiesSet();
 		}};
 	}
 }

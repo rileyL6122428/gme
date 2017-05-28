@@ -27,7 +27,7 @@ public class MovementCycle {
 		moveOrder = moveSpread.getCondensed();
 	}
 
-	public Unit getNext() {
+	public Unit getActingUnit() {
 		return moveOrder.get(0);
 	}
 	

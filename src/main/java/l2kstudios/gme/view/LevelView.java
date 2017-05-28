@@ -3,34 +3,37 @@ package l2kstudios.gme.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import l2kstudios.gme.model.grid.ActingUnitTracker;
-import l2kstudios.gme.model.grid.PostMoveDecisionMenu;
-import l2kstudios.gme.model.grid.AttackOptions;
-import l2kstudios.gme.model.grid.AttackPlacement;
+import l2kstudios.gme.model.actioninterface.ActionInterface;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.view.unit.PostMoveDecisionMenuView;
-import l2kstudios.gme.view.unit.AttackOptionsView;
+import l2kstudios.gme.view.actioninterface.ActionInterfaceViewFactory;
+import l2kstudios.gme.view.actioninterface.MovementGridView;
+import l2kstudios.gme.view.unit.ActingUnitView;
+import l2kstudios.gme.view.unit.UnitGridAvatar;
 import l2kstudios.gme.view.unit.UnitView;
 
 public class LevelView extends View<Level>  {
 
 	private View<PlayingGrid> playingGridView;
 	private List<View<Unit>> unitViewList;
+	private View<Unit> actingUnitView;
 	private MoveOrderView moveOrderView;
-	private PostMoveDecisionMenuView actionMenuView;
-	private View<AttackOptions> attackOptionsView;
-	private View<AttackPlacement> attackPlacementView;
+	private View<ActionInterface> actionInterfaceView;
 
 	public void draw() {
 		ctx.background(255, 255, 255);
 		playingGridView.draw();
 		unitViewList.forEach(View<Unit>::draw);
+		actingUnitView.draw();
 		moveOrderView.draw();
-		actionMenuView.draw();
-		attackOptionsView.draw();
-		attackPlacementView.draw();
+		
+		if(model.getCurrentActionInterface() != actionInterfaceView.getModel()) {
+			actionInterfaceView = ActionInterfaceViewFactory.newActionInterfaceView(model.getCurrentActionInterface());
+			actionInterfaceView.setDrawingContext(ctx);
+		} 
+		actionInterfaceView.draw();
+		
 	}
 
 	public void setModel(Level model) {
@@ -43,9 +46,16 @@ public class LevelView extends View<Level>  {
 		setupPlayingGridView();		
 		setupUnitViewList();
 		setupMoveOrderView();
-		setupActionMenuView();
-		setupAttackOptionsView();
-		setupAttackPlacementView();
+		
+		ActingUnitView actingUnitView = new ActingUnitView();
+		actingUnitView.setDrawingContext(ctx);
+		actingUnitView.setMovementCycle(model.getMovementCycle());
+		actingUnitView.setLevel(model);
+		this.actingUnitView = actingUnitView;
+		
+		actionInterfaceView = new MovementGridView();
+		actionInterfaceView.setModel(model.getCurrentActionInterface());
+		actionInterfaceView.setDrawingContext(ctx);
 	}
 
 	private void setupGridDrawingUtil() {
@@ -68,6 +78,7 @@ public class LevelView extends View<Level>  {
 			unitView.setDrawingContext(ctx);
 			unitView.setModel(unit);
 			unitView.setPlayingGrid(playingGrid);
+			unitView.setMovementCycle(model.getMovementCycle());
 			unitViewList.add(unitView);
 		});
 		
@@ -75,28 +86,9 @@ public class LevelView extends View<Level>  {
 	}
 
 	private void setupMoveOrderView() {
-		ActingUnitTracker actingUnitTracker = model.getActingUnitTracker();
 		moveOrderView = new MoveOrderView();
-		moveOrderView.setActingUnitTracker(actingUnitTracker);
+		moveOrderView.setModel(model.getMovementCycle());
 		moveOrderView.setDrawingContext(ctx);
 	}
 	
-	private void setupActionMenuView() {
-		PostMoveDecisionMenu actionMenu = model.getActionMenu();
-		actionMenuView = new PostMoveDecisionMenuView();
-		actionMenuView.setDrawingContext(ctx);
-		actionMenuView.setModel(actionMenu);
-	}
-	
-	private void setupAttackOptionsView() {
-		attackOptionsView = new AttackOptionsView();
-		attackOptionsView.setModel(model.getAttackOptions());
-		attackOptionsView.setDrawingContext(ctx);
-	}
-	
-	private void setupAttackPlacementView() {
-		attackPlacementView = new AttackPlacementView();
-		attackPlacementView.setModel(model.getAttackPlacement());
-		attackPlacementView.setDrawingContext(ctx);
-	}
 }

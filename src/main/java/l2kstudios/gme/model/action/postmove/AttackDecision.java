@@ -1,5 +1,6 @@
 package l2kstudios.gme.model.action.postmove;
 
+import l2kstudios.gme.model.actioninterface.AttackOptions;
 import l2kstudios.gme.model.unit.Unit;
 
 public class AttackDecision extends PostMoveDecision {
@@ -17,6 +18,10 @@ public class AttackDecision extends PostMoveDecision {
 	}
 	
 	public void execute() {
-		executingUnit.registerChoosingAttack();
+		System.out.println("Attack Decision Chosen");
+	}
+	
+	public Class getNextActionInterfaceType() {
+		return AttackOptions.class;
 	}
 }

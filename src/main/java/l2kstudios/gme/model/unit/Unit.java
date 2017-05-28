@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.attack.Attack;
 import l2kstudios.gme.model.action.attack.BasicAttack;
 import l2kstudios.gme.model.action.attack.BasicAttackWithRange;
@@ -14,22 +13,10 @@ import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 
-import static l2kstudios.gme.model.unit.Unit.BoardState.*; 
-
 public class Unit extends Placeable implements InitializingBean {
-	
-	public enum BoardState {
-		STAND_BY, 
-		MOVING, 
-		MAKING_POST_MOVE_DECISION, 
-		CHOOSING_ATTACK, 
-		PLACING_ATTACK,
-		AWAINTING_NEXT_TURN
-	}
 	
 	public enum Team {
 		ALLY, ENEMY
@@ -55,8 +42,6 @@ public class Unit extends Placeable implements InitializingBean {
 	private List<PostMoveDecision> postMoveDecisions;
 	
 	private List<Attack> attacks;
-	
-	private BoardState boardState = STAND_BY;
 	
 	public boolean canMoveTo(Space space) {
 		Position position = space.getPosition();
@@ -122,46 +107,7 @@ public class Unit extends Placeable implements InitializingBean {
 	public void moveTo(Space space) {
 		occupiedSpace.setOccupier(null);
 		place(space);
-		boardState = MAKING_POST_MOVE_DECISION;
 	}
-	
-	
-	
-	
-	public void beginTurn() {
-		this.boardState = MOVING;
-	}
-	
-	public void endTurn() {
-		this.boardState = STAND_BY;
-	}
-	
-	public void registerChoosingAttack() {
-		this.boardState = CHOOSING_ATTACK;
-	}
-	
-	public boolean turnIsOver() {
-		return boardState == STAND_BY;
-	}
-	
-	public boolean isMoving() {
-		return boardState == MOVING;
-	}
-	
-	public boolean isChoosingAttack() {
-		return boardState == CHOOSING_ATTACK;
-	}
-	
-	public void registerPlacingAttack() {
-		this.boardState = BoardState.PLACING_ATTACK;
-	}
-	
-	public boolean isPlacingAttack() {
-		return boardState == BoardState.PLACING_ATTACK;
-	}
-	
-	
-	
 
 	public List<PostMoveDecision> getPostMoveDecisions() {
 		return postMoveDecisions;

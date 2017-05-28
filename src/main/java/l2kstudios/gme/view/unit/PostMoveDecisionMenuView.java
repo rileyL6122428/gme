@@ -7,7 +7,7 @@ import java.util.List;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
-import l2kstudios.gme.model.grid.PostMoveDecisionMenu;
+import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.view.View;
 
@@ -17,24 +17,24 @@ public class PostMoveDecisionMenuView extends View<PostMoveDecisionMenu> {
 	
 	@Override
 	public void draw() {
-		if(model.getShouldDraw()) drawActionNames();
+//		if(model.getShouldDraw()) drawActionNames();
 	}
 	
 	private void drawActionNames() {
-		Position activeUnitPosition = model.getActiveUnitPosition();
-		List<PostMoveDecision> actions = model.getDecisions();
-		
-		for(int actionIdx = 0; actionIdx < actions.size(); actionIdx++) {
-			Action action = actions.get(actionIdx);
-			
-			setFillColorForActionName(action);
-			
-			ctx.text(
-				action.getName(), 
-				activeUnitPosition.getX() * SPACE_HEIGHT + HORIZONTAL_OFFSET, 
-				activeUnitPosition.getY() * SPACE_WIDTH + actionIdx * 15
-			);
-		}
+//		Position activeUnitPosition = model.getActiveUnitPosition();
+//		List<PostMoveDecision> actions = model.getDecisions();
+//		
+//		for(int actionIdx = 0; actionIdx < actions.size(); actionIdx++) {
+//			Action action = actions.get(actionIdx);
+//			
+//			setFillColorForActionName(action);
+//			
+//			ctx.text(
+//				action.getName(), 
+//				activeUnitPosition.getX() * SPACE_HEIGHT + HORIZONTAL_OFFSET, 
+//				activeUnitPosition.getY() * SPACE_WIDTH + actionIdx * 15
+//			);
+//		}
 	}
 	
 	private void setFillColorForActionName(Action action) {
