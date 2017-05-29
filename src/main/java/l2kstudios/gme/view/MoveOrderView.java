@@ -17,7 +17,8 @@ public class MoveOrderView extends View<MovementCycle> {
 		
 		for(int idx = 0; idx < moveOrder.size(); idx++) {
 			Unit nextUnit = moveOrder.get(idx);
-			ctx.text(nextUnit.getName(), ctx.width - 100, idx * verticalMargin + verticalOffset);
+			ctx.text(nextUnit.getName(), ctx.width - 150, idx * verticalMargin + verticalOffset);
+			ctx.text(nextUnit.getRemainingHealth(), ctx.width - 50, idx * verticalMargin + verticalOffset);
 		}
 	}
 

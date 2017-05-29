@@ -1,10 +1,6 @@
 package l2kstudios.gme.view.actioninterface;
 
-import com.google.common.collect.Range;
-
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
-import l2kstudios.gme.model.grid.GridUtils;
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.view.GridDrawingUtil;
 
 public class ActionPlacementView extends ActionInterfaceView {

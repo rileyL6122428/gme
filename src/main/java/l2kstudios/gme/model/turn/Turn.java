@@ -78,6 +78,7 @@ public class Turn implements Interactable {
 				turnState = PLACING_POST_MOVE_ACTION;
 				break;
 			case PLACING_POST_MOVE_ACTION:
+				turnState = FINISHED;
 				break;
 			default:
 				throw new RuntimeException("ILLEGAL STATE IN TURN");
@@ -128,6 +129,7 @@ public class Turn implements Interactable {
 		actionInterface = new ActionPlacementInterface();
 		move = new Move();
 		move.setExecutingUnit(actingUnit);
+		move.setPlayingGrid(playingGrid);
 		actionInterface.initialize(this);
 	}
 
@@ -157,6 +159,7 @@ public class Turn implements Interactable {
 				action.setExecutingUnit(actingUnit);
 				action.setPlayingGrid(playingGrid);
 				postMoveActions.add(action);
+				action.setSpaceToExecuteFrom(move.getSpaceToExecuteAt());
 				
 			} catch (Exception e) { e.printStackTrace(); }
 		});

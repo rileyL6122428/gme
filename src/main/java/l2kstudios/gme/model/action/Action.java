@@ -14,6 +14,7 @@ public abstract class Action extends Placeable {
 	
 	protected Unit executingUnit;
 	protected Space spaceToExecuteAt;
+	protected Space spaceToExecuteFrom;
 	protected RangeOfEffect rangeOfEffect;
 	protected Range<Integer> executionRange;
 	
@@ -34,12 +35,12 @@ public abstract class Action extends Placeable {
 	}
 	
 	private boolean outOfRange(Position position) {
-		int distanceToExecution = GridUtils.distanceBetween(position, getExecutingUnit().getPosition());
+		int distanceToExecution = GridUtils.distanceBetween(position, spaceToExecuteFrom.getPosition());
 		return !executionRange.contains(distanceToExecution);
 	}
 	
 	public boolean ableToExecuteAt(Space space) {
-		return outOfRange(space.getPosition());
+		return !outOfRange(space.getPosition());
 	}
 	
 	public void setRangeOfEffect(RangeOfEffect rangeOfEffect) {
@@ -73,4 +74,10 @@ public abstract class Action extends Placeable {
 	public void setPlayingGrid(PlayingGrid playingGrid) {
 		rangeOfEffect.setPlayingGrid(playingGrid);
 	}
+
+	public void setSpaceToExecuteFrom(Space spaceToExecuteFrom) {
+		this.spaceToExecuteFrom = spaceToExecuteFrom;
+	}
+	
+	
 }
