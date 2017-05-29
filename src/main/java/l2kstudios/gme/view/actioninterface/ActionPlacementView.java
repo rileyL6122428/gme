@@ -6,15 +6,13 @@ import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.view.GridDrawingUtil;
-import l2kstudios.gme.model.actioninterface.PlayingGridOverlayInterface;
 
-public class PlayingGridOverlayInterfaceView extends ActionInterfaceView {
+public class ActionPlacementView extends ActionInterfaceView {
 	
-	
-	protected int RED_FILL;
+	protected int RED_FILL = 255;
 	protected int GREEN_FILL;
 	protected int BLUE_FILL;
-	protected int OPACITY_FILL;
+	protected int OPACITY_FILL = 75;
 	
 	private GridDrawingUtil gridDrawingUtil;
 	
@@ -59,7 +57,4 @@ public class PlayingGridOverlayInterfaceView extends ActionInterfaceView {
 		});
 	}
 	
-	public PlayingGridOverlayInterface getModel() {
-		return (PlayingGridOverlayInterface) model;
-	}
 }

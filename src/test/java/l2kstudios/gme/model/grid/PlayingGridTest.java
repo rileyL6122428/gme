@@ -24,10 +24,10 @@ public class PlayingGridTest {
 	private Unit actingUnit;
 	private Unit notActingUnit;
 	
-	private List<Space> row1;
-	private List<Space> row2;
-	private List<Space> row3;
-	private List<Space> row4;
+	private List<Unit> row1;
+	private List<Unit> row2;
+	private List<Unit> row3;
+	private List<Unit> row4;
 	
 	
 	@Before
@@ -64,39 +64,39 @@ public class PlayingGridTest {
 	}
 	
 	private void setupRows() {
-		row1 = new ArrayList<Space>() {{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
+		row1 = new ArrayList<Unit>() {{
+			add(new Unit());
+			add(new Unit());
+			add(new Unit());
+			add(new Unit());
 		}};
 		
-		row2 = new ArrayList<Space>() {{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
+		row2 = new ArrayList<Unit>() {{
+			add(new Unit());
+			add(new Unit());
+			add(new Unit());
+			add(new Unit());
 		}};
 		
-		row3 = new ArrayList<Space>() {{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
+		row3 = new ArrayList<Unit>() {{
+			add(new Unit());
+			add(new Unit());
+			add(new Unit());
+			add(new Unit());
 		}};
 		
-		row4 = new ArrayList<Space>() {{
-			add(new Space());
-			add(new Space());
-			add(new Space());
-			add(new Space());
+		row4 = new ArrayList<Unit>() {{
+			add(new Unit());
+			add(new Unit());
+			add(new Unit());
+			add(new Unit());
 		}};
 	}
 	
 	private void setupGrid() throws Exception {
 		playingGrid = new PlayingGrid();
 		playingGrid.setActingUnitTracker(actingUnitTracker);
-		playingGrid.setSpaces(new ArrayList<List<Space>>(){{
+		playingGrid.setSpaces(new ArrayList<List<Unit>>(){{
 			add(row1);
 			add(row2);
 			add(row3);

@@ -12,13 +12,6 @@ public class PlayingGrid extends RectangularGrid {
 	public List<Unit> getUnits() {
 		List<Unit> units = new ArrayList<Unit>();
 		
-		//TODO DELTE COMMENTED CODE BELOW
-//		for(List<Space> row : spaces) {
-//			for(Space space : row) {
-//				if(space.isOccupied()) units.add((Unit) space.getOccupier());
-//			}
-//		}
-		
 		forEachSpace((Space space) -> {
 			if(space.isOccupied()) units.add((Unit) space.getOccupier());
 		});

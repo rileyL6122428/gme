@@ -24,7 +24,7 @@ public class Level implements Interactable, InitializingBean {
 	public void receiveInput(Input input) {
 		currentTurn.receiveInput(input);
 		
-		if(currentTurn.isFinished()) {
+		if(currentTurn.readyToCommit()) {
 			currentTurn.commit();
 			movementCycle.shift();
 			currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
@@ -57,8 +57,7 @@ public class Level implements Interactable, InitializingBean {
 		return currentTurn;
 	}
 
-	public Space getActingUnitMoveToSpace() {
-		Space targetSpace = currentTurn.getTransaction().getTargetSpace();
-		return (targetSpace == null) ? movementCycle.getActingUnit().getOccupiedSpace() : targetSpace;
+	public Space getActingUnitDisplaySpace() {
+		return currentTurn.getActingUnitDisplaySpace();
 	}
 }

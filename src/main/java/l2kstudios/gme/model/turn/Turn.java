@@ -1,26 +1,43 @@
 package l2kstudios.gme.model.turn;
 
+import static l2kstudios.gme.model.turn.Turn.TurnState.*;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import l2kstudios.gme.model.action.Action;
+import l2kstudios.gme.model.action.move.Move;
+import l2kstudios.gme.model.action.postmove.PostMoveAction;
+import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
+import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
 import l2kstudios.gme.model.actioninterface.ActionInterface;
-import l2kstudios.gme.model.actioninterface.MovementGrid;
+import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Space;
-import l2kstudios.gme.model.grid.TwoDimensionalGrid;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.unit.Unit;
 
 public class Turn implements Interactable {
+	
+	enum TurnState {
+		PLACING_MOVE, 
+		CHOOSING_POST_MOVE_ACTION_TYPE,
+		CHOOSING_POST_MOVE_ACTION_INSTANCE,
+		PLACING_POST_MOVE_ACTION,
+		FINISHED
+	}
+	
+	private Move move;
+	private PostMoveAction postMoveAction;
+	private Class postMoveActionType;
 
-	private Transaction transaction = new Transaction();
-	
-	private boolean finished = false;
-	
-	private Unit actingUnit;
-	
+	private Unit actingUnit;	
 	private PlayingGrid playingGrid;
-
-	private ActionInterface actionInterface;	
+	private ActionInterface actionInterface;
+	
+	private TurnState turnState = PLACING_MOVE;
 
 	@Override
 	public void receiveInput(Input input) {
@@ -41,38 +58,42 @@ public class Turn implements Interactable {
 			if(actionInterface.select()) setNextActionInterface();
 			break;
 		case BACK:
-			
 			System.out.println("BACK INPUT RECEIVED");
 		}
 		
 	}
 	
 	private void setNextActionInterface() {
-		Action lastSelectedAction = transaction.lastActionInQueue();
-		
-		if(lastSelectedAction != null && lastSelectedAction.isTurnEnding()) {
-			transaction.commit();
-			finished = true;
-		} else {
-			actionInterface = nextActionInterface(lastSelectedAction);
+		switch(turnState) {
+			case PLACING_MOVE: 
+				actionInterface = new PostMoveDecisionMenu();
+				turnState = CHOOSING_POST_MOVE_ACTION_TYPE;
+				break;
+			case CHOOSING_POST_MOVE_ACTION_TYPE: 
+				actionInterface = new ActionInstanceMenu();
+				turnState = CHOOSING_POST_MOVE_ACTION_INSTANCE;
+				break;
+			case CHOOSING_POST_MOVE_ACTION_INSTANCE:
+				actionInterface = new ActionPlacementInterface();
+				turnState = PLACING_POST_MOVE_ACTION;
+				break;
+			case PLACING_POST_MOVE_ACTION:
+				break;
+			default:
+				throw new RuntimeException("ILLEGAL STATE IN TURN");
 		}
+		
+		actionInterface.initialize(this);
 		
 	}
 
-	private ActionInterface nextActionInterface(Action action) {
-		try {
-			ActionInterface actionInterface = (ActionInterface) action.getNextActionInterfaceType().newInstance();
-			actionInterface.initialize(this);
-			return actionInterface;
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+	public boolean readyToCommit() {
+		return turnState == FINISHED;
 	}
-
-	public boolean isFinished() {
-		return transaction.readyToCommit();
+	
+	public void commit() {
+		move.execute();
+		postMoveAction.execute();
 	}
 	
 	public void setActingUnit(Unit unit) {
@@ -87,6 +108,14 @@ public class Turn implements Interactable {
 		return actingUnit;
 	}	
 	
+	public Space getActingUnitDisplaySpace() {
+		if(!move.targetSpaceSpecified()) 
+			return actingUnit.getOccupiedSpace();
+		else
+			return move.getSpaceToExecuteAt();
+		
+	}
+	
 	public void setPlayingGrid(PlayingGrid playingGrid) {
 		this.playingGrid = playingGrid;
 	}
@@ -96,27 +125,47 @@ public class Turn implements Interactable {
 	}
 	
 	public void afterPropertiesSet() {
-		actionInterface = new MovementGrid();
+		actionInterface = new ActionPlacementInterface();
+		move = new Move();
+		move.setExecutingUnit(actingUnit);
 		actionInterface.initialize(this);
 	}
 
-	public Transaction getTransaction() {
-		return transaction;
-	}
-	
-	public Space getTargetSpace() {
-		if(transaction.getTargetSpace() != null) {
-			return transaction.getTargetSpace();			
-		} else {
-			return actingUnit.getOccupiedSpace();
-		}
+	public Action getPlacingAction() {
+		if(postMoveAction == null) 
+			return move;
+		else 
+			return postMoveAction;
+		
 	}
 
-	public void commit() {
-		transaction.commit();
+	public Class getPostMoveActionType() {
+		return postMoveActionType;
 	}
-	
-	public void addAction(Action action) {
-		transaction.addAction(action);
+
+	public void setPostMoveActionType(Class postMoveActionType) {
+		this.postMoveActionType = postMoveActionType;
 	}
+
+	public List<Action> getPostMoveActions() {
+		List<Class> actionTypes = actingUnit.getActionTypes(postMoveActionType);
+		
+		final List<Action> postMoveActions = new ArrayList<Action>();
+		actionTypes.forEach((ActionType) -> {
+			try {
+				Action action = (Action) ActionType.newInstance();
+				action.setExecutingUnit(actingUnit);
+				action.setPlayingGrid(playingGrid);
+				postMoveActions.add(action);
+				
+			} catch (Exception e) { e.printStackTrace(); }
+		});
+		
+		return postMoveActions;
+	}
+
+	public void setPostMoveAction(PostMoveAction action) {
+		postMoveAction = action;
+	}
+
 }

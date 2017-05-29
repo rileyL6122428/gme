@@ -3,12 +3,16 @@ package l2kstudios.gme.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
+import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
 import l2kstudios.gme.model.actioninterface.ActionInterface;
+import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.view.actioninterface.ActionInterfaceViewFactory;
-import l2kstudios.gme.view.actioninterface.MovementGridView;
+import l2kstudios.gme.view.actioninterface.ActionInstanceMenuView;
+import l2kstudios.gme.view.actioninterface.ActionPlacementView;
+import l2kstudios.gme.view.actioninterface.PostMoveDecisionMenuView;
 import l2kstudios.gme.view.unit.ActingUnitView;
 import l2kstudios.gme.view.unit.UnitGridAvatar;
 import l2kstudios.gme.view.unit.UnitView;
@@ -29,11 +33,25 @@ public class LevelView extends View<Level>  {
 		moveOrderView.draw();
 		
 		if(model.getCurrentActionInterface() != actionInterfaceView.getModel()) {
-			actionInterfaceView = ActionInterfaceViewFactory.newActionInterfaceView(model.getCurrentActionInterface());
-			actionInterfaceView.setDrawingContext(ctx);
+			setNextActionInterfaceView();
+			
 		} 
 		actionInterfaceView.draw();
 		
+	}
+
+	private void setNextActionInterfaceView() {
+		ActionInterface actionInterface = model.getCurrentActionInterface();
+		if(actionInterface instanceof ActionInstanceMenu) {
+			actionInterfaceView = new ActionInstanceMenuView();
+		} else if(actionInterface instanceof ActionPlacementInterface) {
+			actionInterfaceView = new ActionPlacementView();			
+		} else if(actionInterface instanceof PostMoveDecisionMenu) {
+			actionInterfaceView = new PostMoveDecisionMenuView();
+		}
+		
+		actionInterfaceView.setDrawingContext(ctx);
+		actionInterfaceView.setModel(actionInterface);
 	}
 
 	public void setModel(Level model) {
@@ -53,7 +71,7 @@ public class LevelView extends View<Level>  {
 		actingUnitView.setLevel(model);
 		this.actingUnitView = actingUnitView;
 		
-		actionInterfaceView = new MovementGridView();
+		actionInterfaceView = new ActionPlacementView();
 		actionInterfaceView.setModel(model.getCurrentActionInterface());
 		actionInterfaceView.setDrawingContext(ctx);
 	}

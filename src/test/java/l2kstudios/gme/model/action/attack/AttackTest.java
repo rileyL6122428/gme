@@ -17,6 +17,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.google.common.collect.Range;
 
+import l2kstudios.gme.model.action.postmove.attack.Attack;
 import l2kstudios.gme.model.action.rangeofeffect.Cross;
 import l2kstudios.gme.model.action.rangeofeffect.SingleSpace;
 import l2kstudios.gme.model.grid.PlayingGrid;

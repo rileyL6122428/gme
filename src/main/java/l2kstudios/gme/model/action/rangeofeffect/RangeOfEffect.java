@@ -15,7 +15,7 @@ public class RangeOfEffect {
 	public RangeOfEffect(){}
 	
 	public RangeOfEffect(PlayingGrid playingGrid) {
-		this.playingGrid = playingGrid;
+		this.setPlayingGrid(playingGrid);
 	}
 	
 	public List<Space> affectedSpaces(Position positionOfExecution) {
@@ -31,6 +31,10 @@ public class RangeOfEffect {
 		});
 		
 		return affectedSpaces;
+	}
+
+	public void setPlayingGrid(PlayingGrid playingGrid) {
+		this.playingGrid = playingGrid;
 	}
 	
 }

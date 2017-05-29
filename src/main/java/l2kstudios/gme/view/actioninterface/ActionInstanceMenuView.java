@@ -2,34 +2,33 @@ package l2kstudios.gme.view.actioninterface;
 
 import java.util.List;
 
-import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
-import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.view.constants.GridConstants;
+import l2kstudios.gme.model.action.Action;
 
-public class PostMoveDecisionMenuView extends ActionInterfaceView {
+public class ActionInstanceMenuView extends ActionInterfaceView {
 	
-	public static int HORIZONTAL_OFFSET = 75;
+public static int HORIZONTAL_OFFSET = 75;
 	
 	@Override
 	public void draw() {
-		drawDecisionNames();
+		drawActionNames();
 	}
 	
-	private void drawDecisionNames() {
+	private void drawActionNames() {
 		Position actingUnitPosition = model.getActingUnitPosition();
 		List<Space> chooseableSpaces = model.getChooseableSpaces();
 		
 		for(int actionIdx = 0; actionIdx < chooseableSpaces.size(); actionIdx++) {
 			Space space = chooseableSpaces.get(actionIdx);
-			PostMoveDecision decision = (PostMoveDecision) space.getOccupier(); 
+			Action action = (Action) space.getOccupier(); 
 			
 			setFillColorForActionName(space);
 			
 			ctx.text(
-				decision.getName(), 
+				action.getName(), 
 				actingUnitPosition.getX() * GridConstants.SPACE_HEIGHT + HORIZONTAL_OFFSET, 
 				actingUnitPosition.getY() * GridConstants.SPACE_WIDTH + actionIdx * 15
 			);
@@ -42,5 +41,5 @@ public class PostMoveDecisionMenuView extends ActionInterfaceView {
 		else
 			ctx.fill(0);
 	}
-
+	
 }

@@ -1,5 +1,7 @@
 package l2kstudios.gme.model.actioninterface;
 
+import java.util.List;
+
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.customerror.MethodNotImplementedException;
 import l2kstudios.gme.model.grid.Cursor;
@@ -11,9 +13,11 @@ import l2kstudios.gme.model.turn.Turn;
 public class ActionInterface extends RectangularGrid {
 	
 	protected Cursor cursor = new Cursor();
+	protected Position actingUnitPosition;
+	protected List<Space> chooseableSpaces;
 	
 	public void initialize(Turn turn) {
-		throw new MethodNotImplementedException();
+		actingUnitPosition = turn.getActingUnitDisplaySpace().getPosition();
 	}
 	
 	public Position getCursorPosition() {
@@ -66,5 +70,14 @@ public class ActionInterface extends RectangularGrid {
 		int nextXCoord = (cursorPosition.getX() == 0) ? getWidth() - 1 : cursorPosition.getX() - 1; 
 		Position nextCursorPosition = getSpaceAt(nextXCoord, cursorPosition.getY()).getPosition(); 
 		cursor.setPosition(nextCursorPosition);
+	}
+	
+	public List<Space> getChooseableSpaces() {
+		return chooseableSpaces;
+	}
+
+	public Position getActingUnitPosition() {
+		// TODO Auto-generated method stub
+		return actingUnitPosition;
 	}
 }

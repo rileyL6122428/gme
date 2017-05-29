@@ -1,26 +1,76 @@
 package l2kstudios.gme.model.action;
 
+import com.google.common.collect.Range;
+
+import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
+import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
+import l2kstudios.gme.model.grid.PlayingGrid;
+import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.Unit;
 
 public abstract class Action extends Placeable {
 	
 	protected Unit executingUnit;
-	protected String name;
+	protected Space spaceToExecuteAt;
+	protected RangeOfEffect rangeOfEffect;
+	protected Range<Integer> executionRange;
 	
-	public Action(Unit executinUnit) {
-		this.executingUnit = executinUnit;
+	public void execute() {
+		Position position = spaceToExecuteAt.getPosition();
+		
+		rangeOfEffect.affectedSpaces(position).forEach(this::affectSpace);
 	}
 	
-	public abstract void execute();
+	protected abstract void affectSpace(Space space);
 	
-	public abstract boolean isTurnEnding();
+	public boolean targetSpaceSpecified() {
+		return spaceToExecuteAt != null;
+	}
 	
-	public abstract Class getNextActionInterfaceType(); 
+	public Space getSpaceToExecuteAt() {
+		return spaceToExecuteAt;
+	}
 	
-	public abstract Class getPrecedingActionInterfaceType();
+	private boolean outOfRange(Position position) {
+		int distanceToExecution = GridUtils.distanceBetween(position, getExecutingUnit().getPosition());
+		return !executionRange.contains(distanceToExecution);
+	}
+	
+	public boolean ableToExecuteAt(Space space) {
+		return outOfRange(space.getPosition());
+	}
+	
+	public void setRangeOfEffect(RangeOfEffect rangeOfEffect) {
+		this.rangeOfEffect = rangeOfEffect;
+	}
+	
+	public RangeOfEffect getRangeOfEffect() {
+		return rangeOfEffect;
+	}
+	
+	public Range<Integer> getExecutionRange() {
+		return executionRange;
+	}
+	
+	public Unit getExecutingUnit() {
+		return executingUnit;
+	}
+
+	public void setSpaceOfExecution(Space space) {
+		this.spaceToExecuteAt = space;
+	}
+
+	public void setExecutingUnit(Unit executingUnit) {
+		this.executingUnit = executingUnit;
+	}
 	
 	public String getName() {
-		return name;
+		return this.getClass().getSimpleName();
+	}
+
+	public void setPlayingGrid(PlayingGrid playingGrid) {
+		rangeOfEffect.setPlayingGrid(playingGrid);
 	}
 }

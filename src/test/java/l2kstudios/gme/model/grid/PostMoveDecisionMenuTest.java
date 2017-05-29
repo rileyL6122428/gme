@@ -19,7 +19,7 @@ import l2kstudios.gme.model.unit.Unit;
 
 public class PostMoveDecisionMenuTest {	
 	
-	private List<PostMoveDecision> actingUnitActions;
+	private List<Action> actingUnitActions;
 	private Unit actingUnit;
 	private ActingUnitTracker actingUnitTracker;
 	private PostMoveDecisionMenu actionMenu;
@@ -27,7 +27,7 @@ public class PostMoveDecisionMenuTest {
 	@Before
 	public void setup() {
 		actingUnit = mock(Unit.class);
-		actingUnitActions = new ArrayList<PostMoveDecision>() {{
+		actingUnitActions = new ArrayList<Action>() {{
 			add(new DummyAction(actingUnit, true){{ name="DummyAction 1";}});
 			add(new DummyAction(actingUnit, false){{ name="DummyAction 2";}});
 			add(new DummyAction(actingUnit, true){{ name="DummyAction 3";}});
@@ -60,7 +60,7 @@ public class PostMoveDecisionMenuTest {
 	public void getSelectableActions__returnsTheSetOfActionsExecutableByTheUnit() {
 		actionMenu.initialize();
 		
-		List<PostMoveDecision> selectableActions = actionMenu.getDecisions();
+		List<Action> selectableActions = actionMenu.getDecisions();
 		
 		assertEquals(3, selectableActions.size());
 		assertEquals(actingUnitActions.get(0), selectableActions.get(0));
@@ -91,7 +91,7 @@ public class PostMoveDecisionMenuTest {
 		assertEquals(0, ((DummyAction)actingUnitActions.get(3)).getCallCount());
 	}
 	
-	static class DummyAction extends PostMoveDecision {
+	static class DummyAction extends Action {
 		private int callCount = 0;
 		private boolean ableToExecute;
 		
