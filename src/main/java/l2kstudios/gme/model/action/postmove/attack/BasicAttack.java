@@ -9,7 +9,6 @@ public class BasicAttack extends Attack {
 	{
 		executionRange = Range.closed(1, 1);
 		baseDamage = 1;
-//		rangeOfEffect = new SingleSpace();
 		setRangeOfEffect(new SingleSpace());
 	}
 	

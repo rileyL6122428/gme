@@ -13,6 +13,8 @@ import l2kstudios.gme.model.action.postmove.WaitDecision;
 import l2kstudios.gme.model.action.postmove.attack.Attack;
 import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
 import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
+import l2kstudios.gme.model.action.wait.BasicWait;
+import l2kstudios.gme.model.action.wait.Wait;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.grid.Position;
@@ -35,6 +37,10 @@ public class Unit extends Placeable implements InitializingBean {
 		attackTypes.add(BasicAttack.class);
 		attackTypes.add(BasicAttackWithRange.class);
 		actionClasses.put(Attack.class, attackTypes);
+		
+		List<Class> waitTypes = new ArrayList<Class>();
+		waitTypes.add(BasicWait.class);
+		actionClasses.put(Wait.class, waitTypes);
 	}
 
 	private String name;
