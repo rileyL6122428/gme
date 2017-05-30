@@ -50,7 +50,8 @@ public class Unit extends Placeable implements InitializingBean {
 	
 	public boolean canMoveTo(Space space) {
 		Position position = space.getPosition();
-		return !space.isOccupied() && GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
+		return (!space.isOccupied() || space.getOccupier() == this) && 
+				GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
 	}
 
 	public Team getTeam() {
