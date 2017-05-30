@@ -15,7 +15,7 @@ public class Wait extends PostMoveAction {
 
 	@Override
 	public boolean ableToExecuteAt(Space space) {
-		return true;
+		return space == spaceToExecuteFrom;
 	}
 
 	@Override

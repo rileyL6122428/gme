@@ -8,7 +8,6 @@ import java.util.Map;
 import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.action.postmove.AttackDecision;
-import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
 import l2kstudios.gme.model.action.postmove.attack.Attack;
 import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
