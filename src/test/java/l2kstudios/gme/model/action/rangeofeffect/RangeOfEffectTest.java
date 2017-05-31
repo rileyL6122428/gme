@@ -17,11 +17,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
-import l2kstudios.gme.services.GameModelService;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(GameModelService.class)
 public class RangeOfEffectTest {
 	
 	private RangeOfEffect rangeOfEffect;
@@ -43,8 +41,7 @@ public class RangeOfEffectTest {
 		playingGrid = new PlayingGrid();
 		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(8, 8));
 		
-		PowerMockito.mockStatic(GameModelService.class);
-		Mockito.when(GameModelService.getCurrentPlayingGrid()).thenReturn(playingGrid);
+		rangeOfEffect.setPlayingGrid(playingGrid);
 	}
 	
 	@Test
