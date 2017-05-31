@@ -10,7 +10,7 @@ public class BasicAttackWithRange extends Attack {
 	{		
 		executionRange = Range.closed(2, 3);	
 		rangeOfEffect = new Cross(1);
-		baseDamage = 1;
+		setBaseDamage(1);
 	}
 	
 }

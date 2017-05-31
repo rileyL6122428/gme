@@ -8,7 +8,7 @@ public class Attack extends PostMoveAction {
 	
 	private static int MINIMUM_DAMAGE = 1;
 	
-	protected int baseDamage;
+	private int baseDamage;
 
 	@Override
 	protected void affectSpace(Space space) {
@@ -19,8 +19,15 @@ public class Attack extends PostMoveAction {
 	}
 
 	private long inflictedDamage(Unit occupier) {
-		return Math.max(baseDamage + getExecutingUnit().getAttack() - occupier.getDefence(), MINIMUM_DAMAGE);
+		return Math.max(getBaseDamage() + getExecutingUnit().getAttack() - occupier.getDefence(), MINIMUM_DAMAGE);
 	}
 
+	public int getBaseDamage() {
+		return baseDamage;
+	}
+	
+	public void setBaseDamage(int baseDamage) {
+		this.baseDamage = baseDamage;
+	}
 	
 }

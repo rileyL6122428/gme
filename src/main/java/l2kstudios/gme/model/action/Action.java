@@ -20,27 +20,21 @@ public abstract class Action extends Placeable {
 	
 	public void execute() {
 		Position position = spaceToExecuteAt.getPosition();
-		
 		rangeOfEffect.affectedSpaces(position).forEach(this::affectSpace);
 	}
 	
 	protected abstract void affectSpace(Space space);
 	
+	public boolean ableToExecuteAt(Space space) {
+		Position executeFromPosition = spaceToExecuteFrom.getPosition();
+		Position executeAtPosition = space.getPosition();
+		
+		int distanceToExecution = GridUtils.distanceBetween(executeAtPosition, executeFromPosition);
+		return executionRange.contains(distanceToExecution);
+	}
+	
 	public boolean targetSpaceSpecified() {
 		return spaceToExecuteAt != null;
-	}
-	
-	public Space getSpaceToExecuteAt() {
-		return spaceToExecuteAt;
-	}
-	
-	private boolean outOfRange(Position position) {
-		int distanceToExecution = GridUtils.distanceBetween(position, spaceToExecuteFrom.getPosition());
-		return !executionRange.contains(distanceToExecution);
-	}
-	
-	public boolean ableToExecuteAt(Space space) {
-		return !outOfRange(space.getPosition());
 	}
 	
 	public void setRangeOfEffect(RangeOfEffect rangeOfEffect) {
@@ -58,13 +52,17 @@ public abstract class Action extends Placeable {
 	public Unit getExecutingUnit() {
 		return executingUnit;
 	}
-
-	public void setSpaceOfExecution(Space space) {
-		this.spaceToExecuteAt = space;
-	}
-
+	
 	public void setExecutingUnit(Unit executingUnit) {
 		this.executingUnit = executingUnit;
+	}
+
+	public void setSpaceToExecuteAt(Space space) {
+		this.spaceToExecuteAt = space;
+	}
+	
+	public Space getSpaceToExecuteAt() {
+		return spaceToExecuteAt;
 	}
 	
 	public String getName() {
@@ -79,5 +77,8 @@ public abstract class Action extends Placeable {
 		this.spaceToExecuteFrom = spaceToExecuteFrom;
 	}
 	
+	void setExecutionRange(Range range) {
+		this.executionRange = range;
+	}
 	
 }

@@ -1,3 +1,7 @@
+*Framework Refactor* (DONE)
+	*Get tests working*
+	*Test Framework Refactor*
+	*Get rid of spaghetti*
 *Undo actions*
 *level over*
 *Flesh out attacking/ Unit up to this point*

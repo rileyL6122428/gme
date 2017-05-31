@@ -39,7 +39,7 @@ public class ActionPlacementInterface extends ActionInterface {
 
 	public boolean select() {
 		if(action.ableToExecuteAt(hoveredSpace())) {
-			action.setSpaceOfExecution(hoveredSpace());
+			action.setSpaceToExecuteAt(hoveredSpace());
 			return true;
 		}
 		

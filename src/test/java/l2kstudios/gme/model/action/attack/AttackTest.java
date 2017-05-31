@@ -24,11 +24,9 @@ import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.services.GameModelService;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(GameModelService.class)
 public class AttackTest {
 	
 	private static int ATTACKED_UNIT_STARTING_HEALTH = 20;
@@ -45,8 +43,9 @@ public class AttackTest {
 	public void setup() {
 		executingUnit = new Unit();
 		
-		attack = new Attack(executingUnit){{
-			baseDamage = BASE_DAMAGE;
+		attack = new Attack(){{
+			setExecutingUnit(executingUnit);
+			setBaseDamage(BASE_DAMAGE);
 			executionRange = Range.closed(2, 3);
 			rangeOfEffect = new SingleSpace();
 		}};
@@ -55,8 +54,6 @@ public class AttackTest {
 		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(8, 8));
 		playingGrid.place(executingUnit, 3, 3);
 		
-		PowerMockito.mockStatic(GameModelService.class);
-		Mockito.when(GameModelService.getCurrentPlayingGrid()).thenReturn(playingGrid);
 	}
 	
 	
