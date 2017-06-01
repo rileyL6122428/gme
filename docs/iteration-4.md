@@ -2,6 +2,7 @@
 	*Get tests working*
 	*Test Framework Refactor*
 	*Get rid of spaghetti*
+*Fix initial placement of cursor in action placement*
 *Undo actions*
 *level over*
 *Flesh out attacking/ Unit up to this point*

@@ -26,7 +26,7 @@ public class ActionPlacementInterface extends ActionInterface {
 		this.action = turn.getPlacingAction();
 		setSpaces(turn.getPlayingGrid().getSpaces());
 		setChooseableSpaces(turn.getPlayingGrid());
-		cursor.setPosition(turn.getActingUnit().getPosition());
+		cursor.setPosition(turn.getActingUnitDisplaySpace().getPosition());
 	}
 	
 	private void setChooseableSpaces(PlayingGrid playingGrid) {
