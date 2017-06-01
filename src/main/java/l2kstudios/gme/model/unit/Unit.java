@@ -46,6 +46,8 @@ public class Unit extends Placeable implements InitializingBean {
 	private Team team;
 	
 	private long speed;
+	private long defense;
+	private long strength;
 	private ConsummableStat health;
 	private ConsummableStat energy;
 	
@@ -120,12 +122,20 @@ public class Unit extends Placeable implements InitializingBean {
 		return postMoveDecisions;
 	}
 
-	public int getAttack() {
-		return 1;
+	public long getStrength() {
+		return strength;
+	}
+	
+	public void setStrength(long strength) {
+		this.strength = strength;
 	}
 
-	public int getDefence() {
-		return 1;
+	public long getDefense() {
+		return defense;
+	}
+	
+	public void setDefense(long defense) {
+		this.defense = defense;
 	}
 
 	@Override

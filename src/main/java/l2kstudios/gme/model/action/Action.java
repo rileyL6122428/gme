@@ -77,7 +77,7 @@ public abstract class Action extends Placeable {
 		this.spaceToExecuteFrom = spaceToExecuteFrom;
 	}
 	
-	void setExecutionRange(Range range) {
+	public void setExecutionRange(Range range) {
 		this.executionRange = range;
 	}
 	

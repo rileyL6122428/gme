@@ -19,7 +19,7 @@ public class Attack extends PostMoveAction {
 	}
 
 	private long inflictedDamage(Unit occupier) {
-		return Math.max(getBaseDamage() + getExecutingUnit().getAttack() - occupier.getDefence(), MINIMUM_DAMAGE);
+		return Math.max(getBaseDamage() + getExecutingUnit().getStrength() - occupier.getDefense(), MINIMUM_DAMAGE);
 	}
 
 	public int getBaseDamage() {
