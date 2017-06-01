@@ -1,9 +1,9 @@
 *Framework Refactor* (DONE)
-	*Get tests working*
-	*Test Framework Refactor*
-	*Get rid of spaghetti*
-*Fix initial placement of cursor in action placement*
+*Test and refactor Action* (DONE)
+*Test and refactor Attack* (DONE)
+*Fix initial placement of cursor in action placement* (DONE)
 *Undo actions*
+
 *level over*
 *Flesh out attacking/ Unit up to this point*
 *Flesh out demo level (1 unit vs another)*

@@ -58,11 +58,13 @@ public class Turn implements Interactable {
 			if(actionInterface.select()) setNextActionInterface();
 			break;
 		case BACK:
-			System.out.println("BACK INPUT RECEIVED");
+			setPreviousActionInterface();
+			System.out.println("RECEIVED BACK INPUT");
+			break;
 		}
 		
 	}
-	
+
 	private void setNextActionInterface() {
 		switch(turnState) {
 			case PLACING_MOVE: 
@@ -84,8 +86,31 @@ public class Turn implements Interactable {
 				throw new RuntimeException("ILLEGAL STATE IN TURN");
 		}
 		
-		actionInterface.initialize(this);
-		
+		actionInterface.initialize(this);	
+	}
+	
+	private void setPreviousActionInterface() {
+		switch(turnState) {
+			case PLACING_MOVE: 
+				break;
+			case CHOOSING_POST_MOVE_ACTION_TYPE: 
+				move.setSpaceToExecuteAt(null);
+				actionInterface = new ActionPlacementInterface();
+				actionInterface.initialize(this);
+				turnState = PLACING_MOVE;
+				break;
+			case CHOOSING_POST_MOVE_ACTION_INSTANCE:
+				actionInterface = new PostMoveDecisionMenu();
+				actionInterface.initialize(this);
+				turnState = CHOOSING_POST_MOVE_ACTION_TYPE;
+				break;
+//			case PLACING_POST_MOVE_ACTION:
+//				actionInterface = new ActionPlacementInterface();
+//				turnState = TurnState.CHOOSING_POST_MOVE_ACTION_INSTANCE;
+//				break;
+//			default:
+//				throw new RuntimeException("ILLEGAL STATE IN TURN");
+		}
 	}
 
 	public boolean readyToCommit() {
