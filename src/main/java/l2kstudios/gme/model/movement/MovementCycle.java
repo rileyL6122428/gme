@@ -1,7 +1,9 @@
 package l2kstudios.gme.model.movement;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import l2kstudios.gme.model.unit.Unit;
 
@@ -10,6 +12,7 @@ public class MovementCycle {
 	private MoveSpread moveSpread;
 	private UnitMovementData unitMovementData;
 	private List<Unit> moveOrder;
+	private Set<Unit> activeUnits;
 	
 	public MovementCycle() {} 
 	
@@ -25,6 +28,7 @@ public class MovementCycle {
 		unitMovementData = new UnitMovementData(units);
 		moveSpread = new MoveSpread(unitMovementData);
 		moveOrder = moveSpread.getCondensed();
+		activeUnits = new HashSet<Unit>(moveOrder);
 	}
 
 	public Unit getActingUnit() {
@@ -39,5 +43,10 @@ public class MovementCycle {
 	
 	public List<Unit> getOrder() {
 		return moveOrder;
+	}
+
+	public void rebase(List<Unit> units) {
+		// TODO Auto-generated method stub
+		
 	}
 }

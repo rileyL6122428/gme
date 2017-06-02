@@ -34,4 +34,8 @@ public class PlayingGrid extends RectangularGrid {
 			}
 		}
 	}
+
+	public void clearSpace(Position position) {
+		getSpaceAt(position).setOccupier(null);
+	}
 }

@@ -60,6 +60,11 @@ public class Unit extends Placeable implements InitializingBean {
 		return (!space.isOccupied() || space.getOccupier() == this) && 
 				GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
 	}
+	
+	public boolean isDefeated() {
+		return getRemainingHealth() <= 0;
+	}
+	
 
 	public Team getTeam() {
 		return team;

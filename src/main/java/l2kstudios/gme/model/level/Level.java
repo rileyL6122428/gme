@@ -4,13 +4,13 @@ import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.actioninterface.ActionInterface;
 import l2kstudios.gme.model.grid.PlayingGrid;
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnFactory;
+import l2kstudios.gme.model.unit.Unit;
 
 public class Level implements Interactable, InitializingBean {
 	
@@ -26,9 +26,21 @@ public class Level implements Interactable, InitializingBean {
 		
 		if(currentTurn.readyToCommit()) {
 			currentTurn.commit();
+			clearOutDefeatedUnits();
 			movementCycle.shift();
 			currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
 		}
+	}
+
+	private void clearOutDefeatedUnits() {
+		for(Unit unit : playingGrid.getUnits()) {
+			if(unit.isDefeated()) {
+				playingGrid.clearSpace(unit.getPosition());
+				movementCycle.rebase(playingGrid.getUnits());
+				System.out.println("Defeated unit" + unit.toString());
+			}
+		}
+		
 	}
 
 	@Override

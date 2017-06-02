@@ -2,8 +2,11 @@
 *Test and refactor Action* (DONE)
 *Test and refactor Attack* (DONE)
 *Fix initial placement of cursor in action placement* (DONE)
-*Undo actions*
+*Undo actions* (DONE)
+*Unit Movement Rebase for less units*
+	need a current node tracker
 
+*Unit Removal*
 *level over*
 *Flesh out attacking/ Unit up to this point*
 *Flesh out demo level (1 unit vs another)*

@@ -6,10 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.unit.Unit;
 
 public class MovementCycleTest {
