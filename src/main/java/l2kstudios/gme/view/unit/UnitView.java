@@ -6,6 +6,7 @@ import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.GridDrawingUtil;
 import l2kstudios.gme.view.View;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class UnitView extends View<Unit> {
 	
@@ -20,6 +21,7 @@ public class UnitView extends View<Unit> {
 	}
 	
 	public void setModel(Unit unit) {
+		this.model = unit;
 		unitOverView.setUnit(unit);
 		unitMovementGrid.setUnit(unit);
 		gridAvatar.setUnit(unit);

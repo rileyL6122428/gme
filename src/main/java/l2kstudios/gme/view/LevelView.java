@@ -1,6 +1,8 @@
 package l2kstudios.gme.view;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
@@ -28,16 +30,31 @@ public class LevelView extends View<Level>  {
 	public void draw() {
 		ctx.background(255, 255, 255);
 		playingGridView.draw();
-		unitViewList.forEach(View<Unit>::draw);
+		drawUnitViews();
 		actingUnitView.draw();
 		moveOrderView.draw();
+		drawActionInterface();
 		
+	}
+	
+	private void drawActionInterface() {
 		if(model.getCurrentActionInterface() != actionInterfaceView.getModel()) {
-			setNextActionInterfaceView();
-			
+			setNextActionInterfaceView();			
 		} 
 		actionInterfaceView.draw();
-		
+	}
+
+	private void drawUnitViews() {
+		Iterator<View<Unit>> unitViewIterator = unitViewList.iterator();
+		while(unitViewIterator.hasNext()) {
+			View<Unit> unitView = unitViewIterator.next();
+			Unit unit = unitView.getModel();
+			
+			if(unit.isDefeated())
+				unitViewIterator.remove();
+			else
+				unitView.draw();
+		}
 	}
 
 	private void setNextActionInterfaceView() {
@@ -90,7 +107,7 @@ public class LevelView extends View<Level>  {
 	private void setupUnitViewList() {
 		List<Unit> units = model.getPlayingGrid().getUnits();
 		final PlayingGrid playingGrid = model.getPlayingGrid();
-		final List<View<Unit>> unitViewList = new ArrayList<View<Unit>>();
+		final List<View<Unit>> unitViewList = new LinkedList<View<Unit>>();
 		units.forEach((unit) -> {
 			UnitView unitView = new UnitView();
 			unitView.setDrawingContext(ctx);

@@ -2,6 +2,7 @@ package l2kstudios.gme.model.movement;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class MovementCycle {
 	public void setUnits(List<Unit> units) {
 		unitMovementData = new UnitMovementData(units);
 		moveSpread = new MoveSpread(unitMovementData);
-		moveOrder = moveSpread.getCondensed();
+		moveOrder = moveSpread.setCondensed();
 		activeUnits = new HashSet<Unit>(moveOrder);
 	}
 
@@ -46,7 +47,17 @@ public class MovementCycle {
 	}
 
 	public void rebase(List<Unit> units) {
-		// TODO Auto-generated method stub
+		removeDefeatedUnitsFromMoveOrder();
+	}
+
+	private void removeDefeatedUnitsFromMoveOrder() {
+		Iterator<Unit> moveOrderIterator = moveOrder.iterator();
+		
+		while(moveOrderIterator.hasNext()) { 
+		    Unit unit = moveOrderIterator.next();
+	        if(unit.isDefeated()) 
+	        	moveOrderIterator.remove();
+		}
 		
 	}
 }

@@ -11,6 +11,7 @@ public class MoveSpread {
 	private UnitMovementData unitMovementData;
 	
 	private MoveSpreadNode currentNode;
+	private Unit currentUnit;
 	
 	public MoveSpread(UnitMovementData unitMovementData) {
 		this.unitMovementData = unitMovementData;
@@ -19,7 +20,7 @@ public class MoveSpread {
 		sortUncondesedSpread();
 	}
 	
-	public List<Unit> getCondensed() {
+	public List<Unit> setCondensed() {
 		List<Unit> moveOrder = new LinkedList<Unit>();
 		
 		for(MoveSpreadNode moveSpreadNode : uncondensedSpread) {
@@ -48,5 +49,10 @@ public class MoveSpread {
 	
 	private void sortUncondesedSpread() {
 		uncondensedSpread.forEach(MoveSpreadNode::sort);	
+	}
+
+	public void remove(Unit unit) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -18,42 +18,28 @@ import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
+import processing.core.PImage;
 
 public class Unit extends Placeable implements InitializingBean {
 	
 	public enum Team {
 		ALLY, ENEMY
 	}
-	
-	public Unit() {
-		actionClasses = new HashMap<Class, List<Class>>();
-		
-		postMoveDecisions = new ArrayList<Class>();
-		postMoveDecisions.add(AttackDecision.class);
-		postMoveDecisions.add(WaitDecision.class);	
-		
-		List<Class> attackTypes = new ArrayList<Class>();
-		attackTypes.add(BasicAttack.class);
-		attackTypes.add(BasicAttackWithRange.class);
-		actionClasses.put(Attack.class, attackTypes);
-		
-		List<Class> waitTypes = new ArrayList<Class>();
-		waitTypes.add(BasicWait.class);
-		actionClasses.put(Wait.class, waitTypes);
-	}
 
-	private String name;
-	private Team team;
+	protected String name;
+	protected Team team;
 	
-	private long speed;
-	private long defense;
-	private long strength;
-	private ConsummableStat health;
-	private ConsummableStat energy;
+	protected long speed;
+	protected long defense;
+	protected long strength;
+	protected ConsummableStat health;
+	protected ConsummableStat energy;
 	
-	private List<Class> postMoveDecisions;
+	protected PImage image;
 	
-	private Map<Class, List<Class>> actionClasses;
+	protected List<Class> postMoveDecisions;
+	
+	protected Map<Class, List<Class>> actionClasses;
 	
 	public boolean canMoveTo(Space space) {
 		Position position = space.getPosition();
@@ -65,6 +51,13 @@ public class Unit extends Placeable implements InitializingBean {
 		return getRemainingHealth() <= 0;
 	}
 	
+	public boolean isAlliedUnit() {
+		return team == Team.ALLY;
+	}
+	
+	public boolean isEnemyUnit() {
+		return team == Team.ENEMY;
+	}
 
 	public Team getTeam() {
 		return team;
@@ -90,9 +83,6 @@ public class Unit extends Placeable implements InitializingBean {
 		this.name = name;
 	}
 	
-	public String toString() {
-		return "Unit: " + name;
-	}
 
 	public ConsummableStat getHealth() {
 		return health;
@@ -153,4 +143,25 @@ public class Unit extends Placeable implements InitializingBean {
 		return actionClasses.get(actionType);
 	}
 	
+	//FOR DEMO ONLY
+	public PImage getImage() {
+		return image;
+	}
+
+	public void setImage(PImage image) {
+		this.image = image;
+	}
+	
+	public float getScale() {
+		return 1;
+	}
+	//END DEMO
+	
+
+	public String toString() {
+		return "Unit \n" + 
+				"name = " + name + "\n" +
+				"speed = " + speed + "\n";
+		
+	}
 }

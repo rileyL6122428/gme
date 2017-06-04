@@ -6,15 +6,14 @@ import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.GridDrawingUtil;
 import l2kstudios.gme.view.GridDrawingUtil.Offsets;
 import l2kstudios.gme.view.View;
+import l2kstudios.gme.view.constants.GridConstants;
+import l2kstudios.gme.view.image.SampleUnitImage;
+import processing.core.PImage;
 
 public class UnitGridAvatar extends View<Unit> {
 	
-	{
-		gridDrawingUtil = GridDrawingUtil.getInstance();
-	}
-	
 	private static final Offsets SPACE_OFFSETS;
-	
+		
 	private GridDrawingUtil gridDrawingUtil;
 	protected Unit unit;
 	protected MovementCycle movementCycle;
@@ -25,6 +24,10 @@ public class UnitGridAvatar extends View<Unit> {
 			setHorizontal(0);
 		}};
 	}
+	
+	{
+		gridDrawingUtil = GridDrawingUtil.getInstance();
+	}
 
 	public void draw() {
 		if(unit != movementCycle.getActingUnit()) {
@@ -34,7 +37,15 @@ public class UnitGridAvatar extends View<Unit> {
 	}
 	
 	protected void drawUnit(Position position) {
-		gridDrawingUtil.drawEllipseAt(position, SPACE_OFFSETS, 1, 1);		
+		ctx.pushMatrix();
+		
+		ctx.scale(unit.getScale());
+		ctx.image(
+			unit.getImage(),
+			position.getX() * GridConstants.SPACE_WIDTH * (1/unit.getScale()) + 30, 
+			position.getY() * GridConstants.SPACE_HEIGHT * (1/unit.getScale()) + 5
+		);
+		ctx.popMatrix();
 	}
 
 	public Unit getUnit() {
@@ -48,4 +59,5 @@ public class UnitGridAvatar extends View<Unit> {
 	public void setMovementCycle(MovementCycle movementCycle) {
 		this.movementCycle = movementCycle;
 	}
+	
 }

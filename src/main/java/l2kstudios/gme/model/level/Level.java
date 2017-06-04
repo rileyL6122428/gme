@@ -30,6 +30,15 @@ public class Level implements Interactable, InitializingBean {
 			movementCycle.shift();
 			currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
 		}
+		
+		if(finished()) {
+			System.out.println("LEVEL FINISHED");
+		}
+	}
+
+	private boolean finished() {
+		return playingGrid.getAlliedUnits().size() == 0 ||
+				playingGrid.getEnemyUnits().size() == 0;
 	}
 
 	private void clearOutDefeatedUnits() {
@@ -45,6 +54,7 @@ public class Level implements Interactable, InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		
 		movementCycle = new MovementCycle(playingGrid.getUnits());		
 		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);
 	}

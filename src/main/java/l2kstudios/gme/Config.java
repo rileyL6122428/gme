@@ -2,7 +2,9 @@ package l2kstudios.gme;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import l2kstudios.gme.view.image.SampleUnitImage;
 import processing.core.PApplet;
+import processing.core.PImage;
 
 public class Config {
 	

@@ -66,43 +66,13 @@
 									<bean class="${SPACE}" />
 									<bean class="${SPACE}" >
 										<property name="occupier">
-											<bean class="${UNIT}" >
-												<property name="name" value="faster UNIT" />
-												<property name="speed" value="3" />
-												<property name="energy">
-													<bean class="${CONSUMMABLE_STAT}">
-														<property name="cap" value="2" />
-														<property name="val" value="2" />
-													</bean>
-												</property>
-												<property name="health">
-													<bean class="${CONSUMMABLE_STAT}">
-														<property name="cap" value="2" />
-														<property name="val" value="2" />
-													</bean>
-												</property>
-											</bean>
+											<bean class="l2kstudios.gme.beandefs.demolevel.Asbel" />
 										</property>
 									</bean>
 									<bean class="${SPACE}" />
 									<bean class="${SPACE}" >
 										<property name="occupier">
-											<bean class="${UNIT}" >
-												<property name="name" value="slower UNIT" />
-												<property name="speed" value="2" />
-												<property name="energy">
-													<bean class="${CONSUMMABLE_STAT}">
-														<property name="cap" value="1" />
-														<property name="val" value="1" />
-													</bean>
-												</property>
-												<property name="health">
-													<bean class="${CONSUMMABLE_STAT}">
-														<property name="cap" value="2" />
-														<property name="val" value="2" />
-													</bean>
-												</property>
-											</bean>
+											<bean class="l2kstudios.gme.beandefs.demolevel.Richard" />
 										</property>
 									</bean>
 								</list>
@@ -146,5 +116,7 @@
 	</bean>
 
 	<bean id="demoConfig" class="${CONFIG}" scope="singleton" />
+	
+	<bean id="demoAssetLoader" class="l2kstudios.gme.AssetLoader" scope="singleton" />
 	
 </beans>

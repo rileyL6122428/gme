@@ -16,6 +16,9 @@ public class App extends PApplet implements InitializingBean {
 	@Autowired
 	private Config config;
 	
+	@Autowired
+	private AssetLoader assetLoader;
+	
 	private Level level;
 	
 	private View<Level> levelView;
@@ -35,6 +38,7 @@ public class App extends PApplet implements InitializingBean {
     
     public void setup() {
     	config.setup();
+    	assetLoader.loadAssets();
     }
     
     public void draw() {
