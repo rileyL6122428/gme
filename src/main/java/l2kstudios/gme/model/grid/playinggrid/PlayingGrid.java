@@ -1,10 +1,16 @@
-package l2kstudios.gme.model.grid;
+package l2kstudios.gme.model.grid.playinggrid;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
+import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.RectangularGrid;
+import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PlayingGrid extends RectangularGrid {
@@ -21,43 +27,15 @@ public class PlayingGrid extends RectangularGrid {
 	}
 	
 	public List<Unit> getEnemyUnits() {
-		List<Unit> units = new ArrayList<Unit>();
-		
-		forEachSpace((Space space) -> {
-			if(spaceOccupiedByEnemyUnit(space)) 
-				units.add((Unit) space.getOccupier());
-		});
-		
-		return units;
-	}
-	
-	private boolean spaceOccupiedByEnemyUnit(Space space) {
-		try {
-			Unit unit = (Unit) space.getOccupier();
-			return unit.isEnemyUnit();
-		} catch (Exception e) {
-			return false;
-		}
+		return getUnits().stream()
+						 .filter(Unit::isEnemyUnit)
+						 .collect(Collectors.toList());
 	}
 	
 	public List<Unit> getAlliedUnits() {
-		List<Unit> units = new ArrayList<Unit>();
-		
-		forEachSpace((Space space) -> {
-			if(spaceOccupiedByAlliedUnit(space)) 
-				units.add((Unit) space.getOccupier());
-		});
-		
-		return units;
-	}
-	
-	private boolean spaceOccupiedByAlliedUnit(Space space) {
-		try {
-			Unit unit = (Unit) space.getOccupier();
-			return unit.isAlliedUnit();
-		} catch (Exception e) {
-			return false;
-		}
+		return getUnits().stream()
+						 .filter(Unit::isAlliedUnit)
+						 .collect(Collectors.toList());
 	}
 	
 	public Unit getUnitAt(int x, int y) {

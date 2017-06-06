@@ -11,8 +11,8 @@ import org.junit.Test;
 import com.google.common.collect.Range;
 
 import l2kstudios.gme.model.action.rangeofeffect.Cross;
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.testutils.SpacesFactory;
 

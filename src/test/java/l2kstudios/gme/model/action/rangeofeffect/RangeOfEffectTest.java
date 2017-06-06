@@ -11,9 +11,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 @RunWith(PowerMockRunner.class)

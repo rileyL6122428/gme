@@ -1,19 +1,10 @@
 package l2kstudios.gme.model.unit;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import l2kstudios.gme.model.action.postmove.AttackDecision;
-import l2kstudios.gme.model.action.postmove.WaitDecision;
-import l2kstudios.gme.model.action.postmove.attack.Attack;
-import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
-import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
-import l2kstudios.gme.model.action.wait.BasicWait;
-import l2kstudios.gme.model.action.wait.Wait;
 import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.grid.Position;
@@ -100,6 +91,10 @@ public class Unit extends Placeable implements InitializingBean {
 		return health.getVal();
 	}
 
+	public long getRemainingEnergy() {
+		return energy.getVal();
+	}
+	
 	public ConsummableStat getEnergy() {
 		return energy;
 	}

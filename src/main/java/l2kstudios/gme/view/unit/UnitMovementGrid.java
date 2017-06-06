@@ -6,8 +6,8 @@ import static l2kstudios.gme.view.constants.GridConstants.SPACE_WIDTH;
 import java.util.ArrayList;
 import java.util.List;
 
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 import processing.core.PApplet;
 

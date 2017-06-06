@@ -5,9 +5,14 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.GridUtils;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.unit.ConsummableStat;
+import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.testutils.SpacesFactory;
 
 public class GridUtilsTest {
 	
@@ -40,6 +45,7 @@ public class GridUtilsTest {
 		distanceBetweenTestDataSets()
 		.forEach(this::verifyDistanceBetweenResult);
 	}
+	
 	
 	private List<DistanceBetweenTestData> distanceBetweenTestDataSets() {
 		return new ArrayList<DistanceBetweenTestData>() {{

@@ -5,8 +5,8 @@ import static l2kstudios.gme.view.constants.GridConstants.SPACE_WIDTH;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import processing.core.PApplet;
 
 public class PlayingGridView extends View<PlayingGrid> {

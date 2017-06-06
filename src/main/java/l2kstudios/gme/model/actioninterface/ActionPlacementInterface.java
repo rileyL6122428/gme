@@ -7,8 +7,8 @@ import com.google.common.collect.Range;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.unit.Unit;
 

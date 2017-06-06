@@ -3,8 +3,8 @@ package l2kstudios.gme.model.level;
 import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.actioninterface.ActionInterface;
-import l2kstudios.gme.model.grid.PlayingGrid;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.movement.MovementCycle;

@@ -3,11 +3,19 @@
 *Test and refactor Attack* (DONE)
 *Fix initial placement of cursor in action placement* (DONE)
 *Undo actions* (DONE)
-*Unit Movement Rebase for less units*
+*Unit Movement Rebase for less units* (DONE)
 	need a current node tracker
 
-*Unit Removal*
-*level over*
+*Unit Removal* (DONE)
+*level over* (DONE, sortof)
+*Flesh out better movement*
+	0. fix playingGrid test
+	1. add tests for playingGrid.pathExistsFor
+	2. add unit to PlaingGrid and delegate to PathUtil class
+	3. implement method
+
+
+
 *Flesh out attacking/ Unit up to this point*
 *Flesh out demo level (1 unit vs another)*
 *Flesh out teams*

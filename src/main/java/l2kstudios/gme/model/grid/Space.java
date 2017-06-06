@@ -31,5 +31,9 @@ public class Space {
 	public void setGrid(RectangularGrid grid) {
 		this.grid = grid;
 	}
+
+	public boolean isAdjacentTo(Space space) {
+		return GridUtils.distanceBetween(getPosition(), space.getPosition()) == 1;
+	}
 	
 }
