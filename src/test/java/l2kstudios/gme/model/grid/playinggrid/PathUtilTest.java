@@ -1,12 +1,12 @@
 package l2kstudios.gme.model.grid.playinggrid;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.Space;
@@ -93,8 +93,7 @@ public class PathUtilTest {
 		Unit unit = newUnitWithEnergySetTo(3);
 		unit.setTeam(Unit.Team.ALLY);
 		
-		Unit enemyUnit = new Unit();
-		enemyUnit.setTeam(Unit.Team.ENEMY);
+		Unit enemyUnit = newEnemyUnit();
 		
 		playingGrid.place(unit, 5, 5);
 		playingGrid.place(enemyUnit, 5, 4);
@@ -140,17 +139,10 @@ public class PathUtilTest {
 		Unit unit = newUnitWithEnergySetTo(3);
 		unit.setTeam(Unit.Team.ALLY);
 		
-		Unit topEnclosing = new Unit();
-		topEnclosing.setTeam(Unit.Team.ENEMY);
-		
-		Unit rightEnclosing = new Unit();
-		rightEnclosing.setTeam(Unit.Team.ENEMY);
-		
-		Unit leftEnclosing = new Unit();
-		leftEnclosing.setTeam(Unit.Team.ENEMY);
-		
-		Unit bottomEnclosing = new Unit();
-		bottomEnclosing.setTeam(Unit.Team.ENEMY);
+		Unit topEnclosing = newEnemyUnit();
+		Unit rightEnclosing = newEnemyUnit();
+		Unit leftEnclosing = newEnemyUnit();
+		Unit bottomEnclosing = newEnemyUnit();
 		
 		playingGrid.place(unit, 5, 5);
 		playingGrid.place(topEnclosing, 5, 4);
@@ -168,23 +160,12 @@ public class PathUtilTest {
 		Unit unit = newUnitWithEnergySetTo(4);
 		unit.setTeam(Unit.Team.ALLY);
 		
-		Unit blockerAtFiveFour = new Unit();
-		blockerAtFiveFour.setTeam(Unit.Team.ENEMY);
-		
-		Unit blockerAtSixFour = new Unit();
-		blockerAtSixFour.setTeam(Unit.Team.ENEMY);
-		
-		Unit blockerAtNineFive = new Unit();
-		blockerAtNineFive.setTeam(Unit.Team.ENEMY);
-		
-		Unit blockerAtEightSix = new Unit();
-		blockerAtEightSix.setTeam(Unit.Team.ENEMY);
-		
-		Unit blockerAtThreeFive = new Unit();
-		blockerAtThreeFive.setTeam(Unit.Team.ENEMY);
-		
-		Unit blockerAtThreeSeven = new Unit();
-		blockerAtThreeSeven.setTeam(Unit.Team.ENEMY);
+		Unit blockerAtFiveFour = newEnemyUnit();
+		Unit blockerAtSixFour = newEnemyUnit();
+		Unit blockerAtNineFive = newEnemyUnit();
+		Unit blockerAtEightSix = newEnemyUnit();
+		Unit blockerAtThreeFive = newEnemyUnit();
+		Unit blockerAtThreeSeven = newEnemyUnit();
 		
 		playingGrid.place(unit, 5, 5);
 		playingGrid.place(blockerAtFiveFour, 5, 4);
@@ -237,6 +218,12 @@ public class PathUtilTest {
 			add(playingGrid.getSpaceAt(5, 9));
 			
 		}}.forEach( (space) -> assertNotNull(moveablePaths.get(space)) );
+	}
+	
+	private Unit newEnemyUnit() {
+		return new Unit(){{
+			setTeam(Unit.Team.ENEMY);
+		}};
 	}
 	
 	private Unit newUnitWithEnergySetTo(long energyVal) {
