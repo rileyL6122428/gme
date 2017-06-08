@@ -26,17 +26,14 @@ public class PathUtil {
 		endPointToPath.put(unit.getOccupiedSpace(), initialPath);
 		distanceToPaths.put(0, new ArrayList<Path>(){{ add(initialPath); }});
 		
-		for(long energy = 1; energy <= unit.getRemainingEnergy(); energy++) {
+		for(int energy = 1; energy <= unit.getRemainingEnergy(); energy++) {
 
-			distanceToPaths.put((int)energy, new ArrayList<Path>());
+			distanceToPaths.put(energy, new ArrayList<Path>());
 			
-			for(Path prevPath : distanceToPaths.get((int)(energy - 1))) {
+			for(Path prevPath : distanceToPaths.get(energy - 1)) {
 				for(Space adjacentSpace : prevPath.getEnd().getAdjacentSpaces()) {
 					if(!containsBlockerFor(unit, adjacentSpace) && endPointToPath.get(adjacentSpace) == null) {
-						Path path = new Path(endPointToPath.get(prevPath.getEnd()));
-						path.add(adjacentSpace);
-						endPointToPath.put(adjacentSpace, path);
-						distanceToPaths.get((int)energy).add(path);
+						addPathToAdjacentSpace(endPointToPath, distanceToPaths, adjacentSpace, prevPath, energy);
 					}					
 				}
 									
@@ -46,7 +43,15 @@ public class PathUtil {
 		
 		return endPointToPath;
 	}
-
+	
+	private void addPathToAdjacentSpace(
+		Map<Space, Path> endPointToPath, Map<Integer, List<Path>> distanceToPaths, Space adjacentSpace, Path prevPath, int energy
+		) {
+		Path path = new Path(endPointToPath.get(prevPath.getEnd()));
+		path.add(adjacentSpace);
+		endPointToPath.put(adjacentSpace, path);
+		distanceToPaths.get(energy).add(path);
+	}
 	
 
 	private boolean containsBlockerFor(Unit unit, Space adjacentSpace) {
