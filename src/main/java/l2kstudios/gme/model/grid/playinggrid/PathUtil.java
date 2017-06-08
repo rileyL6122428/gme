@@ -30,7 +30,7 @@ public class PathUtil {
 
 			distanceToPaths.put((int)energy, new ArrayList<Path>());
 			
-			for(Path prevPath : distanceToPaths.get(energy - 1)) {
+			for(Path prevPath : distanceToPaths.get((int)(energy - 1))) {
 				for(Space adjacentSpace : prevPath.getEnd().getAdjacentSpaces()) {
 					if(!containsBlockerFor(unit, adjacentSpace) && endPointToPath.get(adjacentSpace) == null) {
 						Path path = new Path(endPointToPath.get(prevPath.getEnd()));
