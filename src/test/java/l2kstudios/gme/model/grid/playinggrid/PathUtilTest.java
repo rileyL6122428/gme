@@ -1,11 +1,10 @@
 package l2kstudios.gme.model.grid.playinggrid;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import java.util.Iterator;
+import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.Space;
@@ -27,48 +26,19 @@ public class PathUtilTest {
 		pathUtil.setPlayingGrid(playingGrid);
 	}
 	
-	@Ignore
-	@Test
-	public void pathToExists_spaceWithinUnitMoveRangeWithNoBlockers_returnsTrue() {
-		Unit unit = newUnitWithEnergySetTo(3);
-		playingGrid.place(unit, 0, 0);
-		
-		assertTrue(pathUtil.pathExistsToSpaceForUnit(playingGrid.getSpaceAt(3, 0), unit));		
-	}
-	
-	@Ignore
-	@Test
-	public void pathToExists_spaceOutOfUnitMoveRange_returnsFalse() {
-		Unit unit = newUnitWithEnergySetTo(3);
-		playingGrid.place(unit, 0, 0);
-		assertFalse(pathUtil.pathExistsToSpaceForUnit(playingGrid.getSpaceAt(4, 0), unit));		
-	}
-	
-	@Ignore
-	@Test
-	public void pathToExists_spaceWithinUnitMoveRangeWithBlockers_returnsFalse() {
-		Unit unit = newUnitWithEnergySetTo(3);
-		playingGrid.place(unit, 0, 0);
-		assertTrue(pathUtil.pathExistsToSpaceForUnit(playingGrid.getSpaceAt(3, 0), unit));		
-	}
-	
 //	@Ignore
 	@Test
-	public void directPath_onlyOnePathExists_returnsOnlyPossibleDirectPath() {
-		Unit unit = newUnitWithEnergySetTo(5);
-		playingGrid.place(unit, 0, 0);
+	public void moveablePaths_unitHasZeroEnergy_canOnlyMoveablePathIsToCurrentPosition() {
+		Unit unit = newUnitWithEnergySetTo(0);
 		
-		Path path = pathUtil.directPathToSpaceForUnit(playingGrid.getSpaceAt(5, 0), unit);
+		playingGrid.place(unit, 5, 5);
 		
-		assertEquals(6, path.getLength());
+		Map<Space, Path> moveablePaths = pathUtil.moveablePaths(unit);
 		
-		Iterator<Space> pathIterator = path.getIterator();
-		assertEquals(playingGrid.getSpaceAt(0, 0),pathIterator.next());
-		assertEquals(playingGrid.getSpaceAt(1, 0),pathIterator.next());
-		assertEquals(playingGrid.getSpaceAt(2, 0),pathIterator.next());
-		assertEquals(playingGrid.getSpaceAt(3, 0),pathIterator.next());
-		assertEquals(playingGrid.getSpaceAt(4, 0),pathIterator.next());
-		assertEquals(playingGrid.getSpaceAt(5, 0),pathIterator.next());
+		assertEquals(1, moveablePaths.keySet().size());
+		Path onlyPath = moveablePaths.get(unit.getOccupiedSpace());
+		assertEquals(unit.getOccupiedSpace(), onlyPath.getStart());
+//		assertEquals()
 	}
 	
 	private Unit newUnitWithEnergySetTo(long energyVal) {

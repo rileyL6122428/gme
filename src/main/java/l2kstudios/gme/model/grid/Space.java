@@ -1,5 +1,8 @@
 package l2kstudios.gme.model.grid;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Space {
 	
 	private Placeable occupier;
@@ -34,6 +37,25 @@ public class Space {
 
 	public boolean isAdjacentTo(Space space) {
 		return GridUtils.distanceBetween(getPosition(), space.getPosition()) == 1;
+	}
+
+	public List<Space> getAdjacentSpaces() {
+		Position position = getPosition();
+		List<Space> adjacentSpaces = new ArrayList<Space>();
+		
+		if(grid.isInBounds(position.getX(), position.getY() + 1))
+			adjacentSpaces.add(grid.getSpaceAt(position.getX(), position.getY() + 1));
+		
+		if(grid.isInBounds(position.getX(), position.getY() - 1))
+			adjacentSpaces.add(grid.getSpaceAt(position.getX(), position.getY() - 1));
+		
+		if(grid.isInBounds(position.getX() + 1, position.getY()))
+			adjacentSpaces.add(grid.getSpaceAt(position.getX() + 1, position.getY()));
+		
+		if(grid.isInBounds(position.getX() - 1, position.getY()))
+			adjacentSpaces.add(grid.getSpaceAt(position.getX() - 1, position.getY()));
+		
+		return adjacentSpaces;
 	}
 	
 }

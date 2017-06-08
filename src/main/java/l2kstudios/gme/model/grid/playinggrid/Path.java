@@ -17,6 +17,15 @@ public class Path {
 		orderedSpaces = new ArrayList<Space>();
 		containedSpaces = new HashSet<Space>();
 	}
+	
+	public Path() {}
+
+	public Path(Path path) {
+		Iterator<Space> pathIterator = path.getIterator();
+		while(pathIterator.hasNext()) {
+			add(pathIterator.next());
+		}
+	}
 
 	public void add(Space space) {
 		verifySpaceIsNotAlreadyInPath(space);
