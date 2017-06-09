@@ -2,7 +2,6 @@ package l2kstudios.gme.model.path;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,6 +9,11 @@ import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PathUtil {
+	
+	public Set<Space> moveableSpaces(Unit unit) {
+		Map<Space, Path> moveablePaths = moveablePaths(unit);
+		return new HashSet<Space>(moveablePaths.keySet());
+	}
 	
 	public Map<Space, Path> moveablePaths(Unit unit) {
 		final Map<Space, Path> endPointToPathMap = new HashMap<Space, Path>();
@@ -31,13 +35,6 @@ public class PathUtil {
 		return endPointToPathMap;
 	}
 	
-	public Set<Space> convertEndPointPathMapToSetOfSpaces(Map<Space, Path> endPointToPathMap) {
-		Set<Space> moveableSpaces = new HashSet<Space>(endPointToPathMap.keySet());
-		
-		endPointToPathMap.values().forEach(moveableSpaces::add);
-		
-		return moveableSpaces;
-	}
 	
 	private Path stationaryPath(Unit unit) {
 		Path stationaryPath = new Path();

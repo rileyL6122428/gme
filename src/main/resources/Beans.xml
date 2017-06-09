@@ -20,7 +20,7 @@
 		<property name="level">
 			<bean class="l2kstudios.gme.model.level.Level">
 				<property name="playingGrid">
-					<bean class="l2kstudios.gme.model.grid.PlayingGrid">
+					<bean class="l2kstudios.gme.model.grid.playinggrid.PlayingGrid">
 						<property name="spaces">
 							<list>
 								<list>
