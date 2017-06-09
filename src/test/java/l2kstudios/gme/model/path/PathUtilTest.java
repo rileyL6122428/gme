@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.grid.playinggrid;
+package l2kstudios.gme.model.path;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -10,6 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.path.Path;
+import l2kstudios.gme.model.path.PathUtil;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.testutils.SpacesFactory;
@@ -25,7 +28,6 @@ public class PathUtilTest {
 		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(12, 12));
 		
 		pathUtil = new PathUtil();
-		pathUtil.setPlayingGrid(playingGrid);
 	}
 	
 	@Test

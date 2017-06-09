@@ -8,6 +8,8 @@ import l2kstudios.gme.model.unit.Unit;
 
 public class Move extends Action {
 	
+	
+	
 	{
 		rangeOfEffect = new SingleSpace();
 	}

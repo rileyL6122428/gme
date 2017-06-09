@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.grid.playinggrid;
+package l2kstudios.gme.model.path;
 
 import java.util.ArrayList;
 import java.util.HashSet;

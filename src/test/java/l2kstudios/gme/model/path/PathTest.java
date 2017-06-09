@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.grid.playinggrid;
+package l2kstudios.gme.model.path;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -7,6 +7,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.path.Path;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 public class PathTest {
