@@ -6,13 +6,13 @@ import java.util.List;
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveAction;
 import l2kstudios.gme.model.grid.Space;
-import l2kstudios.gme.model.turn.Turn;
+import l2kstudios.gme.model.turn.PlayerControlledTurn;
 
 public class ActionInstanceMenu extends SingleRowActionInterface {
 	
-	private Turn turn;
+	private PlayerControlledTurn turn;
 	
-	public void initialize(Turn turn) {
+	public void initialize(PlayerControlledTurn turn) {
 		super.initialize(turn);
 		this.turn = turn;
 		List<Action> actions = turn.getPostMoveActions();

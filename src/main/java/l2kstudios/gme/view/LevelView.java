@@ -1,22 +1,15 @@
 package l2kstudios.gme.view;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
-import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
-import l2kstudios.gme.model.actioninterface.ActionInterface;
-import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.view.actioninterface.ActionInstanceMenuView;
-import l2kstudios.gme.view.actioninterface.ActionPlacementView;
-import l2kstudios.gme.view.actioninterface.PostMoveDecisionMenuView;
+import l2kstudios.gme.view.turn.TurnViewFactory;
 import l2kstudios.gme.view.unit.ActingUnitView;
-import l2kstudios.gme.view.unit.UnitGridAvatar;
 import l2kstudios.gme.view.unit.UnitView;
 
 public class LevelView extends View<Level>  {
@@ -25,7 +18,10 @@ public class LevelView extends View<Level>  {
 	private List<View<Unit>> unitViewList;
 	private View<Unit> actingUnitView;
 	private MoveOrderView moveOrderView;
-	private View<ActionInterface> actionInterfaceView;
+
+	
+	private View turnView;
+	private TurnViewFactory turnViewFactory;
 
 	public void draw() {
 		ctx.background(255, 255, 255);
@@ -33,15 +29,12 @@ public class LevelView extends View<Level>  {
 		drawUnitViews();
 		actingUnitView.draw();
 		moveOrderView.draw();
-		drawActionInterface();
+
+		if(model.turnIsOver((Turn)turnView.getModel())) {
+			turnView = turnViewFactory.newTurnView(model.getCurrentTurn());
+		}
+		turnView.draw();
 		
-	}
-	
-	private void drawActionInterface() {
-		if(model.getCurrentActionInterface() != actionInterfaceView.getModel()) {
-			setNextActionInterfaceView();			
-		} 
-		actionInterfaceView.draw();
 	}
 
 	private void drawUnitViews() {
@@ -55,20 +48,6 @@ public class LevelView extends View<Level>  {
 			else
 				unitView.draw();
 		}
-	}
-
-	private void setNextActionInterfaceView() {
-		ActionInterface actionInterface = model.getCurrentActionInterface();
-		if(actionInterface instanceof ActionInstanceMenu) {
-			actionInterfaceView = new ActionInstanceMenuView();
-		} else if(actionInterface instanceof ActionPlacementInterface) {
-			actionInterfaceView = new ActionPlacementView();			
-		} else if(actionInterface instanceof PostMoveDecisionMenu) {
-			actionInterfaceView = new PostMoveDecisionMenuView();
-		}
-		
-		actionInterfaceView.setDrawingContext(ctx);
-		actionInterfaceView.setModel(actionInterface);
 	}
 
 	public void setModel(Level model) {
@@ -88,9 +67,10 @@ public class LevelView extends View<Level>  {
 		actingUnitView.setLevel(model);
 		this.actingUnitView = actingUnitView;
 		
-		actionInterfaceView = new ActionPlacementView();
-		actionInterfaceView.setModel(model.getCurrentActionInterface());
-		actionInterfaceView.setDrawingContext(ctx);
+		turnViewFactory = new TurnViewFactory();
+		turnViewFactory.setDrawingContext(ctx);
+		
+		turnView = turnViewFactory.newTurnView(model.getCurrentTurn());
 	}
 
 	private void setupGridDrawingUtil() {

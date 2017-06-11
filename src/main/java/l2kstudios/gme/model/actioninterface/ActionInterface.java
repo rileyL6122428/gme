@@ -8,7 +8,7 @@ import l2kstudios.gme.model.grid.Cursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.RectangularGrid;
 import l2kstudios.gme.model.grid.Space;
-import l2kstudios.gme.model.turn.Turn;
+import l2kstudios.gme.model.turn.PlayerControlledTurn;
 
 public class ActionInterface extends RectangularGrid {
 	
@@ -16,8 +16,8 @@ public class ActionInterface extends RectangularGrid {
 	protected Position actingUnitPosition;
 	protected List<Space> chooseableSpaces;
 	
-	public void initialize(Turn turn) {
-		actingUnitPosition = turn.getActingUnitDisplaySpace().getPosition();
+	public void initialize(PlayerControlledTurn turn) {
+		actingUnitPosition = turn.getActingUnit().getPosition();
 	}
 	
 	public Position getCursorPosition() {
@@ -77,7 +77,6 @@ public class ActionInterface extends RectangularGrid {
 	}
 
 	public Position getActingUnitPosition() {
-		// TODO Auto-generated method stub
 		return actingUnitPosition;
 	}
 }

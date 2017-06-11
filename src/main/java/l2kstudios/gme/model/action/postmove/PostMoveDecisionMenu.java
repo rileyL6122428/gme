@@ -5,12 +5,12 @@ import java.util.List;
 
 import l2kstudios.gme.model.actioninterface.SingleRowActionInterface;
 import l2kstudios.gme.model.grid.Space;
-import l2kstudios.gme.model.turn.Turn;
+import l2kstudios.gme.model.turn.PlayerControlledTurn;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PostMoveDecisionMenu extends SingleRowActionInterface {
 	
-	private Turn turn;
+	private PlayerControlledTurn turn;
 	
 	public boolean select() {
 		PostMoveDecision decision = (PostMoveDecision) hoveredSpace().getOccupier();
@@ -18,7 +18,7 @@ public class PostMoveDecisionMenu extends SingleRowActionInterface {
 		return true;
 	}
 	
-	public void initialize(Turn turn) {
+	public void initialize(PlayerControlledTurn turn) {
 		super.initialize(turn);
 		this.turn = turn;
 		Unit actingUnit = turn.getActingUnit();

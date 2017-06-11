@@ -9,7 +9,7 @@ public class ActingUnitView extends UnitGridAvatar {
 	public void draw() {
 		unit = movementCycle.getActingUnit();
 		ctx.fill(0, 255, 0);
-		drawUnit(level.getActingUnitDisplaySpace().getPosition());
+		drawUnit(unit.getPosition());
 	}
 	
 	public void setLevel(Level level) {

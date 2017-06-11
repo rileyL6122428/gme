@@ -8,6 +8,7 @@ import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.movement.MovementCycle;
+import l2kstudios.gme.model.turn.PlayerControlledTurn;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnFactory;
 import l2kstudios.gme.model.unit.Unit;
@@ -48,8 +49,11 @@ public class Level implements Interactable, InitializingBean {
 				movementCycle.rebase(playingGrid.getUnits());
 				System.out.println("Defeated unit" + unit.toString());
 			}
-		}
-		
+		}	
+	}
+	
+	public boolean turnIsOver(Turn turn) {
+		return currentTurn != turn;
 	}
 
 	@Override
@@ -71,15 +75,8 @@ public class Level implements Interactable, InitializingBean {
 		return movementCycle;
 	}
 	
-	public ActionInterface getCurrentActionInterface() {
-		return currentTurn.getCurrentActionInterface();
-	}
-	
 	public Turn getCurrentTurn() {
 		return currentTurn;
 	}
 
-	public Space getActingUnitDisplaySpace() {
-		return currentTurn.getActingUnitDisplaySpace();
-	}
 }
