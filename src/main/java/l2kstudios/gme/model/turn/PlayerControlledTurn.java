@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import l2kstudios.gme.model.action.Action;
+import l2kstudios.gme.model.action.UnitActionFactory;
 import l2kstudios.gme.model.action.move.Move;
 import l2kstudios.gme.model.action.postmove.PostMoveAction;
 import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
@@ -33,6 +34,7 @@ public class PlayerControlledTurn implements Turn {
 	private Move move;
 	private PostMoveAction postMoveAction;
 	private Class postMoveActionType;
+	private UnitActionFactory unitActionFactory;
 
 	private Unit actingUnit;	
 	private PlayingGrid playingGrid;
@@ -84,7 +86,7 @@ public class PlayerControlledTurn implements Turn {
 				turnState = FINISHED;
 				break;
 			default:
-				throw new RuntimeException("ILLEGAL STATE IN TURN");
+				throw new RuntimeException("ILLEGAL TURN STATE");
 		}
 		
 		actionInterface.initialize(this);	
@@ -127,6 +129,24 @@ public class PlayerControlledTurn implements Turn {
 		postMoveAction.execute();
 	}
 	
+	public void update() { }
+	
+	public List<Action> getPostMoveActions() {
+		return unitActionFactory.getPostMoveActions(actingUnit, postMoveActionType);
+	}
+	
+	public void afterPropertiesSet() {
+		move = new Move();
+		move.setExecutingUnit(actingUnit);
+		move.setPlayingGrid(playingGrid);
+		
+		actionInterface = new ActionPlacementInterface();
+		actionInterface.initialize(this);
+		
+		unitActionFactory = new UnitActionFactory();
+		unitActionFactory.setPlayingGrid(playingGrid);
+	}
+	
 	public void setActingUnit(Unit unit) {
 		this.actingUnit = unit;
 	}
@@ -147,14 +167,6 @@ public class PlayerControlledTurn implements Turn {
 		return playingGrid;
 	}
 	
-	public void afterPropertiesSet() {
-		move = new Move();
-		move.setExecutingUnit(actingUnit);
-		move.setPlayingGrid(playingGrid);
-		actionInterface = new ActionPlacementInterface();
-		actionInterface.initialize(this);
-	}
-
 	public Action getPlacingAction() {
 		return (postMoveAction == null) ? move : postMoveAction;		
 	}
@@ -167,32 +179,8 @@ public class PlayerControlledTurn implements Turn {
 		this.postMoveActionType = postMoveActionType;
 	}
 
-	public List<Action> getPostMoveActions() {
-		List<Class> actionTypes = actingUnit.getActionTypes(postMoveActionType);
-		
-		final List<Action> postMoveActions = new ArrayList<Action>();
-		actionTypes.forEach((ActionType) -> {
-			try {
-				Action action = (Action) ActionType.newInstance();
-				action.setExecutingUnit(actingUnit);
-				action.setPlayingGrid(playingGrid);
-				postMoveActions.add(action);
-				action.setSpaceToExecuteFrom(move.getSpaceToExecuteAt());
-				
-			} catch (Exception e) { e.printStackTrace(); }
-		});
-		
-		return postMoveActions;
-	}
-
 	public void setPostMoveAction(PostMoveAction action) {
 		postMoveAction = action;
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
