@@ -1,10 +1,8 @@
 package l2kstudios.gme.model.turn;
 
-import static l2kstudios.gme.model.turn.PlayerControlledTurn.TurnState.CHOOSING_POST_MOVE_ACTION_INSTANCE;
-import static l2kstudios.gme.model.turn.PlayerControlledTurn.TurnState.CHOOSING_POST_MOVE_ACTION_TYPE;
-import static l2kstudios.gme.model.turn.PlayerControlledTurn.TurnState.FINISHED;
-import static l2kstudios.gme.model.turn.PlayerControlledTurn.TurnState.PLACING_MOVE;
-import static l2kstudios.gme.model.turn.PlayerControlledTurn.TurnState.PLACING_POST_MOVE_ACTION;
+
+import static l2kstudios.gme.model.turn.PlayerControlledTurn.TurnState.*;
+import static l2kstudios.gme.model.turn.PlayerControlledTurn.SelectionContext.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +29,10 @@ public class PlayerControlledTurn implements Turn {
 		FINISHED
 	}
 	
+	enum SelectionContext {
+		FROM_SELECT_INPUT, FROM_UNDO_INPUT
+	}
+	
 	private Move move;
 	private PostMoveAction postMoveAction;
 	private Class postMoveActionType;
@@ -41,86 +43,7 @@ public class PlayerControlledTurn implements Turn {
 	private ActionInterface actionInterface;
 	
 	private TurnState turnState = PLACING_MOVE;
-
-	@Override
-	public void receiveInput(Input input) {
-		switch(input) {
-		case UP:    
-			actionInterface.moveCursorUp(); 
-			break;
-		case RIGHT: 
-			actionInterface.moveCursorRight(); 
-			break;
-		case LEFT:
-			actionInterface.moveCursorLeft();
-			break;
-		case DOWN:
-			actionInterface.moveCursorDown();
-			break;
-		case SPACE:
-			if(actionInterface.select()) setNextActionInterface();
-			break;
-		case BACK:
-			setPreviousActionInterface();
-			break;
-		}
-		
-	}
-
-	private void setNextActionInterface() {
-		switch(turnState) {
-			case PLACING_MOVE: 
-				move.execute();
-				actionInterface = new PostMoveDecisionMenu();
-				turnState = CHOOSING_POST_MOVE_ACTION_TYPE;
-				break;
-			case CHOOSING_POST_MOVE_ACTION_TYPE: 
-				actionInterface = new ActionInstanceMenu();
-				turnState = CHOOSING_POST_MOVE_ACTION_INSTANCE;
-				break;
-			case CHOOSING_POST_MOVE_ACTION_INSTANCE:
-				actionInterface = new ActionPlacementInterface();
-				turnState = PLACING_POST_MOVE_ACTION;
-				break;
-			case PLACING_POST_MOVE_ACTION:
-				turnState = FINISHED;
-				break;
-			default:
-				throw new RuntimeException("ILLEGAL TURN STATE");
-		}
-		
-		actionInterface.initialize(this);	
-	}
 	
-	private void setPreviousActionInterface() {
-		switch(turnState) {
-			case PLACING_MOVE: 
-				break;
-			case CHOOSING_POST_MOVE_ACTION_TYPE: 
-				move.undo();
-				actionInterface = new ActionPlacementInterface();
-				actionInterface.initialize(this);
-				turnState = PLACING_MOVE;
-				break;
-			case CHOOSING_POST_MOVE_ACTION_INSTANCE:
-				postMoveActionType = null;
-				actionInterface = new PostMoveDecisionMenu();
-				actionInterface.initialize(this);
-				turnState = CHOOSING_POST_MOVE_ACTION_TYPE;
-				break;
-				
-			case PLACING_POST_MOVE_ACTION:
-				postMoveAction = null;
-				actionInterface = new ActionInstanceMenu();
-				actionInterface.initialize(this);
-				turnState = CHOOSING_POST_MOVE_ACTION_INSTANCE;
-				break;
-				
-			default:
-				throw new RuntimeException("ILLEGAL STATE IN TURN");
-		}
-	}
-
 	public boolean readyToCommit() {
 		return turnState == FINISHED;
 	}
@@ -129,22 +52,117 @@ public class PlayerControlledTurn implements Turn {
 		postMoveAction.execute();
 	}
 	
-	public void update() { }
-	
 	public List<Action> getPostMoveActions() {
 		return unitActionFactory.getPostMoveActions(actingUnit, postMoveActionType);
 	}
 	
-	public void afterPropertiesSet() {
+	public void update() { }
+
+	public void receiveInput(Input input) {
+		switch(input) {
+			case UP: 
+				actionInterface.moveCursorUp();                  
+				break;
+			case RIGHT: 
+				actionInterface.moveCursorRight();
+				break;
+			case LEFT: 
+				actionInterface.moveCursorLeft();
+				break;
+			case DOWN: 
+				actionInterface.moveCursorDown();
+				break;
+			case SPACE:
+				if(actionInterface.select()) advanceTurnState(); 
+				break;
+			case BACK: 
+				regressTurnState();
+				break;
+		}
+		
+	}
+
+	private void advanceTurnState() {
+		switch(turnState) {
+			case PLACING_MOVE: 
+				transitionToChoosingPostMoveActionTypeSelection(FROM_SELECT_INPUT);
+				break;
+			case CHOOSING_POST_MOVE_ACTION_TYPE: 
+				transitionToActionInstanceSelection(FROM_SELECT_INPUT);
+				break;
+			case CHOOSING_POST_MOVE_ACTION_INSTANCE:
+				transitionToPlacingPostMoveAction(FROM_SELECT_INPUT);
+				break;
+			case PLACING_POST_MOVE_ACTION:
+				turnState = FINISHED;
+				break;
+		}
+	}
+	
+	private void regressTurnState() {
+		switch(turnState) {
+			case PLACING_MOVE: 
+				break;
+			case CHOOSING_POST_MOVE_ACTION_TYPE: 
+				transitionToMoveSelection(FROM_UNDO_INPUT); 
+				break;
+			case CHOOSING_POST_MOVE_ACTION_INSTANCE:
+				transitionToChoosingPostMoveActionTypeSelection(FROM_UNDO_INPUT);
+				break;
+			case PLACING_POST_MOVE_ACTION:
+				transitionToActionInstanceSelection(FROM_UNDO_INPUT);
+				break;				
+		}
+		
+	}
+	
+	private void transitionToMoveSelection(SelectionContext selectionContext) {
+		if(selectionContext == FROM_UNDO_INPUT) 
+			move.undo();
+		else if(selectionContext == FROM_SELECT_INPUT)
+			initializeMove();			
+		
+		setActionInterface(new ActionPlacementInterface());
+		turnState = PLACING_MOVE;
+	}
+	
+	private void transitionToChoosingPostMoveActionTypeSelection(SelectionContext selectionContext) {
+		if(selectionContext == FROM_UNDO_INPUT) 
+			postMoveActionType = null;
+		 else if(selectionContext == FROM_SELECT_INPUT) 
+			move.execute();
+		
+		setActionInterface(new PostMoveDecisionMenu());
+		turnState = CHOOSING_POST_MOVE_ACTION_TYPE;
+	}
+	
+	private void transitionToActionInstanceSelection(SelectionContext selectionContext) {
+		if(selectionContext == FROM_UNDO_INPUT) 
+			postMoveAction = null;
+		
+		setActionInterface(new ActionInstanceMenu());
+		turnState = CHOOSING_POST_MOVE_ACTION_INSTANCE;
+	}
+	
+	private void transitionToPlacingPostMoveAction(SelectionContext selectionContext) {
+		setActionInterface(new ActionPlacementInterface());
+		turnState = PLACING_POST_MOVE_ACTION;
+	}
+	
+	private void initializeMove() {
 		move = new Move();
 		move.setExecutingUnit(actingUnit);
 		move.setPlayingGrid(playingGrid);
-		
-		actionInterface = new ActionPlacementInterface();
-		actionInterface.initialize(this);
-		
+	}
+	
+	public void afterPropertiesSet() {
+		initializeUnitActionFactory();
+		transitionToMoveSelection(FROM_SELECT_INPUT);
+	}
+	
+	private void initializeUnitActionFactory() {
 		unitActionFactory = new UnitActionFactory();
-		unitActionFactory.setPlayingGrid(playingGrid);
+		unitActionFactory.setPlayingGrid(playingGrid);		
 	}
 	
 	public void setActingUnit(Unit unit) {
@@ -181,6 +199,11 @@ public class PlayerControlledTurn implements Turn {
 
 	public void setPostMoveAction(PostMoveAction action) {
 		postMoveAction = action;
+	}
+	
+	private void setActionInterface(ActionInterface actionInterface) {
+		this.actionInterface = actionInterface;
+		this.actionInterface.initialize(this);
 	}
 
 }
