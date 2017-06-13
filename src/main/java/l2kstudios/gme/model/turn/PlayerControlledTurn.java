@@ -33,6 +33,8 @@ public class PlayerControlledTurn implements Turn {
 		FROM_SELECT_INPUT, FROM_UNDO_INPUT
 	}
 	
+	private PhaseSequence phaseSequence;
+	
 	private Move move;
 	private PostMoveAction postMoveAction;
 	private Class postMoveActionType;
@@ -45,7 +47,8 @@ public class PlayerControlledTurn implements Turn {
 	private TurnState turnState = PLACING_MOVE;
 	
 	public boolean readyToCommit() {
-		return turnState == FINISHED;
+//		return turnState == FINISHED;
+		return phaseSequence.isFinished();
 	}
 	
 	public void commit() {
@@ -73,10 +76,12 @@ public class PlayerControlledTurn implements Turn {
 				actionInterface.moveCursorDown();
 				break;
 			case SPACE:
-				if(actionInterface.select()) advanceTurnState(); 
+//				if(actionInterface.select()) advanceTurnState();
+				if(actionInterface.select()) phaseSequence.advance();
 				break;
 			case BACK: 
-				regressTurnState();
+//				regressTurnState();
+				phaseSequence.regress();
 				break;
 		}
 		
@@ -157,8 +162,57 @@ public class PlayerControlledTurn implements Turn {
 	
 	public void afterPropertiesSet() {
 		initializeUnitActionFactory();
-		transitionToMoveSelection(FROM_SELECT_INPUT);
+//		transitionToMoveSelection(FROM_SELECT_INPUT);
+		initializeMove();
+		setActionInterface(new ActionPlacementInterface());
+		initializePhaseSequence();
 	}
+	
+	private void transitionToPostMovePhase() {
+		move.execute();
+		setActionInterface(new PostMoveDecisionMenu());
+	}
+	
+	private void initializePhaseSequence() {
+		phaseSequence = new PhaseSequence();
+		
+		phaseSequence.add(new MovePlacementPhase());
+		phaseSequence.add(new PostMoveActionTypeSelectionPhase());
+		phaseSequence.add(new PostMoveActionInstanceSelectionPhase());
+		phaseSequence.add(new PostMoveActionPlacementPhase());
+	}
+	
+	class MovePlacementPhase extends Phase {{
+		setAdvanceCallback(() -> {
+			move.execute();
+			setActionInterface(new PostMoveDecisionMenu());
+		});
+	}}
+	
+	class PostMoveActionTypeSelectionPhase extends Phase {{
+		setAdvanceCallback( () -> setActionInterface(new ActionInstanceMenu()) );
+		
+		setRegressionCallback(() -> {
+			move.undo();			
+			setActionInterface(new ActionPlacementInterface());
+		});
+	}}
+	
+	class PostMoveActionInstanceSelectionPhase extends Phase {{
+		setAdvanceCallback( () -> setActionInterface(new ActionPlacementInterface()) );
+		
+		setRegressionCallback(() -> {
+			postMoveActionType = null;
+			setActionInterface(new PostMoveDecisionMenu());
+		});
+	}}
+	
+	class PostMoveActionPlacementPhase extends Phase {{
+		setRegressionCallback(() -> {
+			postMoveAction = null;
+			setActionInterface(new ActionInstanceMenu());
+		});
+	}}
 	
 	private void initializeUnitActionFactory() {
 		unitActionFactory = new UnitActionFactory();

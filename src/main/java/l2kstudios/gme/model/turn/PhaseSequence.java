@@ -12,6 +12,8 @@ public class PhaseSequence {
 		
 		current.invokeAdvanceCallback();
 		current = current.getNext();
+		
+		if(current == null) finished = true;
 	}
 	
 	public void regress() {
@@ -39,5 +41,9 @@ public class PhaseSequence {
 		phase.setPrevious(terminal);
 		terminal = phase;
 	}
-	
+
+	public boolean isFinished() {
+		return finished;
+	}
+
 }

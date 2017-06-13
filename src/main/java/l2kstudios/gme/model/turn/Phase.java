@@ -9,7 +9,8 @@ public class Phase {
 	private Runnable regressionCallback;
 	
 	public void invokeAdvanceCallback() {
-		advanceCallback.run();
+		if(advanceCallback != null)
+			advanceCallback.run();
 	}
 	
 	public void setAdvanceCallback(Runnable advanceCallback) {
