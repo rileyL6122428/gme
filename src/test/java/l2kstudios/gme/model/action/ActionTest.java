@@ -33,13 +33,13 @@ public class ActionTest {
 		
 		nullSettingAction = newNullSettingAction();
 		nullSettingAction.setExecutingUnit(executingUnit);
+		nullSettingAction.setRangeOfEffect(new Cross(1));
 		nullSettingAction.setPlayingGrid(playingGrid);
 	}
 	
 	@Test
 	public void execute_affectSpaceSetsOccupierToNull_callSetsOccupierOfAllSpacesInRangeToNull() {
 		nullSettingAction.setSpaceToExecuteAt(playingGrid.getSpaceAt(1, 1));
-		nullSettingAction.setRangeOfEffect(new Cross(1));
 		nullSettingAction.execute();
 		
 		assertNull(playingGrid.getUnitAt(0, 1));

@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import l2kstudios.gme.model.unit.ConsummableStat;
@@ -89,14 +88,14 @@ public class MovementCycleTest {
 		}
 	}
 	
-	private Unit unitWithHealthAndSpeedSetTo(long health, long speed) {
+	private Unit unitWithHealthAndSpeedSetTo(long newUnitHealth, long newUnitSpeed) {
 		return new Unit(){{
 			setHealth(new ConsummableStat() {{
-				setVal(health);
-				setCap(Math.max(1, health));
+				setVal(newUnitHealth);
+				setCap(Math.max(1, newUnitHealth));
 			}});
 			
-			setSpeed(speed);
+			setSpeed(newUnitSpeed);
 		}};
 	}
 
