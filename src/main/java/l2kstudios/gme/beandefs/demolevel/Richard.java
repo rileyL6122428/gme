@@ -15,13 +15,15 @@ import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
 import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
+import l2kstudios.gme.model.unit.BasicConciousness;
+import l2kstudios.gme.model.unit.ComputerControlledUnit;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.image.SampleUnitImage;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Richard extends Unit {
+public class Richard extends ComputerControlledUnit {
 	
 	
 	{
@@ -56,6 +58,12 @@ public class Richard extends Unit {
 		actionClasses.put(Wait.class, new ArrayList<Class>(){{
 			add(BasicWait.class);
 		}});
+		
+		Unit richardInstance = this;
+		conciousness = new BasicConciousness(){{
+			setUnit(richardInstance);
+		}};
+		
 		
 	}
 	

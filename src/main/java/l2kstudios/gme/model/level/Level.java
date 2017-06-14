@@ -20,6 +20,17 @@ public class Level implements Interactable, InitializingBean {
 	private Turn currentTurn;
 	
 	private MovementCycle movementCycle;
+	
+	public void update() {
+		currentTurn.update();
+		
+		if(currentTurn.readyToCommit()) {
+			currentTurn.commit();
+			clearOutDefeatedUnits();
+			movementCycle.shift();
+			currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
+		}
+	}
 
 	@Override
 	public void receiveInput(Input input) {

@@ -21,7 +21,7 @@ public class UnitActionFactory {
 		return postMoveActions;
 	}
 	
-	private Action instantiateAction(Unit unit, Class actionType) {
+	public Action instantiateAction(Unit unit, Class actionType) {
 		try {
 			Action action = (Action) actionType.newInstance();
 			action.setExecutingUnit(unit);

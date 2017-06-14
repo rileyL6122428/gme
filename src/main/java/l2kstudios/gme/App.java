@@ -43,6 +43,7 @@ public class App extends PApplet implements InitializingBean {
     
     public void draw() {
     	levelView.draw();
+    	level.update();
     }
     
     public void keyPressed() {

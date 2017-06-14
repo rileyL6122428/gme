@@ -6,6 +6,7 @@ import java.util.List;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.model.turn.ComputerControlledTurn;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.view.turn.TurnViewFactory;
@@ -29,11 +30,16 @@ public class LevelView extends View<Level>  {
 		drawUnitViews();
 		actingUnitView.draw();
 		moveOrderView.draw();
-
-		if(model.turnIsOver((Turn)turnView.getModel())) {
-			turnView = turnViewFactory.newTurnView(model.getCurrentTurn());
+		
+		Turn turn = model.getCurrentTurn();
+		if(!(turn instanceof ComputerControlledTurn)) {
+			if(model.turnIsOver((Turn)turnView.getModel())) 
+				turnView = turnViewFactory.newTurnView(model.getCurrentTurn());
+			
+			
+				turnView.draw();
+			
 		}
-		turnView.draw();
 		
 	}
 
