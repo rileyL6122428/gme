@@ -1,6 +1,5 @@
 package l2kstudios.gme.model.unit;
 
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 
 public class ComputerControlledUnit extends Unit {
@@ -19,7 +18,7 @@ public class ComputerControlledUnit extends Unit {
 		return conciousness.getPostMoveActionInstanceClass();
 	}
 	
-	public Space getPostMoveActionPosition() {
+	public Space getPostMoveActionSpace() {
 		return conciousness.getPostMoveActionSpace();
 	}
 }

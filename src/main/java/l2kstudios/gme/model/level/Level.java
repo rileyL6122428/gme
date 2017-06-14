@@ -23,28 +23,25 @@ public class Level implements Interactable, InitializingBean {
 	
 	public void update() {
 		currentTurn.update();
-		
-		if(currentTurn.readyToCommit()) {
-			currentTurn.commit();
-			clearOutDefeatedUnits();
-			movementCycle.shift();
-			currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
-		}
+		commitTurnIfReadyToCommit();
 	}
 
 	@Override
 	public void receiveInput(Input input) {
 		currentTurn.receiveInput(input);
+		commitTurnIfReadyToCommit();
 		
+		if(finished()) {
+			System.out.println("LEVEL FINISHED");
+		}
+	}
+	
+	private void commitTurnIfReadyToCommit() {
 		if(currentTurn.readyToCommit()) {
 			currentTurn.commit();
 			clearOutDefeatedUnits();
 			movementCycle.shift();
 			currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
-		}
-		
-		if(finished()) {
-			System.out.println("LEVEL FINISHED");
 		}
 	}
 

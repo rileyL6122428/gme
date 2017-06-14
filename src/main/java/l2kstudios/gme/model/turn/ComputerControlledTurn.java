@@ -93,7 +93,7 @@ public class ComputerControlledTurn implements Turn {
 	
 	class PostMoveActionPlacementPhase extends Phase {{
 		setAdvanceCallback(() -> {
-			postMoveAction.setSpaceToExecuteAt(getActingUnit().getPostMoveActionPosition());
+			postMoveAction.setSpaceToExecuteAt(getActingUnit().getPostMoveActionSpace());
 		});
 	}}
 	
