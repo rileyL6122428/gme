@@ -6,3 +6,8 @@
 3. Refactor and test Enemy Unit Turn
 4. fix broken tests
 5. add tests to previous domain
+
+**WHAT NEXT?**
+
+Add Unmoveable spaces
+Make game Demo
