@@ -24,9 +24,9 @@ public class ActionPlacementInterface extends ActionInterface {
 	
 	public void initialize(PlayerControlledTurn turn) {
 		this.action = turn.getPlacingAction();
-		setSpaces(turn.getPlayingGrid().getSpaces());
+		setSpaces(turn.getPlayingGrid());
 		setChooseableSpaces(turn.getPlayingGrid());
-		cursor.setPosition(turn.getActingUnit().getPosition());
+		cursor.setPosition(action.getSpaceToExecuteFrom());
 	}
 	
 	private void setChooseableSpaces(PlayingGrid playingGrid) {
@@ -44,12 +44,6 @@ public class ActionPlacementInterface extends ActionInterface {
 		}
 		
 		return false;
-	}
-	
-	
-	public void initialize() {
-		Unit actingUnit = action.getExecutingUnit();
-		moveCursorTo(actingUnit.getPosition());
 	}
 
 	public Range<Integer> getExectuionRange() {

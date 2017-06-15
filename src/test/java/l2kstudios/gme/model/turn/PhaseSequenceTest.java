@@ -1,9 +1,10 @@
 package l2kstudios.gme.model.turn;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class PhaseSequenceTest {
@@ -71,16 +72,24 @@ public class PhaseSequenceTest {
 		assertAdvanceFlagsMatch(true, false, false);
 	}
 	
-	@Ignore
 	@Test
 	public void isFinished_allPhasesNotCompleted_returnsFalse() {
-		
+		assertFalse(phaseSequence.isFinished());
+		phaseSequence.advance();
+		assertFalse(phaseSequence.isFinished());
+		phaseSequence.regress();
+		assertFalse(phaseSequence.isFinished());
+		phaseSequence.advance();
+		phaseSequence.advance();
+		assertFalse(phaseSequence.isFinished());
 	}
 	
-	@Ignore
 	@Test
 	public void isFinished_allPhasesCompleted_returnsTrue() {
-		
+		phaseSequence.advance();
+		phaseSequence.advance();
+		phaseSequence.advance();
+		assertTrue(phaseSequence.isFinished());
 	}
 	
 	private void assertAdvanceFlagsMatch(boolean flag1Expected, boolean flag2Expected, boolean flag3Expected) {

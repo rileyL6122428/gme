@@ -1,21 +1,13 @@
 package l2kstudios.gme.model.grid.playinggrid;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import l2kstudios.gme.model.grid.Position;
-import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
-import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.testutils.SpacesFactory;
 

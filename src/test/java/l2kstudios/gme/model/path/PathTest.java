@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
-import l2kstudios.gme.model.path.Path;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 public class PathTest {

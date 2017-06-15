@@ -56,6 +56,10 @@ public class RectangularGrid implements TwoDimensionalGrid {
 		return spaces;
 	}
 	
+	public void setSpaces(RectangularGrid grid) {
+		setSpaces(grid.getSpaces());
+	}
+	
 	public void setSpaces(List<List<Space>> spaces) {
 		this.spaces = spaces;
 		validateDimensions();

@@ -38,6 +38,10 @@ public class Space {
 	public boolean isAdjacentTo(Space space) {
 		return GridUtils.distanceBetween(getPosition(), space.getPosition()) == 1;
 	}
+	
+	public boolean hasCoordinates(int x, int y) {
+		return getPosition().hasCoordinates(x, y);
+	}
 
 	public List<Space> getAdjacentSpaces() {
 		Position position = getPosition();

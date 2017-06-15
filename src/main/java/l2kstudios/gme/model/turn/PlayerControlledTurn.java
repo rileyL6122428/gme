@@ -69,6 +69,7 @@ public class PlayerControlledTurn implements Turn {
 		move = new Move();
 		move.setExecutingUnit(actingUnit);
 		move.setPlayingGrid(playingGrid);
+		move.setSpaceToExecuteFrom(actingUnit.getOccupiedSpace());
 	}
 	
 	private void initializePhaseSequence() {

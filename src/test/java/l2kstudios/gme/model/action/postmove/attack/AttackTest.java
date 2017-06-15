@@ -4,14 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 
-@RunWith(PowerMockRunner.class)
 public class AttackTest {
 	
 	private Attack attack;

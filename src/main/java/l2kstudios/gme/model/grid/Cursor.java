@@ -12,4 +12,8 @@ public class Cursor {
 		this.position = position;
 	}
 	
+	public void setPosition(Space space) {
+		this.position = space.getPosition();
+	}
+	
 }

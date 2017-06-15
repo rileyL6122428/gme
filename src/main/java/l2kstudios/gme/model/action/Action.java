@@ -65,6 +65,10 @@ public abstract class Action extends Placeable {
 		return spaceToExecuteAt;
 	}
 	
+	public Space getSpaceToExecuteFrom() {
+		return spaceToExecuteFrom;
+	}
+	
 	public String getName() {
 		return this.getClass().getSimpleName();
 	}

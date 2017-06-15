@@ -1,12 +1,10 @@
 package l2kstudios.gme.model.action.rangeofeffect;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.Position;
-import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
-import l2kstudios.gme.testutils.SpacesFactory;
 
 public class DeltaTest {
 	

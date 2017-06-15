@@ -12,7 +12,6 @@ import l2kstudios.gme.model.unit.Unit;
 public class Move extends Action {
 	
 	private Set<Space> moveableSpaces;
-	private Space spaceOccupiedBeforeMove;
 	
 	{
 		rangeOfEffect = new SingleSpace();
@@ -20,7 +19,6 @@ public class Move extends Action {
 
 	@Override
 	public boolean ableToExecuteAt(Space space) {
-//		return getExecutingUnit().canMoveTo(space);
 		return moveableSpaces.contains(space);
 	}
 
@@ -33,11 +31,10 @@ public class Move extends Action {
 	public void setExecutingUnit(Unit unit) {
 		super.setExecutingUnit(unit);
 		moveableSpaces = new PathUtil().moveableSpaces(unit);
-		spaceOccupiedBeforeMove = unit.getOccupiedSpace();
 	}
 
 	public void undo() {
-		executingUnit.moveTo(spaceOccupiedBeforeMove);
+		executingUnit.moveTo(spaceToExecuteFrom);
 		setSpaceToExecuteAt(null);
 	}
 }
