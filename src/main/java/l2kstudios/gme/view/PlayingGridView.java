@@ -21,6 +21,7 @@ public class PlayingGridView extends View<PlayingGrid> {
 		ctx.fill(0);
 		drawHorizontalGridLines();
 		drawVerticalGridLines();
+		drawUnoccupiableSpaces();
 	}
 
 	private void drawVerticalGridLines() {
@@ -38,4 +39,16 @@ public class PlayingGridView extends View<PlayingGrid> {
 	public void setGridDrawingUtil(GridDrawingUtil gridDrawingUtil) {
 		this.gridDrawingUtil = gridDrawingUtil;
 	}
+	
+	private void drawUnoccupiableSpaces() {
+		ctx.fill(0);
+		
+		model.forEachSpace((space) -> {
+			if(!space.isOccupiable())
+				gridDrawingUtil.drawRectAt(space.getPosition());
+		});
+		
+		ctx.fill(255);
+	}
+	
 }

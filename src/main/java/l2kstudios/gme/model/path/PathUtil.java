@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PathUtil {
@@ -53,10 +54,12 @@ public class PathUtil {
 	
 
 	private boolean containsBlockerFor(Unit unit, Space adjacentSpace) {
+		//TODO refactor
+		PlayingGridSpace space = (PlayingGridSpace)adjacentSpace;
+		if(!space.isOccupiable()) return true;
+		
 		if(!adjacentSpace.isOccupied()) return false;
-		
 		if(!(adjacentSpace.getOccupier() instanceof Unit)) return true;
-		
 		Unit occupyingUnit = (Unit) adjacentSpace.getOccupier();
 		return unit.getTeam() != occupyingUnit.getTeam();
 	}

@@ -19,91 +19,10 @@
 	<bean id="app" class="${APP}" scope="singleton" >
 		<property name="level">
 			<bean class="l2kstudios.gme.model.level.Level">
-				<property name="playingGrid">
-					<bean class="l2kstudios.gme.model.grid.playinggrid.PlayingGrid">
-						<property name="spaces">
-							<list>
-								<list>
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-								</list>
-								<list>
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-								</list>
-								<list>
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-								</list>
-								
-								<list>
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" >
-										<property name="occupier">
-											<bean class="l2kstudios.gme.beandefs.demolevel.Asbel" />
-										</property>
-									</bean>
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" >
-										<property name="occupier">
-											<bean class="l2kstudios.gme.beandefs.demolevel.Richard" />
-										</property>
-									</bean>
-								</list>
-								
-								<list>
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-								</list>
-								<list>
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-									<bean class="${SPACE}" />
-								</list>
-							</list>
-						</property>
-					</bean> 
+				<property name="playingGrid" >
+					<bean class="l2kstudios.gme.beandefs.demolevel.DemoPlayingGrid" />
 				</property>
-			</bean>		
+			</bean>
 		</property>
 		
 		<property name="controller" >

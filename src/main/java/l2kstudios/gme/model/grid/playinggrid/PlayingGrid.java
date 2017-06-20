@@ -2,10 +2,7 @@ package l2kstudios.gme.model.grid.playinggrid;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.grid.Position;
@@ -18,7 +15,7 @@ public class PlayingGrid extends RectangularGrid {
 	public List<Unit> getUnits() {
 		List<Unit> units = new ArrayList<Unit>();
 		
-		forEachSpace((Space space) -> {
+		forEachSpace((space) -> {
 			if(space.isOccupied() && space.getOccupier() instanceof Unit) 
 				units.add((Unit) space.getOccupier());
 		});
@@ -42,19 +39,35 @@ public class PlayingGrid extends RectangularGrid {
 		return (Unit)getSpaces().get(y).get(x).getOccupier();
 	}
 	
-	public Space getSpaceAt(int x, int y) {
-		return getSpaces().get(y).get(x);
+	public PlayingGridSpace getSpaceAt(int x, int y) {
+		return (PlayingGridSpace)getSpaces().get(y).get(x);
 	}
 	
-	public void forEachSpace(Consumer<Space> consumer) {
+	public void forEachSpace(Consumer<PlayingGridSpace> consumer) {
 		for(List<Space> row : spaces) {
 			for(Space space : row) {
-				consumer.accept(space);
+				consumer.accept((PlayingGridSpace)space);
 			}
 		}
 	}
 	
 	public void clearSpace(Position position) {
 		getSpaceAt(position).setOccupier(null);
+	}
+	
+	public void setSpaces(List<List<Space>> spaces) {
+		validateSpacesArePlayingGridSpaces(spaces);
+		super.setSpaces(spaces);
+	}
+
+	private void validateSpacesArePlayingGridSpaces(List<List<Space>> spaces) {
+		spaces.forEach(this::validateRowContainsPlayingGridSpaces);
+	}
+	
+	private void validateRowContainsPlayingGridSpaces(List<Space> row) {
+		row.forEach((space) -> {
+			if(!(space instanceof PlayingGridSpace)) 
+				throw new RuntimeException("ONLY PLAYING GRID SPACES CAN BE PLUGGED INTO A PLAYING GRID");
+		});
 	}
 }
