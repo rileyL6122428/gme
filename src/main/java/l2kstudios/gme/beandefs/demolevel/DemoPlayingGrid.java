@@ -10,6 +10,8 @@ public class DemoPlayingGrid extends PlayingGrid {
 		
 		getSpaceAt(1, 1).setOccupiable(false);
 		getSpaceAt(4, 0).setOccupiable(false);
+		getSpaceAt(4, 5).setOccupiable(false);
+		
 		
 		new Asbel().place(getSpaceAt(4, 4));
 		new Richard().place(getSpaceAt(6, 6));
