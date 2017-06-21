@@ -18,3 +18,23 @@ Three good units, 6 baddies
 		four stock physical
 		One flimsy healer
 		One leader unit   
+		
+		
+	PlayingGrid (mountain pass)
+	
+	 ------------------------------
+	|         xxxx xxxxxx  xxxxx
+	|                        xxx
+	|
+	|
+	|     xxxxxxxxxxxx        
+	 ------------------------------
+	 
+	 
+ #Action Items (main target, begin undoing code rot)
+ 	0. PlayingGridSpace 
+ 		- Clean up
+ 	1. Path Util
+ 		- Clean up
+ 		- add method for traversable spaces and moveable spaces
+	2. Unit Animation engines 

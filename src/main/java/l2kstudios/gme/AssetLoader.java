@@ -18,5 +18,11 @@ public class AssetLoader {
     	
     	PImage richardImage = ctx.loadImage("/Users/rileylittlefield/Documents/workspace/gme/src/main/resources/images/sample_tales_of_richard_sprite.jpg");
     	SampleUnitImage.setRichardImage(richardImage);
+    	
+    	PImage estelleImage = ctx.loadImage("/Users/rileylittlefield/Documents/workspace/gme/src/main/resources/images/estelle.jpg");
+    	SampleUnitImage.setEstelleImage(estelleImage);
+    	
+    	PImage sophieImage = ctx.loadImage("/Users/rileylittlefield/Documents/workspace/gme/src/main/resources/images/Sophie.jpg");
+    	SampleUnitImage.setSophieImage(sophieImage);
 	}
 }

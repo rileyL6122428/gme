@@ -1,7 +1,10 @@
 package l2kstudios.gme.model.path;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,10 +36,29 @@ public class PathUtil {
 			}
 		}
 		
+		trimPathsContainingNonBlockingUnits(endPointToPathMap);
+		
 		return endPointToPathMap;
 	}
 	
 	
+	private void trimPathsContainingNonBlockingUnits(Map<Space, Path> endPointToPathMap) {
+//		Iterator<Space> spaceIterator = endPointToPathMap.keySet().iterator();
+		Iterator<Map.Entry<Space, Path>> mapIterator = endPointToPathMap.entrySet().iterator();
+		
+		while(mapIterator.hasNext()) {
+			Map.Entry<Space, Path> entry = mapIterator.next();
+			Space space = entry.getKey();
+			if(space.getOccupier() != null && space.getOccupier() instanceof Unit)
+				mapIterator.remove();
+		}
+//		for(Space space : endPointToPathMap.keySet()) {
+//			if(space.getOccupier() != null && space.getOccupier() instanceof Unit)
+//				endPointToPathMap.remove(space);
+//		}
+		
+	}
+
 	private Path stationaryPath(Unit unit) {
 		Path stationaryPath = new Path();
 		stationaryPath.add(unit.getOccupiedSpace());
