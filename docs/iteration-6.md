@@ -32,9 +32,10 @@ Three good units, 6 baddies
 	 
 	 
  #Action Items (main target, begin undoing code rot)
- 	0. PlayingGridSpace 
- 		- Clean up
+ 	
+ 	0. publish to maven and serve executable jar on a website
  	1. Path Util
  		- Clean up
  		- add method for traversable spaces and moveable spaces
+	1.5 Find other modules that need cleaned & sketch quick clean/test strategy
 	2. Unit Animation engines 
