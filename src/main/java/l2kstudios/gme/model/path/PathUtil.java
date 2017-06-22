@@ -1,26 +1,23 @@
 package l2kstudios.gme.model.path;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PathUtil {
 	
-	public Set<Space> moveableSpaces(Unit unit) {
-		Map<Space, Path> moveablePaths = moveablePaths(unit);
-		return new HashSet<Space>(moveablePaths.keySet());
+	public Set<PlayingGridSpace> moveableSpaces(Unit unit) {
+		Map<PlayingGridSpace, Path> moveablePaths = moveablePaths(unit);
+		return new HashSet<PlayingGridSpace>(moveablePaths.keySet());
 	}
 	
-	public Map<Space, Path> moveablePaths(Unit unit) {
-		final Map<Space, Path> endPointToPathMap = new HashMap<Space, Path>();
+	public Map<PlayingGridSpace, Path> moveablePaths(Unit unit) {
+		final Map<PlayingGridSpace, Path> endPointToPathMap = new HashMap<PlayingGridSpace, Path>();
 		final DistanceToPathsMap distanceToPathsMap = new DistanceToPathsMap(unit);
 		
 		Path stationaryPath = stationaryPath(unit);
@@ -29,7 +26,7 @@ public class PathUtil {
 		
 		for(int energy = 1; energy <= unit.getRemainingEnergy(); energy++) {
 			for(Path prevPath : distanceToPathsMap.getPathsWithDistance(energy - 1)) {
-				for(Space adjacentSpace : prevPath.getEnd().getAdjacentSpaces()) {
+				for(PlayingGridSpace adjacentSpace : prevPath.getEnd().getAdjacentPlayingGridSpaces()) {
 					if(!containsBlockerFor(unit, adjacentSpace) && !endPointToPathMap.containsKey(adjacentSpace))
 						addPathLeadingToAdjacentSpace(endPointToPathMap, distanceToPathsMap, adjacentSpace, prevPath, energy);
 				}
@@ -42,20 +39,18 @@ public class PathUtil {
 	}
 	
 	
-	private void trimPathsContainingNonBlockingUnits(Map<Space, Path> endPointToPathMap) {
-//		Iterator<Space> spaceIterator = endPointToPathMap.keySet().iterator();
-		Iterator<Map.Entry<Space, Path>> mapIterator = endPointToPathMap.entrySet().iterator();
+	private void trimPathsContainingNonBlockingUnits(Map<PlayingGridSpace, Path> endPointToPathMap) {
+		Iterator<Map.Entry<PlayingGridSpace, Path>> mapIterator = endPointToPathMap.entrySet().iterator();
 		
 		while(mapIterator.hasNext()) {
-			Map.Entry<Space, Path> entry = mapIterator.next();
-			Space space = entry.getKey();
-			if(space.getOccupier() != null && space.getOccupier() instanceof Unit)
+			
+			Map.Entry<PlayingGridSpace, Path> entry = mapIterator.next();
+			PlayingGridSpace space = entry.getKey();
+			Path path = entry.getValue();
+			
+			if(path.getLength() != 0 && space.getOccupier() != null && space.getOccupier() instanceof Unit)
 				mapIterator.remove();
 		}
-//		for(Space space : endPointToPathMap.keySet()) {
-//			if(space.getOccupier() != null && space.getOccupier() instanceof Unit)
-//				endPointToPathMap.remove(space);
-//		}
 		
 	}
 
@@ -66,7 +61,7 @@ public class PathUtil {
 	}
 	
 	private void addPathLeadingToAdjacentSpace(
-		Map<Space, Path> endPointToPath, DistanceToPathsMap distanceToPathsMap, Space adjacentSpace, Path prevPath, int energy
+		Map<PlayingGridSpace, Path> endPointToPath, DistanceToPathsMap distanceToPathsMap, PlayingGridSpace adjacentSpace, Path prevPath, int energy
 		) {
 		Path path = new Path(endPointToPath.get(prevPath.getEnd()));
 		path.add(adjacentSpace);
@@ -75,15 +70,16 @@ public class PathUtil {
 	}
 	
 
-	private boolean containsBlockerFor(Unit unit, Space adjacentSpace) {
+	private boolean containsBlockerFor(Unit unit, PlayingGridSpace adjacentSpace) {
 		//TODO refactor
-		PlayingGridSpace space = (PlayingGridSpace)adjacentSpace;
-		if(!space.isOccupiable()) return true;
+		if(!adjacentSpace.isOccupiable()) return true;
 		
 		if(!adjacentSpace.isOccupied()) return false;
 		if(!(adjacentSpace.getOccupier() instanceof Unit)) return true;
 		Unit occupyingUnit = (Unit) adjacentSpace.getOccupier();
 		return unit.getTeam() != occupyingUnit.getTeam();
+		
+//		return !adjacentSpace.isOccupiable() || 
 	}
 	
 	

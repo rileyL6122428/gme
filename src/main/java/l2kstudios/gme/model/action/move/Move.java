@@ -6,12 +6,13 @@ import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
 import l2kstudios.gme.model.action.rangeofeffect.SingleSpace;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.path.PathUtil;
 import l2kstudios.gme.model.unit.Unit;
 
 public class Move extends Action {
 	
-	private Set<Space> moveableSpaces;
+	private Set<PlayingGridSpace> moveableSpaces;
 	
 	{
 		rangeOfEffect = new SingleSpace();

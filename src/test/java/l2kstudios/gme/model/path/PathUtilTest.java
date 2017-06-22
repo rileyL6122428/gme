@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.testutils.SpacesFactory;
@@ -23,7 +25,7 @@ public class PathUtilTest {
 	@Before
 	public void setup() {
 		playingGrid = new PlayingGrid();
-		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(12, 12));
+		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(12, 12));
 		
 		pathUtil = new PathUtil();
 	}
@@ -33,12 +35,12 @@ public class PathUtilTest {
 		Unit unit = newUnitWithEnergySetTo(0);
 		playingGrid.place(unit, 5, 5);
 		
-		Map<Space, Path> moveablePaths = pathUtil.moveablePaths(unit);
+		Map<PlayingGridSpace, Path> moveablePaths = pathUtil.moveablePaths(unit);
 		
 		assertEquals(1, moveablePaths.keySet().size());
 		
 		Path onlyPath = moveablePaths.get(unit.getOccupiedSpace());
-		assertEquals(1, onlyPath.getLength());
+		assertEquals(0, onlyPath.getLength());
 		assertEquals(unit.getOccupiedSpace(), onlyPath.getStart());
 		assertEquals(unit.getOccupiedSpace(), onlyPath.getEnd());
 	}
@@ -48,7 +50,7 @@ public class PathUtilTest {
 		Unit unit = newUnitWithEnergySetTo(3);
 		playingGrid.place(unit, 5, 5);
 		
-		Map<Space, Path> moveablePaths = pathUtil.moveablePaths(unit);
+		Map<PlayingGridSpace, Path> moveablePaths = pathUtil.moveablePaths(unit);
 		
 		assertEquals(25, moveablePaths.keySet().size());
 		
@@ -98,7 +100,7 @@ public class PathUtilTest {
 		playingGrid.place(unit, 5, 5);
 		playingGrid.place(enemyUnit, 5, 4);
 		
-		Map<Space, Path> moveablePaths = pathUtil.moveablePaths(unit);
+		Map<PlayingGridSpace, Path> moveablePaths = pathUtil.moveablePaths(unit);
 		
 		assertEquals(22, moveablePaths.keySet().size());
 		
@@ -150,7 +152,7 @@ public class PathUtilTest {
 		playingGrid.place(bottomEnclosing, 5, 6);
 		playingGrid.place(leftEnclosing, 4, 5);
 		
-		Map<Space, Path> moveablePaths = pathUtil.moveablePaths(unit);
+		Map<PlayingGridSpace, Path> moveablePaths = pathUtil.moveablePaths(unit);
 		assertEquals(1, moveablePaths.keySet().size());
 		assertNotNull(moveablePaths.get(playingGrid.getSpaceAt(5, 5)));
 	}
@@ -175,7 +177,7 @@ public class PathUtilTest {
 		playingGrid.place(blockerAtThreeSeven, 3, 7);
 		playingGrid.place(blockerAtEightSix, 8, 6);
 		
-		Map<Space, Path> moveablePaths = pathUtil.moveablePaths(unit);
+		Map<PlayingGridSpace, Path> moveablePaths = pathUtil.moveablePaths(unit);
 		
 		assertEquals(29, moveablePaths.keySet().size());
 		

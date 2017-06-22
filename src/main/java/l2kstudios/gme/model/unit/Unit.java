@@ -9,9 +9,10 @@ import l2kstudios.gme.model.grid.GridUtils;
 import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGridPlaceable;
 import processing.core.PImage;
 
-public class Unit extends Placeable implements InitializingBean {
+public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	
 	public enum Team {
 		ALLY, ENEMY

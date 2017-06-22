@@ -7,27 +7,28 @@ import java.util.List;
 import java.util.Set;
 
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 
 public class Path {
 	
-	private List<Space> orderedSpaces;
-	private Set<Space> containedSpaces;
+	private List<PlayingGridSpace> orderedSpaces;
+	private Set<PlayingGridSpace> containedSpaces;
 	
 	{
-		orderedSpaces = new ArrayList<Space>();
-		containedSpaces = new HashSet<Space>();
+		orderedSpaces = new ArrayList<PlayingGridSpace>();
+		containedSpaces = new HashSet<PlayingGridSpace>();
 	}
 	
 	public Path() {}
 
 	public Path(Path path) {
-		Iterator<Space> pathIterator = path.getIterator();
+		Iterator<PlayingGridSpace> pathIterator = path.getIterator();
 		while(pathIterator.hasNext()) {
 			add(pathIterator.next());
 		}
 	}
 
-	public void add(Space space) {
+	public void add(PlayingGridSpace space) {
 		verifySpaceIsNotAlreadyInPath(space);
 		verifySpaceIsAdjacentToPathEnd(space);
 		orderedSpaces.add(space);
@@ -55,19 +56,19 @@ public class Path {
 			throw new RuntimeException("Attempted to append non adjacent space to the end of a path");
 	}
 
-	public Space getStart() {
+	public PlayingGridSpace getStart() {
 		return orderedSpaces.isEmpty() ? null : orderedSpaces.get(0);
 	}
 	
-	public Space getEnd() {
+	public PlayingGridSpace getEnd() {
 		return orderedSpaces.isEmpty() ? null : orderedSpaces.get(orderedSpaces.size() - 1);
 	}
 	
-	public Iterator<Space> getIterator() {
+	public Iterator<PlayingGridSpace> getIterator() {
 		return orderedSpaces.iterator();
 	}
 
 	public int getLength() {
-		return orderedSpaces.size();
+		return orderedSpaces.size() - 1;
 	}
 }
