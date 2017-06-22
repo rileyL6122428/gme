@@ -1,12 +1,12 @@
 package l2kstudios.gme.model.grid.playinggrid;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.grid.Placeable;
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.model.unit.Unit.Team;
 
 public class PlayingGridSpace extends Space {
 	
@@ -26,14 +26,20 @@ public class PlayingGridSpace extends Space {
 	}
 	
 	public List<PlayingGridSpace> getAdjacentPlayingGridSpaces() {
-//		List<PlayingGridSpace> castedList;
-		
-		
-//		return castedList;
 		return getAdjacentSpaces()
 				.stream()
 				.map(space -> (PlayingGridSpace) space)
 				.collect(Collectors.toList());
+	}
+
+	public boolean isOccupiedByMemberOfOppositeTeam(Team team) {
+		return isOccupied() && 
+				getOccupier() instanceof Unit &&
+				((Unit) getOccupier()).getTeam() != team;
+	}
+	
+	public boolean canBeTraversedBy(Unit unit) {
+		return false;
 	}
 	
 }

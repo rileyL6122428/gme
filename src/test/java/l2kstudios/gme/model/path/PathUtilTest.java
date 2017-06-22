@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.Space;

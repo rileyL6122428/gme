@@ -72,14 +72,10 @@ public class PathUtil {
 
 	private boolean containsBlockerFor(Unit unit, PlayingGridSpace adjacentSpace) {
 		//TODO refactor
-		if(!adjacentSpace.isOccupiable()) return true;
+		// need a method called IS TRAVERSABLE on playingGridSpace for unit
 		
-		if(!adjacentSpace.isOccupied()) return false;
-		if(!(adjacentSpace.getOccupier() instanceof Unit)) return true;
-		Unit occupyingUnit = (Unit) adjacentSpace.getOccupier();
-		return unit.getTeam() != occupyingUnit.getTeam();
-		
-//		return !adjacentSpace.isOccupiable() || 
+		return !adjacentSpace.isOccupiable() ||
+				adjacentSpace.isOccupiedByMemberOfOppositeTeam(unit.getTeam());
 	}
 	
 	
