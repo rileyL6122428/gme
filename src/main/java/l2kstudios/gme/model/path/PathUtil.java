@@ -27,7 +27,7 @@ public class PathUtil {
 		for(int energy = 1; energy <= unit.getRemainingEnergy(); energy++) {
 			for(Path prevPath : distanceToPathsMap.getPathsWithDistance(energy - 1)) {
 				for(PlayingGridSpace adjacentSpace : prevPath.getEnd().getAdjacentPlayingGridSpaces()) {
-					if(!containsBlockerFor(unit, adjacentSpace) && !endPointToPathMap.containsKey(adjacentSpace))
+					if(adjacentSpace.canBeTraversedBy(unit) && !endPointToPathMap.containsKey(adjacentSpace))
 						addPathLeadingToAdjacentSpace(endPointToPathMap, distanceToPathsMap, adjacentSpace, prevPath, energy);
 				}
 			}
@@ -68,16 +68,5 @@ public class PathUtil {
 		endPointToPath.put(adjacentSpace, path);
 		distanceToPathsMap.addPath(energy, path);
 	}
-	
-
-	private boolean containsBlockerFor(Unit unit, PlayingGridSpace adjacentSpace) {
-		//TODO refactor
-		// need a method called IS TRAVERSABLE on playingGridSpace for unit
-		
-		return !adjacentSpace.isOccupiable() ||
-				adjacentSpace.isOccupiedByMemberOfOppositeTeam(unit.getTeam());
-	}
-	
-	
 
 }

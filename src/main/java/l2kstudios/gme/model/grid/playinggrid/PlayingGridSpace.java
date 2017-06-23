@@ -39,7 +39,7 @@ public class PlayingGridSpace extends Space {
 	}
 	
 	public boolean canBeTraversedBy(Unit unit) {
-		return false;
+		return occupiable && (!isOccupied() || !isOccupiedByMemberOfOppositeTeam(unit.getTeam()));
 	}
 	
 }

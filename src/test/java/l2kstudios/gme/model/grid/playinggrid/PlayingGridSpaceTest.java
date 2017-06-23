@@ -1,14 +1,14 @@
 package l2kstudios.gme.model.grid.playinggrid;
 
-import static org.junit.Assert.*;
+import static l2kstudios.gme.model.unit.Unit.Team.ALLY;
+import static l2kstudios.gme.model.unit.Unit.Team.ENEMY;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-
 import l2kstudios.gme.model.unit.Unit;
-import static l2kstudios.gme.model.unit.Unit.Team.*;
 
 public class PlayingGridSpaceTest {
 	
