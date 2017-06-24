@@ -2,4 +2,9 @@ target
 
 docs/TODOS.md
 
+.project
+.settings
+
+core.jar
+
 .DS_Store
