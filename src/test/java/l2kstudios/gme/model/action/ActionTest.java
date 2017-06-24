@@ -26,7 +26,7 @@ public class ActionTest {
 	@Before
 	public void setup() {
 		playingGrid = new PlayingGrid();
-		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(3, 3));
+		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(3, 3));
 		playingGrid.forEachSpace((space) -> space.setOccupier(new Unit()));
 		
 		executingUnit = new Unit();

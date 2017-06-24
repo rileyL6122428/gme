@@ -33,7 +33,7 @@ public class RangeOfEffectTest {
 		}};
 		
 		playingGrid = new PlayingGrid();
-		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(8, 8));
+		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(8, 8));
 		
 		rangeOfEffect.setPlayingGrid(playingGrid);
 	}

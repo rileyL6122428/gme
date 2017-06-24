@@ -18,7 +18,7 @@ public class PathTest {
 	@Before
 	public void setup() {
 		playingGrid = new PlayingGrid();
-		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(12, 12));
+		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(12, 12));
 		path = new Path();
 	}
 	
@@ -28,7 +28,7 @@ public class PathTest {
 		path.add(playingGrid.getSpaceAt(0,1));
 		path.add(playingGrid.getSpaceAt(1,1));
 		
-		assertEquals(3, path.getLength());
+		assertEquals(2, path.getLength());
 	}
 
 	@Test(expected=Exception.class)

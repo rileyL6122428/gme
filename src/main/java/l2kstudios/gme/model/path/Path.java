@@ -14,6 +14,12 @@ public class Path {
 	private List<PlayingGridSpace> orderedSpaces;
 	private Set<PlayingGridSpace> containedSpaces;
 	
+	public static Path StationaryPath(PlayingGridSpace origin) {
+		return new Path(){{
+			add(origin);
+		}};
+	}
+	
 	{
 		orderedSpaces = new ArrayList<PlayingGridSpace>();
 		containedSpaces = new HashSet<PlayingGridSpace>();

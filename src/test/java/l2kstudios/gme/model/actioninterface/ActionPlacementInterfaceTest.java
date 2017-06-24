@@ -27,7 +27,7 @@ public class ActionPlacementInterfaceTest {
 	@Before
 	public void setup() {
 		playingGrid = new PlayingGrid();
-		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(12, 12));
+		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(12, 12));
 		
 		action = mock(Action.class);
 		

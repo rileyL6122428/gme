@@ -44,7 +44,7 @@ public class SpaceTest {
 	@Test
 	public void isAdjacentTo_spaceWithinOneSpaceOfSpace_returnsTrue() {
 		PlayingGrid playingGrid = new PlayingGrid();
-		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(12, 12));
+		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(12, 12));
 		
 		Space space = playingGrid.getSpaceAt(3, 3);
 		
@@ -57,7 +57,7 @@ public class SpaceTest {
 	@Test
 	public void isAdjacentTo_spaceNotWithinOneSpaceOfSpace_returnsFalse() {
 		PlayingGrid playingGrid = new PlayingGrid();
-		playingGrid.setSpaces(SpacesFactory.emptyGridSpaces(12, 12));
+		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(12, 12));
 		
 		Space space = playingGrid.getSpaceAt(3, 3);
 		
