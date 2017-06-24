@@ -1,6 +1,6 @@
 package l2kstudios.gme.mathutils;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -137,5 +137,10 @@ public class LongArithmeticTest {
 				assertEquals(expectedInvertedDivisors.get(idx), invertedDivisors.get(idx));
 			}
 		});
+	}
+	
+	@Test
+	public void deliberatelyBrokenTest() {
+		assertTrue(false);
 	}
 }
