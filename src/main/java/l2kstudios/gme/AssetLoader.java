@@ -15,17 +15,17 @@ public class AssetLoader {
 	private PApplet ctx;
 	
 	public void loadAssets() {
-		PImage asbelImage = ctx.loadImage("images" + File.separator + "tales_of_chibi_sprites_2.jpg")
+		PImage asbelImage = ctx.loadImage("tales_of_chibi_sprites_2.jpg")
     			.get(745, 425, 162, 235);
     	SampleUnitImage.setAsbelImage(asbelImage);
     	
-    	PImage richardImage = ctx.loadImage("images" + File.separator + "sample_tales_of_richard_sprite.jpg");
+    	PImage richardImage = ctx.loadImage("sample_tales_of_richard_sprite.jpg");
     	SampleUnitImage.setRichardImage(richardImage);
     	
-    	PImage estelleImage = ctx.loadImage("images" + File.separator + "estelle.jpg");
+    	PImage estelleImage = ctx.loadImage("estelle.jpg");
     	SampleUnitImage.setEstelleImage(estelleImage);
     	
-    	PImage sophieImage = ctx.loadImage("images" + File.separator + "Sophie.jpg");
+    	PImage sophieImage = ctx.loadImage("Sophie.jpg");
     	SampleUnitImage.setSophieImage(sophieImage);
 	}
 }
