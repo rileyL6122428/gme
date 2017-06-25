@@ -1,10 +1,13 @@
 package l2kstudios.gme;
 
+import java.io.File;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.view.image.SampleUnitImage;
 import processing.core.PApplet;
 import processing.core.PImage;
+
 
 public class AssetLoader {
 	
@@ -12,17 +15,17 @@ public class AssetLoader {
 	private PApplet ctx;
 	
 	public void loadAssets() {
-		PImage asbelImage = ctx.loadImage("/Users/rileylittlefield/Documents/workspace/gme/src/main/resources/images/tales_of_chibi_sprites_2.jpg")
+		PImage asbelImage = ctx.loadImage("images" + File.separator + "tales_of_chibi_sprites_2.jpg")
     			.get(745, 425, 162, 235);
     	SampleUnitImage.setAsbelImage(asbelImage);
     	
-    	PImage richardImage = ctx.loadImage("/Users/rileylittlefield/Documents/workspace/gme/src/main/resources/images/sample_tales_of_richard_sprite.jpg");
+    	PImage richardImage = ctx.loadImage("images" + File.separator + "sample_tales_of_richard_sprite.jpg");
     	SampleUnitImage.setRichardImage(richardImage);
     	
-    	PImage estelleImage = ctx.loadImage("/Users/rileylittlefield/Documents/workspace/gme/src/main/resources/images/estelle.jpg");
+    	PImage estelleImage = ctx.loadImage("images" + File.separator + "estelle.jpg");
     	SampleUnitImage.setEstelleImage(estelleImage);
     	
-    	PImage sophieImage = ctx.loadImage("/Users/rileylittlefield/Documents/workspace/gme/src/main/resources/images/Sophie.jpg");
+    	PImage sophieImage = ctx.loadImage("images" + File.separator + "Sophie.jpg");
     	SampleUnitImage.setSophieImage(sophieImage);
 	}
 }
