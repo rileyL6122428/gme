@@ -37,7 +37,9 @@ public class App extends PApplet implements InitializingBean {
     }
 
     public void setup() {
+    	System.out.println(dataPath(""));
     	config.setup();
+    	System.out.println(dataPath(""));
     	assetLoader.loadAssets();
     }
 
