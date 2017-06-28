@@ -25,6 +25,7 @@ public class GamePanel extends JPanel implements Interactable {
 		
 		level = new Level();
 		level.setPlayingGrid(new DemoPlayingGrid());
+		level.afterPropertiesSet();
 		
 		levelView = new LevelView();
 		levelView.setLevel(level);

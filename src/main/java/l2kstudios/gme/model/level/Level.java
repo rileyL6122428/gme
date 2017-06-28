@@ -65,7 +65,7 @@ public class Level implements Interactable, InitializingBean {
 	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() {
 		
 		movementCycle = new MovementCycle(playingGrid.getUnits());		
 		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);

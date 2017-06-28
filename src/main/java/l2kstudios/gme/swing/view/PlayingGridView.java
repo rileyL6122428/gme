@@ -3,14 +3,11 @@ package l2kstudios.gme.swing.view;
 import java.awt.Graphics;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import static l2kstudios.gme.swing.view.GridConstants.*;
 
 public class PlayingGridView {
 	
 	private PlayingGrid playingGrid;
-	
-	private int spaceHeight = 80;
-	private int spaceWidth = 80;
-	
 
 	public void draw(Graphics drawingCtx) {
 		drawVerticalGridLines(drawingCtx);
@@ -23,7 +20,7 @@ public class PlayingGridView {
 		int height = playingGrid.getHeight();
 		
 		for(int x = 0; x <= width; x++) {
-			drawingCtx.drawLine(x * spaceWidth, 0, x * spaceWidth, height * spaceHeight);
+			drawingCtx.drawLine(x * SPACE_WIDTH, 0, x * SPACE_WIDTH, height * SPACE_HEIGHT);
 		}
 	}
 
@@ -33,7 +30,7 @@ public class PlayingGridView {
 		int height = playingGrid.getHeight();
 		
 		for(int y = 0; y <= height; y++) {
-			drawingCtx.drawLine(0, y * spaceHeight, width * spaceWidth, y * spaceHeight);
+			drawingCtx.drawLine(0, y * SPACE_HEIGHT, width * SPACE_WIDTH, y * SPACE_HEIGHT);
 		}
 	}
 
