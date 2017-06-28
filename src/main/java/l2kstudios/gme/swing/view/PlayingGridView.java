@@ -3,7 +3,6 @@ package l2kstudios.gme.swing.view;
 import java.awt.Graphics;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
-import l2kstudios.gme.model.level.Level;
 
 public class PlayingGridView {
 	
