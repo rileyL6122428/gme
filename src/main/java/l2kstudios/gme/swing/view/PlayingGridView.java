@@ -1,5 +1,6 @@
 package l2kstudios.gme.swing.view;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
@@ -10,6 +11,7 @@ public class PlayingGridView {
 	private PlayingGrid playingGrid;
 
 	public void draw(Graphics drawingCtx) {
+		drawingCtx.setColor(Color.BLACK);
 		drawVerticalGridLines(drawingCtx);
 		drawHorizontalGridLines(drawingCtx);
 	}

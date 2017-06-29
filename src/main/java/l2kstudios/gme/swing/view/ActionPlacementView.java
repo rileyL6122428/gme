@@ -16,10 +16,18 @@ public class ActionPlacementView implements ActionInterfaceView {
 	
 	@Override
 	public void draw(Graphics drawingCtx) {
-		List<Space> playingGridSpaces = getActionInterface().getChooseableSpaces();
-		playingGridSpaces.forEach((space) -> {
+		drawChooseableSpaces(drawingCtx);
+		
+		Position cursorPosition = actionInterface.getCursorPosition();
+		drawingCtx.setColor(Color.PINK);
+		drawingCtx.fillRect(cursorPosition.getX() * SPACE_WIDTH, cursorPosition.getY() * SPACE_HEIGHT, SPACE_WIDTH, SPACE_HEIGHT);
+	}
+	
+	public void drawChooseableSpaces(Graphics drawingCtx) {
+		drawingCtx.setColor(Color.CYAN);
+		
+		actionInterface.getChooseableSpaces().forEach((space) -> {
 			Position position = space.getPosition();
-			drawingCtx.setColor(Color.CYAN);
 			drawingCtx.fillRect(position.getX() * SPACE_WIDTH, position.getY() * SPACE_HEIGHT, SPACE_WIDTH, SPACE_HEIGHT);
 		});
 	}
