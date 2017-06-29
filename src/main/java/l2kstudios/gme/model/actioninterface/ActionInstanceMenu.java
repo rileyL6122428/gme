@@ -39,4 +39,5 @@ public class ActionInstanceMenu extends SingleRowActionInterface {
 		
 		return spaces;
 	}
+
 }

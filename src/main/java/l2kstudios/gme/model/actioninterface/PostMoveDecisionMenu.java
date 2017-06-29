@@ -1,9 +1,10 @@
-package l2kstudios.gme.model.action.postmove;
+package l2kstudios.gme.model.actioninterface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-import l2kstudios.gme.model.actioninterface.SingleRowActionInterface;
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
 import l2kstudios.gme.model.unit.Unit;
@@ -29,13 +30,16 @@ public class PostMoveDecisionMenu extends SingleRowActionInterface {
 	
 	private void setSpacesToDecisions(Unit unit) {
 		List<Space> row = new ArrayList<Space>();
+		int decisionIdx = 0;
 		
 		for(Class decisionType: unit.getPostMoveDecisions()) {
 			try {
 				PostMoveDecision decision = (PostMoveDecision) decisionType.newInstance();
+				decision.setDecisionNumber(decisionIdx);
 				Space space = new Space();
 				decision.place(space);
 				row.add(space);				
+				decisionIdx++;
 				
 			} catch (Exception e) { e.printStackTrace(); }
 		}
@@ -51,4 +55,10 @@ public class PostMoveDecisionMenu extends SingleRowActionInterface {
 		}
 	}
 	
+	public void forEachPostMoveDecision(Consumer<PostMoveDecision> callback) {
+		chooseableSpaces.forEach((space) -> {
+			PostMoveDecision postMoveDecision = (PostMoveDecision)space.getOccupier();
+			callback.accept(postMoveDecision);
+		}); 
+	}
 }

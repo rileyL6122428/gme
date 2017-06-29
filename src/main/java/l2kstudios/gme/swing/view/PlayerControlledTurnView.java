@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import l2kstudios.gme.model.actioninterface.ActionInterface;
 import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
+import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
 
 public class PlayerControlledTurnView {
@@ -27,6 +28,10 @@ public class PlayerControlledTurnView {
 		if(actionInterface instanceof ActionPlacementInterface) {
 			actionInterfaceView = new ActionPlacementView(){{
 				setActionInterface((ActionPlacementInterface) actionInterface);
+			}};
+		} else if(actionInterface instanceof PostMoveDecisionMenu) {
+			actionInterfaceView = new PostMoveDecisionMenuView(){{
+				setActionInterface((PostMoveDecisionMenu) actionInterface);
 			}};
 		}
 	}

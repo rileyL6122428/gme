@@ -48,4 +48,6 @@ public class SingleRowActionInterface extends ActionInterface {
 	private void validateIsSingleRowDimension(List<List<Space>> spaces) {
 		if(spaces.size() != 1) throw new RuntimeException("SPACES ARE NOT SINGLE ROW");
 	}
+	
+	
 }

@@ -3,8 +3,8 @@ package l2kstudios.gme.model.action.move;
 import java.util.Set;
 
 import l2kstudios.gme.model.action.Action;
-import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
 import l2kstudios.gme.model.action.rangeofeffect.SingleSpace;
+import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.path.PathUtil;

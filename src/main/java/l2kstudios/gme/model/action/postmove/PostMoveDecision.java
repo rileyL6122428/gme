@@ -6,6 +6,7 @@ import l2kstudios.gme.model.unit.Unit;
 public class PostMoveDecision extends Placeable {
 	
 	protected Class postMoveActionType;
+	private int decisionNumber;
 
 	public Class getPostMoveActionType() {
 		return postMoveActionType;
@@ -15,4 +16,15 @@ public class PostMoveDecision extends Placeable {
 	public String getName() {
 		return getClass().getSimpleName();
 	}
+
+
+	public int getDecisionNumber() {
+		return decisionNumber;
+	}
+
+
+	public void setDecisionNumber(int decisionNumber) {
+		this.decisionNumber = decisionNumber;
+	}
+
 }

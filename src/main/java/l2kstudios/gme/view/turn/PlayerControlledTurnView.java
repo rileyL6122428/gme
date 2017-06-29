@@ -4,10 +4,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
 import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
 import l2kstudios.gme.model.actioninterface.ActionInterface;
 import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
+import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
-import l2kstudios.gme.model.action.postmove.PostMoveDecisionMenu;
+import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.view.constants.GridConstants;
