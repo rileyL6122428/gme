@@ -1,14 +1,12 @@
 package l2kstudios.gme.swing.view;
 
-import java.awt.Color;
+import static l2kstudios.gme.swing.view.GridConstants.SPACE_HEIGHT;
+import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
+
 import java.awt.Graphics;
-import java.util.List;
 
 import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
 import l2kstudios.gme.model.grid.Position;
-import l2kstudios.gme.model.grid.Space;
-
-import static l2kstudios.gme.swing.view.GridConstants.*;
 
 public class ActionPlacementView implements ActionInterfaceView {
 
@@ -19,12 +17,12 @@ public class ActionPlacementView implements ActionInterfaceView {
 		drawChooseableSpaces(drawingCtx);
 		
 		Position cursorPosition = actionInterface.getCursorPosition();
-		drawingCtx.setColor(Color.PINK);
+		drawingCtx.setColor(ColorConstants.ACTION_PLACEMENT_CURSOR_COLOR);
 		drawingCtx.fillRect(cursorPosition.getX() * SPACE_WIDTH, cursorPosition.getY() * SPACE_HEIGHT, SPACE_WIDTH, SPACE_HEIGHT);
 	}
 	
 	public void drawChooseableSpaces(Graphics drawingCtx) {
-		drawingCtx.setColor(Color.CYAN);
+		drawingCtx.setColor(ColorConstants.ACTION_PLACEMENT_SPACE_COLOR);
 		
 		actionInterface.getChooseableSpaces().forEach((space) -> {
 			Position position = space.getPosition();

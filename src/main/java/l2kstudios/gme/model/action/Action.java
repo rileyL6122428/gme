@@ -17,6 +17,7 @@ public abstract class Action extends Placeable {
 	protected Space spaceToExecuteFrom;
 	protected RangeOfEffect rangeOfEffect;
 	protected Range<Integer> executionRange;
+	private int index;
 	
 	public void execute() {
 		Position position = spaceToExecuteAt.getPosition();
@@ -83,6 +84,14 @@ public abstract class Action extends Placeable {
 	
 	public void setExecutionRange(Range range) {
 		this.executionRange = range;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 	
 }

@@ -1,21 +1,22 @@
 package l2kstudios.gme.swing.view;
 
+import static l2kstudios.gme.swing.view.GridConstants.SPACE_HEIGHT;
+import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
-import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
+import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
 import l2kstudios.gme.model.grid.Position;
 
-import static l2kstudios.gme.swing.view.GridConstants.*;
+public class ActionInstanceMenuView implements ActionInterfaceView {
 
-public class PostMoveDecisionMenuView implements ActionInterfaceView {
-	
-	private PostMoveDecisionMenu menu; 
+	private ActionInstanceMenu menu; 
 	
 	public void draw(Graphics drawingCtx) {
 		Position actingUnitPosition  = menu.getActingUnitPosition();
 		Position cursorPosition = menu.getCursorPosition();
-		menu.forEachPostMoveDecision((postMoveDecision) -> {
+		menu.forEachActionInstance((postMoveDecision) -> {
 			
 			if(postMoveDecision.getPosition() == cursorPosition)
 				drawingCtx.setColor(Color.GREEN);
@@ -25,17 +26,17 @@ public class PostMoveDecisionMenuView implements ActionInterfaceView {
 			drawingCtx.drawString(
 					postMoveDecision.getName(), 
 					actingUnitPosition.getX() * SPACE_WIDTH  + 20, 
-					actingUnitPosition.getY() * SPACE_HEIGHT + postMoveDecision.getDecisionNumber() * 20
+					actingUnitPosition.getY() * SPACE_HEIGHT + postMoveDecision.getIndex() * 20
 			);
 		});
 	}
 
-	public PostMoveDecisionMenu getActionInterface() {
+	public ActionInstanceMenu getActionInterface() {
 		return menu;
 	}
 
-	public void setActionInterface(PostMoveDecisionMenu actionInterface) {
+	public void setActionInterface(ActionInstanceMenu actionInterface) {
 		this.menu = actionInterface;
 	}
-	
+
 }

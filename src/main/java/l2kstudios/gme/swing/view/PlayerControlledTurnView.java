@@ -2,6 +2,7 @@ package l2kstudios.gme.swing.view;
 
 import java.awt.Graphics;
 
+import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
 import l2kstudios.gme.model.actioninterface.ActionInterface;
 import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
 import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
@@ -32,6 +33,10 @@ public class PlayerControlledTurnView {
 		} else if(actionInterface instanceof PostMoveDecisionMenu) {
 			actionInterfaceView = new PostMoveDecisionMenuView(){{
 				setActionInterface((PostMoveDecisionMenu) actionInterface);
+			}};
+		} else if(actionInterface instanceof ActionInstanceMenu) {
+			actionInterfaceView = new ActionInstanceMenuView(){{
+				setActionInterface((ActionInstanceMenu) actionInterface);
 			}};
 		}
 	}

@@ -18,14 +18,9 @@ public class LevelView {
 	
 
 	public void draw(Graphics drawingCtx) {
-//		Turn turn = level.getCurrentTurn();
-		turnView.draw(drawingCtx);
-		
 		playingGridView.draw(drawingCtx);
-		
-		characterViews.forEach((characterView) -> {
-			characterView.draw(drawingCtx);
-		});
+		characterViews.forEach( (characterView) -> characterView.draw(drawingCtx) );
+		turnView.draw(drawingCtx);
 	}
 
 	public Level getLevel() {

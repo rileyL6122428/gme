@@ -2,6 +2,7 @@ package l2kstudios.gme.model.actioninterface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveAction;
@@ -30,14 +31,23 @@ public class ActionInstanceMenu extends SingleRowActionInterface {
 	
 	private List<Space> mapActionsToSpaces(List<Action> actions) {
 		final List<Space> spaces = new ArrayList<Space>();
+		int actionIdx = 0;
 		
-		actions.forEach((action) -> {
+		for(Action action : actions) {
 			spaces.add(new Space(){{
+				action.setIndex(actionIdx);
 				setOccupier(action);
 			}});
-		});
+		}
 		
 		return spaces;
+	}
+
+	public void forEachActionInstance(Consumer<Action> callback) {
+		chooseableSpaces.forEach((space) -> {
+			Action action = (Action) space.getOccupier();
+			callback.accept(action);
+		});
 	}
 
 }
