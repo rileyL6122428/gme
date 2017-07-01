@@ -6,6 +6,7 @@ import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
 import l2kstudios.gme.model.grid.Position;
 
@@ -15,20 +16,25 @@ public class ActionInstanceMenuView implements ActionInterfaceView {
 	
 	public void draw(Graphics drawingCtx) {
 		Position actingUnitPosition  = menu.getActingUnitPosition();
-		Position cursorPosition = menu.getCursorPosition();
-		menu.forEachActionInstance((postMoveDecision) -> {
-			
-			if(postMoveDecision.getPosition() == cursorPosition)
-				drawingCtx.setColor(Color.GREEN);
-			else
-				drawingCtx.setColor(Color.BLACK);
+		
+		menu.forEachActionInstance((actionInstance) -> {
+			setNameColor(drawingCtx, actionInstance);
 			
 			drawingCtx.drawString(
-					postMoveDecision.getName(), 
+					actionInstance.getName(), 
 					actingUnitPosition.getX() * SPACE_WIDTH  + 20, 
-					actingUnitPosition.getY() * SPACE_HEIGHT + postMoveDecision.getIndex() * 20
+					actingUnitPosition.getY() * SPACE_HEIGHT + actionInstance.getIndex() * 20
 			);
 		});
+	}
+	
+	private void setNameColor(Graphics drawingCtx, Action actionInstance) {
+		Position cursorPosition = menu.getCursorPosition();
+		
+		if(actionInstance.getPosition() == cursorPosition)
+			drawingCtx.setColor(Color.GREEN);
+		else
+			drawingCtx.setColor(Color.BLACK);
 	}
 
 	public ActionInstanceMenu getActionInterface() {
