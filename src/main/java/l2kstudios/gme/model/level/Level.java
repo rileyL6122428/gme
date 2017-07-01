@@ -8,6 +8,7 @@ import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.movement.MovementCycle;
+import l2kstudios.gme.model.turn.ComputerControlledTurn;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnFactory;
@@ -23,26 +24,38 @@ public class Level implements Interactable, InitializingBean {
 	
 	public void update() {
 		currentTurn.update();
-		commitTurnIfReadyToCommit();
+		if(currentTurn.readyToCommit()) {
+			commitTurn();			
+		}
 	}
 
 	@Override
 	public void receiveInput(Input input) {
 		currentTurn.receiveInput(input);
-		commitTurnIfReadyToCommit();
 		
-		if(finished()) {
-			System.out.println("LEVEL FINISHED");
+		if(currentTurn.readyToCommit()) {
+			commitTurn();			
 		}
+		
+		while(currentTurn instanceof ComputerControlledTurn) {
+			finishComputerControlledTurn();
+		}
+		
 	}
 	
-	private void commitTurnIfReadyToCommit() {
-		if(currentTurn.readyToCommit()) {
-			currentTurn.commit();
-			clearOutDefeatedUnits();
-			movementCycle.shift();
-			currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
+	private void finishComputerControlledTurn() {
+		while(!currentTurn.readyToCommit()) {
+			currentTurn.update();			
 		}
+		
+		commitTurn();
+	}
+
+	private void commitTurn() {	
+		currentTurn.commit();
+		clearOutDefeatedUnits();
+		movementCycle.shift();
+		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
 	}
 
 	private boolean finished() {

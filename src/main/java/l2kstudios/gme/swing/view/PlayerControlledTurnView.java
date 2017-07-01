@@ -8,7 +8,7 @@ import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
 import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
 
-public class PlayerControlledTurnView {
+public class PlayerControlledTurnView extends CurrentTurnView {
 	
 	private PlayerControlledTurn turn;
 	private ActionInterfaceView actionInterfaceView;

@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
-import l2kstudios.gme.model.turn.Turn;
 
 public class LevelView {
 	
@@ -14,7 +13,7 @@ public class LevelView {
 	
 	private PlayingGridView playingGridView;
 	private List<CharacterView> characterViews;
-	private PlayerControlledTurnView turnView;
+	private TurnView turnView;
 	
 
 	public void draw(Graphics drawingCtx) {
@@ -30,12 +29,14 @@ public class LevelView {
 	public void setLevel(Level level) {
 		this.level = level;
 		this.playingGridView = new PlayingGridView(){{ setPlayingGrid(level.getPlayingGrid()); }};
+		
 		this.characterViews = level.getPlayingGrid()
 									.getUnits()
 									.stream()
 									.map((unit) -> new CharacterView(){{setUnit(unit);}})
 									.collect(Collectors.toList());
-		this.turnView = new PlayerControlledTurnView(){{ setTurn((PlayerControlledTurn)level.getCurrentTurn()); }};
+		
+		this.turnView = new TurnView(){{ setLevel(level); }};
 		
 	}
 	
