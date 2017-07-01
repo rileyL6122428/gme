@@ -21,7 +21,7 @@ import processing.core.PImage;
 public class Estelle extends Unit {
 	
 	{
-		name = "Sophie";
+		name = "Estelle";
 		team = ALLY;
 		
 		health = new ConsummableStat(){{

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import l2kstudios.gme.model.unit.Unit;
 
@@ -59,5 +61,15 @@ public class MovementCycle {
 	        	moveOrderIterator.remove();
 		}
 		
+	}
+
+	public void iterateOrder(BiConsumer<Unit, Integer> callback) {
+		Iterator<Unit> moveOrderIterator = moveOrder.iterator();
+		int orderIdx = 0;
+		
+		while(moveOrderIterator.hasNext()) { 
+		    callback.accept(moveOrderIterator.next(), orderIdx);
+		    orderIdx++;
+		}
 	}
 }

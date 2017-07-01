@@ -13,12 +13,14 @@ public class LevelView {
 	private PlayingGridView playingGridView;
 	private List<CharacterView> characterViews;
 	private TurnView turnView;
+	private MoveOrderView moveOrderView;
 	
 
 	public void draw(Graphics drawingCtx) {
 		playingGridView.draw(drawingCtx);
 		characterViews.forEach( (characterView) -> characterView.draw(drawingCtx) );
 		turnView.draw(drawingCtx);
+		moveOrderView.draw(drawingCtx);
 	}
 
 	public Level getLevel() {
@@ -37,6 +39,7 @@ public class LevelView {
 		
 		this.turnView = new TurnView(){{ setLevel(level); }};
 		
+		this.moveOrderView = new MoveOrderView(){{ setLevel(level); }};
 	}
 	
 }
