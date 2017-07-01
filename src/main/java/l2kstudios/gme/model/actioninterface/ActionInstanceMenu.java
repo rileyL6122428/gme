@@ -34,8 +34,10 @@ public class ActionInstanceMenu extends SingleRowActionInterface {
 		int actionIdx = 0;
 		
 		for(Action action : actions) {
+			action.setIndex(actionIdx);
+			actionIdx++;
+			
 			spaces.add(new Space(){{
-				action.setIndex(actionIdx);
 				setOccupier(action);
 			}});
 		}
