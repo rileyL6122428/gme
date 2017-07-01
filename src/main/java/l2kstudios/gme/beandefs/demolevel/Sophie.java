@@ -1,9 +1,5 @@
 package l2kstudios.gme.beandefs.demolevel;
 
-import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.view.image.SampleUnitImage;
-import processing.core.PImage;
-
 import static l2kstudios.gme.model.unit.Unit.Team.ALLY;
 
 import java.util.ArrayList;
@@ -18,6 +14,7 @@ import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
 import l2kstudios.gme.model.unit.ConsummableStat;
+import l2kstudios.gme.model.unit.Unit;
 
 public class Sophie extends Unit {
 	
@@ -51,14 +48,6 @@ public class Sophie extends Unit {
 		actionClasses.put(Wait.class, new ArrayList<Class>(){{
 			add(BasicWait.class);
 		}});
-	}
-	
-	public PImage getImage() {
-		return SampleUnitImage.getSophieImage();
-	}
-	
-	public float getScale() {
-		return .33f;
 	}
 	
 }

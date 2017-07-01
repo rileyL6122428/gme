@@ -1,12 +1,10 @@
 package l2kstudios.gme.beandefs.demolevel;
 
-import static l2kstudios.gme.model.unit.Unit.Team.*;
+import static l2kstudios.gme.model.unit.Unit.Team.ENEMY;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import l2kstudios.gme.model.action.postmove.AttackDecision;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
@@ -19,9 +17,6 @@ import l2kstudios.gme.model.unit.BasicConciousness;
 import l2kstudios.gme.model.unit.ComputerControlledUnit;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.view.image.SampleUnitImage;
-import processing.core.PApplet;
-import processing.core.PImage;
 
 public class Richard extends ComputerControlledUnit {
 	
@@ -66,12 +61,5 @@ public class Richard extends ComputerControlledUnit {
 		
 		
 	}
-	
-	public PImage getImage() {
-		return SampleUnitImage.getRichardImage();
-	}
-	
-	public float getScale() {
-		return 0.65f;
-	}
+
 }

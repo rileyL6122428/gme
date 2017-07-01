@@ -1,11 +1,6 @@
 package l2kstudios.gme.beandefs.demolevel;
 
-import l2kstudios.gme.model.unit.ConsummableStat;
-import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.view.image.SampleUnitImage;
-import processing.core.PImage;
-
-import static l2kstudios.gme.model.unit.Unit.Team.*;
+import static l2kstudios.gme.model.unit.Unit.Team.ALLY;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +13,8 @@ import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
 import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
+import l2kstudios.gme.model.unit.ConsummableStat;
+import l2kstudios.gme.model.unit.Unit;
 
 public class Asbel extends Unit {
 	
@@ -53,13 +50,5 @@ public class Asbel extends Unit {
 			add(BasicWait.class);
 		}});
 		
-	}
-	
-	public PImage getImage() {
-		return SampleUnitImage.getAsbelImage();
-	}
-	
-	public float getScale() {
-		return 0.33f;
 	}
 }

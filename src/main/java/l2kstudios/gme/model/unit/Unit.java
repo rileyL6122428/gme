@@ -10,7 +10,6 @@ import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridPlaceable;
-import processing.core.PImage;
 
 public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	
@@ -26,8 +25,6 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	protected long strength;
 	protected ConsummableStat health;
 	protected ConsummableStat energy;
-	
-	protected PImage image;
 	
 	protected List<Class> postMoveDecisions;
 	
@@ -138,21 +135,6 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	public List<Class> getActionTypes(Class actionType) {
 		return actionClasses.get(actionType);
 	}
-	
-	//FOR DEMO ONLY
-	public PImage getImage() {
-		return image;
-	}
-
-	public void setImage(PImage image) {
-		this.image = image;
-	}
-	
-	public float getScale() {
-		return 1;
-	}
-	//END DEMO
-	
 
 	public String toString() {
 		return "Unit \n" + 

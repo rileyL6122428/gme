@@ -15,8 +15,6 @@ import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.view.image.SampleUnitImage;
-import processing.core.PImage;
 
 public class Estelle extends Unit {
 	
@@ -50,14 +48,6 @@ public class Estelle extends Unit {
 		actionClasses.put(Wait.class, new ArrayList<Class>(){{
 			add(BasicWait.class);
 		}});
-	}
-	
-	public PImage getImage() {
-		return SampleUnitImage.getEstelleImage();
-	}
-	
-	public float getScale() {
-		return .29f;
 	}
 	
 }
