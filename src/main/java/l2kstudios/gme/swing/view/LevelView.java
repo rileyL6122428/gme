@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.level.Level;
-import l2kstudios.gme.model.turn.PlayerControlledTurn;
 
 public class LevelView {
 	

@@ -3,6 +3,7 @@ package l2kstudios.gme.swing.view;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import static l2kstudios.gme.swing.view.GridConstants.*;
 
@@ -14,9 +15,9 @@ public class PlayingGridView {
 		drawingCtx.setColor(Color.BLACK);
 		drawVerticalGridLines(drawingCtx);
 		drawHorizontalGridLines(drawingCtx);
-	}
-	
-	
+		fillInUnmoveableSpaces(drawingCtx);
+	}	
+
 	private void drawVerticalGridLines(Graphics drawingCtx) {
 		int width = playingGrid.getWidth();
 		int height = playingGrid.getHeight();
@@ -25,7 +26,6 @@ public class PlayingGridView {
 			drawingCtx.drawLine(x * SPACE_WIDTH, 0, x * SPACE_WIDTH, height * SPACE_HEIGHT);
 		}
 	}
-
 
 	public void drawHorizontalGridLines(Graphics drawingCtx) {
 		int width = playingGrid.getWidth();
@@ -36,6 +36,16 @@ public class PlayingGridView {
 		}
 	}
 
+	private void fillInUnmoveableSpaces(Graphics drawingCtx) {
+		drawingCtx.setColor(Color.BLACK);
+		
+		playingGrid.forEachSpace((space)-> {
+			if(!space.isOccupiable()) {
+				Position position = space.getPosition();
+				drawingCtx.fillRect(position.getX() * SPACE_WIDTH, position.getY() * SPACE_HEIGHT, SPACE_WIDTH, SPACE_HEIGHT);
+			}
+		}); 
+	}
 
 	public PlayingGrid getPlayingGrid() {
 		return playingGrid;
