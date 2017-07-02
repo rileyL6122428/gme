@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.grid.GridUtils;
-import l2kstudios.gme.model.grid.Placeable;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridPlaceable;
@@ -21,20 +20,19 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	protected Team team;
 	
 	protected long speed;
-	protected long defense;
+	
 	protected long strength;
+	protected long defense;
+	
+	protected long magic;
+	protected long magicDefense;
+	
 	protected ConsummableStat health;
 	protected ConsummableStat energy;
 	
 	protected List<Class> postMoveDecisions;
 	
 	protected Map<Class, List<Class>> actionClasses;
-	
-	public boolean canMoveTo(Space space) {
-		Position position = space.getPosition();
-		return (!space.isOccupied() || space.getOccupier() == this) && 
-				GridUtils.distanceBetween(position, getPosition()) <= getEnergy().getVal();
-	}
 	
 	public boolean isDefeated() {
 		return getRemainingHealth() <= 0;
@@ -140,6 +138,5 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 		return "Unit \n" + 
 				"name = " + name + "\n" +
 				"speed = " + speed + "\n";
-		
 	}
 }

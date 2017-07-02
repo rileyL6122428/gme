@@ -6,7 +6,10 @@ import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 public class DemoPlayingGrid extends PlayingGrid {
 	
 	{
-		setSpaces(SpacesFactory.emptyPlayingGridSpaces(15, 5));
+		setSpaces(SpacesFactory.emptyPlayingGridSpaces(15, 7));
+		
+		getSpaceAt(0, 4).setOccupiable(false);
+		getSpaceAt(0, 5).setOccupiable(false);
 		
 		getSpaceAt(3, 4).setOccupiable(false);
 		
@@ -34,7 +37,6 @@ public class DemoPlayingGrid extends PlayingGrid {
 		getSpaceAt(12, 1).setOccupiable(false);
 		
 		getSpaceAt(13, 0).setOccupiable(false);
-		getSpaceAt(13, 1).setOccupiable(false);
 		
 		getSpaceAt(14, 0).setOccupiable(false);
 		getSpaceAt(14, 1).setOccupiable(false);
