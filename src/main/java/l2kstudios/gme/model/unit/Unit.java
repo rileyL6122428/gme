@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import l2kstudios.gme.model.grid.GridUtils;
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridPlaceable;
 
@@ -24,8 +22,8 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	protected long strength;
 	protected long defense;
 	
-	protected long magic;
-	protected long magicDefense;
+	private long magic;
+	private long magicDefense;
 	
 	protected ConsummableStat health;
 	protected ConsummableStat energy;
@@ -122,6 +120,22 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	
 	public void setDefense(long defense) {
 		this.defense = defense;
+	}
+
+	public long getMagic() {
+		return magic;
+	}
+
+	public void setMagic(long magic) {
+		this.magic = magic;
+	}
+
+	public long getMagicDefense() {
+		return magicDefense;
+	}
+
+	public void setMagicDefense(long magicDefense) {
+		this.magicDefense = magicDefense;
 	}
 
 	@Override
