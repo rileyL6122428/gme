@@ -1,6 +1,10 @@
 package l2kstudios.gme.swing.animation;
 
-import static org.junit.Assert.*;
+import static l2kstudios.gme.swing.view.GridConstants.SPACE_HEIGHT;
+import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.when;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -11,11 +15,8 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.Mockito.*;
-
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.Unit;
-import static l2kstudios.gme.swing.view.GridConstants.*;
 
 public class BoardAnimationTest {
 	
@@ -75,6 +76,7 @@ public class BoardAnimationTest {
 		idleFrames.add(frame3);
 	}
 
+//	@Ignore
 	@Test
 	public void run_singleAnimationLoop_showsAppropriateFramesAtCorrespondingTimes() {
 		for(Frame frame : idleFrames) {
@@ -83,6 +85,7 @@ public class BoardAnimationTest {
 		}
 	}
 	
+//	@Ignore
 	@Test
 	public void run_multipleAnimationLoops_animationLoops() {
 		for(Frame frame : idleFrames) {
