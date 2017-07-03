@@ -18,7 +18,7 @@ public class BoardAnimation {
 	
 	public void run(Graphics drawingCtx) {
 		Frame currentFrame = getCurrentFrame();
-		Position position = getUnit().getPosition();
+		Position position = unit.getPosition();
 		
 		drawingCtx.drawImage(
 			currentFrame.getImage(), 
