@@ -76,7 +76,6 @@ public class BoardAnimationTest {
 		idleFrames.add(frame3);
 	}
 
-//	@Ignore
 	@Test
 	public void run_singleAnimationLoop_showsAppropriateFramesAtCorrespondingTimes() {
 		for(Frame frame : idleFrames) {
@@ -85,7 +84,6 @@ public class BoardAnimationTest {
 		}
 	}
 	
-//	@Ignore
 	@Test
 	public void run_multipleAnimationLoops_animationLoops() {
 		for(Frame frame : idleFrames) {

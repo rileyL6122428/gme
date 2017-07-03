@@ -1,9 +1,11 @@
 package l2kstudios.gme.swing.view;
 
+import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.CURSOR_COLOR;
+import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.RANGE_OF_EFFECT_COLOR;
+import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.SELECTABLE_SPACE_COLOR;
 import static l2kstudios.gme.swing.view.GridConstants.SPACE_HEIGHT;
 import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 
@@ -11,8 +13,6 @@ import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
-
-import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.*;
 
 public class ActionPlacementView implements ActionInterfaceView {
 

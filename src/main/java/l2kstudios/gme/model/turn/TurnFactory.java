@@ -7,7 +7,7 @@ import l2kstudios.gme.model.unit.Unit;
 public class TurnFactory {
 	
 	public static Turn newTurn(Unit actingUnit, PlayingGrid playingGrid) {
-		if(actingUnit instanceof ComputerControllableUnit) {
+		if(actingUnit.getTeam() == Unit.Team.ENEMY) {
 			return new ComputerControlledTurn() {{
 				setPlayingGrid(playingGrid);
 				setActingUnit((ComputerControllableUnit) actingUnit);

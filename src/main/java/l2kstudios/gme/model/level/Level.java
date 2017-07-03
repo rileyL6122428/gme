@@ -2,14 +2,11 @@ package l2kstudios.gme.model.level;
 
 import org.springframework.beans.factory.InitializingBean;
 
-import l2kstudios.gme.model.actioninterface.ActionInterface;
-import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.turn.ComputerControlledTurn;
-import l2kstudios.gme.model.turn.PlayerControlledTurn;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnFactory;
 import l2kstudios.gme.model.unit.Unit;

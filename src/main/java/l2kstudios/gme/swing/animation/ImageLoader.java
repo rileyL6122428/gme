@@ -20,14 +20,7 @@ public class ImageLoader {
 	}
 	
 	public static Image getBoardSprite(String spritePath, int widthInset, int heightInset) {
-		try {
-//			String filePath = resourceObject.getClass().getClassLoader().getResource(spritePath).getFile();
-//			Image image = ImageIO.read(new File(filePath));
-			
-//			File filePath = resourceObject.getClass().getClassLoader().getResource(spritePath).getFile();
-//			InputStream input = resourceObject.getClass().getResourceAsStream(spritePath);
-//            File file = File.createTempFile(spritePath, ".jpg");
-			
+		try {			
 			URL imageURL = getResourceURL(spritePath);
 			Image image = ImageIO.read(imageURL);
 			image = image.getScaledInstance(SPACE_WIDTH  - widthInset, SPACE_HEIGHT - heightInset, Image.SCALE_DEFAULT);
