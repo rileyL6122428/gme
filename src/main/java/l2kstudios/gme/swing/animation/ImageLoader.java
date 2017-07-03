@@ -11,10 +11,10 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader {
 	
-	public static Object resourceObject;
+	public static ImageLoader resourceObject;
 	
 	static {
-		resourceObject = new Object();
+		resourceObject = new ImageLoader();
 	}
 	
 	public static Image getBoardSprite(String spritePath, int widthInset, int heightInset) {

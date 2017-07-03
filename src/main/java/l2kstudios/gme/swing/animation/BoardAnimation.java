@@ -16,14 +16,14 @@ public class BoardAnimation {
 	private int currentFrameElapsedTime;
 	private ArrayList<Frame> idleFrames;
 	
-	public void animate(Graphics drawingCtx) {
+	public void run(Graphics drawingCtx) {
 		Frame currentFrame = getCurrentFrame();
-		Position position = unit.getPosition();
+		Position position = getUnit().getPosition();
 		
 		drawingCtx.drawImage(
 			currentFrame.getImage(), 
-			position.getX() * SPACE_WIDTH + 12, 
-			position.getY() * SPACE_HEIGHT + 5, 
+			position.getX() * SPACE_WIDTH, 
+			position.getY() * SPACE_HEIGHT, 
 			null
 		);
 		
@@ -52,6 +52,14 @@ public class BoardAnimation {
 
 	public void setIdleFrames(ArrayList<Frame> idleFrames) {
 		this.idleFrames = idleFrames;
+	}
+
+	public Unit getUnit() {
+		return unit;
+	}
+
+	public void setUnit(Unit unit) {
+		this.unit = unit;
 	}
 	
 }

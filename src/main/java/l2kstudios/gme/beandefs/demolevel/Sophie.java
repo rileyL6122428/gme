@@ -15,8 +15,12 @@ import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.swing.animation.BoardAnimation;
+import l2kstudios.gme.swing.animation.Frame;
+import l2kstudios.gme.swing.animation.ImageLoader;
+import l2kstudios.gme.swing.model.SwingUnit;
 
-public class Sophie extends Unit {
+public class Sophie extends SwingUnit {
 	
 	{
 		name = "Sophie";
@@ -48,6 +52,33 @@ public class Sophie extends Unit {
 		actionClasses.put(Wait.class, new ArrayList<Class>(){{
 			add(BasicWait.class);
 		}});
+		
+		Unit asbelInstance = this;
+		boardAnimation = new BoardAnimation(){{
+			setUnit(asbelInstance);
+			
+			setIdleFrames(new ArrayList<Frame>(){{
+				add(new Frame(){{
+					setImage(ImageLoader.getBoardSprite("Asbel-Frame-1.png", 0, 0));
+					setDuration(15);
+				}});
+				
+				add(new Frame(){{
+					setImage(ImageLoader.getBoardSprite("Asbel-Frame-2.png", 0, 0));
+					setDuration(15);
+				}});
+				
+				add(new Frame(){{
+					setImage(ImageLoader.getBoardSprite("Asbel-Frame-3.png", 0, 0));
+					setDuration(15);
+				}});
+				
+				add(new Frame(){{
+					setImage(ImageLoader.getBoardSprite("Asbel-Frame-2.png", 0, 0));
+					setDuration(15);
+				}});
+			}});
+		}};
 	}
 	
 }

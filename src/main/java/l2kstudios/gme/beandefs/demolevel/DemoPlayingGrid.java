@@ -45,13 +45,13 @@ public class DemoPlayingGrid extends PlayingGrid {
 		
 		new Sophie().place(getSpaceAt(14, 4));
 		new Asbel().place(getSpaceAt(13, 4));
-		new Estelle().place(getSpaceAt(13, 3));
+//		new Estelle().place(getSpaceAt(13, 3));
 		
 		new Richard().place(getSpaceAt(0, 0));
-		new StockPhysicalBaddy().place(getSpaceAt(1, 1));
-		new StockPhysicalBaddy().place(getSpaceAt(2, 1));
-		new StockPhysicalBaddy().place(getSpaceAt(3, 2));
-		new StockPhysicalBaddy().place(getSpaceAt(3, 3));
-		new StockHealer().place(getSpaceAt(0, 2));
+//		new StockPhysicalBaddy().place(getSpaceAt(1, 1));
+//		new StockPhysicalBaddy().place(getSpaceAt(2, 1));
+//		new StockPhysicalBaddy().place(getSpaceAt(3, 2));
+//		new StockPhysicalBaddy().place(getSpaceAt(3, 3));
+//		new StockHealer().place(getSpaceAt(0, 2));
 	}
 }

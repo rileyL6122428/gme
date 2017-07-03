@@ -13,7 +13,7 @@ import l2kstudios.gme.model.turn.PlayerControlledTurn.MovePlacementPhase;
 import l2kstudios.gme.model.turn.PlayerControlledTurn.PostMoveActionInstanceSelectionPhase;
 import l2kstudios.gme.model.turn.PlayerControlledTurn.PostMoveActionPlacementPhase;
 import l2kstudios.gme.model.turn.PlayerControlledTurn.PostMoveActionTypeSelectionPhase;
-import l2kstudios.gme.model.unit.ComputerControlledUnit;
+import l2kstudios.gme.model.unit.ComputerControllableUnit;
 import l2kstudios.gme.model.unit.Unit;
 
 public class ComputerControlledTurn implements Turn {
@@ -25,7 +25,7 @@ public class ComputerControlledTurn implements Turn {
 	private Class postMoveActionType;
 	private UnitActionFactory unitActionFactory;
 	
-	private ComputerControlledUnit actingUnit;	
+	private ComputerControllableUnit actingUnit;	
 	private PlayingGrid playingGrid;
 	
 	@Override
@@ -97,11 +97,11 @@ public class ComputerControlledTurn implements Turn {
 		});
 	}}
 	
-	public ComputerControlledUnit getActingUnit() {
+	public ComputerControllableUnit getActingUnit() {
 		return actingUnit;
 	}
 
-	public void setActingUnit(ComputerControlledUnit actingUnit) {
+	public void setActingUnit(ComputerControllableUnit actingUnit) {
 		this.actingUnit = actingUnit;
 	}
 

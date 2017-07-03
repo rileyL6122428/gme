@@ -2,7 +2,7 @@ package l2kstudios.gme.model.unit;
 
 import l2kstudios.gme.model.grid.Space;
 
-public class ComputerControlledUnit extends Unit {
+public class ComputerControllableUnit extends Unit {
 	
 	protected Conciousness conciousness;
 	

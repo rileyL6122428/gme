@@ -14,11 +14,15 @@ import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
 import l2kstudios.gme.model.unit.BasicConciousness;
-import l2kstudios.gme.model.unit.ComputerControlledUnit;
+import l2kstudios.gme.model.unit.ComputerControllableUnit;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.swing.animation.BoardAnimation;
+import l2kstudios.gme.swing.animation.Frame;
+import l2kstudios.gme.swing.animation.ImageLoader;
+import l2kstudios.gme.swing.model.SwingUnit;
 
-public class Richard extends ComputerControlledUnit {
+public class Richard extends SwingUnit {
 	
 	
 	{
@@ -60,6 +64,32 @@ public class Richard extends ComputerControlledUnit {
 		}};
 		
 		
+		
+		boardAnimation = new BoardAnimation(){{
+			setUnit(richardInstance);
+			
+			setIdleFrames(new ArrayList<Frame>(){{
+				add(new Frame(){{
+					setImage(ImageLoader.getBoardSprite("Asbel-Frame-1.png", 0, 0));
+					setDuration(15);
+				}});
+				
+				add(new Frame(){{
+					setImage(ImageLoader.getBoardSprite("Asbel-Frame-2.png", 0, 0));
+					setDuration(15);
+				}});
+				
+				add(new Frame(){{
+					setImage(ImageLoader.getBoardSprite("Asbel-Frame-3.png", 0, 0));
+					setDuration(15);
+				}});
+				
+				add(new Frame(){{
+					setImage(ImageLoader.getBoardSprite("Asbel-Frame-2.png", 0, 0));
+					setDuration(15);
+				}});
+			}});
+		}};
 	}
 
 }
