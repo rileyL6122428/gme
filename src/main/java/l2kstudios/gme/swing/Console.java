@@ -1,8 +1,11 @@
 package l2kstudios.gme.swing;
 
 import javax.swing.JApplet;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+//TODO Credit the author of this code
 
 public class Console {
 	
