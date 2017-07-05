@@ -31,9 +31,5 @@
 			<bean class="${LEVEL_VIEW}" />
 		</property>		
 	</bean>
-
-	<bean id="demoConfig" class="${CONFIG}" scope="singleton" />
-	
-	<bean id="demoAssetLoader" class="l2kstudios.gme.AssetLoader" scope="singleton" />
 	
 </beans>

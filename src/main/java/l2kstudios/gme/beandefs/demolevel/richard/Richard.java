@@ -1,6 +1,6 @@
-package l2kstudios.gme.beandefs.demolevel;
+package l2kstudios.gme.beandefs.demolevel.richard;
 
-import static l2kstudios.gme.model.unit.Unit.Team.ALLY;
+import static l2kstudios.gme.model.unit.Unit.Team.ENEMY;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +13,8 @@ import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
 import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
+import l2kstudios.gme.model.unit.BasicConciousness;
+import l2kstudios.gme.model.unit.ComputerControllableUnit;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.swing.animation.BoardAnimation;
@@ -20,11 +22,13 @@ import l2kstudios.gme.swing.animation.Frame;
 import l2kstudios.gme.swing.animation.ImageLoader;
 import l2kstudios.gme.swing.model.SwingUnit;
 
-public class Sophie extends SwingUnit {
+public class Richard extends SwingUnit {
+	
 	
 	{
-		name = "Sophie";
-		team = ALLY;
+		name = "Richard";
+		team = ENEMY;
+		
 		
 		health = new ConsummableStat(){{
 			setCap(3);
@@ -36,7 +40,8 @@ public class Sophie extends SwingUnit {
 			setVal(2);
 		}};
 		
-		speed = 3;
+		speed = 2;
+		
 		
 		postMoveDecisions = new ArrayList<Class>();
 		postMoveDecisions.add(AttackDecision.class);
@@ -53,9 +58,15 @@ public class Sophie extends SwingUnit {
 			add(BasicWait.class);
 		}});
 		
-		Unit asbelInstance = this;
+		Unit richardInstance = this;
+		conciousness = new BasicConciousness(){{
+			setUnit(richardInstance);
+		}};
+		
+		
+		
 		boardAnimation = new BoardAnimation(){{
-			setUnit(asbelInstance);
+			setUnit(richardInstance);
 			
 			setIdleFrames(new ArrayList<Frame>(){{
 				add(new Frame(){{
@@ -80,5 +91,5 @@ public class Sophie extends SwingUnit {
 			}});
 		}};
 	}
-	
+
 }

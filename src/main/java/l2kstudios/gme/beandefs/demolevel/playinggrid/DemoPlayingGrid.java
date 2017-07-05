@@ -1,5 +1,8 @@
-package l2kstudios.gme.beandefs.demolevel;
+package l2kstudios.gme.beandefs.demolevel.playinggrid;
 
+import l2kstudios.gme.beandefs.demolevel.asbel.Asbel;
+import l2kstudios.gme.beandefs.demolevel.richard.Richard;
+import l2kstudios.gme.beandefs.demolevel.sophie.Sophie;
 import l2kstudios.gme.model.grid.SpacesFactory;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 

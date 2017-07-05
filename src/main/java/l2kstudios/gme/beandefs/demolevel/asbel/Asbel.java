@@ -1,4 +1,4 @@
-package l2kstudios.gme.beandefs.demolevel;
+package l2kstudios.gme.beandefs.demolevel.asbel;
 
 import static l2kstudios.gme.model.unit.Unit.Team.ALLY;
 
