@@ -2,16 +2,11 @@ package l2kstudios.gme.beandefs.demolevel.asbel;
 
 import static l2kstudios.gme.model.unit.Unit.Team.ALLY;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import l2kstudios.gme.model.action.postmove.AttackDecision;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
-import l2kstudios.gme.model.action.postmove.attack.Attack;
-import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
-import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
 import l2kstudios.gme.model.unit.ConsummableStat;
@@ -41,14 +36,18 @@ public class Asbel extends SwingUnit {
 		
 		
 		postMoveDecisions = new ArrayList<Class>();
-		postMoveDecisions.add(AttackDecision.class);
+		postMoveDecisions.add(SheathedSwordArtesDecision.class);
+		postMoveDecisions.add(DrawnSwordArtesDecision.class);
 		postMoveDecisions.add(WaitDecision.class);
 		
 		actionClasses = new HashMap<Class, List<Class>>();
 		
-		actionClasses.put(Attack.class, new ArrayList<Class>(){{
-			add(BasicAttack.class);
-			add(BasicAttackWithRange.class);
+		actionClasses.put(SheathedSwordArtes.class, new ArrayList<Class>(){{
+			add(NimbleFang.class);
+		}});
+		
+		actionClasses.put(DrawnSwordArtes.class, new ArrayList<Class>(){{
+			add(DemonFang.class);
 		}});
 		
 		actionClasses.put(Wait.class, new ArrayList<Class>(){{

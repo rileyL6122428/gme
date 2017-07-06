@@ -11,12 +11,12 @@ public class SingleRowActionInterface extends ActionInterface {
 	
 	@Override
 	public void moveCursorDown() {
-		super.moveCursorLeft();
+		super.moveCursorRight();
 	}
 	
 	@Override
 	public void moveCursorUp() {
-		super.moveCursorRight();
+		super.moveCursorLeft();
 	}
 	
 	public Space getSpaceAt(int x) {
