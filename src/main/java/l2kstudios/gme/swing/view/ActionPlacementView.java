@@ -1,11 +1,10 @@
 package l2kstudios.gme.swing.view;
 
-import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.CURSOR_COLOR;
-import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.RANGE_OF_EFFECT_COLOR;
-import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.SELECTABLE_SPACE_COLOR;
+import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.*;
 import static l2kstudios.gme.swing.view.GridConstants.SPACE_HEIGHT;
 import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 
@@ -35,7 +34,6 @@ public class ActionPlacementView implements ActionInterfaceView {
 	}
 	
 	private void drawRangeOfEffect(Graphics drawingCtx) {
-		//TODO SET EXECUTION RANGE FOR MOVE WHEN CREATING
 		if(actionInterface.canChooseHoveredSpace()) {
 			Position cursorPosition = actionInterface.getCursorPosition();
 			
@@ -63,7 +61,44 @@ public class ActionPlacementView implements ActionInterfaceView {
 	public void drawCursorPosition(Graphics drawingCtx) {
 		Position cursorPosition = actionInterface.getCursorPosition();
 		drawingCtx.setColor(CURSOR_COLOR);
-		drawingCtx.fillRect(cursorPosition.getX() * SPACE_WIDTH, cursorPosition.getY() * SPACE_HEIGHT, SPACE_WIDTH, SPACE_HEIGHT);		
+		drawingCtx.fillRect(cursorPosition.getX() * SPACE_WIDTH, cursorPosition.getY() * SPACE_HEIGHT, SPACE_WIDTH, SPACE_HEIGHT);
+		
+		if(actionInterface.canChooseHoveredSpace()) {
+			drawOutline(drawingCtx);			
+		}
+	}
+
+	private void drawOutline(Graphics drawingCtx) {
+		Position cursorPosition = actionInterface.getCursorPosition();
+		drawingCtx.setColor(Color.GREEN);
+		
+		drawingCtx.drawLine(
+				cursorPosition.getX() * SPACE_WIDTH, 
+				cursorPosition.getY() * SPACE_HEIGHT, 
+				(cursorPosition.getX() + 1) * SPACE_WIDTH, 
+				cursorPosition.getY() * SPACE_HEIGHT
+		);
+		
+		drawingCtx.drawLine(
+				cursorPosition.getX() * SPACE_WIDTH, 
+				(cursorPosition.getY() + 1) * SPACE_HEIGHT, 
+				(cursorPosition.getX() + 1) * SPACE_WIDTH, 
+				(cursorPosition.getY() + 1) * SPACE_HEIGHT
+		);
+		
+		drawingCtx.drawLine(
+				cursorPosition.getX() * SPACE_WIDTH, 
+				cursorPosition.getY() * SPACE_HEIGHT, 
+				cursorPosition.getX() * SPACE_WIDTH, 
+				(cursorPosition.getY() + 1) * SPACE_HEIGHT
+		);
+		
+		drawingCtx.drawLine(
+				(cursorPosition.getX() + 1) * SPACE_WIDTH, 
+				cursorPosition.getY() * SPACE_HEIGHT, 
+				(cursorPosition.getX() + 1) * SPACE_WIDTH, 
+				(cursorPosition.getY() + 1) * SPACE_HEIGHT
+		);
 	}
 
 	public ActionPlacementInterface getActionInterface() {
