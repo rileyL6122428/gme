@@ -7,10 +7,10 @@ import com.google.common.collect.Range;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
+import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
-import l2kstudios.gme.model.unit.Unit;
 
 public class ActionPlacementInterface extends ActionInterface {
 	
@@ -45,6 +45,10 @@ public class ActionPlacementInterface extends ActionInterface {
 		
 		return false;
 	}
+	
+	public boolean canChooseHoveredSpace() {
+		return action.ableToExecuteAt(getCursorPosition());
+	}
 
 	public Range<Integer> getExectuionRange() {
 		return action.getExecutionRange();
@@ -53,4 +57,5 @@ public class ActionPlacementInterface extends ActionInterface {
 	public RangeOfEffect getRangeOfEffect() {
 		return action.getRangeOfEffect();
 	}
+
 }

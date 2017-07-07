@@ -26,10 +26,12 @@ public abstract class Action extends Placeable {
 	
 	protected abstract void affectSpace(Space space);
 	
-	public boolean ableToExecuteAt(Space space) {
+	public boolean ableToExecuteAt(Space space) {		
+		return ableToExecuteAt(space.getPosition());
+	}
+	
+	public boolean ableToExecuteAt(Position executeAtPosition) {
 		Position executeFromPosition = spaceToExecuteFrom.getPosition();
-		Position executeAtPosition = space.getPosition();
-		
 		int distanceToExecution = GridUtils.distanceBetween(executeAtPosition, executeFromPosition);
 		return executionRange.contains(distanceToExecution);
 	}

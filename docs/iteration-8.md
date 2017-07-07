@@ -2,6 +2,9 @@
 
 - implement Asbel, Sophie, Richard move set
 
+-implement only showing range of effect when placement is in placeable square
+- implement relative range of effect
+
 - implement turn Order view (with pluggable assets)
 - implement controls for maximizing move order
 

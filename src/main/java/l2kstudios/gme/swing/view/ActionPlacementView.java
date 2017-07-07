@@ -35,13 +35,18 @@ public class ActionPlacementView implements ActionInterfaceView {
 	}
 	
 	private void drawRangeOfEffect(Graphics drawingCtx) {
-		RangeOfEffect rangeOfEffect = actionInterface.getRangeOfEffect();
-		List<Space> affectedSpaces = rangeOfEffect.affectedSpaces(actionInterface.getCursorPosition());
-		drawingCtx.setColor(RANGE_OF_EFFECT_COLOR);
-		
-		affectedSpaces.forEach((space) -> {
-			drawRangeOfEffectSpace(drawingCtx, space);
-		});
+		//TODO SET EXECUTION RANGE FOR MOVE WHEN CREATING
+		if(actionInterface.canChooseHoveredSpace()) {
+			Position cursorPosition = actionInterface.getCursorPosition();
+			
+			RangeOfEffect rangeOfEffect = actionInterface.getRangeOfEffect();
+			List<Space> affectedSpaces = rangeOfEffect.affectedSpaces(cursorPosition);
+			drawingCtx.setColor(RANGE_OF_EFFECT_COLOR);
+			
+			affectedSpaces.forEach((space) -> {
+				drawRangeOfEffectSpace(drawingCtx, space);
+			});			
+		}
 	}
 
 	private void drawRangeOfEffectSpace(Graphics drawingCtx, Space space) {
