@@ -53,30 +53,15 @@ public class Sophie extends SwingUnit {
 			add(BasicWait.class);
 		}});
 		
-		Unit asbelInstance = this;
+		Unit sophieInstance = this;
 		boardAnimation = new BoardAnimation(){{
-			setUnit(asbelInstance);
+			setUnit(sophieInstance);
 			
 			setIdleFrames(new ArrayList<Frame>(){{
 				add(new Frame(){{
-					setImage(ImageLoader.getBoardSprite("Asbel-Frame-1.png", 0, 0));
-					setDuration(15);
-				}});
-				
-				add(new Frame(){{
-					setImage(ImageLoader.getBoardSprite("Asbel-Frame-2.png", 0, 0));
-					setDuration(15);
-				}});
-				
-				add(new Frame(){{
-					setImage(ImageLoader.getBoardSprite("Asbel-Frame-3.png", 0, 0));
-					setDuration(15);
-				}});
-				
-				add(new Frame(){{
-					setImage(ImageLoader.getBoardSprite("Asbel-Frame-2.png", 0, 0));
-					setDuration(15);
-				}});
+					setImage(ImageLoader.getBoardSprite("Sophie-Frame-1.png", 0, 0));
+					setDuration(60);
+				}});				
 			}});
 		}};
 	}
