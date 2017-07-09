@@ -32,8 +32,8 @@ public class ActionTest {
 		executingUnit = new Unit();
 		
 		nullSettingAction = newNullSettingAction();
-		nullSettingAction.setExecutingUnit(executingUnit);
 		nullSettingAction.setRangeOfEffect(new Cross(1));
+		nullSettingAction.setExecutingUnit(executingUnit);
 		nullSettingAction.setPlayingGrid(playingGrid);
 	}
 	

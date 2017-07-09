@@ -101,8 +101,8 @@ public class DeltaTest {
 				setDeltaX(2);
 				setDeltaY(3);
 				setRotation(90);
-				setRotatedDeltaX(3);
-				setRotatedDeltaY(-2);
+				setRotatedDeltaX(-3);
+				setRotatedDeltaY(2);
 			}});
 			
 		}}.forEach(this::verifyRotationReturnsCorrectDeltaCoordinates);
@@ -145,8 +145,8 @@ public class DeltaTest {
 				setDeltaX(2);
 				setDeltaY(3);
 				setRotation(270);
-				setRotatedDeltaX(-3);
-				setRotatedDeltaY(2);
+				setRotatedDeltaX(3);
+				setRotatedDeltaY(-2);
 			}});
 			
 		}}.forEach(this::verifyRotationReturnsCorrectDeltaCoordinates);

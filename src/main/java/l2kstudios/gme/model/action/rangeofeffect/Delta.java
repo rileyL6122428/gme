@@ -36,11 +36,11 @@ public class Delta {
 	}
 	
 	public int getRotatedY(double rotationDegrees) {
-		return (int) -round(sin(rotationTheta(rotationDegrees)) * length());
+		return (int) round(sin(rotationTheta(rotationDegrees)) * length());
 	}
 	
 	private double rotationTheta(double rotationDegrees) {
-		return toRadians(rotationDegrees) - atan2(y, x);
+		return toRadians(rotationDegrees) + atan2(y, x);
 	}
 	
 	private double length() {

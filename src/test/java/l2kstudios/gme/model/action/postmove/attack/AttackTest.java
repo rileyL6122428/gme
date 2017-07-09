@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import l2kstudios.gme.model.action.rangeofeffect.SingleSpace;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.ConsummableStat;
 import l2kstudios.gme.model.unit.Unit;
@@ -23,6 +24,7 @@ public class AttackTest {
 		attack = new Attack();
 		
 		attackingUnit = new Unit();
+		attack.setRangeOfEffect(new SingleSpace());
 		attack.setExecutingUnit(attackingUnit);
 		
 		spaceAffectedByAttack = new Space();

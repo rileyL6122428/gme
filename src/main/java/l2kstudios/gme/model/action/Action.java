@@ -58,6 +58,7 @@ public abstract class Action extends Placeable {
 	
 	public void setExecutingUnit(Unit executingUnit) {
 		this.executingUnit = executingUnit;
+		rangeOfEffect.setExecutingUnit(executingUnit);
 	}
 
 	public void setSpaceToExecuteAt(Space space) {
