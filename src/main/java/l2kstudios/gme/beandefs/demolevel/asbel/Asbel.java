@@ -9,12 +9,14 @@ import java.util.List;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
-import l2kstudios.gme.model.unit.ConsummableStat;
+import l2kstudios.gme.model.unit.Stat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.swing.animation.BoardAnimation;
 import l2kstudios.gme.swing.animation.Frame;
 import l2kstudios.gme.swing.animation.ImageLoader;
 import l2kstudios.gme.swing.model.SwingUnit;
+
+import static l2kstudios.gme.model.unit.Unit.StatType.*;
 
 public class Asbel extends SwingUnit {
 	
@@ -22,18 +24,65 @@ public class Asbel extends SwingUnit {
 		name = "Asbel";
 		team = ALLY;
 		
-		health = new ConsummableStat(){{
+		setStat(HEALTH, new Stat(){{
+			setMaxCap(3);
 			setCap(3);
 			setVal(3);
-		}};
+		}});
 		
-		energy = new ConsummableStat(){{
+		setStat(MOMENTUM, new Stat(){{
+			setMaxCap(3);
+			setCap(3);
+			setVal(3);
+		}});
+		
+		setStat(STRENGTH, new Stat(){{
+			setMaxCap(3);
+			setCap(3);
+			setVal(3);
+		}});
+		
+		setStat(PHYSICAL_DEFENSE, new Stat(){{
+			setMaxCap(3);
+			setCap(3);
+			setVal(3);
+		}});
+		
+		setStat(MAGIC, new Stat(){{
+			setMaxCap(2);
 			setCap(2);
 			setVal(2);
-		}};
+		}});
 		
-		speed = 3;
+		setStat(MAGICAL_DEFENSE, new Stat(){{
+			setMaxCap(2);
+			setCap(2);
+			setVal(2);
+		}});
 		
+		setStat(MOVEMENT, new Stat(){{
+			setMaxCap(3);
+			setCap(3);
+			setVal(3);
+		}});
+		
+		setStat(SPEED, new Stat(){{
+			setMaxCap(3);
+			setCap(3);
+			setVal(3);
+		}});
+
+		setStat(INTELLIGENCE, new Stat(){{
+			setMaxCap(3);
+			setCap(3);
+			setVal(3);
+		}});
+		
+		setStat(SKILL, new Stat(){{
+			setMaxCap(3);
+			setCap(3);
+			setVal(3);
+		}});
 		
 		postMoveDecisions = new ArrayList<Class>();
 		postMoveDecisions.add(SheathedSwordArtesDecision.class);

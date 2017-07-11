@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Test;
 
-import l2kstudios.gme.model.unit.ConsummableStat;
+import l2kstudios.gme.model.unit.Stat;
 import l2kstudios.gme.model.unit.Unit;
 
 public class MovementCycleTest {
@@ -90,7 +90,7 @@ public class MovementCycleTest {
 	
 	private Unit unitWithHealthAndSpeedSetTo(long newUnitHealth, long newUnitSpeed) {
 		return new Unit(){{
-			setHealth(new ConsummableStat() {{
+			setHealth(new Stat() {{
 				setVal(newUnitHealth);
 				setCap(Math.max(1, newUnitHealth));
 			}});

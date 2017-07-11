@@ -1,15 +1,16 @@
 # Work Items
 
-- implement Asbel, Sophie, Richard move set
+- (stubbed)implement Asbel, Sophie, Richard move set
 
--implement only showing range of effect when placement is in placeable square
-- implement relative range of effect
+- (DONE)implement only showing range of effect when placement is in placeable square
+- (DONE)implement relative range of effect
+
+- create turn Unit Detail view
+- implement controls to show unit detail view
 
 - implement turn Order view (with pluggable assets)
 - implement controls for maximizing move order
 
-- create turn Unit Detail view
-- implement controls to show unit detail view
 
 (Friday Night/ Saturday Morning Work Items)
 - draw idle board frames for Sophie and Richard

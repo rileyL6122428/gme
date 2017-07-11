@@ -12,7 +12,7 @@ import org.junit.Test;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
-import l2kstudios.gme.model.unit.ConsummableStat;
+import l2kstudios.gme.model.unit.Stat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.testutils.SpacesFactory;
 
@@ -229,7 +229,7 @@ public class PathUtilTest {
 	
 	private Unit newUnitWithEnergySetTo(long energyVal) {
 		return new Unit(){{
-			setEnergy(new ConsummableStat(){{
+			setEnergy(new Stat(){{
 				setCap(energyVal);
 				setVal(energyVal);
 			}});

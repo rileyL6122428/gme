@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import l2kstudios.gme.model.action.rangeofeffect.SingleSpace;
 import l2kstudios.gme.model.grid.Space;
-import l2kstudios.gme.model.unit.ConsummableStat;
+import l2kstudios.gme.model.unit.Stat;
 import l2kstudios.gme.model.unit.Unit;
 
 public class AttackTest {
@@ -57,7 +57,7 @@ public class AttackTest {
 	
 	private Unit newUnitWithHealthSetTo(int healthVal) {
 		return new Unit(){{
-			setHealth(new ConsummableStat(){{
+			setHealth(new Stat(){{
 				setCap(healthVal);
 				setVal(healthVal);
 			}});

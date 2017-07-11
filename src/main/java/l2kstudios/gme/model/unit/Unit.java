@@ -1,5 +1,7 @@
 package l2kstudios.gme.model.unit;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,33 +9,74 @@ import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridPlaceable;
+import static l2kstudios.gme.model.unit.Unit.StatType.*;
 
 public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	
 	public enum Team {
 		ALLY, ENEMY
 	}
+	
+	public enum StatType {
+		HEALTH,
+		MOMENTUM,
+		STRENGTH,
+		PHYSICAL_DEFENSE,
+		MAGIC,
+		MAGICAL_DEFENSE,
+		MOVEMENT,
+		SPEED,
+		INTELLIGENCE,
+		SKILL
+	}
+	
+	static final public List<StatType> UNIT_STAT_TYPES;
+	
+	static {
+		UNIT_STAT_TYPES = new ArrayList<StatType>(){{
+			add(HEALTH);
+			add(MOMENTUM);
+			add(STRENGTH);
+			add(PHYSICAL_DEFENSE);
+			add(MAGIC);
+			add(MAGICAL_DEFENSE);
+			add(MOVEMENT);
+			add(SPEED);
+			add(INTELLIGENCE);
+			add(SKILL);
+		}};
+	}
 
 	protected String name;
 	protected Team team;
 	
-	protected long speed;
-	
-	protected long strength;
-	protected long defense;
-	
-	private long magic;
-	private long magicDefense;
-	
-	protected ConsummableStat health;
-	protected ConsummableStat energy;
+	protected Map<StatType, Stat> stats;
 	
 	protected List<Class> postMoveDecisions;
 	
 	protected Map<Class, List<Class>> actionClasses;
+
+	public Unit() {
+		stats = new HashMap<StatType, Stat>(){{
+			UNIT_STAT_TYPES.forEach( (statType)->put(statType, new Stat()) );
+		}};
+	}
+	
+	public void moveTo(Space space) {
+		occupiedSpace.setOccupier(null);
+		place(space);
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	public boolean isDefeated() {
-		return getRemainingHealth() <= 0;
+		return get(HEALTH) <= 0;
 	}
 	
 	public boolean isAlliedUnit() {
@@ -52,105 +95,40 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 		this.team = team;
 	}
 
-	public long getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(long speed) {
-		this.speed = speed;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-
-	public ConsummableStat getHealth() {
-		return health;
-	}
-
-	public void setHealth(ConsummableStat health) {
-		this.health = health;
-	}
-	
-	public void setRemainingHealth(long remainingHealth) {
-		health.setVal(remainingHealth);
-	}
-	
-	public long getRemainingHealth() {
-		return health.getVal();
-	}
-
-	public long getRemainingEnergy() {
-		return energy.getVal();
-	}
-	
-	public ConsummableStat getEnergy() {
-		return energy;
-	}
-
-	public void setEnergy(ConsummableStat energy) {
-		this.energy = energy;
-	}
-	
-	public void moveTo(Space space) {
-		occupiedSpace.setOccupier(null);
-		place(space);
-	}
-
 	public List<Class> getPostMoveDecisions() {
 		return postMoveDecisions;
-	}
-
-	public long getStrength() {
-		return strength;
-	}
-	
-	public void setStrength(long strength) {
-		this.strength = strength;
-	}
-
-	public long getDefense() {
-		return defense;
-	}
-	
-	public void setDefense(long defense) {
-		this.defense = defense;
-	}
-
-	public long getMagic() {
-		return magic;
-	}
-
-	public void setMagic(long magic) {
-		this.magic = magic;
-	}
-
-	public long getMagicDefense() {
-		return magicDefense;
-	}
-
-	public void setMagicDefense(long magicDefense) {
-		this.magicDefense = magicDefense;
-	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public List<Class> getActionTypes(Class actionType) {
 		return actionClasses.get(actionType);
 	}
+	
+	public long get(StatType statType) {
+		return this.stats.get(statType).getVal();
+	}
+	
+	public void increaseStat(StatType statType, long amount) {
+		this.stats.get(statType).increaseVal(amount);
+	}
+	
+	public void decreaseStat(StatType statType, long amount) {
+		this.stats.get(statType).decreaseVal(amount);
+	}
+	
+	public Stat getStat(StatType statType) {
+		return this.stats.get(statType);
+	}
+	
+	public void setStat(StatType statType, Stat stat) {
+		this.stats.put(statType, stat);
+	}
+
+	@Override
+	public void afterPropertiesSet() { }
 
 	public String toString() {
 		return "Unit \n" + 
 				"name = " + name + "\n" +
-				"speed = " + speed + "\n";
+				"speed = " + get(SPEED) + "\n";
 	}
 }
