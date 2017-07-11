@@ -5,17 +5,10 @@ import static java.lang.Math.*;
 
 public class Stat implements InitializingBean {
 	
-	private String name;
 	private long maxCap;
 	private long cap;
 	private long val;
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public long getVal() {
 		return val;
 	}

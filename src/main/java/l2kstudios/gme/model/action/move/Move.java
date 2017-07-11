@@ -12,6 +12,8 @@ import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.path.PathUtil;
 import l2kstudios.gme.model.unit.Unit;
 
+import static l2kstudios.gme.model.unit.Unit.StatType.*;
+
 public class Move extends Action {
 	
 	private Set<PlayingGridSpace> moveableSpaces;
@@ -34,7 +36,7 @@ public class Move extends Action {
 	public void setExecutingUnit(Unit unit) {
 		super.setExecutingUnit(unit);
 		moveableSpaces = new PathUtil().moveableSpaces(unit);
-		executionRange = Range.closed(0, (int)unit.getRemainingEnergy());
+		executionRange = Range.closed(0, (int)unit.get(MOVEMENT));
 	}
 
 	public void undo() {

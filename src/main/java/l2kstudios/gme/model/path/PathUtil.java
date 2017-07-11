@@ -8,6 +8,7 @@ import java.util.Set;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.unit.Unit;
+import static l2kstudios.gme.model.unit.Unit.StatType.*;
 
 public class PathUtil {
 	
@@ -24,11 +25,11 @@ public class PathUtil {
 		endPointToPathMap.put(unit.getOccupiedSpace(), stationaryPath);
 		distanceToPathsMap.addPath(0, stationaryPath);
 		
-		for(int energy = 1; energy <= unit.getRemainingEnergy(); energy++) {
-			for(Path prevPath : distanceToPathsMap.getPathsWithDistance(energy - 1)) {
+		for(int movement = 1; movement <= unit.get(MOVEMENT); movement++) {
+			for(Path prevPath : distanceToPathsMap.getPathsWithDistance(movement - 1)) {
 				for(PlayingGridSpace adjacentSpace : prevPath.getEnd().getAdjacentPlayingGridSpaces()) {
 					if(adjacentSpace.canBeTraversedBy(unit) && !endPointToPathMap.containsKey(adjacentSpace))
-						addPathLeadingToAdjacentSpace(endPointToPathMap, distanceToPathsMap, adjacentSpace, prevPath, energy);
+						addPathLeadingToAdjacentSpace(endPointToPathMap, distanceToPathsMap, adjacentSpace, prevPath, movement);
 				}
 			}
 		}
@@ -61,12 +62,12 @@ public class PathUtil {
 	}
 	
 	private void addPathLeadingToAdjacentSpace(
-		Map<PlayingGridSpace, Path> endPointToPath, DistanceToPathsMap distanceToPathsMap, PlayingGridSpace adjacentSpace, Path prevPath, int energy
+		Map<PlayingGridSpace, Path> endPointToPath, DistanceToPathsMap distanceToPathsMap, PlayingGridSpace adjacentSpace, Path prevPath, int movement
 		) {
 		Path path = new Path(endPointToPath.get(prevPath.getEnd()));
 		path.add(adjacentSpace);
 		endPointToPath.put(adjacentSpace, path);
-		distanceToPathsMap.addPath(energy, path);
+		distanceToPathsMap.addPath(movement, path);
 	}
 
 }

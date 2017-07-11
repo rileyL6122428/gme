@@ -1,11 +1,13 @@
 package l2kstudios.gme.model.path;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import l2kstudios.gme.model.unit.Unit;
+import static l2kstudios.gme.model.unit.Unit.StatType.*;
 
 public class DistanceToPathsMap {
 	
@@ -14,7 +16,7 @@ public class DistanceToPathsMap {
 	public DistanceToPathsMap(Unit unit) {
 		map = new HashMap<Integer, List<Path>>();
 		
-		for(int distance = 0; distance <= unit.getRemainingEnergy(); distance++) {
+		for(int distance = 0; distance <= unit.get(MOVEMENT); distance++) {
 			map.put(distance, new ArrayList<Path>());
 		}
 	}

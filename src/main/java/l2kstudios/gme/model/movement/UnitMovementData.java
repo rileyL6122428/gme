@@ -10,6 +10,8 @@ import java.util.Set;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.mathutils.LongArithmetic;
 
+import static l2kstudios.gme.model.unit.Unit.StatType.*;
+
 public class UnitMovementData {
 	private Map<Unit, Long> invertedUnitSpeeds;
 	private long speedLCM;
@@ -29,7 +31,7 @@ public class UnitMovementData {
 		List<Long> unitSpeeds = new ArrayList<Long>();
 		
 		for(Unit unit : units) {
-			unitSpeeds.add(unit.getSpeed());
+			unitSpeeds.add(unit.get(SPEED));
 		}
 		
 		return unitSpeeds;

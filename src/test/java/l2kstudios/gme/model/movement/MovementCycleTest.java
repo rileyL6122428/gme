@@ -2,6 +2,7 @@ package l2kstudios.gme.model.movement;
 
 import static org.junit.Assert.assertEquals;
 
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,21 +11,22 @@ import org.junit.Test;
 
 import l2kstudios.gme.model.unit.Stat;
 import l2kstudios.gme.model.unit.Unit;
+import static l2kstudios.gme.model.unit.Unit.StatType.*;
 
 public class MovementCycleTest {
 	
 	private MovementCycle moveCycle;
 	
 	@After
-	public void setup() {
+	public void tearDown() {
 		moveCycle = null;
 	}
 	
 	@Test
 	public void getCycle__returnsAInverseSpeedMultipleListOfUnits() {
-		Unit fastestUnit = new Unit(){{setSpeed(7);}};
-		Unit midSpeedUnit = new Unit(){{setSpeed(3);}};
-		Unit slowestUnit = new Unit(){{setSpeed(2);}};
+		Unit fastestUnit = unitWithHealthAndSpeedSetTo(1, 7);
+		Unit midSpeedUnit = unitWithHealthAndSpeedSetTo(1, 3);
+		Unit slowestUnit = unitWithHealthAndSpeedSetTo(1, 2);
 		List<Unit> units = Arrays.asList(slowestUnit, midSpeedUnit, fastestUnit);
 		
 		moveCycle = new MovementCycle();
@@ -61,7 +63,7 @@ public class MovementCycleTest {
 		
 		moveCycle = new MovementCycle();
 		moveCycle.setUnits(units);
-		midSpeedUnit.setRemainingHealth(0);
+		midSpeedUnit.decreaseStat(HEALTH, midSpeedUnit.get(HEALTH));
 		moveCycle.rebase(units);
 		
 		List<Unit> moveOrder = moveCycle.getOrder();
@@ -90,12 +92,17 @@ public class MovementCycleTest {
 	
 	private Unit unitWithHealthAndSpeedSetTo(long newUnitHealth, long newUnitSpeed) {
 		return new Unit(){{
-			setHealth(new Stat() {{
-				setVal(newUnitHealth);
-				setCap(Math.max(1, newUnitHealth));
+			setStat(HEALTH, new Stat() {{
+				this.setMaxCap(newUnitHealth);
+				this.setCap(newUnitHealth);
+				this.setVal(newUnitHealth);
 			}});
 			
-			setSpeed(newUnitSpeed);
+			setStat(SPEED, new Stat(){{
+				this.setMaxCap(newUnitSpeed);
+				this.setCap(newUnitSpeed);
+				this.setVal(newUnitSpeed);
+			}});
 		}};
 	}
 
