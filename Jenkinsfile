@@ -4,5 +4,6 @@ node() {
 
     mvn_home = tool 'RILEY_MAVEN'
     sh "echo ${mvn_home}"
+    sh "'${mvn_home}/bin/mvn' clean install "
   }
 }
