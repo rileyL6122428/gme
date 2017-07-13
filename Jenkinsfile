@@ -3,6 +3,6 @@ node() {
     sh 'echo hello world'
 
     mvn_home = tool 'RILEY_MAVEN'
-    
+    sh "echo ${mvn_home}"
   }
 }
