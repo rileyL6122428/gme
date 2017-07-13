@@ -16,6 +16,8 @@ import l2kstudios.gme.model.unit.Stat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.testutils.SpacesFactory;
 
+import static l2kstudios.gme.model.unit.Unit.StatType.*;
+
 public class PathUtilTest {
 	
 	private PathUtil pathUtil;
@@ -229,7 +231,8 @@ public class PathUtilTest {
 	
 	private Unit newUnitWithEnergySetTo(long energyVal) {
 		return new Unit(){{
-			setEnergy(new Stat(){{
+			setStat(MOVEMENT, new Stat(){{
+				setMaxCap(energyVal);
 				setCap(energyVal);
 				setVal(energyVal);
 			}});
