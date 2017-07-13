@@ -3,5 +3,6 @@ node() {
     sh 'echo hello world'
     withMaven(maven: "JENKINS_MAVEN") {
       sh 'mvn clean install'
+    }
   }
 }
