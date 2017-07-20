@@ -10,16 +10,17 @@ import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.swing.view.LevelGridInterface;
 import l2kstudios.gme.swing.view.unitdetail.UnitDetailInterface;
 
-public class LevelInterface implements Interface<Level> {
+public class LevelInterface implements Interface {
 
 	private LevelGridInterface levelGridInterface;
 	private UnitDetailInterface unitDetailInterface;
 	
-	private Interface<Level> focusedInteractable;
+	private Interface focusedInteractable;
 	
 	public LevelInterface() {
 		levelGridInterface = new LevelGridInterface();
 		unitDetailInterface = new UnitDetailInterface();
+		
 		focusedInteractable = levelGridInterface;
 	}
 	
@@ -33,7 +34,6 @@ public class LevelInterface implements Interface<Level> {
 
 	private void toggleFocusedInteractable() {
 		focusedInteractable = (focusedInteractable == levelGridInterface) ? unitDetailInterface : levelGridInterface;
-		
 	}
 
 	public LevelGridInterface getLevelGridInterface() {
@@ -56,19 +56,9 @@ public class LevelInterface implements Interface<Level> {
 		levelGridInterface.setLevel(level);
 		unitDetailInterface.setLevel(level);
 	}
-	
-	public void afterPropertiesSet() {
-		// set focused interactable to level view
-	}
 
 	public void draw(Graphics drawingCtx) {
 		focusedInteractable.draw(drawingCtx);
-	}
-
-	@Override
-	public void setModel(Level model) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

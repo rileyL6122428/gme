@@ -11,7 +11,7 @@ import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.swing.controller.GameController;
 import l2kstudios.gme.swing.view.interfacemanagement.LevelInterface;
 
-public class GamePanel extends JPanel implements Interface<Level> {
+public class GamePanel extends JPanel implements Interface {
 	
 	private Level level;
 	private LevelInterface levelInterface;
@@ -25,7 +25,6 @@ public class GamePanel extends JPanel implements Interface<Level> {
 		
 		levelInterface = new LevelInterface();
 		levelInterface.setLevel(level);
-		
 	}
 	
 	@Override
@@ -33,27 +32,14 @@ public class GamePanel extends JPanel implements Interface<Level> {
 		draw(drawingCtx);
     }
 
-
-
-	@Override
-	public void receiveInput(Input input) {
-		levelInterface.receiveInput(input);
-	}
-
-
-
 	@Override
 	public void draw(Graphics drawingCtx) {
 		levelInterface.draw(drawingCtx);
 	}
 
-
-
 	@Override
-	public void setModel(Level model) {
-		// TODO Auto-generated method stub
-		
+	public void receiveInput(Input input) {
+		levelInterface.receiveInput(input);
 	}
-
-
+	
 }

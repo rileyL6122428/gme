@@ -9,11 +9,11 @@ import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.swing.view.View;
 
-public class UnitDetailInterface implements Interface<Level> {
+public class UnitDetailInterface implements Interface {
 	
 	private boolean active;
 	private int pageIdx;
-	private List<View<Unit>> pages;
+	private List<View> pages;
 	
 	@Override
 	public void draw(Graphics drawingCtx) {
@@ -44,7 +44,7 @@ public class UnitDetailInterface implements Interface<Level> {
 	}
 	
 	public void setModel(Unit model) {
-		pages.forEach( (page)-> page.setModel(model) );
+//		pages.forEach( (page)-> page.setModel(model) );
 	}
 	
 	public boolean isActive() {
@@ -59,20 +59,14 @@ public class UnitDetailInterface implements Interface<Level> {
 	public void setPageIdx(int pageIdx) {
 		this.pageIdx = pageIdx;
 	}
-	public List<View<Unit>> getPages() {
+	public List<View> getPages() {
 		return pages;
 	}
-	public void setPages(List<View<Unit>> pages) {
+	public void setPages(List<View> pages) {
 		this.pages = pages;
 	}
 
 	public void setLevel(Level level) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setModel(Level model) {
 		// TODO Auto-generated method stub
 		
 	}

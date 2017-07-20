@@ -9,7 +9,7 @@ import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
 
-public class LevelGridInterface implements Interface<Level> {
+public class LevelGridInterface implements Interface {
 	
 	private Level level;
 	
@@ -47,12 +47,6 @@ public class LevelGridInterface implements Interface<Level> {
 		this.turnView = new TurnView(){{ setLevel(level); }};
 		
 		this.moveOrderView = new MoveOrderView(){{ setLevel(level); }};
-	}
-
-	@Override
-	public void setModel(Level model) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }
