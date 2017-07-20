@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.actioninterface;
+package l2kstudios.gme.swing.gameinterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,11 @@ import java.util.function.Consumer;
 
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
 import l2kstudios.gme.model.unit.Unit;
 
-public class PostMoveDecisionMenu extends SingleRowActionInterface {
+public class PostMoveDecisionMenu extends SingleRowActionInterface implements Interface {
 	
 	private PlayerControlledTurn turn;
 	

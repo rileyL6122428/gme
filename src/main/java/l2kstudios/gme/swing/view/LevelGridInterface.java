@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.interaction.Input;
-import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
 

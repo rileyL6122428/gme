@@ -1,5 +1,6 @@
-package l2kstudios.gme.model.actioninterface;
+package l2kstudios.gme.swing.gameinterface;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -7,9 +8,11 @@ import java.util.function.Consumer;
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveAction;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.interaction.Input;
+import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
 
-public class ActionInstanceMenu extends SingleRowActionInterface {
+public class ActionInstanceMenu extends SingleRowActionInterface implements Interface {
 	
 	private PlayerControlledTurn turn;
 	
@@ -50,6 +53,18 @@ public class ActionInstanceMenu extends SingleRowActionInterface {
 			Action action = (Action) space.getOccupier();
 			callback.accept(action);
 		});
+	}
+
+	@Override
+	public void draw(Graphics drawingCtx) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void receiveInput(Input input) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

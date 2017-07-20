@@ -14,6 +14,7 @@ import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
+import l2kstudios.gme.swing.gameinterface.ActionPlacementInterface;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 public class ActionPlacementInterfaceTest {

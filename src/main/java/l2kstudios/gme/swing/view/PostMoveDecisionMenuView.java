@@ -3,8 +3,8 @@ package l2kstudios.gme.swing.view;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.swing.gameinterface.PostMoveDecisionMenu;
 
 import static l2kstudios.gme.swing.view.GridConstants.*;
 

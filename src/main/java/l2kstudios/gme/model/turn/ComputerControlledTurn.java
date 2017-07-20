@@ -3,10 +3,6 @@ package l2kstudios.gme.model.turn;
 import l2kstudios.gme.model.action.UnitActionFactory;
 import l2kstudios.gme.model.action.move.Move;
 import l2kstudios.gme.model.action.postmove.PostMoveAction;
-import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
-import l2kstudios.gme.model.actioninterface.ActionInterface;
-import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
-import l2kstudios.gme.model.actioninterface.PostMoveDecisionMenu;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.turn.PlayerControlledTurn.MovePlacementPhase;
@@ -15,6 +11,10 @@ import l2kstudios.gme.model.turn.PlayerControlledTurn.PostMoveActionPlacementPha
 import l2kstudios.gme.model.turn.PlayerControlledTurn.PostMoveActionTypeSelectionPhase;
 import l2kstudios.gme.model.unit.ComputerControllableUnit;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.swing.gameinterface.ActionInstanceMenu;
+import l2kstudios.gme.swing.gameinterface.ActionInterface;
+import l2kstudios.gme.swing.gameinterface.ActionPlacementInterface;
+import l2kstudios.gme.swing.gameinterface.PostMoveDecisionMenu;
 
 public class ComputerControlledTurn implements Turn {
 

@@ -7,8 +7,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import l2kstudios.gme.model.action.Action;
-import l2kstudios.gme.model.actioninterface.ActionInstanceMenu;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.swing.gameinterface.ActionInstanceMenu;
 
 public class ActionInstanceMenuView implements ActionInterfaceView {
 

@@ -9,9 +9,9 @@ import java.awt.Graphics;
 import java.util.List;
 
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
-import l2kstudios.gme.model.actioninterface.ActionPlacementInterface;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.swing.gameinterface.ActionPlacementInterface;
 
 public class ActionPlacementView implements ActionInterfaceView {
 

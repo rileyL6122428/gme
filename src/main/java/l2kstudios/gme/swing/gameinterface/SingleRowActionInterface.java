@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.actioninterface;
+package l2kstudios.gme.swing.gameinterface;
 
 import java.util.ArrayList;
 import java.util.List;
