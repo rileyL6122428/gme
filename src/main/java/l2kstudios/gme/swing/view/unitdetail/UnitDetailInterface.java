@@ -3,10 +3,13 @@ package l2kstudios.gme.swing.view.unitdetail;
 import java.awt.Graphics;
 import java.util.List;
 
+import l2kstudios.gme.model.interaction.Input;
+import l2kstudios.gme.model.interaction.Interface;
+import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.swing.view.View;
 
-public class UnitDetailView implements View<Unit> {
+public class UnitDetailInterface implements Interface<Level> {
 	
 	private boolean active;
 	private int pageIdx;
@@ -15,7 +18,9 @@ public class UnitDetailView implements View<Unit> {
 	@Override
 	public void draw(Graphics drawingCtx) {
 		if(isActive()) 
-			pages.get(pageIdx).draw(drawingCtx);					
+			pages.get(pageIdx).draw(drawingCtx);	
+		
+		drawingCtx.drawString("UNIT DETAIL VIEW", 50, 50);
 	}
 	
 	public void flipRight() {
@@ -27,6 +32,17 @@ public class UnitDetailView implements View<Unit> {
 	}
 	
 	@Override
+	public void receiveInput(Input input) {
+		switch(input) {
+			case LEFT:
+				flipLeft();
+				break;
+			case RIGHT:
+				flipRight();
+				break;
+		}
+	}
+	
 	public void setModel(Unit model) {
 		pages.forEach( (page)-> page.setModel(model) );
 	}
@@ -49,5 +65,16 @@ public class UnitDetailView implements View<Unit> {
 	public void setPages(List<View<Unit>> pages) {
 		this.pages = pages;
 	}
-	
+
+	public void setLevel(Level level) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setModel(Level model) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

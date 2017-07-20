@@ -4,9 +4,12 @@ import java.awt.Graphics;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import l2kstudios.gme.model.interaction.Input;
+import l2kstudios.gme.model.interaction.Interactable;
+import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
 
-public class LevelView {
+public class LevelGridInterface implements Interface<Level> {
 	
 	private Level level;
 	
@@ -15,6 +18,10 @@ public class LevelView {
 	private TurnView turnView;
 	private MoveOrderView moveOrderView;
 	
+	@Override
+	public void receiveInput(Input input) {
+		level.receiveInput(input);
+	}
 
 	public void draw(Graphics drawingCtx) {
 		playingGridView.draw(drawingCtx);
@@ -40,6 +47,12 @@ public class LevelView {
 		this.turnView = new TurnView(){{ setLevel(level); }};
 		
 		this.moveOrderView = new MoveOrderView(){{ setLevel(level); }};
+	}
+
+	@Override
+	public void setModel(Level model) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

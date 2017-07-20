@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.controller;
+package l2kstudios.gme.swing.controller.keybinding;
 
 import javax.swing.Action;
 import javax.swing.ActionMap;

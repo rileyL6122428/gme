@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.controller;
+package l2kstudios.gme.swing.controller.keybinding;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -7,15 +7,15 @@ import javax.swing.AbstractAction;
 
 import l2kstudios.gme.model.interaction.Input;
 
-public class BackSpaceKeyBinding extends KeyBinding {
+public class LeftKeyBinding extends KeyBinding {
 	
 	{
-		keyCode = KeyEvent.VK_BACK_SPACE;
+		keyCode = KeyEvent.VK_LEFT;
 		
 		action = new AbstractAction(){
 			public void actionPerformed(ActionEvent e) {
-				gameContext.receiveInput(Input.BACK);
-			}			
+				gameContext.receiveInput(Input.LEFT);
+			}
 		};
 	}
 	

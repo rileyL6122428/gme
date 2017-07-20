@@ -6,15 +6,15 @@ import javax.swing.JPanel;
 
 import l2kstudios.gme.beandefs.demolevel.playinggrid.DemoPlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
-import l2kstudios.gme.model.interaction.Interactable;
+import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.swing.controller.GameController;
-import l2kstudios.gme.swing.view.LevelView;
+import l2kstudios.gme.swing.view.interfacemanagement.LevelInterface;
 
-public class GamePanel extends JPanel implements Interactable {
+public class GamePanel extends JPanel implements Interface<Level> {
 	
 	private Level level;
-	private LevelView levelView;
+	private LevelInterface levelInterface;
 	
 	public GamePanel() {
 		new GameController().setKeyBindingsOn(this);
@@ -23,24 +23,36 @@ public class GamePanel extends JPanel implements Interactable {
 		level.setPlayingGrid(new DemoPlayingGrid());
 		level.afterPropertiesSet();
 		
-		levelView = new LevelView();
-		levelView.setLevel(level);
+		levelInterface = new LevelInterface();
+		levelInterface.setLevel(level);
 		
 	}
 	
-	
-	
 	@Override
     public void paintComponent(Graphics drawingCtx) {
-        levelView.draw(drawingCtx);
+		draw(drawingCtx);
     }
 
 
 
 	@Override
 	public void receiveInput(Input input) {
-		level.receiveInput(input);
-		System.out.println(input);
+		levelInterface.receiveInput(input);
+	}
+
+
+
+	@Override
+	public void draw(Graphics drawingCtx) {
+		levelInterface.draw(drawingCtx);
+	}
+
+
+
+	@Override
+	public void setModel(Level model) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

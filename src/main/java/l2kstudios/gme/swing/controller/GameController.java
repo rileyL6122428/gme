@@ -10,6 +10,14 @@ import static l2kstudios.gme.model.interaction.Input.*;
 
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.swing.GamePanel;
+import l2kstudios.gme.swing.controller.keybinding.BackSpaceKeyBinding;
+import l2kstudios.gme.swing.controller.keybinding.DownKeyBinding;
+import l2kstudios.gme.swing.controller.keybinding.KeyBinding;
+import l2kstudios.gme.swing.controller.keybinding.LeftKeyBinding;
+import l2kstudios.gme.swing.controller.keybinding.RightKeyBinding;
+import l2kstudios.gme.swing.controller.keybinding.SpaceKeyBinding;
+import l2kstudios.gme.swing.controller.keybinding.SwitchKeyBinding;
+import l2kstudios.gme.swing.controller.keybinding.UpKeyBinding;
 
 public class GameController {
 	
@@ -23,6 +31,7 @@ public class GameController {
 			add(new LeftKeyBinding());
 			add(new SpaceKeyBinding());
 			add(new BackSpaceKeyBinding());
+			add(new SwitchKeyBinding());
 		}};
 	}
 
