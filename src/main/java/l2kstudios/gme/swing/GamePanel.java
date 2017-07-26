@@ -6,12 +6,12 @@ import javax.swing.JPanel;
 
 import l2kstudios.gme.beandefs.demolevel.playinggrid.DemoPlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
-import l2kstudios.gme.model.interaction.Interface;
+import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.swing.controller.GameController;
 import l2kstudios.gme.swing.view.interfacemanagement.LevelInterface;
 
-public class GamePanel extends JPanel implements Interface {
+public class GamePanel extends JPanel implements Interactable {
 	
 	private Level level;
 	private LevelInterface levelInterface;
@@ -29,13 +29,8 @@ public class GamePanel extends JPanel implements Interface {
 	
 	@Override
     public void paintComponent(Graphics drawingCtx) {
-		draw(drawingCtx);
-    }
-
-	@Override
-	public void draw(Graphics drawingCtx) {
 		levelInterface.draw(drawingCtx);
-	}
+    }
 
 	@Override
 	public void receiveInput(Input input) {

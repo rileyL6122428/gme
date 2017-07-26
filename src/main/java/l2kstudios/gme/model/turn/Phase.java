@@ -5,25 +5,7 @@ public class Phase {
 	private Phase next;
 	private Phase previous;
 	
-	private Runnable advanceCallback;
-	private Runnable regressionCallback;
-	
-	public void invokeAdvanceCallback() {
-		if(advanceCallback != null)
-			advanceCallback.run();
-	}
-	
-	public void setAdvanceCallback(Runnable advanceCallback) {
-		this.advanceCallback = advanceCallback;
-	}
-
-	public void invokeRegressionCallback() {
-		regressionCallback.run();
-	}
-
-	public void setRegressionCallback(Runnable regressionCallback) {
-		this.regressionCallback = regressionCallback;
-	}
+	private TurnDirector turnInterface;
 
 	public Phase getNext() {
 		return next;
@@ -40,6 +22,13 @@ public class Phase {
 	public void setPrevious(Phase previous) {
 		this.previous = previous;
 	}
-	
+
+	public TurnDirector getPhaseInterface() {
+		return turnInterface;
+	}
+
+	public void setPhaseInterface(TurnDirector phaseInterface) {
+		this.turnInterface = phaseInterface;
+	}
 	
 }

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class PhaseSequenceTest {
 	
-	private PhaseSequence phaseSequence;
+	private TurnPhaseSequence phaseSequence;
 	
 	private boolean advanceFlag1;
 	private boolean advanceFlag2;
@@ -21,7 +21,7 @@ public class PhaseSequenceTest {
 		advanceFlag2 = false;
 		advanceFlag3 = false;
 		
-		phaseSequence = new PhaseSequence();
+		phaseSequence = new TurnPhaseSequence();
 		
 		phaseSequence.add(new Phase(){{
 			setAdvanceCallback( () -> advanceFlag1 = true );

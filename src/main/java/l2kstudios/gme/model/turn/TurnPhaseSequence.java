@@ -1,6 +1,12 @@
 package l2kstudios.gme.model.turn;
 
-public class PhaseSequence {
+import l2kstudios.gme.model.interaction.Interface;
+
+public class TurnPhaseSequence {
+	
+	public enum PhaseProgressionFlag {
+		ADVANCE, REGRESS, STAND_BY
+	}
 	
 	private Phase start;
 	private Phase terminal;
@@ -10,7 +16,6 @@ public class PhaseSequence {
 	public void advance() {
 		if(current == null) return;
 		
-		current.invokeAdvanceCallback();
 		current = current.getNext();
 		
 		if(current == null) finished = true;
@@ -19,7 +24,6 @@ public class PhaseSequence {
 	public void regress() {
 		if(current == null || current.getPrevious() == null) return;
 		
-		current.invokeRegressionCallback();
 		current = current.getPrevious();
 	}
 	
@@ -44,6 +48,10 @@ public class PhaseSequence {
 
 	public boolean isFinished() {
 		return finished;
+	}
+
+	public TurnDirector getPhaseInterface() {
+		return current.getPhaseInterface();
 	}
 
 }

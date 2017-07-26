@@ -3,15 +3,12 @@ package l2kstudios.gme.model.level;
 import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
-import l2kstudios.gme.model.interaction.Input;
-import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.movement.MovementCycle;
-import l2kstudios.gme.model.turn.ComputerControlledTurn;
 import l2kstudios.gme.model.turn.Turn;
-import l2kstudios.gme.model.turn.TurnFactory;
+import l2kstudios.gme.model.turn.TurnPhaseSequence;
 import l2kstudios.gme.model.unit.Unit;
 
-public class Level implements Interactable, InitializingBean {
+public class Level implements InitializingBean {
 	
 	private PlayingGrid playingGrid;
 	
@@ -20,40 +17,40 @@ public class Level implements Interactable, InitializingBean {
 	private MovementCycle movementCycle;
 	
 	public void update() {
-		currentTurn.update();
-		if(currentTurn.readyToCommit()) {
-			commitTurn();			
-		}
+//		currentTurn.update();
+//		if(currentTurn.readyToCommit()) {
+//			commitTurn();			
+//		}
 	}
 
-	@Override
-	public void receiveInput(Input input) {
-		currentTurn.receiveInput(input);
-		
-		if(currentTurn.readyToCommit()) {
-			commitTurn();			
-		}
-		
-		while(currentTurn instanceof ComputerControlledTurn) {
-			finishComputerControlledTurn();
-		}
-		
-	}
+//	@Override
+//	public void receiveInput(Input input) {
+//		currentTurn.receiveInput(input);
+//		
+//		if(currentTurn.readyToCommit()) {
+//			commitTurn();			
+//		}
+//		
+//		while(currentTurn instanceof ComputerControlledTurn) {
+//			finishComputerControlledTurn();
+//		}
+//		
+//	}
 	
-	private void finishComputerControlledTurn() {
-		while(!currentTurn.readyToCommit()) {
-			currentTurn.update();			
-		}
-		
-		commitTurn();
-	}
+//	private void finishComputerControlledTurn() {
+//		while(!currentTurn.readyToCommit()) {
+//			currentTurn.update();			
+//		}
+//		
+//		commitTurn();
+//	}
 
-	private void commitTurn() {	
-		currentTurn.commit();
-		clearOutDefeatedUnits();
-		movementCycle.shift();
-		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
-	}
+//	private void commitTurn() {	
+//		currentTurn.commit();
+//		clearOutDefeatedUnits();
+//		movementCycle.shift();
+//		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
+//	}
 
 	private boolean finished() {
 		return playingGrid.getAlliedUnits().size() == 0 ||
@@ -76,9 +73,8 @@ public class Level implements Interactable, InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() {
-		
 		movementCycle = new MovementCycle(playingGrid.getUnits());		
-		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);
+//		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);
 	}
 	
 	public PlayingGrid getPlayingGrid() {
@@ -95,6 +91,15 @@ public class Level implements Interactable, InitializingBean {
 	
 	public Turn getCurrentTurn() {
 		return currentTurn;
+	}
+
+//	public void advanceTurn() {
+//		currentTurn.commit();
+//	}
+
+	public TurnPhaseSequence getTurnPhases() {
+		// TODO Auto-generated method stub
+		return currentTurn.getPhases();
 	}
 
 }

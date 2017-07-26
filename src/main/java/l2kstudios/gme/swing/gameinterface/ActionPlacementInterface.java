@@ -1,5 +1,6 @@
 package l2kstudios.gme.swing.gameinterface;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,52 +11,23 @@ import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
-import l2kstudios.gme.model.turn.PlayerControlledTurn;
+import l2kstudios.gme.model.interaction.Input;
+import l2kstudios.gme.model.interaction.Interface;
+import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 
-public class ActionPlacementInterface extends ActionInterface {
-	
-	protected List<Space> chooseableSpaces;
-	
-	private Action action;
+public class ActionPlacementInterface extends TurnInterfaceBase {
 
-	public List<Space> getChooseableSpaces() {
-		return chooseableSpaces;
-	}
-	
-	public void initialize(PlayerControlledTurn turn) {
-		this.action = turn.getPlacingAction();
-		setSpaces(turn.getPlayingGrid());
-		setChooseableSpaces(turn.getPlayingGrid());
-		cursor.setPosition(action.getSpaceToExecuteFrom());
-	}
-	
-	private void setChooseableSpaces(PlayingGrid playingGrid) {
-		chooseableSpaces = new ArrayList<Space>();
+	@Override
+	public void draw(Graphics drawingCtx) {
+		// TODO Auto-generated method stub
 		
-		playingGrid.forEachSpace((space) -> {
-			if(action.ableToExecuteAt(space)) chooseableSpaces.add(space);
-		});
 	}
 
-	public boolean select() {
-		if(action.ableToExecuteAt(hoveredSpace())) {
-			action.setSpaceToExecuteAt(hoveredSpace());
-			return true;
-		}
-		
-		return false;
-	}
-	
-	public boolean canChooseHoveredSpace() {
-		return action.ableToExecuteAt(getCursorPosition());
+	@Override
+	public PhaseProgressionFlag select() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public Range<Integer> getExectuionRange() {
-		return action.getExecutionRange();
-	}
-	
-	public RangeOfEffect getRangeOfEffect() {
-		return action.getRangeOfEffect();
-	}
 
 }

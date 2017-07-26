@@ -83,9 +83,9 @@ public class Richard extends SwingUnit {
 		}});
 		
 		setStat(SPEED, new Stat(){{
-			setMaxCap(3);
-			setCap(3);
-			setVal(3);
+			setMaxCap(1);
+			setCap(1);
+			setVal(1);
 		}});
 
 		setStat(INTELLIGENCE, new Stat(){{
