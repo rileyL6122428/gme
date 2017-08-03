@@ -3,6 +3,7 @@ package l2kstudios.gme.swing.gameinterface;
 import java.awt.Graphics;
 import java.util.Set;
 
+import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
@@ -23,7 +24,6 @@ public class MovePlacementInterface extends TurnInterfaceBase {
 
 	@Override
 	public void draw(Graphics drawingCtx) {
-//		drawingCtx.drawString("TEST", 20, 20);
 		view.draw(drawingCtx);
 	}
 
@@ -67,11 +67,16 @@ public class MovePlacementInterface extends TurnInterfaceBase {
 		playingGrid = turn.getPlayingGrid();
 		actingUnit = turn.getActingUnit();
 		
+		cursor = new BoundedCursor();
+		cursor.setXBound(playingGrid.getWidth());
+		cursor.setYBound(playingGrid.getHeight());
 		cursor.setPosition(actingUnit.getPosition());
+		
 		moveableSpaces = new PathUtil().moveableSpaces(actingUnit);
 		
 		view = new MovePlacementView();
 		view.setMoveableSpaces(moveableSpaces);
+		view.setCursor(cursor);
 	}
 	
 	public Turn getTurn() {

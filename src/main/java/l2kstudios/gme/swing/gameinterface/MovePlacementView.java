@@ -39,8 +39,15 @@ public class MovePlacementView implements View {
 	}
 
 	private void drawCursor(Graphics drawingCtx) {
-		// TODO Auto-generated method stub
+		drawingCtx.setColor(CURSOR_COLOR);
 		
+		Position position = cursor.getPosition();
+		drawingCtx.fillRect(
+			position.getX() * SPACE_WIDTH, 
+			position.getY() * SPACE_HEIGHT, 
+			SPACE_WIDTH, 
+			SPACE_HEIGHT
+		);
 	}
 
 	public Cursor getCursor() {

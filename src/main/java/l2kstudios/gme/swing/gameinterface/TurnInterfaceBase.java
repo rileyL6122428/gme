@@ -13,10 +13,6 @@ public abstract class TurnInterfaceBase implements TurnDirector {
 	protected int width;
 	protected int height;
 	
-	{
-		cursor = new BoundedCursor();
-	}
-	
 	public PhaseProgressionFlag receiveInput(Input input) {
 		switch(input) {
 			case LEFT: 

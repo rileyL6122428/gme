@@ -26,8 +26,12 @@ public class LevelInterface implements Interface {
 	
 	public LevelInterface() {
 		levelView = new LevelView();
+		
 		turnInterfaceManager = new TurnInterfaceManager();
 		unitDetailInterface = new UnitDetailInterface();
+		
+		focusedInteractable = turnInterfaceManager;
+		
 		viewState = VIEWING_GRID;
 	}
 	
