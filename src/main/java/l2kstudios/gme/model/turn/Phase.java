@@ -1,11 +1,13 @@
 package l2kstudios.gme.model.turn;
 
+import l2kstudios.gme.swing.gameinterface.TurnInterfaceBase;
+
 public class Phase {
 	
 	private Phase next;
 	private Phase previous;
 	
-	private TurnDirector turnInterface;
+	private TurnInterfaceBase turnInterface;
 
 	public Phase getNext() {
 		return next;
@@ -23,11 +25,11 @@ public class Phase {
 		this.previous = previous;
 	}
 
-	public TurnDirector getPhaseInterface() {
+	public TurnInterfaceBase getPhaseInterface() {
 		return turnInterface;
 	}
 
-	public void setPhaseInterface(TurnDirector phaseInterface) {
+	public void setPhaseInterface(TurnInterfaceBase phaseInterface) {
 		this.turnInterface = phaseInterface;
 	}
 	

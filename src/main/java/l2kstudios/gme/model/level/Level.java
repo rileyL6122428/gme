@@ -7,6 +7,7 @@ import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnPhaseSequence;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.swing.gameinterface.TurnFactory;
 
 public class Level implements InitializingBean {
 	
@@ -45,12 +46,12 @@ public class Level implements InitializingBean {
 //		commitTurn();
 //	}
 
-//	private void commitTurn() {	
-//		currentTurn.commit();
-//		clearOutDefeatedUnits();
-//		movementCycle.shift();
-//		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);			
-//	}
+	public void commitTurn() {	
+		currentTurn.commitActions();
+		clearOutDefeatedUnits();
+		movementCycle.shift();
+		currentTurn = TurnFactory.newTurn(this);			
+	}
 
 	private boolean finished() {
 		return playingGrid.getAlliedUnits().size() == 0 ||
@@ -67,14 +68,14 @@ public class Level implements InitializingBean {
 		}	
 	}
 	
-	public boolean turnIsOver(Turn turn) {
-		return currentTurn != turn;
+	public boolean turnIsFinished() {
+		return currentTurn.isFinished();
 	}
 
 	@Override
 	public void afterPropertiesSet() {
-		movementCycle = new MovementCycle(playingGrid.getUnits());		
-//		currentTurn = TurnFactory.newTurn(movementCycle.getActingUnit(), playingGrid);
+		movementCycle = new MovementCycle(playingGrid.getUnits());
+		currentTurn = TurnFactory.newTurn(this);
 	}
 	
 	public PlayingGrid getPlayingGrid() {
@@ -93,13 +94,11 @@ public class Level implements InitializingBean {
 		return currentTurn;
 	}
 
-//	public void advanceTurn() {
-//		currentTurn.commit();
-//	}
-
 	public TurnPhaseSequence getTurnPhases() {
-		// TODO Auto-generated method stub
 		return currentTurn.getPhases();
 	}
 
+	public Unit getActingUnit() {
+		return movementCycle.getActingUnit();
+	}
 }

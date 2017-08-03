@@ -1,6 +1,6 @@
 package l2kstudios.gme.model.turn;
 
-import l2kstudios.gme.model.interaction.Interface;
+import l2kstudios.gme.swing.gameinterface.TurnInterfaceBase;
 
 public class TurnPhaseSequence {
 	
@@ -50,8 +50,20 @@ public class TurnPhaseSequence {
 		return finished;
 	}
 
-	public TurnDirector getPhaseInterface() {
+	public TurnInterfaceBase getPhaseInterface() {
 		return current.getPhaseInterface();
+	}
+
+	public void registerFlag(PhaseProgressionFlag phaseFlag) {
+		switch(phaseFlag) {
+			case ADVANCE:
+				advance();
+				break;
+			case REGRESS:
+				regress();
+				break;
+		}
+		
 	}
 
 }

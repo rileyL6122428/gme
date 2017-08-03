@@ -58,4 +58,5 @@ public class Turn {
 	public void setActingUnit(Unit actingUnit) {
 		this.actingUnit = actingUnit;
 	}
+	
 }

@@ -8,7 +8,7 @@ import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 
 public abstract class TurnInterfaceBase implements TurnDirector {
 	
-	public BoundedCursor cursor;
+	protected BoundedCursor cursor;
 	
 	protected int width;
 	protected int height;

@@ -18,12 +18,13 @@ public class MovePlacementInterface extends TurnInterfaceBase {
 	private Space originalUnitSpace;
 	private Set<PlayingGridSpace> moveableSpaces;
 	private PlayingGrid playingGrid;
+	private MovePlacementView view;
 	
 
 	@Override
 	public void draw(Graphics drawingCtx) {
-		// TODO Auto-generated method stub
-		
+//		drawingCtx.drawString("TEST", 20, 20);
+		view.draw(drawingCtx);
 	}
 
 	@Override
@@ -65,8 +66,12 @@ public class MovePlacementInterface extends TurnInterfaceBase {
 	public void afterPropertiesSet() {
 		playingGrid = turn.getPlayingGrid();
 		actingUnit = turn.getActingUnit();
+		
 		cursor.setPosition(actingUnit.getPosition());
 		moveableSpaces = new PathUtil().moveableSpaces(actingUnit);
+		
+		view = new MovePlacementView();
+		view.setMoveableSpaces(moveableSpaces);
 	}
 	
 	public Turn getTurn() {
