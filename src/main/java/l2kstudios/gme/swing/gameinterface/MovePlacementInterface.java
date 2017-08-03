@@ -20,7 +20,6 @@ public class MovePlacementInterface extends TurnInterfaceBase {
 	private Set<PlayingGridSpace> moveableSpaces;
 	private PlayingGrid playingGrid;
 	private MovePlacementView view;
-	
 
 	@Override
 	public void draw(Graphics drawingCtx) {
@@ -30,17 +29,21 @@ public class MovePlacementInterface extends TurnInterfaceBase {
 	@Override
 	public PhaseProgressionFlag select() {
 		if(unitCanMoveToCursorPosition()) {
-			originalUnitSpace = actingUnit.getOccupiedSpace();
-			
-			turn.takeAction(
-				this::moveUnitToCursorPosition, 
-				this::moveUnitBackToOriginalPosition
-			);
-			
+			moveUnit();
 			return PhaseProgressionFlag.ADVANCE;
+			
+		} else {			
+			return PhaseProgressionFlag.STAND_BY;
 		}
+	}
+	
+	private void moveUnit() {
+		originalUnitSpace = actingUnit.getOccupiedSpace();
 		
-		return PhaseProgressionFlag.STAND_BY;
+		turn.takeAction(
+			this::moveUnitToCursorPosition, 
+			this::moveUnitBackToOriginalPosition
+		);
 	}
 	
 	private void moveUnitToCursorPosition() {
@@ -63,28 +66,20 @@ public class MovePlacementInterface extends TurnInterfaceBase {
 		return cursor.getPosition().getY();
 	}
 
-	public void afterPropertiesSet() {
-		playingGrid = turn.getPlayingGrid();
-		actingUnit = turn.getActingUnit();
-		
-		cursor = new BoundedCursor();
-		cursor.setXBound(playingGrid.getWidth());
-		cursor.setYBound(playingGrid.getHeight());
-		cursor.setPosition(actingUnit.getPosition());
-		
-		moveableSpaces = new PathUtil().moveableSpaces(actingUnit);
-		
-		view = new MovePlacementView();
-		view.setMoveableSpaces(moveableSpaces);
-		view.setCursor(cursor);
-	}
-	
 	public Turn getTurn() {
 		return turn;
 	}
-
+	
 	public void setTurn(Turn turn) {
 		this.turn = turn;
+	}
+	
+	public void afterPropertiesSet() {
+		playingGrid = turn.getPlayingGrid();
+		actingUnit = turn.getActingUnit();
+		cursor = new BoundedCursor(playingGrid, actingUnit);		
+		moveableSpaces = new PathUtil().moveableSpaces(actingUnit);
+		view = new MovePlacementView(cursor, moveableSpaces);
 	}
 	
 }

@@ -14,8 +14,15 @@ import l2kstudios.gme.swing.view.View;
 
 public class MovePlacementView implements View {
 	
-	private Set<PlayingGridSpace> moveableSpaces;
 	private Cursor cursor;
+	private Set<PlayingGridSpace> moveableSpaces;
+	
+	public MovePlacementView() { }
+	
+	public MovePlacementView(Cursor cursor, Set<PlayingGridSpace> moveableSpaces) {
+		this.cursor = cursor;
+		this.moveableSpaces = moveableSpaces;
+	}
 
 	@Override
 	public void draw(Graphics drawingCtx) {
