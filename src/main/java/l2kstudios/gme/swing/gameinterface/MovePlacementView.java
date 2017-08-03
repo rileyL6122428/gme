@@ -11,6 +11,7 @@ import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.*;
 import l2kstudios.gme.swing.view.View;
+import l2kstudios.gme.swing.view.ViewUtils;
 
 public class MovePlacementView implements View {
 	
@@ -34,27 +35,13 @@ public class MovePlacementView implements View {
 		drawingCtx.setColor(SELECTABLE_SPACE_COLOR);
 		
 		moveableSpaces.forEach((space) -> {
-			Position position = space.getPosition();
-			
-			drawingCtx.fillRect(
-				position.getX() * SPACE_WIDTH, 
-				position.getY() * SPACE_HEIGHT, 
-				SPACE_WIDTH, 
-				SPACE_HEIGHT
-			);
+			ViewUtils.drawFillRectAt(space, drawingCtx);
 		});
 	}
 
 	private void drawCursor(Graphics drawingCtx) {
 		drawingCtx.setColor(CURSOR_COLOR);
-		
-		Position position = cursor.getPosition();
-		drawingCtx.fillRect(
-			position.getX() * SPACE_WIDTH, 
-			position.getY() * SPACE_HEIGHT, 
-			SPACE_WIDTH, 
-			SPACE_HEIGHT
-		);
+		ViewUtils.drawFillRectAt(cursor.getPosition(), drawingCtx);
 	}
 
 	public Cursor getCursor() {
