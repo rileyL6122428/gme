@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import l2kstudios.gme.model.action.postmove.AttackDecision;
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
 import l2kstudios.gme.model.action.postmove.attack.Attack;
 import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
@@ -101,9 +102,9 @@ public class Richard extends SwingUnit {
 		}});
 		
 		
-		postMoveDecisions = new ArrayList<Class>();
-		postMoveDecisions.add(AttackDecision.class);
-		postMoveDecisions.add(WaitDecision.class);
+		postMoveDecisions = new ArrayList<PostMoveDecision>();
+		postMoveDecisions.add(new AttackDecision());
+		postMoveDecisions.add(new WaitDecision());
 		
 		actionClasses = new HashMap<Class, List<Class>>();
 		

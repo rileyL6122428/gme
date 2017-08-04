@@ -34,7 +34,6 @@ public class Turn {
 		revertActionStack.undoLastAction();
 	}
 
-	//phases can have action interfaces plugged into them
 	public TurnPhaseSequence getPhases() {
 		return phaseSequence;
 	}

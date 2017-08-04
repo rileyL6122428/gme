@@ -1,22 +1,21 @@
 package l2kstudios.gme.swing.gameinterface;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
-import l2kstudios.gme.model.grid.Space;
-import l2kstudios.gme.model.interaction.Input;
-import l2kstudios.gme.model.interaction.Interface;
+import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PostMoveDecisionMenu extends TurnInterfaceBase {
+	
+	private Unit actingUnit;
+	private List<PostMoveDecision> decisions;
 
 	@Override
 	public void draw(Graphics drawingCtx) {
-		// TODO Auto-generated method stub
+		drawingCtx.drawString("TESTING", 200, 200);
 		
 	}
 
@@ -24,6 +23,19 @@ public class PostMoveDecisionMenu extends TurnInterfaceBase {
 	public PhaseProgressionFlag select() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public Unit getActingUnit() {
+		return actingUnit;
+	}
+
+	public void setActingUnit(Unit actingUnit) {
+		this.actingUnit = actingUnit;
+	}
+	
+	public void afterPropertiesSet() {
+		decisions = actingUnit.getPostMoveDecisions();
+		cursor = new BoundedCursor(decisions);
 	}
 	
 }

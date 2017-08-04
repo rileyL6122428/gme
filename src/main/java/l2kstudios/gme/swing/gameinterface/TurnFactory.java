@@ -14,7 +14,8 @@ public class TurnFactory {
 		turn.setPlayingGrid(level.getPlayingGrid());
 		
 		turn.setPhaseSequence(new TurnPhaseSequence(){{
-			add(newMovePhase(turn));			
+			add(newMovePhase(turn));	
+			add(newSelectActionTypePhase(turn));
 		}});
 		
 		return turn;
@@ -28,6 +29,16 @@ public class TurnFactory {
 		
 		return new Phase(){{
 			setPhaseInterface(movePlacementInterface);
+		}};
+	}
+	
+	private static Phase newSelectActionTypePhase(Turn turn) {
+		PostMoveDecisionMenu menu = new PostMoveDecisionMenu();
+		menu.setTurn(turn);
+		menu.setActingUnit(turn.getActingUnit());
+		
+		return new Phase(){{
+			setPhaseInterface(menu);
 		}};
 	}
 	

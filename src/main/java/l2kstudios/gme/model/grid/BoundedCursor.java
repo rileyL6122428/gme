@@ -1,5 +1,8 @@
 package l2kstudios.gme.model.grid;
 
+import java.util.List;
+
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 
@@ -14,6 +17,12 @@ public class BoundedCursor extends Cursor {
 		setXBound(playingGrid.getWidth());
 		setYBound(playingGrid.getHeight());
 		setPosition(actingUnit.getPosition());
+	}
+	
+	public BoundedCursor(List<PostMoveDecision> decisions) {
+		setXBound(0);
+		setYBound(decisions.size());
+		setPosition(new Position(0,0));
 	}
 	
 	public void incrementPosition(int deltaX, int deltaY) {

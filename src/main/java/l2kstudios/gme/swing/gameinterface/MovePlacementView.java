@@ -1,15 +1,13 @@
 package l2kstudios.gme.swing.gameinterface;
 
-import static l2kstudios.gme.swing.view.GridConstants.SPACE_HEIGHT;
-import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
+import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.CURSOR_COLOR;
+import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.SELECTABLE_SPACE_COLOR;
 
 import java.awt.Graphics;
 import java.util.Set;
 
 import l2kstudios.gme.model.grid.Cursor;
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
-import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.*;
 import l2kstudios.gme.swing.view.View;
 import l2kstudios.gme.swing.view.ViewUtils;
 

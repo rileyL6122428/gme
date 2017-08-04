@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.InitializingBean;
 
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridPlaceable;
 import static l2kstudios.gme.model.unit.Unit.StatType.*;
@@ -52,7 +53,7 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	
 	protected Map<StatType, Stat> stats;
 	
-	protected List<Class> postMoveDecisions;
+	protected List<PostMoveDecision> postMoveDecisions;
 	
 	protected Map<Class, List<Class>> actionClasses;
 
@@ -95,7 +96,7 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 		this.team = team;
 	}
 
-	public List<Class> getPostMoveDecisions() {
+	public List<PostMoveDecision> getPostMoveDecisions() {
 		return postMoveDecisions;
 	}
 

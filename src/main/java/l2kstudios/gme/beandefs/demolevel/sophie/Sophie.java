@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
@@ -92,10 +93,10 @@ public class Sophie extends SwingUnit {
 			setVal(3);
 		}});
 		
-		postMoveDecisions = new ArrayList<Class>();
-		postMoveDecisions.add(MartialAssaultArtesDecision.class);
-		postMoveDecisions.add(RegenerativeBurstArtesDecision.class);
-		postMoveDecisions.add(WaitDecision.class);
+		postMoveDecisions = new ArrayList<PostMoveDecision>();
+		postMoveDecisions.add(new MartialAssaultArtesDecision());
+		postMoveDecisions.add(new RegenerativeBurstArtesDecision());
+		postMoveDecisions.add(new WaitDecision());
 		
 		actionClasses = new HashMap<Class, List<Class>>();
 		

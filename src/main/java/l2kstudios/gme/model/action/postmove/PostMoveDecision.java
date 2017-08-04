@@ -17,14 +17,4 @@ public class PostMoveDecision extends Placeable {
 		return getClass().getSimpleName();
 	}
 
-
-	public int getDecisionNumber() {
-		return decisionNumber;
-	}
-
-
-	public void setDecisionNumber(int decisionNumber) {
-		this.decisionNumber = decisionNumber;
-	}
-
 }

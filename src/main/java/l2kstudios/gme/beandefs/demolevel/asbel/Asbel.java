@@ -15,6 +15,7 @@ import l2kstudios.gme.swing.animation.BoardAnimation;
 import l2kstudios.gme.swing.animation.Frame;
 import l2kstudios.gme.swing.animation.ImageLoader;
 import l2kstudios.gme.swing.model.SwingUnit;
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 
 import static l2kstudios.gme.model.unit.Unit.StatType.*;
 
@@ -84,10 +85,10 @@ public class Asbel extends SwingUnit {
 			setVal(3);
 		}});
 		
-		postMoveDecisions = new ArrayList<Class>();
-		postMoveDecisions.add(SheathedSwordArtesDecision.class);
-		postMoveDecisions.add(DrawnSwordArtesDecision.class);
-		postMoveDecisions.add(WaitDecision.class);
+		postMoveDecisions = new ArrayList<PostMoveDecision>();
+		postMoveDecisions.add(new SheathedSwordArtesDecision());
+		postMoveDecisions.add(new DrawnSwordArtesDecision());
+		postMoveDecisions.add(new WaitDecision());
 		
 		actionClasses = new HashMap<Class, List<Class>>();
 		

@@ -3,12 +3,15 @@ package l2kstudios.gme.swing.gameinterface;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.interaction.Input;
+import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnDirector;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 
 public abstract class TurnInterfaceBase implements TurnDirector {
 	
 	protected BoundedCursor cursor;
+	
+	private Turn turn;
 	
 	protected int width;
 	protected int height;
@@ -30,6 +33,7 @@ public abstract class TurnInterfaceBase implements TurnDirector {
 			case SPACE: 
 				return select();
 			case BACK: 
+				turn.revertAction();
 				return PhaseProgressionFlag.REGRESS;
 			default:
 				throw new RuntimeException("CASE NOT HANDLED IN RECEIVE INPUT");
@@ -75,5 +79,13 @@ public abstract class TurnInterfaceBase implements TurnDirector {
 	
 	public void setCursorPosition(Position position) {
 		cursor.setPosition(position);
+	}
+
+	public Turn getTurn() {
+		return turn;
+	}
+
+	public void setTurn(Turn turn) {
+		this.turn = turn;
 	}
 }
