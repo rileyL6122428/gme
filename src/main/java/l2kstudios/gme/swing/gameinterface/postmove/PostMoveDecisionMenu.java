@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.gameinterface;
+package l2kstudios.gme.swing.gameinterface.postmove;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -9,6 +9,8 @@ import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.swing.gameinterface.TurnInterfaceBase;
+
 import static l2kstudios.gme.swing.view.GridConstants.*;
 
 public class PostMoveDecisionMenu extends TurnInterfaceBase {
@@ -81,6 +83,14 @@ public class PostMoveDecisionMenu extends TurnInterfaceBase {
 	public void afterPropertiesSet() {
 		decisions = actingUnit.getPostMoveDecisions();
 		cursor = new BoundedCursor(decisions);
+	}
+
+	public int getCursorY() {
+		return cursor.getY();
+	}
+
+	public List<PostMoveDecision> getDecisons() {
+		return decisions;
 	}
 	
 }

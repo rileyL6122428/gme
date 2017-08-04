@@ -1,6 +1,5 @@
 package l2kstudios.gme.model.turn;
 
-import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 

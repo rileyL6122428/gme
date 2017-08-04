@@ -4,6 +4,7 @@ import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.turn.Phase;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnPhaseSequence;
+import l2kstudios.gme.swing.gameinterface.postmove.PostMoveDecisionMenu;
 
 public class TurnFactory {
 	
