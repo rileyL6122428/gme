@@ -11,7 +11,7 @@ public abstract class TurnInterfaceBase implements TurnDirector {
 	
 	protected BoundedCursor cursor;
 	
-	private Turn turn;
+	protected Turn turn;
 	
 	protected int width;
 	protected int height;

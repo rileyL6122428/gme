@@ -1,5 +1,6 @@
 package l2kstudios.gme.model.turn;
 
+import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 
@@ -11,6 +12,8 @@ public class Turn {
 	private RevertActionStack revertActionStack;
 	
 	private TurnPhaseSequence phaseSequence;	
+	
+	private Class bufferedActionType;
 	
 	{
 		revertActionStack = new RevertActionStack();
@@ -56,6 +59,14 @@ public class Turn {
 
 	public void setActingUnit(Unit actingUnit) {
 		this.actingUnit = actingUnit;
+	}
+
+	public Class getBufferedActionType() {
+		return bufferedActionType;
+	}
+
+	public void setBufferedActionType(Class bufferedActionType) {
+		this.bufferedActionType = bufferedActionType;
 	}
 	
 }

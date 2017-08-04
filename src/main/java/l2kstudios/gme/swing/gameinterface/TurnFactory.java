@@ -36,6 +36,7 @@ public class TurnFactory {
 		PostMoveDecisionMenu menu = new PostMoveDecisionMenu();
 		menu.setTurn(turn);
 		menu.setActingUnit(turn.getActingUnit());
+		menu.afterPropertiesSet();
 		
 		return new Phase(){{
 			setPhaseInterface(menu);
