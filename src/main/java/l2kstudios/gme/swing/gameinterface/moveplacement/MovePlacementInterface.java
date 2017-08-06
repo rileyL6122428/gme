@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.gameinterface;
+package l2kstudios.gme.swing.gameinterface.moveplacement;
 
 import java.awt.Graphics;
 import java.util.Set;
@@ -11,6 +11,7 @@ import l2kstudios.gme.model.path.PathUtil;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.swing.gameinterface.TurnInterfaceBase;
 
 public class MovePlacementInterface extends TurnInterfaceBase {
 	
