@@ -6,7 +6,7 @@ import java.util.List;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 
-public class UnitActionFactory {
+public class ActionFactory {
 	
 	private PlayingGrid playingGrid;
 	

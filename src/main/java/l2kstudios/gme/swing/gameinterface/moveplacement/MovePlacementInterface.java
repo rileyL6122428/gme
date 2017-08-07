@@ -8,14 +8,12 @@ import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.path.PathUtil;
-import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.swing.gameinterface.TurnInterfaceBase;
 
 public class MovePlacementInterface extends TurnInterfaceBase {
 	
-	private Turn turn;
 	private Unit actingUnit;
 	private Space originalUnitSpace;
 	private Set<PlayingGridSpace> moveableSpaces;
@@ -66,16 +64,8 @@ public class MovePlacementInterface extends TurnInterfaceBase {
 	private int getCursorY() {
 		return cursor.getPosition().getY();
 	}
-
-	public Turn getTurn() {
-		return turn;
-	}
 	
-	public void setTurn(Turn turn) {
-		this.turn = turn;
-	}
-	
-	public void afterPropertiesSet() {
+	public void initialize() {
 		playingGrid = turn.getPlayingGrid();
 		actingUnit = turn.getActingUnit();
 		cursor = new BoundedCursor(playingGrid, actingUnit);		

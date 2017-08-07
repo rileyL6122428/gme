@@ -18,6 +18,7 @@ public class TurnFactory {
 		turn.setPhaseSequence(new TurnPhaseSequence(){{
 			add(newMovePhase(turn));	
 			add(newSelectActionTypePhase(turn));
+			add(newSelecActionInstancePhase(turn));
 		}});
 		
 		return turn;
@@ -27,7 +28,7 @@ public class TurnFactory {
 		
 		MovePlacementInterface movePlacementInterface = new MovePlacementInterface();
 		movePlacementInterface.setTurn(turn);
-		movePlacementInterface.afterPropertiesSet();
+//		movePlacementInterface.afterPropertiesSet();
 		
 		return new Phase(){{
 			setPhaseInterface(movePlacementInterface);
@@ -38,7 +39,16 @@ public class TurnFactory {
 		PostMoveDecisionMenu menu = new PostMoveDecisionMenu();
 		menu.setTurn(turn);
 		menu.setActingUnit(turn.getActingUnit());
-		menu.afterPropertiesSet();
+//		menu.afterPropertiesSet();
+		
+		return new Phase(){{
+			setPhaseInterface(menu);
+		}};
+	}
+	
+	private static Phase newSelecActionInstancePhase(Turn turn) {
+		ActionInstanceMenu menu = new ActionInstanceMenu();
+		menu.setTurn(turn);
 		
 		return new Phase(){{
 			setPhaseInterface(menu);

@@ -1,5 +1,9 @@
 package l2kstudios.gme.model.turn;
 
+import java.util.List;
+
+import l2kstudios.gme.model.action.Action;
+import l2kstudios.gme.model.action.ActionFactory;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 
@@ -10,12 +14,16 @@ public class Turn {
 	
 	private RevertActionStack revertActionStack;
 	
-	private TurnPhaseSequence phaseSequence;	
+	private List<Action> bufferedActionInstances;
 	
-	private Class bufferedActionType;
+	private TurnPhaseSequence phaseSequence;
+	
+	private ActionFactory actionFactory;
+	
 	
 	{
 		revertActionStack = new RevertActionStack();
+		actionFactory = new ActionFactory();
 	}
 	
 	
@@ -60,12 +68,16 @@ public class Turn {
 		this.actingUnit = actingUnit;
 	}
 
-	public Class getBufferedActionType() {
-		return bufferedActionType;
+	public void bufferActionType(Class actionType) {
+		bufferedActionInstances = actionFactory.getPostMoveActions(actingUnit, actionType);
+	}
+	
+	public List<Action> getBufferedActionInstances() {
+		return bufferedActionInstances;
 	}
 
-	public void setBufferedActionType(Class bufferedActionType) {
-		this.bufferedActionType = bufferedActionType;
+	public void clearBufferedActionType() {
+		bufferedActionInstances = null;
 	}
 	
 }

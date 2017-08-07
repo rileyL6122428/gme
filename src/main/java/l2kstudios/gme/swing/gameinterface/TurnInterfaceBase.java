@@ -88,4 +88,6 @@ public abstract class TurnInterfaceBase implements TurnDirector {
 	public void setTurn(Turn turn) {
 		this.turn = turn;
 	}
+	
+	public abstract void initialize();
 }

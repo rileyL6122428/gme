@@ -2,11 +2,22 @@ package l2kstudios.gme.model.grid;
 
 import java.util.List;
 
+import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.unit.Unit;
 
 public class BoundedCursor extends Cursor {
+	
+	public static BoundedCursor fromActionList(List<Action> actions) {
+		BoundedCursor cursor = new BoundedCursor();
+		
+		cursor.setXBound(0);
+		cursor.setYBound(actions.size());
+		cursor.setPosition(new Position(0,0));
+		
+		return cursor;
+	}
 	
 	private int maxX;
 	private int maxY;
@@ -24,7 +35,7 @@ public class BoundedCursor extends Cursor {
 		setYBound(decisions.size());
 		setPosition(new Position(0,0));
 	}
-	
+
 	public void incrementPosition(int deltaX, int deltaY) {
 		super.incrementPosition(deltaX, deltaY);
 		

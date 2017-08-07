@@ -60,16 +60,15 @@ public class PostMoveDecisionMenu extends TurnInterfaceBase {
 	
 	private void bufferActionType() {
 		Class actionType = hoveredPostMoveDecision().getPostMoveActionType();
-		turn.setBufferedActionType(actionType);
+		turn.bufferActionType(actionType);
 	}
 	
 	private void removeBufferedActionType() {
-		turn.setBufferedActionType(null);
+		turn.clearBufferedActionType();
 	}
 	
 	private PostMoveDecision hoveredPostMoveDecision() {
-		int hoveredDecisionIdx = decisions.size() - (cursor.getY() + 1); 
-		return decisions.get(hoveredDecisionIdx); 
+		return decisions.get(cursor.getY()); 
 	}
 
 	public Unit getActingUnit() {
@@ -78,11 +77,6 @@ public class PostMoveDecisionMenu extends TurnInterfaceBase {
 
 	public void setActingUnit(Unit actingUnit) {
 		this.actingUnit = actingUnit;
-	}
-	
-	public void afterPropertiesSet() {
-		decisions = actingUnit.getPostMoveDecisions();
-		cursor = new BoundedCursor(decisions);
 	}
 
 	public int getCursorY() {
@@ -93,4 +87,8 @@ public class PostMoveDecisionMenu extends TurnInterfaceBase {
 		return decisions;
 	}
 	
+	public void initialize() {
+		decisions = actingUnit.getPostMoveDecisions();
+		cursor = new BoundedCursor(decisions);
+	}
 }

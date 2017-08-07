@@ -18,7 +18,10 @@ public class TurnPhaseSequence {
 		
 		current = current.getNext();
 		
-		if(current == null) finished = true;
+		if(current == null) 
+			finished = true;
+		else
+			current.initialize();
 	}
 	
 	public void regress() {
@@ -38,6 +41,7 @@ public class TurnPhaseSequence {
 		start = phase;
 		terminal = phase;
 		current = phase;
+		current.initialize();
 	}
 	
 	private void addToEnd(Phase phase) {

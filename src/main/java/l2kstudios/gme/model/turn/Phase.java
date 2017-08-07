@@ -32,5 +32,10 @@ public class Phase {
 	public void setPhaseInterface(TurnInterfaceBase phaseInterface) {
 		this.turnInterface = phaseInterface;
 	}
+
+	public void initialize() {
+		turnInterface.initialize();
+	}
+
 	
 }

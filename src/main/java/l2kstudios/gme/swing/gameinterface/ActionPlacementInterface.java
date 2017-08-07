@@ -29,5 +29,11 @@ public class ActionPlacementInterface extends TurnInterfaceBase {
 		return null;
 	}
 
+	@Override
+	public void initialize() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
