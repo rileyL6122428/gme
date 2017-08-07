@@ -1,22 +1,26 @@
-package l2kstudios.gme.swing.gameinterface.postmove;
+package l2kstudios.gme.swing.gameinterface;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.swing.gameinterface.TurnInterfaceBase;
+import l2kstudios.gme.swing.view.View;
 
 import static l2kstudios.gme.swing.view.GridConstants.*;
 
-public class PostMoveDecisionMenu extends TurnInterfaceBase {
+public class PostMoveDecisionMenu extends TurnInterfaceBase implements TextMenu {
 	
 	private Unit actingUnit;
 	private List<PostMoveDecision> decisions;
+	private List<String> decisionNames;
+	
+	private View view;
 
 	@Override
 	public void draw(Graphics drawingCtx) {
@@ -24,28 +28,7 @@ public class PostMoveDecisionMenu extends TurnInterfaceBase {
 	}
 
 	private void drawDecisionName(Graphics drawingCtx) {
-		for(int placementIdx = 0; placementIdx < decisions.size(); placementIdx++) {
-			int decisionIdx = decisions.size() - (placementIdx + 1);
-			PostMoveDecision decision = decisions.get(decisionIdx);
-			Position unitPosition = actingUnit.getPosition();
-			
-			setDecisionColor(decisionIdx, drawingCtx);
-			
-			drawingCtx.drawString(
-				decision.getName(), 
-				SPACE_WIDTH * unitPosition.getX() + 50,
-				SPACE_HEIGHT * unitPosition.getY() - 10 + decisionIdx * 25
-			);
-		}
-		
-	}
-
-	private void setDecisionColor(int decisionIdx, Graphics drawingCtx) {
-		if(decisionIdx == cursor.getY()) {
-			drawingCtx.setColor(Color.GREEN);
-		} else {
-			drawingCtx.setColor(Color.BLACK);
-		}
+		view.draw(drawingCtx);
 	}
 
 	@Override
@@ -89,6 +72,23 @@ public class PostMoveDecisionMenu extends TurnInterfaceBase {
 	
 	public void initialize() {
 		decisions = actingUnit.getPostMoveDecisions();
+		decisionNames = decisions.stream().map(decision -> decision.getName()).collect(Collectors.toList());
 		cursor = new BoundedCursor(decisions);
+		view = new TextMenuView(this);
+	}
+
+	@Override
+	public List<String> getSelectableItemNames() {
+		return decisionNames;
+	}
+
+	@Override
+	public int size() {
+		return decisions.size();
+	}
+
+	@Override
+	public Position actingUnitPosition() {
+		return actingUnit.getPosition();
 	}
 }

@@ -1,47 +1,28 @@
 package l2kstudios.gme.swing.gameinterface;
 
-import static l2kstudios.gme.swing.view.GridConstants.SPACE_HEIGHT;
-import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
-import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.swing.view.View;
 
-public class ActionInstanceMenu extends TurnInterfaceBase { 
+public class ActionInstanceMenu extends TurnInterfaceBase implements TextMenu { 
 
 	private Unit actingUnit;
 	private List<Action> actionInstances;
+	private List<String> actionNames;
+	
+	private View view;
 
 	@Override
 	public void draw(Graphics drawingCtx) {
-		for(int placementIdx = 0; placementIdx < actionInstances.size(); placementIdx++) {
-			int decisionIdx = actionInstances.size() - (placementIdx + 1);
-			Action decision = actionInstances.get(decisionIdx);
-			Position unitPosition = getActingUnit().getPosition();
-			
-			setDecisionColor(decisionIdx, drawingCtx);
-			
-			drawingCtx.drawString(
-				decision.getName(), 
-				SPACE_WIDTH * unitPosition.getX() + 50,
-				SPACE_HEIGHT * unitPosition.getY() - 10 + decisionIdx * 25
-			);
-		}
-	}
-	
-	private void setDecisionColor(int decisionIdx, Graphics drawingCtx) {
-		if(decisionIdx == cursor.getY()) {
-			drawingCtx.setColor(Color.GREEN);
-		} else {
-			drawingCtx.setColor(Color.BLACK);
-		}
+		view.draw(drawingCtx);
 	}
 
 	@Override
@@ -61,8 +42,31 @@ public class ActionInstanceMenu extends TurnInterfaceBase {
 	@Override
 	public void initialize() {
 		actionInstances = turn.getBufferedActionInstances();
+		actionNames = actionInstances.stream().map(action -> action.getName()).collect(Collectors.toList());
 		actingUnit = turn.getActingUnit();
 		cursor = BoundedCursor.fromActionList(actionInstances);
+		
+		view = new TextMenuView(this);
+	}
+
+	@Override
+	public List<String> getSelectableItemNames() {
+		return actionNames;
+	}
+
+	@Override
+	public int size() {
+		return this.actionInstances.size();
+	}
+
+	@Override
+	public Position actingUnitPosition() {
+		return actingUnit.getPosition();
+	}
+
+	@Override
+	public int getCursorY() {
+		return cursor.getY();
 	}
 	
 }
