@@ -60,6 +60,7 @@ public class Turn {
 	
 	public void setPlayingGrid(PlayingGrid playingGrid) {
 		this.playingGrid = playingGrid;
+		actionFactory.setPlayingGrid(playingGrid);
 	}
 	
 	public Unit getActingUnit() {

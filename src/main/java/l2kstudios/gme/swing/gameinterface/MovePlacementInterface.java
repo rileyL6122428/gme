@@ -74,7 +74,10 @@ public class MovePlacementInterface extends TurnInterfaceBase implements ActionP
 		actingUnit = turn.getActingUnit();
 		cursor = new BoundedCursor(playingGrid, actingUnit);		
 		moveableSpaces = new PathUtil().moveableSpaces(actingUnit);
+		
 		rangeOfEffect = new SingleSpace();
+		rangeOfEffect.setPlayingGrid(playingGrid);
+		
 		view = new ActionPlacementView(this);
 	}
 
@@ -91,6 +94,12 @@ public class MovePlacementInterface extends TurnInterfaceBase implements ActionP
 	@Override
 	public RangeOfEffect getRangeOfEffect() {
 		return rangeOfEffect;
+	}
+
+	@Override
+	public boolean canChoose(Position cursorPosition) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

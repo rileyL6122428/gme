@@ -43,6 +43,12 @@ public class ActionPlacementView implements View {
 		Position cursorPosition = actionPlacementInterface.getCursorPosition();
 		
 		
+		if(actionPlacementInterface.canChoose(cursorPosition)) {
+			drawingCtx.setColor(CURSOR_COLOR);
+			rangeOfEffect.affectedSpaces(cursorPosition).forEach((space) -> {
+				ViewUtils.drawFillRectAt(space.getPosition(), drawingCtx);
+			});			
+		}
 	}
 
 	public ActionPlacementInterface getActionPlacementInterface() {

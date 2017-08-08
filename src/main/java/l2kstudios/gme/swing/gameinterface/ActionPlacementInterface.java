@@ -13,5 +13,7 @@ public interface ActionPlacementInterface {
 	public Position getCursorPosition();
 	
 	public RangeOfEffect getRangeOfEffect();
+
+	public boolean canChoose(Position cursorPosition);
 	
 }

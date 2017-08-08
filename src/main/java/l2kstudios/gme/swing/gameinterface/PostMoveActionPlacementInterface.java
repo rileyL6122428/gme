@@ -8,6 +8,7 @@ import l2kstudios.gme.model.action.ActionUtil;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.swing.view.View;
@@ -52,6 +53,13 @@ public class PostMoveActionPlacementInterface extends TurnInterfaceBase implemen
 	@Override
 	public RangeOfEffect getRangeOfEffect() {
 		return action.getRangeOfEffect();
+	}
+
+	@Override
+	public boolean canChoose(Position cursorPosition) {
+		PlayingGrid playingGrid = turn.getPlayingGrid();
+		PlayingGridSpace space = (PlayingGridSpace)playingGrid.getSpaceAt(cursorPosition);
+		return chooseableSpaces.contains(space);
 	}
 
 
