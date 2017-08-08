@@ -5,6 +5,7 @@ import java.util.Set;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.ActionUtil;
+import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
@@ -46,6 +47,11 @@ public class PostMoveActionPlacementInterface extends TurnInterfaceBase implemen
 	@Override
 	public Position getCursorPosition() {
 		return cursor.getPosition();
+	}
+
+	@Override
+	public RangeOfEffect getRangeOfEffect() {
+		return action.getRangeOfEffect();
 	}
 
 

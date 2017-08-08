@@ -25,7 +25,7 @@ public class Cursor {
 	}
 	
 	public void incrementPosition(int deltaX, int deltaY) {
-		position = new Position(position.getX() + deltaX, position.getY() + deltaY);
+		position = Position.fromCached(position.getX() + deltaX, position.getY() + deltaY);
 	}
 	
 }

@@ -3,6 +3,8 @@ package l2kstudios.gme.swing.gameinterface;
 import java.awt.Graphics;
 import java.util.Set;
 
+import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
+import l2kstudios.gme.model.action.rangeofeffect.SingleSpace;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
@@ -19,6 +21,7 @@ public class MovePlacementInterface extends TurnInterfaceBase implements ActionP
 	private Space originalUnitSpace;
 	private Set<PlayingGridSpace> moveableSpaces;
 	private PlayingGrid playingGrid;
+	private RangeOfEffect rangeOfEffect;
 	private View view;
 
 	@Override
@@ -71,6 +74,7 @@ public class MovePlacementInterface extends TurnInterfaceBase implements ActionP
 		actingUnit = turn.getActingUnit();
 		cursor = new BoundedCursor(playingGrid, actingUnit);		
 		moveableSpaces = new PathUtil().moveableSpaces(actingUnit);
+		rangeOfEffect = new SingleSpace();
 		view = new ActionPlacementView(this);
 	}
 
@@ -82,6 +86,11 @@ public class MovePlacementInterface extends TurnInterfaceBase implements ActionP
 	@Override
 	public Position getCursorPosition() {
 		return cursor.getPosition();
+	}
+
+	@Override
+	public RangeOfEffect getRangeOfEffect() {
+		return rangeOfEffect;
 	}
 	
 }

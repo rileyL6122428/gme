@@ -5,6 +5,8 @@ import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.SELECTABL
 
 import java.awt.Graphics;
 
+import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
+import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.swing.view.View;
 import l2kstudios.gme.swing.view.ViewUtils;
 
@@ -20,6 +22,7 @@ public class ActionPlacementView implements View {
 	public void draw(Graphics drawingCtx) {
 		drawMoveableSpaces(drawingCtx);
 		drawCursor(drawingCtx);
+		drawRangeOfEffect(drawingCtx);
 	}
 
 	private void drawMoveableSpaces(Graphics drawingCtx) {
@@ -33,6 +36,13 @@ public class ActionPlacementView implements View {
 	private void drawCursor(Graphics drawingCtx) {
 		drawingCtx.setColor(CURSOR_COLOR);
 		ViewUtils.drawFillRectAt(actionPlacementInterface.getCursorPosition(), drawingCtx);
+	}
+
+	private void drawRangeOfEffect(Graphics drawingCtx) {
+		RangeOfEffect rangeOfEffect = actionPlacementInterface.getRangeOfEffect();
+		Position cursorPosition = actionPlacementInterface.getCursorPosition();
+		
+		
 	}
 
 	public ActionPlacementInterface getActionPlacementInterface() {

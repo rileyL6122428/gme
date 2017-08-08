@@ -14,7 +14,7 @@ public class BoundedCursor extends Cursor {
 		
 		cursor.setXBound(0);
 		cursor.setYBound(actions.size());
-		cursor.setPosition(new Position(0,0));
+		cursor.setPosition(Position.fromCached(0, 0));
 		
 		return cursor;
 	}
@@ -33,7 +33,7 @@ public class BoundedCursor extends Cursor {
 	public BoundedCursor(List<PostMoveDecision> decisions) {
 		setXBound(0);
 		setYBound(decisions.size());
-		setPosition(new Position(0,0));
+		setPosition(Position.fromCached(0, 0));
 	}
 
 	public void incrementPosition(int deltaX, int deltaY) {

@@ -79,7 +79,7 @@ public class RectangularGrid implements TwoDimensionalGrid {
 		
 		for(int y = 0; y < spaces.size(); y++) {
 			for(int x = 0; x < spaces.get(y).size(); x++) {
-				spaceToPosition.put(spaces.get(y).get(x), new Position(x, y));
+				spaceToPosition.put(spaces.get(y).get(x), Position.fromCached(x, y));
 			}
 		}
 	}
