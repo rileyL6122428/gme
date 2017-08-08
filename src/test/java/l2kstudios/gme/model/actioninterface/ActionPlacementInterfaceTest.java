@@ -14,12 +14,12 @@ import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.turn.PlayerControlledTurn;
-import l2kstudios.gme.swing.gameinterface.ActionPlacementInterface;
+import l2kstudios.gme.swing.gameinterface.PostMoveActionPlacementInterface;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 public class ActionPlacementInterfaceTest {
 
-	private ActionPlacementInterface actionPlacementInterface;
+	private PostMoveActionPlacementInterface actionPlacementInterface;
 	
 	private PlayerControlledTurn turn;
 	private PlayingGrid playingGrid;
@@ -36,7 +36,7 @@ public class ActionPlacementInterfaceTest {
 		when(turn.getPlayingGrid()).thenReturn(playingGrid);
 		when(turn.getPlacingAction()).thenReturn(action);
 		
-		actionPlacementInterface = new ActionPlacementInterface();
+		actionPlacementInterface = new PostMoveActionPlacementInterface();
 	}
 	
 	@Test

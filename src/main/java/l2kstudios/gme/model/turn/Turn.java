@@ -18,6 +18,8 @@ public class Turn {
 	
 	private TurnPhaseSequence phaseSequence;
 	
+	private Action bufferedAction;
+	
 	private ActionFactory actionFactory;
 	
 	
@@ -79,5 +81,16 @@ public class Turn {
 	public void clearBufferedActionType() {
 		bufferedActionInstances = null;
 	}
+
+	public void bufferAction(Action action) {
+		this.bufferedAction = action; 
+	}
 	
+	public void clearBufferedAction() {
+		bufferedAction = null;
+	}
+
+	public Action getBufferedAction() {
+		return bufferedAction;
+	}
 }

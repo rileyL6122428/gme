@@ -4,7 +4,6 @@ import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.turn.Phase;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnPhaseSequence;
-import l2kstudios.gme.swing.gameinterface.moveplacement.MovePlacementInterface;
 
 public class TurnFactory {
 	
@@ -15,19 +14,18 @@ public class TurnFactory {
 		turn.setPlayingGrid(level.getPlayingGrid());
 		
 		turn.setPhaseSequence(new TurnPhaseSequence(){{
-			add(newMovePhase(turn));	
+			add(newMovePlacementPhase(turn));	
 			add(newSelectActionTypePhase(turn));
 			add(newSelecActionInstancePhase(turn));
+			add(newPostMoveActionPlacementPhase(turn));
 		}});
 		
 		return turn;
 	}
 	
-	private static Phase newMovePhase(Turn turn) {
-		
+	private static Phase newMovePlacementPhase(Turn turn) {
 		MovePlacementInterface movePlacementInterface = new MovePlacementInterface();
 		movePlacementInterface.setTurn(turn);
-//		movePlacementInterface.afterPropertiesSet();
 		
 		return new Phase(){{
 			setPhaseInterface(movePlacementInterface);
@@ -38,7 +36,6 @@ public class TurnFactory {
 		PostMoveDecisionMenu menu = new PostMoveDecisionMenu();
 		menu.setTurn(turn);
 		menu.setActingUnit(turn.getActingUnit());
-//		menu.afterPropertiesSet();
 		
 		return new Phase(){{
 			setPhaseInterface(menu);
@@ -51,6 +48,15 @@ public class TurnFactory {
 		
 		return new Phase(){{
 			setPhaseInterface(menu);
+		}};
+	}
+	
+	private static Phase newPostMoveActionPlacementPhase(Turn turn) {
+		PostMoveActionPlacementInterface placementInterface = new PostMoveActionPlacementInterface();
+		placementInterface.setTurn(turn);
+		
+		return new Phase(){{
+			setPhaseInterface(placementInterface);
 		}};
 	}
 	

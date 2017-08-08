@@ -1,6 +1,5 @@
 package l2kstudios.gme.swing.gameinterface;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,8 +26,23 @@ public class ActionInstanceMenu extends TurnInterfaceBase implements TextMenu {
 
 	@Override
 	public PhaseProgressionFlag select() {
-		// TODO Auto-generated method stub
-		return null;
+		turn.takeAction(
+			this::setBufferedAction, 
+			this::unsetBufferedAction
+		);
+		return PhaseProgressionFlag.ADVANCE;
+	}
+	
+	private void setBufferedAction() {
+		turn.bufferAction(hoveredAction());
+	}
+	
+	private Action hoveredAction() {
+		return actionInstances.get(cursor.getY());
+	}
+
+	private void unsetBufferedAction() {
+		turn.clearBufferedAction();
 	}
 
 	public Unit getActingUnit() {
