@@ -26,7 +26,6 @@ public class LevelInterface implements Interface {
 	
 	public LevelInterface() {
 		levelView = new LevelView();
-		
 		turnInterfaceManager = new TurnInterfaceManager();
 		unitDetailInterface = new UnitDetailInterface();
 		
@@ -53,30 +52,20 @@ public class LevelInterface implements Interface {
 	}
 
 	private void toggleFocusedInteractable() {
-		focusedInteractable = (focusedInteractable == turnInterfaceManager) ? unitDetailInterface : turnInterfaceManager;
+		if(focusedInteractable == turnInterfaceManager) {
+			focusedInteractable = unitDetailInterface;
+			viewState = VIEWING_UNIT_DETAILS;
+		} else {
+			focusedInteractable = turnInterfaceManager;
+			viewState = VIEWING_GRID;
+		}
+//		focusedInteractable = (focusedInteractable == turnInterfaceManager) ? unitDetailInterface : turnInterfaceManager;
 	}
-//
-//	public LevelView getLevelGridInterface() {
-//		return levelGridInterface;
-//	}
-//
-//	public void setLevelGridInterface(LevelView levelView) {
-//		this.levelGridInterface = levelView;
-//	}
-//
-//	public UnitDetailInterface getUnitDetailInteface() {
-//		return unitDetailInterface;
-//	}
-//
-//	public void setUnitDetailInterface(UnitDetailInterface unitDetailInterface) {
-//		this.unitDetailInterface = unitDetailInterface;
-//	}
-//	
+
 	public void setLevel(Level level) {
 		levelView.setLevel(level);
 		turnInterfaceManager.setLevel(level);
 		unitDetailInterface.setLevel(level);
 	}
-
 
 }

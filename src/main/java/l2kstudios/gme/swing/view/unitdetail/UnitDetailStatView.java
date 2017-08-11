@@ -11,8 +11,7 @@ public class UnitDetailStatView implements View {
 	
 	@Override
 	public void draw(Graphics drawingCtx) {
-		// TODO Auto-generated method stub
-		
+		drawingCtx.drawString("THIS IS THE UNIT DETAIL STAT VIEW", 100, 100);
 	}	
 
 }

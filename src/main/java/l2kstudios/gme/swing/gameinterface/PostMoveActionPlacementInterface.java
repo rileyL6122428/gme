@@ -8,6 +8,7 @@ import l2kstudios.gme.model.action.ActionUtil;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
@@ -27,8 +28,20 @@ public class PostMoveActionPlacementInterface extends TurnInterfaceBase implemen
 
 	@Override
 	public PhaseProgressionFlag select() {
-		// TODO Auto-generated method stub
-		return null;
+		if(action.ableToExecuteAt(getCursorPosition())) {
+			turn.takeAction(this::placeAction, null);
+			
+			return PhaseProgressionFlag.ADVANCE;
+		} else {
+			return PhaseProgressionFlag.STAND_BY;			
+		}
+	}
+	
+	private void placeAction() {
+		PlayingGrid playingGrid = turn.getPlayingGrid();
+		Space space = playingGrid.getSpaceAt(getCursorPosition());
+		action.setSpaceToExecuteAt(space);
+		action.execute();
 	}
 
 	@Override

@@ -16,46 +16,12 @@ public class Level implements InitializingBean {
 	private Turn currentTurn;
 	
 	private MovementCycle movementCycle;
-	
-	public void update() {
-//		currentTurn.update();
-//		if(currentTurn.readyToCommit()) {
-//			commitTurn();			
-//		}
-	}
-
-//	@Override
-//	public void receiveInput(Input input) {
-//		currentTurn.receiveInput(input);
-//		
-//		if(currentTurn.readyToCommit()) {
-//			commitTurn();			
-//		}
-//		
-//		while(currentTurn instanceof ComputerControlledTurn) {
-//			finishComputerControlledTurn();
-//		}
-//		
-//	}
-	
-//	private void finishComputerControlledTurn() {
-//		while(!currentTurn.readyToCommit()) {
-//			currentTurn.update();			
-//		}
-//		
-//		commitTurn();
-//	}
 
 	public void commitTurn() {	
 		currentTurn.commitActions();
 		clearOutDefeatedUnits();
 		movementCycle.shift();
 		currentTurn = TurnFactory.newTurn(this);			
-	}
-
-	private boolean finished() {
-		return playingGrid.getAlliedUnits().size() == 0 ||
-				playingGrid.getEnemyUnits().size() == 0;
 	}
 
 	private void clearOutDefeatedUnits() {

@@ -1,6 +1,7 @@
 package l2kstudios.gme.swing.view.unitdetail;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.List;
 
 import l2kstudios.gme.model.interaction.Input;
@@ -11,14 +12,17 @@ import l2kstudios.gme.swing.view.View;
 
 public class UnitDetailInterface implements Interface {
 	
-	private boolean active;
 	private int pageIdx;
 	private List<View> pages;
 	
+	{
+		pages = new ArrayList<View>();
+		pages.add(new UnitDetailStatView());
+	}
+	
 	@Override
-	public void draw(Graphics drawingCtx) {
-		if(isActive()) 
-			pages.get(pageIdx).draw(drawingCtx);	
+	public void draw(Graphics drawingCtx) { 
+		pages.get(pageIdx).draw(drawingCtx);	
 		
 		drawingCtx.drawString("UNIT DETAIL VIEW", 50, 50);
 	}
@@ -47,12 +51,6 @@ public class UnitDetailInterface implements Interface {
 //		pages.forEach( (page)-> page.setModel(model) );
 	}
 	
-	public boolean isActive() {
-		return active;
-	}
-	public void setActive(boolean active) {
-		this.active = active;
-	}
 	public int getPageIdx() {
 		return pageIdx;
 	}
@@ -68,7 +66,6 @@ public class UnitDetailInterface implements Interface {
 
 	public void setLevel(Level level) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
