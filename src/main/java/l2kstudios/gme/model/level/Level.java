@@ -1,5 +1,7 @@
 package l2kstudios.gme.model.level;
 
+import java.util.List;
+
 import org.springframework.beans.factory.InitializingBean;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
@@ -66,5 +68,9 @@ public class Level implements InitializingBean {
 
 	public Unit getActingUnit() {
 		return movementCycle.getActingUnit();
+	}
+	
+	public List<Unit> getUnits() {
+		return playingGrid.getUnits();
 	}
 }

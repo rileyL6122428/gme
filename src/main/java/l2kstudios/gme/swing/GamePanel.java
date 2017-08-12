@@ -25,6 +25,7 @@ public class GamePanel extends JPanel implements Interactable {
 		
 		levelInterface = new LevelInterface();
 		levelInterface.setLevel(level);
+		levelInterface.afterPropertiesSet();
 	}
 	
 	@Override

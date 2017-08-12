@@ -2,13 +2,8 @@ package l2kstudios.gme.swing.view;
 
 import java.awt.Graphics;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import l2kstudios.gme.model.level.Level;
 
 public class LevelView implements View {
-	
-	private Level level;
 	
 	private PlayingGridView playingGridView;
 	private List<CharacterView> characterViews;
@@ -21,21 +16,28 @@ public class LevelView implements View {
 		moveOrderView.draw(drawingCtx);
 	}
 
-	public Level getLevel() {
-		return level;
+	public PlayingGridView getPlayingGridView() {
+		return playingGridView;
 	}
 
-	public void setLevel(Level level) {
-		this.level = level;
-		this.playingGridView = new PlayingGridView(){{ setPlayingGrid(level.getPlayingGrid()); }};
-		
-		this.characterViews = level.getPlayingGrid()
-									.getUnits()
-									.stream()
-									.map((unit) -> new CharacterView(){{setUnit(unit);}})
-									.collect(Collectors.toList());
-		
-		this.moveOrderView = new MoveOrderView(){{ setLevel(level); }};
+	public void setPlayingGridView(PlayingGridView playingGridView) {
+		this.playingGridView = playingGridView;
+	}
+
+	public List<CharacterView> getCharacterViews() {
+		return characterViews;
+	}
+
+	public void setCharacterViews(List<CharacterView> characterViews) {
+		this.characterViews = characterViews;
+	}
+
+	public MoveOrderView getMoveOrderView() {
+		return moveOrderView;
+	}
+
+	public void setMoveOrderView(MoveOrderView moveOrderView) {
+		this.moveOrderView = moveOrderView;
 	}
 	
 }
