@@ -40,6 +40,10 @@ public class Level implements InitializingBean {
 		return currentTurn.isFinished();
 	}
 
+	public boolean currentTurnIsComputerControlled() {
+		return getActingUnit().isEnemyUnit();
+	}
+	
 	@Override
 	public void afterPropertiesSet() {
 		movementCycle = new MovementCycle(playingGrid.getUnits());
@@ -73,4 +77,5 @@ public class Level implements InitializingBean {
 	public List<Unit> getUnits() {
 		return playingGrid.getUnits();
 	}
+
 }

@@ -51,6 +51,8 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 	protected String name;
 	protected Team team;
 	
+	protected Conciousness conciousness;
+	
 	protected Map<StatType, Stat> stats;
 	
 	protected List<PostMoveDecision> postMoveDecisions;
@@ -124,6 +126,14 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 		this.stats.put(statType, stat);
 	}
 
+	public Conciousness getConciousness() {
+		return conciousness;
+	}
+	
+	public void setConciousness(Conciousness conciousness) {
+		this.conciousness = conciousness;
+	}
+	
 	@Override
 	public void afterPropertiesSet() { }
 
@@ -132,4 +142,5 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 				"name = " + name + "\n" +
 				"speed = " + get(SPEED) + "\n";
 	}
+
 }

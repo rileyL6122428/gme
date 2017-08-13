@@ -26,10 +26,19 @@ public class TurnInterfaceManager implements Interface {
 		
 		if(level.turnIsFinished()) {
 			level.commitTurn();
+			finishComputerControlledTurns();
 			currentPhaseSequence = level.getTurnPhases();
 		}
 		
 		currentInterface = currentPhaseSequence.getPhaseInterface();
+	}
+
+	private void finishComputerControlledTurns() {
+		while(level.currentTurnIsComputerControlled()) {			
+			ComputerPlayer computerPlayer = ComputerPlayerFactory.newComputerPlayer(level);
+			computerPlayer.completeTurn();
+			level.commitTurn();
+		}
 	}
 
 	public void setLevel(Level level) {
