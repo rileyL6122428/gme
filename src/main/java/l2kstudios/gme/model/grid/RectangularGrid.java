@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RectangularGrid implements TwoDimensionalGrid {
+public class RectangularGrid {
 
 	protected List<List<Space>> spaces;
 	protected Map<Space, Position> spaceToPosition;
