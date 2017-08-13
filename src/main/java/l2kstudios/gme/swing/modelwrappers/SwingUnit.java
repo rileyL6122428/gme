@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.model;
+package l2kstudios.gme.swing.modelwrappers;
 
 import java.awt.Graphics;
 

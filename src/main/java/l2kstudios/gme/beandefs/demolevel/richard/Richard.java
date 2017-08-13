@@ -16,22 +16,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import l2kstudios.gme.model.action.postmove.AttackDecision;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.action.postmove.WaitDecision;
-import l2kstudios.gme.model.action.postmove.attack.Attack;
-import l2kstudios.gme.model.action.postmove.attack.BasicAttack;
-import l2kstudios.gme.model.action.postmove.attack.BasicAttackWithRange;
 import l2kstudios.gme.model.action.wait.BasicWait;
 import l2kstudios.gme.model.action.wait.Wait;
 import l2kstudios.gme.model.unit.BasicConciousness;
-import l2kstudios.gme.model.unit.ComputerControllableUnit;
 import l2kstudios.gme.model.unit.Stat;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.swing.animation.BoardAnimation;
 import l2kstudios.gme.swing.animation.Frame;
 import l2kstudios.gme.swing.animation.ImageLoader;
-import l2kstudios.gme.swing.model.SwingUnit;
+import l2kstudios.gme.swing.modelwrappers.SwingUnit;
 
 public class Richard extends SwingUnit {
 	
@@ -103,14 +98,18 @@ public class Richard extends SwingUnit {
 		
 		
 		postMoveDecisions = new ArrayList<PostMoveDecision>();
-		postMoveDecisions.add(new AttackDecision());
+		postMoveDecisions.add(new RapierAssaultArtesDecision());
+		postMoveDecisions.add(new CoercionBurstArtesDecision());
 		postMoveDecisions.add(new WaitDecision());
 		
 		actionClasses = new HashMap<Class, List<Class>>();
 		
-		actionClasses.put(Attack.class, new ArrayList<Class>(){{
-			add(BasicAttack.class);
-			add(BasicAttackWithRange.class);
+		actionClasses.put(RapierAssaultArtes.class, new ArrayList<Class>(){{
+			add(PoorForm.class);
+		}});
+		
+		actionClasses.put(CoercionBurstArtes.class, new ArrayList<Class>(){{
+			add(SwordReaper.class);
 		}});
 		
 		actionClasses.put(Wait.class, new ArrayList<Class>(){{
