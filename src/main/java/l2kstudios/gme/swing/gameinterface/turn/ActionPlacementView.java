@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.gameinterface;
+package l2kstudios.gme.swing.gameinterface.turn;
 
 import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.CURSOR_COLOR;
 import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.SELECTABLE_SPACE_COLOR;

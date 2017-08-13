@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.gameinterface;
+package l2kstudios.gme.swing.gameinterface.turn;
 
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;

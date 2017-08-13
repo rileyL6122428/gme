@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.gameinterface;
+package l2kstudios.gme.swing.gameinterface.turn;
 
 import static l2kstudios.gme.swing.view.GridConstants.SPACE_HEIGHT;
 import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;

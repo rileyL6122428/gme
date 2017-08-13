@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.gameinterface;
+package l2kstudios.gme.swing.gameinterface.turn;
 
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.turn.Phase;

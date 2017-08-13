@@ -9,7 +9,7 @@ import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.swing.controller.GameController;
-import l2kstudios.gme.swing.view.interfacemanagement.LevelInterface;
+import l2kstudios.gme.swing.gameinterface.level.LevelInterface;
 
 public class GamePanel extends JPanel implements Interactable {
 	

@@ -1,6 +1,6 @@
 package l2kstudios.gme.model.turn;
 
-import l2kstudios.gme.swing.gameinterface.TurnInterfaceBase;
+import l2kstudios.gme.swing.gameinterface.turn.TurnInterfaceBase;
 
 public class Phase {
 	

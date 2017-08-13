@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.gameinterface;
+package l2kstudios.gme.swing.gameinterface.turn;
 
 import java.awt.Color;
 import java.awt.Graphics;

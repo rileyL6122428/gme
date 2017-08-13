@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.view.unitdetail;
+package l2kstudios.gme.swing.gameinterface.unitdetail;
 
 import java.awt.Graphics;
 

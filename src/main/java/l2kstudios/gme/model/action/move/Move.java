@@ -10,7 +10,7 @@ import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
 import l2kstudios.gme.model.path.PathUtil;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.swing.gameinterface.PostMoveDecisionMenu;
+import l2kstudios.gme.swing.gameinterface.turn.PostMoveDecisionMenu;
 
 import static l2kstudios.gme.model.unit.Unit.StatType.*;
 

@@ -9,7 +9,7 @@ import l2kstudios.gme.model.movement.MovementCycle;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnPhaseSequence;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.swing.gameinterface.TurnFactory;
+import l2kstudios.gme.swing.gameinterface.turn.TurnFactory;
 
 public class Level implements InitializingBean {
 	

@@ -1,15 +1,17 @@
-package l2kstudios.gme.swing.view.interfacemanagement;
+package l2kstudios.gme.swing.gameinterface.level;
 
 import java.awt.Graphics;
 
 import l2kstudios.gme.model.interaction.Input;
 import static l2kstudios.gme.model.interaction.Input.*;
+import static l2kstudios.gme.swing.gameinterface.level.LevelInterface.ViewState.*;
+
 import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.swing.gameinterface.turn.TurnInterfaceManager;
+import l2kstudios.gme.swing.gameinterface.unitdetail.UnitDetailInterface;
 import l2kstudios.gme.swing.view.LevelView;
 import l2kstudios.gme.swing.view.LevelViewFactory;
-import l2kstudios.gme.swing.view.unitdetail.UnitDetailInterface;
-import static l2kstudios.gme.swing.view.interfacemanagement.LevelInterface.ViewState.*;
 
 public class LevelInterface implements Interface {
 	

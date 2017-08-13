@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.view.interfacemanagement;
+package l2kstudios.gme.swing.gameinterface.turn;
 
 import java.awt.Graphics;
 
@@ -7,7 +7,6 @@ import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.turn.TurnPhaseSequence;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
-import l2kstudios.gme.swing.gameinterface.TurnInterfaceBase;
 
 public class TurnInterfaceManager implements Interface {
 	
