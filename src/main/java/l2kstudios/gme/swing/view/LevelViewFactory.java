@@ -7,8 +7,8 @@ import l2kstudios.gme.model.level.Level;
 
 public class LevelViewFactory {
 	
-	public static LevelView newLevelView(Level level) {
-		LevelView levelView = new LevelView();
+	public static BoardView newLevelView(Level level) {
+		BoardView levelView = new BoardView();
 		
 		levelView.setPlayingGridView(newPlayingGridView(level));
 		levelView.setCharacterViews(newCharacterViews(level));

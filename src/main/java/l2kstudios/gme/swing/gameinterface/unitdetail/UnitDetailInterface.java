@@ -8,12 +8,16 @@ import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
+import l2kstudios.gme.swing.view.BoardView;
 import l2kstudios.gme.swing.view.View;
 
 public class UnitDetailInterface implements Interface {
 	
 	private int pageIdx;
 	private List<View> pages;
+	private Unit focusedUnit;
+	
+	private BoardView boardView;
 	
 	{
 		pages = new ArrayList<View>();
@@ -21,9 +25,8 @@ public class UnitDetailInterface implements Interface {
 	}
 	
 	@Override
-	public void draw(Graphics drawingCtx) { 
-		pages.get(pageIdx).draw(drawingCtx);	
-		
+	public void draw(Graphics drawingCtx) { 	
+		boardView.draw(drawingCtx);
 		drawingCtx.drawString("UNIT DETAIL VIEW", 50, 50);
 	}
 	
@@ -66,6 +69,22 @@ public class UnitDetailInterface implements Interface {
 
 	public void setLevel(Level level) {
 		// TODO Auto-generated method stub
+	}
+
+	public Unit getFocusedUnit() {
+		return focusedUnit;
+	}
+
+	public void setFocusedUnit(Unit focusedUnit) {
+		this.focusedUnit = focusedUnit;
+	}
+
+	public BoardView getBoardView() {
+		return boardView;
+	}
+
+	public void setBoardView(BoardView boardView) {
+		this.boardView = boardView;
 	}
 
 }

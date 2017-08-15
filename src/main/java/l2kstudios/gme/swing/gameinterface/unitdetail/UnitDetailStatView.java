@@ -7,11 +7,12 @@ import l2kstudios.gme.swing.view.View;
 
 public class UnitDetailStatView implements View {
 
-	private Unit unit;
+	private UnitDetailInterface unitDetailInterface;
 	
 	@Override
 	public void draw(Graphics drawingCtx) {
-		drawingCtx.drawString("THIS IS THE UNIT DETAIL STAT VIEW", 100, 100);
+		Unit focusedUnit = unitDetailInterface.getFocusedUnit();
+		drawingCtx.drawString("Focused on: " + focusedUnit.getName(), 100, 100);
 	}	
 
 }

@@ -3,7 +3,7 @@ package l2kstudios.gme.swing.view;
 import java.awt.Graphics;
 import java.util.List;
 
-public class LevelView implements View {
+public class BoardView implements View {
 	
 	private PlayingGridView playingGridView;
 	private List<CharacterView> characterViews;

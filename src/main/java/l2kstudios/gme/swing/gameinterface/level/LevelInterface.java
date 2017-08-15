@@ -10,7 +10,7 @@ import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.swing.gameinterface.turn.TurnInterfaceManager;
 import l2kstudios.gme.swing.gameinterface.unitdetail.UnitDetailInterface;
-import l2kstudios.gme.swing.view.LevelView;
+import l2kstudios.gme.swing.view.BoardView;
 import l2kstudios.gme.swing.view.LevelViewFactory;
 
 public class LevelInterface implements Interface {
@@ -23,7 +23,7 @@ public class LevelInterface implements Interface {
 	
 	private ViewState viewState;
 
-	private LevelView levelView;
+	private BoardView boardView;
 	
 	private TurnInterfaceManager turnInterfaceManager;
 	private UnitDetailInterface unitDetailInterface;
@@ -32,6 +32,8 @@ public class LevelInterface implements Interface {
 	public LevelInterface() {
 		turnInterfaceManager = new TurnInterfaceManager();
 		unitDetailInterface = new UnitDetailInterface();
+		
+		
 		
 		focusedInteractable = turnInterfaceManager;
 		
@@ -48,7 +50,7 @@ public class LevelInterface implements Interface {
 	@Override
 	public void draw(Graphics drawingCtx) {
 		if(viewState == VIEWING_GRID) {
-			levelView.draw(drawingCtx);
+//			boardView.draw(drawingCtx);
 			turnInterfaceManager.draw(drawingCtx);
 		} else {
 			unitDetailInterface.draw(drawingCtx);
@@ -67,9 +69,13 @@ public class LevelInterface implements Interface {
 	}
 	
 	public void afterPropertiesSet() {
-		levelView = LevelViewFactory.newLevelView(level);
+		boardView = LevelViewFactory.newLevelView(level);
+		
 		turnInterfaceManager.setLevel(level);
+		turnInterfaceManager.setBoardView(boardView);
+		
 		unitDetailInterface.setLevel(level);
+		unitDetailInterface.setBoardView(boardView);
 	}
 
 	public TurnInterfaceManager getTurnInterfaceManager() {
@@ -88,12 +94,12 @@ public class LevelInterface implements Interface {
 		this.unitDetailInterface = unitDetailInterface;
 	}
 
-	public LevelView getLevelView() {
-		return levelView;
+	public BoardView getBoardView() {
+		return boardView;
 	}
 
-	public void setLevelView(LevelView levelView) {
-		this.levelView = levelView;
+	public void setBoardView(BoardView boardView) {
+		this.boardView = boardView;
 	}
 
 	public Level getLevel() {
