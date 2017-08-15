@@ -2,7 +2,6 @@ package l2kstudios.gme.swing.gameinterface.unitdetail;
 
 import java.awt.Graphics;
 
-import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
