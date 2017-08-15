@@ -109,5 +109,10 @@ public class PlayingGrid extends RectangularGrid {
 	public void setCursor(Cursor cursor) {
 		this.cursor = cursor;
 	}
+
+	public Unit getUnitAtHoveredSpace() {
+		Position cursorPosition = cursor.getPosition();
+		return getUnitAt(cursorPosition.getX(), cursorPosition.getY());
+	}
 	
 }

@@ -17,14 +17,20 @@ public class UnitDetailInterface implements Interface {
 	private PlayingGrid playingGrid;
 	
 	private View cursorView;
+	private View unitStatsView;
 	
 	private BoardView boardView;
 	
+	private Unit selectedUnit;
+	
 	@Override
-	public void draw(Graphics drawingCtx) { 	
-		boardView.draw(drawingCtx);
-		cursorView.draw(drawingCtx);
-		drawingCtx.drawString("UNIT DETAIL VIEW", 50, 50);
+	public void draw(Graphics drawingCtx) {
+		if(selectedUnit == null) {
+			boardView.draw(drawingCtx);
+			cursorView.draw(drawingCtx);			
+		} else {
+			unitStatsView.draw(drawingCtx);			
+		}
 	}
 	
 	@SuppressWarnings("incomplete-switch")
@@ -43,11 +49,18 @@ public class UnitDetailInterface implements Interface {
 			case LEFT:
 				playingGrid.moveCursorLeft();
 				break;
+			case SPACE:
+				selectedUnit = playingGrid.getUnitAtHoveredSpace();
+				break;
+			case BACK:
+				selectedUnit = null;
+				break;
 		}
 	}
 	
 	public void afterPropertiesSet() {
 		cursorView = new CursorView(this);
+		unitStatsView = new UnitStatsView(this);
 	}
 
 	public Unit getFocusedUnit() {
@@ -78,4 +91,7 @@ public class UnitDetailInterface implements Interface {
 		return playingGrid.getCursorPosition();
 	}
 
+	public Unit getSelectedUnit() {
+		return selectedUnit;
+	}
 }
