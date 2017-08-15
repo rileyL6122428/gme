@@ -9,12 +9,7 @@ import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 
 public abstract class TurnInterfaceBase implements TurnDirector {
 	
-	protected BoundedCursor cursor;
-	
 	protected Turn turn;
-	
-	protected int width;
-	protected int height;
 	
 	public PhaseProgressionFlag receiveInput(Input input) {
 		switch(input) {
@@ -43,43 +38,13 @@ public abstract class TurnInterfaceBase implements TurnDirector {
 
 	public abstract PhaseProgressionFlag select();
 
-	public void moveCursorDown() {
-		cursor.incrementPosition(0, 1);
-	}
+	public abstract void moveCursorDown();
 
-	public void moveCursorUp() {
-		cursor.incrementPosition(0, -1);
-	}
+	public abstract void moveCursorUp();
 
-	public void moveCursorRight() {
-		cursor.incrementPosition(1, 0);
-	};
+	public abstract void moveCursorRight();
 
-	public void moveCursorLeft() {;
-		cursor.incrementPosition(-1, 0);
-	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-		cursor.setXBound(width);
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-		cursor.setYBound(height);
-	}
-	
-	public void setCursorPosition(Position position) {
-		cursor.setPosition(position);
-	}
+	public abstract void moveCursorLeft();
 
 	public Turn getTurn() {
 		return turn;

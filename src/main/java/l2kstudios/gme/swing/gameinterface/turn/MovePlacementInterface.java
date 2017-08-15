@@ -62,17 +62,16 @@ public class MovePlacementInterface extends TurnInterfaceBase implements ActionP
 	}
 	
 	private int getCursorX() {
-		return cursor.getPosition().getX();
+		return playingGrid.getCursorX();
 	}
 	
 	private int getCursorY() {
-		return cursor.getPosition().getY();
+		return playingGrid.getCursorY();
 	}
 	
 	public void initialize() {
 		playingGrid = turn.getPlayingGrid();
-		actingUnit = turn.getActingUnit();
-		cursor = new BoundedCursor(playingGrid, actingUnit);		
+		actingUnit = turn.getActingUnit();		
 		moveableSpaces = new PathUtil().moveableSpaces(actingUnit);
 		
 		rangeOfEffect = new SingleSpace();
@@ -88,7 +87,7 @@ public class MovePlacementInterface extends TurnInterfaceBase implements ActionP
 
 	@Override
 	public Position getCursorPosition() {
-		return cursor.getPosition();
+		return playingGrid.getCursorPosition();
 	}
 
 	@Override
@@ -100,6 +99,26 @@ public class MovePlacementInterface extends TurnInterfaceBase implements ActionP
 	public boolean canChoose(Position cursorPosition) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void moveCursorDown() {
+		playingGrid.moveCursorDown();
+	}
+
+	@Override
+	public void moveCursorUp() {
+		playingGrid.moveCursorUp();
+	}
+
+	@Override
+	public void moveCursorRight() {
+		playingGrid.moveCursorRight();
+	}
+
+	@Override
+	public void moveCursorLeft() {
+		playingGrid.moveCursorLeft();
 	}
 	
 }

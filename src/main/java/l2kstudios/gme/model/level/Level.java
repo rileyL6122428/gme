@@ -23,6 +23,7 @@ public class Level implements InitializingBean {
 		currentTurn.commitActions();
 		clearOutDefeatedUnits();
 		movementCycle.shift();
+		playingGrid.setCursorPosition(movementCycle.getActingUnit().getPosition());
 		currentTurn = TurnFactory.newTurn(this);			
 	}
 
@@ -31,7 +32,7 @@ public class Level implements InitializingBean {
 			if(unit.isDefeated()) {
 				playingGrid.clearSpace(unit.getPosition());
 				movementCycle.rebase(playingGrid.getUnits());
-				System.out.println("Defeated unit" + unit.toString());
+				System.out.println("Defeated unit: " + unit.toString());
 			}
 		}	
 	}
@@ -47,6 +48,7 @@ public class Level implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() {
 		movementCycle = new MovementCycle(playingGrid.getUnits());
+		playingGrid.setCursorPosition(movementCycle.getActingUnit().getPosition());
 		currentTurn = TurnFactory.newTurn(this);
 	}
 	

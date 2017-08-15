@@ -6,7 +6,6 @@ import java.util.Set;
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.ActionUtil;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
-import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
@@ -18,6 +17,7 @@ public class PostMoveActionPlacementInterface extends TurnInterfaceBase implemen
 	
 	private Action action;
 	private Set<PlayingGridSpace> chooseableSpaces;
+	private PlayingGrid playingGrid;
 	
 	private View view;
 
@@ -48,7 +48,7 @@ public class PostMoveActionPlacementInterface extends TurnInterfaceBase implemen
 	public void initialize() {
 		action = turn.getBufferedAction();
 		chooseableSpaces = ActionUtil.chooseableSpaces(action, turn.getPlayingGrid());
-		cursor = new BoundedCursor(turn.getPlayingGrid(), turn.getActingUnit());
+		playingGrid = turn.getPlayingGrid();
 		
 		view = new ActionPlacementView(this);
 	}
@@ -60,7 +60,7 @@ public class PostMoveActionPlacementInterface extends TurnInterfaceBase implemen
 
 	@Override
 	public Position getCursorPosition() {
-		return cursor.getPosition();
+		return playingGrid.getCursorPosition();
 	}
 
 	@Override
@@ -73,6 +73,26 @@ public class PostMoveActionPlacementInterface extends TurnInterfaceBase implemen
 		PlayingGrid playingGrid = turn.getPlayingGrid();
 		PlayingGridSpace space = (PlayingGridSpace)playingGrid.getSpaceAt(cursorPosition);
 		return chooseableSpaces.contains(space);
+	}
+
+	@Override
+	public void moveCursorDown() {
+		playingGrid.moveCursorDown();
+	}
+
+	@Override
+	public void moveCursorUp() {
+		playingGrid.moveCursorUp();
+	}
+
+	@Override
+	public void moveCursorRight() {
+		playingGrid.moveCursorRight();
+	}
+
+	@Override
+	public void moveCursorLeft() {
+		playingGrid.moveCursorLeft();
 	}
 
 

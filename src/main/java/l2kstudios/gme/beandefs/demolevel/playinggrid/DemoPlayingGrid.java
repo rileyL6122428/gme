@@ -3,12 +3,15 @@ package l2kstudios.gme.beandefs.demolevel.playinggrid;
 import l2kstudios.gme.beandefs.demolevel.asbel.Asbel;
 import l2kstudios.gme.beandefs.demolevel.richard.Richard;
 import l2kstudios.gme.beandefs.demolevel.sophie.Sophie;
+import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.SpacesFactory;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 
 public class DemoPlayingGrid extends PlayingGrid {
 	
 	{
+		cursor = new BoundedCursor(15, 7);
+		
 		setSpaces(SpacesFactory.emptyPlayingGridSpaces(15, 7));
 		
 		getSpaceAt(0, 4).setOccupiable(false);
@@ -48,13 +51,7 @@ public class DemoPlayingGrid extends PlayingGrid {
 		
 		new Sophie().place(getSpaceAt(14, 4));
 		new Asbel().place(getSpaceAt(13, 4));
-//		new Estelle().place(getSpaceAt(13, 3));
 		
 		new Richard().place(getSpaceAt(0, 0));
-//		new StockPhysicalBaddy().place(getSpaceAt(1, 1));
-//		new StockPhysicalBaddy().place(getSpaceAt(2, 1));
-//		new StockPhysicalBaddy().place(getSpaceAt(3, 2));
-//		new StockPhysicalBaddy().place(getSpaceAt(3, 3));
-//		new StockHealer().place(getSpaceAt(0, 2));
 	}
 }

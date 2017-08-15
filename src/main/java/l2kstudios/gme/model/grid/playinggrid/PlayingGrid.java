@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import l2kstudios.gme.model.grid.Cursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.RectangularGrid;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PlayingGrid extends RectangularGrid {
+	
+	protected Cursor cursor;
 	
 	public List<Unit> getUnits() {
 		List<Unit> units = new ArrayList<Unit>();
@@ -70,4 +73,41 @@ public class PlayingGrid extends RectangularGrid {
 				throw new RuntimeException("ONLY PLAYING GRID SPACES CAN BE PLUGGED INTO A PLAYING GRID");
 		});
 	}
+	
+	public void moveCursorDown() {
+		cursor.incrementPosition(0, 1);
+	}
+	
+	public void moveCursorUp() {
+		cursor.incrementPosition(0, -1);
+	}
+	
+	public void moveCursorRight() {
+		cursor.incrementPosition(1, 0);
+	};
+	
+	public void moveCursorLeft() {
+		cursor.incrementPosition(-1, 0);
+	}
+	
+	public int getCursorX() {
+		return cursor.getX();
+	}
+	
+	public int getCursorY() {
+		return cursor.getY();
+	}
+	
+	public Position getCursorPosition() {
+		return cursor.getPosition();
+	}
+	
+	public void setCursorPosition(Position position) {
+		cursor.setPosition(position);
+	}
+	
+	public void setCursor(Cursor cursor) {
+		this.cursor = cursor;
+	}
+	
 }

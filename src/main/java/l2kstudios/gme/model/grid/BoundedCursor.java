@@ -19,6 +19,16 @@ public class BoundedCursor extends Cursor {
 		return cursor;
 	}
 	
+	public static BoundedCursor fromPlayingGrid(PlayingGrid playingGrid) {
+		BoundedCursor boundedCursor = new BoundedCursor();
+		
+		boundedCursor.setXBound(playingGrid.getWidth());
+		boundedCursor.setYBound(playingGrid.getHeight());
+		boundedCursor.setPosition(Position.fromCached(0, 0));
+		
+		return boundedCursor;
+	}
+	
 	private int maxX;
 	private int maxY;
 	
@@ -34,6 +44,11 @@ public class BoundedCursor extends Cursor {
 		setXBound(0);
 		setYBound(decisions.size());
 		setPosition(Position.fromCached(0, 0));
+	}
+
+	public BoundedCursor(int width, int height) {
+		setXBound(width);
+		setYBound(height);
 	}
 
 	public void incrementPosition(int deltaX, int deltaY) {

@@ -1,74 +1,54 @@
 package l2kstudios.gme.swing.gameinterface.unitdetail;
 
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
 
+import l2kstudios.gme.model.grid.BoundedCursor;
+import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interface;
-import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.swing.view.BoardView;
 import l2kstudios.gme.swing.view.View;
 
 public class UnitDetailInterface implements Interface {
 	
-	private int pageIdx;
-	private List<View> pages;
+	
 	private Unit focusedUnit;
+	private PlayingGrid playingGrid;
+	
+	private View cursorView;
 	
 	private BoardView boardView;
-	
-	{
-		pages = new ArrayList<View>();
-		pages.add(new UnitDetailStatView());
-	}
 	
 	@Override
 	public void draw(Graphics drawingCtx) { 	
 		boardView.draw(drawingCtx);
+		cursorView.draw(drawingCtx);
 		drawingCtx.drawString("UNIT DETAIL VIEW", 50, 50);
 	}
 	
-	public void flipRight() {
-		if(pageIdx++ >= pages.size()) pageIdx = 0;
-	}
-	
-	public void flipLeft() {
-		if(pageIdx-- < 0) pageIdx = pages.size() - 1;
-	}
-	
+	@SuppressWarnings("incomplete-switch")
 	@Override
 	public void receiveInput(Input input) {
 		switch(input) {
-			case LEFT:
-				flipLeft();
+			case UP:
+				playingGrid.moveCursorUp();
+				break;
+			case DOWN:
+				playingGrid.moveCursorDown();
 				break;
 			case RIGHT:
-				flipRight();
+				playingGrid.moveCursorRight();
+				break;
+			case LEFT:
+				playingGrid.moveCursorLeft();
 				break;
 		}
 	}
 	
-	public void setModel(Unit model) {
-//		pages.forEach( (page)-> page.setModel(model) );
-	}
-	
-	public int getPageIdx() {
-		return pageIdx;
-	}
-	public void setPageIdx(int pageIdx) {
-		this.pageIdx = pageIdx;
-	}
-	public List<View> getPages() {
-		return pages;
-	}
-	public void setPages(List<View> pages) {
-		this.pages = pages;
-	}
-
-	public void setLevel(Level level) {
-		// TODO Auto-generated method stub
+	public void afterPropertiesSet() {
+		cursorView = new CursorView(this);
 	}
 
 	public Unit getFocusedUnit() {
@@ -85,6 +65,18 @@ public class UnitDetailInterface implements Interface {
 
 	public void setBoardView(BoardView boardView) {
 		this.boardView = boardView;
+	}
+
+	public PlayingGrid getPlayingGrid() {
+		return playingGrid;
+	}
+
+	public void setPlayingGrid(PlayingGrid playingGrid) {
+		this.playingGrid = playingGrid;
+	}
+
+	public Position getCursorPosition() {
+		return playingGrid.getCursorPosition();
 	}
 
 }

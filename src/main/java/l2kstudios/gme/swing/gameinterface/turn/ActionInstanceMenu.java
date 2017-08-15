@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.grid.BoundedCursor;
+import l2kstudios.gme.model.grid.Cursor;
 import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.model.unit.Unit;
@@ -13,6 +14,8 @@ import l2kstudios.gme.swing.view.View;
 
 public class ActionInstanceMenu extends TurnInterfaceBase implements TextMenu { 
 
+	private Cursor cursor;
+	
 	private Unit actingUnit;
 	private List<Action> actionInstances;
 	private List<String> actionNames;
@@ -81,6 +84,26 @@ public class ActionInstanceMenu extends TurnInterfaceBase implements TextMenu {
 	@Override
 	public int getCursorY() {
 		return cursor.getY();
+	}
+
+	@Override
+	public void moveCursorDown() {
+		cursor.incrementPosition(0, 1);
+	}
+
+	@Override
+	public void moveCursorUp() {
+		cursor.incrementPosition(0, -1);
+	}
+
+	@Override
+	public void moveCursorRight() {
+		cursor.incrementPosition(1, 0);
+	}
+
+	@Override
+	public void moveCursorLeft() {
+		cursor.incrementPosition(-1, 0);
 	}
 	
 }

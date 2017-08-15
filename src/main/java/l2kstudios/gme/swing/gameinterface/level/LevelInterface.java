@@ -2,9 +2,9 @@ package l2kstudios.gme.swing.gameinterface.level;
 
 import java.awt.Graphics;
 
+import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.interaction.Input;
 import static l2kstudios.gme.model.interaction.Input.*;
-import static l2kstudios.gme.swing.gameinterface.level.LevelInterface.ViewState.*;
 
 import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
@@ -15,13 +15,7 @@ import l2kstudios.gme.swing.view.LevelViewFactory;
 
 public class LevelInterface implements Interface {
 	
-	enum ViewState {
-		VIEWING_UNIT_DETAILS, VIEWING_GRID
-	}
-	
 	private Level level;
-	
-	private ViewState viewState;
 
 	private BoardView boardView;
 	
@@ -33,11 +27,12 @@ public class LevelInterface implements Interface {
 		turnInterfaceManager = new TurnInterfaceManager();
 		unitDetailInterface = new UnitDetailInterface();
 		
-		
-		
 		focusedInteractable = turnInterfaceManager;
-		
-		viewState = VIEWING_GRID;
+	}
+	
+	@Override
+	public void draw(Graphics drawingCtx) {
+		focusedInteractable.draw(drawingCtx);
 	}
 	
 	public void receiveInput(Input input) {
@@ -47,25 +42,8 @@ public class LevelInterface implements Interface {
 			focusedInteractable.receiveInput(input);
 	}
 
-	@Override
-	public void draw(Graphics drawingCtx) {
-		if(viewState == VIEWING_GRID) {
-//			boardView.draw(drawingCtx);
-			turnInterfaceManager.draw(drawingCtx);
-		} else {
-			unitDetailInterface.draw(drawingCtx);
-		}
-	}
-
 	private void toggleFocusedInteractable() {
-		if(focusedInteractable == turnInterfaceManager) {
-			focusedInteractable = unitDetailInterface;
-			viewState = VIEWING_UNIT_DETAILS;
-		} else {
-			focusedInteractable = turnInterfaceManager;
-			viewState = VIEWING_GRID;
-		}
-
+		focusedInteractable = (focusedInteractable == turnInterfaceManager) ? unitDetailInterface : turnInterfaceManager;
 	}
 	
 	public void afterPropertiesSet() {
@@ -74,8 +52,9 @@ public class LevelInterface implements Interface {
 		turnInterfaceManager.setLevel(level);
 		turnInterfaceManager.setBoardView(boardView);
 		
-		unitDetailInterface.setLevel(level);
+		unitDetailInterface.setPlayingGrid(level.getPlayingGrid());
 		unitDetailInterface.setBoardView(boardView);
+		unitDetailInterface.afterPropertiesSet();
 	}
 
 	public TurnInterfaceManager getTurnInterfaceManager() {
