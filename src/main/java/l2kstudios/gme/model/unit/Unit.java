@@ -110,6 +110,10 @@ public class Unit extends PlayingGridPlaceable implements InitializingBean {
 		return this.stats.get(statType).getVal();
 	}
 	
+	public long getMax(StatType statType) {
+		return this.stats.get(statType).getCap();
+	}
+	
 	public void increaseStat(StatType statType, long amount) {
 		this.stats.get(statType).increaseVal(amount);
 	}

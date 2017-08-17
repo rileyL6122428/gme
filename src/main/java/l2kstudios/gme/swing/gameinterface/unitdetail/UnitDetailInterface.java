@@ -12,13 +12,11 @@ import l2kstudios.gme.swing.view.View;
 
 public class UnitDetailInterface implements Interface {
 	
-	
 	private Unit focusedUnit;
 	private PlayingGrid playingGrid;
 	
 	private View cursorView;
 	private View unitStatsView;
-	
 	private BoardView boardView;
 	
 	private Unit selectedUnit;
