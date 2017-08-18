@@ -13,11 +13,15 @@ import static l2kstudios.gme.swing.view.GridConstants.*;
 public class CharacterView {
 	
 	private SwingUnit unit;
+	private long previousFrameHealth;
+	private HealthChangeView healthChangeView;
 	
 	public void draw(Graphics drawingCtx) {
 		unit.runBoardAnimation(drawingCtx);
 		drawHealthBar(drawingCtx);
+		drawHealthChange(drawingCtx);
 	}
+
 
 	private void drawHealthBar(Graphics drawingCtx) {
 		Position position = unit.getPosition();
@@ -32,8 +36,23 @@ public class CharacterView {
 		);
 	}
 	
+	
 	private float unitHealthRatio() {
 		return ((float)unit.get(HEALTH)) / ((float)unit.getMax(HEALTH));
+	}
+
+	private void drawHealthChange(Graphics drawingCtx) {
+		
+		if(healthChangeView != null && !healthChangeView.isStillVisible()) {
+			healthChangeView = null;
+		} else if(healthChangeView != null && healthChangeView.isStillVisible()) {
+			healthChangeView.draw(drawingCtx);
+		} else if(previousFrameHealth != unit.get(HEALTH)) {
+			long healthDiff = unit.get(HEALTH) - previousFrameHealth;
+			healthChangeView = new HealthChangeView(healthDiff, unit.getPosition());
+		}
+		
+		previousFrameHealth = unit.get(HEALTH);
 	}
 
 	public Unit getUnit() {
