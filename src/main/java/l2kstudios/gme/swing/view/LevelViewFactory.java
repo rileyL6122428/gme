@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.swing.view.unit.CharacterView;
 
 public class LevelViewFactory {
 	
@@ -24,10 +25,14 @@ public class LevelViewFactory {
 	}
 	
 	private static List<CharacterView> newCharacterViews(Level level) {
-		return level.getUnits()
-					.stream()
-					.map((unit) -> new CharacterView(){{setUnit(unit);}})
-					.collect(Collectors.toList());
+		List<CharacterView> characterViews = level.getUnits()
+									.stream()
+									.map((unit) -> new CharacterView(){{setUnit(unit);}})
+									.collect(Collectors.toList());
+		
+		characterViews.forEach(CharacterView::afterPropertiesSet);
+		
+		return characterViews;
 	}
 	
 	private static MoveOrderView newMoveOrderView(Level level) {

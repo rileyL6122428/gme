@@ -1,44 +1,23 @@
-package l2kstudios.gme.swing.view;
+package l2kstudios.gme.swing.view.unit;
 
-import java.awt.Color;
+import static l2kstudios.gme.model.unit.Unit.StatType.HEALTH;
+
 import java.awt.Graphics;
 
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.unit.Unit;
-import l2kstudios.gme.swing.modelwrappers.SwingUnit; 
-
-import static l2kstudios.gme.model.unit.Unit.StatType.*;
-import static l2kstudios.gme.swing.view.GridConstants.*;
+import l2kstudios.gme.swing.modelwrappers.SwingUnit;
 
 public class CharacterView {
 	
 	private SwingUnit unit;
 	private long previousFrameHealth;
 	private HealthChangeView healthChangeView;
+	private HealthBarView healthBarView;
 	
 	public void draw(Graphics drawingCtx) {
 		unit.runBoardAnimation(drawingCtx);
-		drawHealthBar(drawingCtx);
+		healthBarView.draw(drawingCtx);
 		drawHealthChange(drawingCtx);
-	}
-
-
-	private void drawHealthBar(Graphics drawingCtx) {
-		Position position = unit.getPosition();
-		
-		drawingCtx.setColor(Color.GREEN);
-		
-		drawingCtx.fillRect(
-			(position.getX() + 1) * SPACE_WIDTH - 3, 
-			(int)((position.getY() + 1 - unitHealthRatio()) * SPACE_HEIGHT), 
-			3,
-			(int)((unitHealthRatio()) * SPACE_HEIGHT)
-		);
-	}
-	
-	
-	private float unitHealthRatio() {
-		return ((float)unit.get(HEALTH)) / ((float)unit.getMax(HEALTH));
 	}
 
 	private void drawHealthChange(Graphics drawingCtx) {
@@ -55,6 +34,10 @@ public class CharacterView {
 		previousFrameHealth = unit.get(HEALTH);
 	}
 
+	public void afterPropertiesSet() {
+		this.healthBarView = new HealthBarView(unit);
+	}
+	
 	public Unit getUnit() {
 		return unit;
 	}

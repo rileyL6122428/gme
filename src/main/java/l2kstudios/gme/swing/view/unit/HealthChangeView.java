@@ -1,4 +1,4 @@
-package l2kstudios.gme.swing.view;
+package l2kstudios.gme.swing.view.unit;
 
 import java.awt.Color;
 import static java.awt.Color.*;
@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import static l2kstudios.gme.swing.view.GridConstants.*;
 
 import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.swing.view.View;
 
 public class HealthChangeView implements View {
 	

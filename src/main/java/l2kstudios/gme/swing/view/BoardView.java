@@ -3,6 +3,8 @@ package l2kstudios.gme.swing.view;
 import java.awt.Graphics;
 import java.util.List;
 
+import l2kstudios.gme.swing.view.unit.CharacterView;
+
 public class BoardView implements View {
 	
 	private PlayingGridView playingGridView;
