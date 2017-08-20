@@ -5,7 +5,5 @@ import java.awt.Graphics;
 public interface View {
 	
 	public void draw(Graphics drawingCtx);
-
-//	void draw(Graphics drawingCtx);
 	
 }
