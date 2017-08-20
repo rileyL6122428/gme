@@ -28,11 +28,11 @@ public class CharacterView {
 		
 		drawingCtx.setColor(Color.GREEN);
 		
-		drawingCtx.drawLine(
-			(position.getX() + 1) * SPACE_WIDTH, 
-			(position.getY() + 1) * SPACE_HEIGHT, 
-			(position.getX() + 1) * SPACE_WIDTH, 
-			(int)((position.getY() + 1 - unitHealthRatio()) * SPACE_HEIGHT)
+		drawingCtx.fillRect(
+			(position.getX() + 1) * SPACE_WIDTH - 3, 
+			(int)((position.getY() + 1 - unitHealthRatio()) * SPACE_HEIGHT), 
+			3,
+			(int)((unitHealthRatio()) * SPACE_HEIGHT)
 		);
 	}
 	

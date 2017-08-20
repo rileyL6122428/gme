@@ -28,7 +28,7 @@ public class HealthChangeView implements View {
 		
 		drawingCtx.drawString(
 			healthChange + "", 
-			(int) ((position.getX() + 0.9f) * SPACE_WIDTH), 
+			(int) ((position.getX() + 0.12f) * SPACE_WIDTH), 
 			(int)((position.getY() + 0.15f) * SPACE_HEIGHT)
 		);
 		
