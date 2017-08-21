@@ -12,9 +12,11 @@ public class CharacterView {
 	private HealthBarView healthBarView;
 	
 	public void draw(Graphics drawingCtx) {
-		unit.runBoardAnimation(drawingCtx);
-		healthBarView.draw(drawingCtx);
-		healthChangeView.draw(drawingCtx);
+		if(!unit.isDefeated()) {
+			unit.runBoardAnimation(drawingCtx);
+			healthBarView.draw(drawingCtx);
+			healthChangeView.draw(drawingCtx);			
+		}
 	}
 	public void afterPropertiesSet() {
 		this.healthBarView = new HealthBarView(unit);
