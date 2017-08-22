@@ -53,5 +53,6 @@ public class DemoPlayingGrid extends PlayingGrid {
 		new Asbel().place(getSpaceAt(13, 4));
 		
 		new Richard().place(getSpaceAt(0, 0));
+		
 	}
 }

@@ -1,11 +1,10 @@
 package l2kstudios.gme.swing.gameinterface.level;
 
+import static l2kstudios.gme.model.interaction.Input.SWITCH;
+
 import java.awt.Graphics;
 
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.interaction.Input;
-import static l2kstudios.gme.model.interaction.Input.*;
-
 import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.swing.gameinterface.turn.TurnInterfaceManager;
@@ -36,6 +35,7 @@ public class LevelInterface implements Interface {
 	}
 	
 	public void receiveInput(Input input) {
+		
 		if(input == SWITCH) 
 			toggleFocusedInteractable();
 		else 

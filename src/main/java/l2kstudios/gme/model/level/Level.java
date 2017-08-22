@@ -1,6 +1,7 @@
 package l2kstudios.gme.model.level;
 
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 import org.springframework.beans.factory.InitializingBean;
 
@@ -18,6 +19,9 @@ public class Level implements InitializingBean {
 	private Turn currentTurn;
 	
 	private MovementCycle movementCycle;
+	
+	private BooleanSupplier victoryCondition;
+	private BooleanSupplier loseCondition;
 
 	public void commitTurn() {	
 		currentTurn.commitActions();
@@ -43,6 +47,18 @@ public class Level implements InitializingBean {
 
 	public boolean currentTurnIsComputerControlled() {
 		return getActingUnit().isEnemyUnit();
+	}
+	
+	public boolean levelFinished() {
+		return victoryCondition.getAsBoolean() || loseCondition.getAsBoolean();
+	}
+	
+	public boolean levelWon() {
+		return victoryCondition.getAsBoolean();
+	}
+	
+	public boolean levelLost() {
+		return loseCondition.getAsBoolean();
 	}
 	
 	@Override
@@ -78,6 +94,22 @@ public class Level implements InitializingBean {
 	
 	public List<Unit> getUnits() {
 		return playingGrid.getUnits();
+	}
+
+	public BooleanSupplier getVictoryCondition() {
+		return victoryCondition;
+	}
+
+	public void setVictoryCondition(BooleanSupplier victoryCondition) {
+		this.victoryCondition = victoryCondition;
+	}
+
+	public BooleanSupplier getLoseCondition() {
+		return loseCondition;
+	}
+
+	public void setLoseCondition(BooleanSupplier loseCondition) {
+		this.loseCondition = loseCondition;
 	}
 
 }
