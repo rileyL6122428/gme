@@ -1,6 +1,6 @@
 * Make dead units disappear from the screen. DONE
 * Make board win screen appear
-* Introduce sequences
+* Introduce Sequence Engine with Interactable Queue
 * Introduce cut scenes
 * Refactor Tests
 
