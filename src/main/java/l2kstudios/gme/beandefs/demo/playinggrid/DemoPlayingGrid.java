@@ -1,8 +1,8 @@
-package l2kstudios.gme.beandefs.demolevel.playinggrid;
+package l2kstudios.gme.beandefs.demo.playinggrid;
 
-import l2kstudios.gme.beandefs.demolevel.asbel.Asbel;
-import l2kstudios.gme.beandefs.demolevel.richard.Richard;
-import l2kstudios.gme.beandefs.demolevel.sophie.Sophie;
+import l2kstudios.gme.beandefs.demo.asbel.Asbel;
+import l2kstudios.gme.beandefs.demo.richard.Richard;
+import l2kstudios.gme.beandefs.demo.sophie.Sophie;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.SpacesFactory;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;

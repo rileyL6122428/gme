@@ -1,4 +1,4 @@
-package l2kstudios.gme.beandefs.demolevel.asbel;
+package l2kstudios.gme.beandefs.demo.asbel;
 
 import com.google.common.collect.Range;
 

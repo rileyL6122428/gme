@@ -1,4 +1,4 @@
-package l2kstudios.gme.beandefs.demolevel.sophie;
+package l2kstudios.gme.beandefs.demo.sophie;
 
 import com.google.common.collect.Range;
 

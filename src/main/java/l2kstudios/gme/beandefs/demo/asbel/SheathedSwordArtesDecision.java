@@ -1,4 +1,4 @@
-package l2kstudios.gme.beandefs.demolevel.asbel;
+package l2kstudios.gme.beandefs.demo.asbel;
 
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 

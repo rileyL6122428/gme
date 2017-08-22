@@ -1,4 +1,4 @@
-package l2kstudios.gme.beandefs.demolevel.richard;
+package l2kstudios.gme.beandefs.demo.richard;
 
 import static l2kstudios.gme.model.unit.Unit.StatType.HEALTH;
 import static l2kstudios.gme.model.unit.Unit.StatType.INTELLIGENCE;

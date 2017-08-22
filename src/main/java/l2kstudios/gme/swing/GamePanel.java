@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import l2kstudios.gme.beandefs.demolevel.DemoLevel;
+import l2kstudios.gme.beandefs.demo.DemoLevel;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.level.Level;

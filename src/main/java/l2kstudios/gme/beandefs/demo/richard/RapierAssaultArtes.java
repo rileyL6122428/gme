@@ -1,4 +1,4 @@
-package l2kstudios.gme.beandefs.demolevel.richard;
+package l2kstudios.gme.beandefs.demo.richard;
 
 import l2kstudios.gme.model.action.Action;
 

@@ -8,7 +8,7 @@ import l2kstudios.gme.model.interaction.Interface;
 
 public class SequenceEngine implements Interface {
 	
-	private LinkedList<Interaction> interactionSequence;
+	protected LinkedList<Interaction> interactionSequence;
 	
 	public void update() {
 		if(getCurrentInteraction().isFinished()) 
