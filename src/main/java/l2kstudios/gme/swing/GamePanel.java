@@ -8,9 +8,7 @@ import l2kstudios.gme.beandefs.demo.DemoSequenceEngine;
 import l2kstudios.gme.model.SequenceEngine;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
-import l2kstudios.gme.model.level.Level;
 import l2kstudios.gme.swing.controller.GameController;
-import l2kstudios.gme.swing.gameinterface.level.LevelInterface;
 
 public class GamePanel extends JPanel implements Interactable {
 	
@@ -26,16 +24,21 @@ public class GamePanel extends JPanel implements Interactable {
 	
 	@Override
     public void paintComponent(Graphics drawingCtx) {
-		sequenceEngine.draw(drawingCtx);
+		if(!sequenceEngine.isFinished())
+			sequenceEngine.draw(drawingCtx);
+		else
+			drawingCtx.drawString("SEQUENCE ENGINE IS FINISHED", 200, 200);
     }
 
 	@Override
 	public void receiveInput(Input input) {
-		sequenceEngine.receiveInput(input);
+		if(!sequenceEngine.isFinished())
+			sequenceEngine.receiveInput(input);
 	}
 
 	public void update() {
-		sequenceEngine.update();
+		if(!sequenceEngine.isFinished())
+			sequenceEngine.update();
 	}
 	
 }

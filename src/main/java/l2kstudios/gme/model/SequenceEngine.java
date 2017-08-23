@@ -25,6 +25,10 @@ public class SequenceEngine implements Interface {
 		getCurrentInteraction().receiveInput(input);
 	}
 	
+	public boolean isFinished() {
+		return interactionSequence.isEmpty();
+	}
+	
 	private Interaction getCurrentInteraction() {
 		return interactionSequence.getFirst();
 	}

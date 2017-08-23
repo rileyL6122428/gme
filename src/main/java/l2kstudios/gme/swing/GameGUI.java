@@ -15,6 +15,7 @@ public class GameGUI extends JApplet {
 		GameUpdateThread gameUpdateThread = new GameUpdateThread();
 		gameUpdateThread.setGamePanel(gamePanel);
 		gameUpdateThread.start();
+		
 	}
 	
 }
