@@ -10,7 +10,7 @@ public class DemoSequenceEngine extends SequenceEngine {
 	{
 		interactionSequence = new LinkedList<Interaction>();
 		
-		interactionSequence.add(new DemoDialogue());
+		interactionSequence.add(new DemoDialogueInteractions());
 		interactionSequence.add(new DemoLevelInteraction());
 	}
 	
