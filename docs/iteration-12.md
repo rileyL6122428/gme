@@ -1,7 +1,7 @@
 * Make dead units disappear from the screen. DONE
+* Introduce Sequence Engine with Interactable Queue DONE
+* Introduce Dialogues DONE
 * Make board win screen appear
-* Introduce Sequence Engine with Interactable Queue
-* Introduce cut scenes
 * Refactor Tests
 
 win screen design decisions

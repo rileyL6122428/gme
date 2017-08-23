@@ -49,15 +49,15 @@ public class Level implements InitializingBean {
 		return getActingUnit().isEnemyUnit();
 	}
 	
-	public boolean levelFinished() {
+	public boolean isFinished() {
 		return victoryCondition.getAsBoolean() || loseCondition.getAsBoolean();
 	}
 	
-	public boolean levelWon() {
+	public boolean isWon() {
 		return victoryCondition.getAsBoolean();
 	}
 	
-	public boolean levelLost() {
+	public boolean isLost() {
 		return loseCondition.getAsBoolean();
 	}
 	

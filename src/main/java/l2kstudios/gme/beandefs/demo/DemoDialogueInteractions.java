@@ -11,7 +11,7 @@ public class DemoDialogueInteractions extends DialogueInteraction {
 	{
 		dialogue = new Dialogue(){{
 			
-			 setParagraphs(new LinkedList<Paragraph>(){{
+			setParagraphs(new LinkedList<Paragraph>(){{
 				add(new Paragraph(){{
 					setContent("THIS IS A SAMPLE PARAGRAPH 1");
 				}});

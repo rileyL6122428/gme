@@ -2,6 +2,7 @@ package l2kstudios.gme.swing.gameinterface.level;
 
 import static l2kstudios.gme.model.interaction.Input.SWITCH;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import l2kstudios.gme.model.Finishable;
@@ -23,6 +24,8 @@ public class LevelInterface implements Interface, Finishable {
 	private UnitDetailInterface unitDetailInterface;
 	private Interface focusedInteractable;
 	
+	private int finishedTimer;
+	
 	public LevelInterface() {
 		turnInterfaceManager = new TurnInterfaceManager();
 		unitDetailInterface = new UnitDetailInterface();
@@ -33,6 +36,16 @@ public class LevelInterface implements Interface, Finishable {
 	@Override
 	public void draw(Graphics drawingCtx) {
 		focusedInteractable.draw(drawingCtx);
+		
+		if(level.isFinished()) {
+			drawingCtx.setColor(Color.GREEN);
+			drawingCtx.drawString(levelFinishedMessage(), 300, 300);
+			finishedTimer++;
+		}
+	}
+	
+	private String levelFinishedMessage() {
+		return level.isWon() ? "YOU WON!" : "YOU LOST!";
 	}
 	
 	public void receiveInput(Input input) {
@@ -60,7 +73,7 @@ public class LevelInterface implements Interface, Finishable {
 
 	@Override
 	public boolean isFinished() {
-		return false;
+		return level.isFinished() && finishedTimer >= 100;
 	}
 	
 	public TurnInterfaceManager getTurnInterfaceManager() {

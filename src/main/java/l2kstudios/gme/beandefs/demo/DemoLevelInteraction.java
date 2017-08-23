@@ -22,6 +22,7 @@ public class DemoLevelInteraction implements Interaction {
 	@Override
 	public void draw(Graphics drawingCtx) {
 		levelInterface.draw(drawingCtx);
+		
 	}
 
 	@Override
