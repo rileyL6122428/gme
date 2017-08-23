@@ -9,6 +9,7 @@ public class GameUpdateThread extends Thread {
 		while(true) {
 			try {
 				Thread.sleep(1000/frameRate);
+				gamePanel.update();
 				gamePanel.repaint();
 			} catch (InterruptedException e) {
 				e.printStackTrace();

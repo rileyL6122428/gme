@@ -4,6 +4,7 @@ import static l2kstudios.gme.model.interaction.Input.SWITCH;
 
 import java.awt.Graphics;
 
+import l2kstudios.gme.model.Finishable;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
@@ -12,7 +13,7 @@ import l2kstudios.gme.swing.gameinterface.unitdetail.UnitDetailInterface;
 import l2kstudios.gme.swing.view.BoardView;
 import l2kstudios.gme.swing.view.LevelViewFactory;
 
-public class LevelInterface implements Interface {
+public class LevelInterface implements Interface, Finishable {
 	
 	private Level level;
 
@@ -57,6 +58,11 @@ public class LevelInterface implements Interface {
 		unitDetailInterface.afterPropertiesSet();
 	}
 
+	@Override
+	public boolean isFinished() {
+		return false;
+	}
+	
 	public TurnInterfaceManager getTurnInterfaceManager() {
 		return turnInterfaceManager;
 	}

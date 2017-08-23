@@ -4,7 +4,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import l2kstudios.gme.beandefs.demo.DemoLevel;
+import l2kstudios.gme.beandefs.demo.DemoSequenceEngine;
+import l2kstudios.gme.model.SequenceEngine;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interactable;
 import l2kstudios.gme.model.level.Level;
@@ -13,27 +14,28 @@ import l2kstudios.gme.swing.gameinterface.level.LevelInterface;
 
 public class GamePanel extends JPanel implements Interactable {
 	
-	private Level level;
-	private LevelInterface levelInterface;
+	private GameController controller;
+	private SequenceEngine sequenceEngine;
 	
 	public GamePanel() {
-		new GameController().setKeyBindingsOn(this);
+		controller = new GameController();
+		controller.setKeyBindingsOn(this);
 		
-		level = new DemoLevel();
-		
-		levelInterface = new LevelInterface();
-		levelInterface.setLevel(level);
-		levelInterface.afterPropertiesSet();
+		sequenceEngine = new DemoSequenceEngine();
 	}
 	
 	@Override
     public void paintComponent(Graphics drawingCtx) {
-		levelInterface.draw(drawingCtx);
+		sequenceEngine.draw(drawingCtx);
     }
 
 	@Override
 	public void receiveInput(Input input) {
-		levelInterface.receiveInput(input);
+		sequenceEngine.receiveInput(input);
+	}
+
+	public void update() {
+		sequenceEngine.update();
 	}
 	
 }
