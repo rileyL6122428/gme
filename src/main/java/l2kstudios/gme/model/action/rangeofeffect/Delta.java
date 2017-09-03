@@ -23,7 +23,7 @@ public class Delta {
 		y = positionB.getY() - positionA.getY();
 	}
 	
-	public Position getRelativePosition(Position position) {
+	public Position getRelativePositionFrom(Position position) {
 		return Position.fromCached(position.getX() - x, position.getY() - y);
 	}
 

@@ -52,13 +52,13 @@ public class Space {
 	}
 
 	public List<Space> getAdjacentSpaces() {
-		Position position = getPosition();
-
 		return ADJACENT_SPACE_DELTAS.stream()
-								     .map((Delta delta) -> delta.getRelativePosition(position))
-								     .filter((Position adjacentPosition) ->  grid.isInBounds(adjacentPosition))
-								     .map((Position adjacentPosition) -> grid.getSpaceAt(adjacentPosition))
-								     .collect(Collectors.toList());
+				
+		     .map((Delta delta) -> delta.getRelativePositionFrom(getPosition()))
+		     .filter((Position adjacentPosition) ->  grid.isInBounds(adjacentPosition))
+		     .map((Position adjacentPosition) -> grid.getSpaceAt(adjacentPosition))
+		     
+		     .collect(Collectors.toList());
 	}
 	
 }
