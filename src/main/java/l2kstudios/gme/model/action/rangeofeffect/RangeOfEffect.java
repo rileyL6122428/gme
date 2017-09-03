@@ -3,9 +3,9 @@ package l2kstudios.gme.model.action.rangeofeffect;
 import java.util.ArrayList;
 import java.util.List;
 
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.unit.Unit;
 
 public class RangeOfEffect {

@@ -1,5 +1,6 @@
 package l2kstudios.gme.model.grid;
 
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.unit.Unit;
 
 public class GridUtils {

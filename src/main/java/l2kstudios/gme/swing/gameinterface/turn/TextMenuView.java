@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
 
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.swing.view.View;
 
 public class TextMenuView implements View {

@@ -6,9 +6,9 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.grid.Cursor;
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.RectangularGrid;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.unit.Unit;
 
 public class PlayingGrid extends RectangularGrid {

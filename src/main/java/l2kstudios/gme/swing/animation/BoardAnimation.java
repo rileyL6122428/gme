@@ -6,7 +6,7 @@ import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.unit.Unit;
 
 public class BoardAnimation {

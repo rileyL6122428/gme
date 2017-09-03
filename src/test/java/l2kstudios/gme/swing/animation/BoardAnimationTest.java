@@ -11,11 +11,10 @@ import java.awt.Image;
 import java.util.ArrayList;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.unit.Unit;
 
 public class BoardAnimationTest {
@@ -46,7 +45,7 @@ public class BoardAnimationTest {
 
 	private void initializeUnit() {
 		unit = mock(Unit.class);
-		unitPosition = new Position(2, 3);
+		unitPosition = Position.fromCached(2, 3);
 		when(unit.getPosition()).thenReturn(unitPosition);
 	}
 	

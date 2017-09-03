@@ -3,8 +3,9 @@ package l2kstudios.gme.swing.view;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.grid.position.Position;
+
 import static l2kstudios.gme.swing.view.GridConstants.*;
 
 public class PlayingGridView {

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import l2kstudios.gme.model.grid.position.Position;
+
 public class RectangularGrid {
 
 	protected List<List<Space>> spaces;

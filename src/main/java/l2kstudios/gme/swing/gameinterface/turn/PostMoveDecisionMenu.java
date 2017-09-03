@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.BoundedCursor;
 import l2kstudios.gme.model.grid.Cursor;
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.model.unit.Unit;
 import l2kstudios.gme.swing.view.View;

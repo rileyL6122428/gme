@@ -6,7 +6,7 @@ import static java.lang.Math.round;
 import static java.lang.Math.sin;
 import static java.lang.Math.toRadians;
 
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 
 public class Delta {
 	

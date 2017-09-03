@@ -3,8 +3,8 @@ package l2kstudios.gme.model.action.rangeofeffect;
 import java.util.ArrayList;
 import java.util.List;
 
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
+import l2kstudios.gme.model.grid.position.Position;
 
 public class RelativeLine extends RangeOfEffect {
 	

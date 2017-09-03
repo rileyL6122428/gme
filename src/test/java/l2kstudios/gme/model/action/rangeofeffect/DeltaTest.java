@@ -4,17 +4,27 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 
 public class DeltaTest {
+	
+	@Test
+	public void getRelativePositionFrom__returnsPositionWithDeltaApplied() {
+		Delta delta = new Delta(3, 2);
+		Position position = Position.fromCached(5, 7);
+		
+		Position positionAfterApplyingDelta = delta.getRelativePositionFrom(position);
+		
+		assertEquals(2, positionAfterApplyingDelta.getX());
+		assertEquals(5, positionAfterApplyingDelta.getY());
+	}
 
 	@Test
 	public void constructor_providedTwoPositions_xAndYAreDifferenceOfPositionCoords() {
-		Position positionA = new Position(3, 4);
-		Position positionB = new Position(4, 4);
+		Position positionA = Position.fromCached(3, 4);
+		Position positionB = Position.fromCached(4, 4);
 		
 		Delta delta = new Delta(positionA, positionB);
 		

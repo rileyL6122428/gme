@@ -5,6 +5,7 @@ import java.util.List;
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.postmove.PostMoveDecision;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.unit.Unit;
 
 public class BoundedCursor extends Cursor {

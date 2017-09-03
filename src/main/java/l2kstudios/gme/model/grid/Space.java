@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import l2kstudios.gme.model.action.rangeofeffect.Delta;
+import l2kstudios.gme.model.grid.position.Position;
 
 public class Space {
 	

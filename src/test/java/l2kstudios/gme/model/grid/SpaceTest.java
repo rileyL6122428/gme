@@ -9,6 +9,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 public class SpaceTest {
@@ -17,7 +18,7 @@ public class SpaceTest {
 	public void getPosition__returnsTheResultOfPlayingGridsPositionOfMethod() {
 		Space space = new Space();
 		PlayingGrid playingGrid = mock(PlayingGrid.class);
-		Position position = new Position(0,0);
+		Position position = Position.fromCached(0, 0);
 		
 		space.setGrid(playingGrid);
 		when(playingGrid.positionOf(space)).thenReturn(position);

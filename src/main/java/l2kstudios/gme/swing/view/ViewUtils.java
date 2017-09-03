@@ -5,8 +5,8 @@ import static l2kstudios.gme.swing.view.GridConstants.SPACE_WIDTH;
 
 import java.awt.Graphics;
 
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
+import l2kstudios.gme.model.grid.position.Position;
 
 public class ViewUtils {
 	

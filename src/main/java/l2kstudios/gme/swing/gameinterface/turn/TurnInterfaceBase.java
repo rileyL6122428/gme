@@ -1,7 +1,7 @@
 package l2kstudios.gme.swing.gameinterface.turn;
 
 import l2kstudios.gme.model.grid.BoundedCursor;
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.turn.Turn;
 import l2kstudios.gme.model.turn.TurnDirector;

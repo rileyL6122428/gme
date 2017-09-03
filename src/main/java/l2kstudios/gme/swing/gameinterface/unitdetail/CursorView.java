@@ -3,7 +3,8 @@ package l2kstudios.gme.swing.gameinterface.unitdetail;
 import java.awt.Graphics;
 
 import l2kstudios.gme.model.grid.Cursor;
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
+
 import static l2kstudios.gme.swing.view.GridConstants.*;
 
 import l2kstudios.gme.swing.view.ColorConstants;

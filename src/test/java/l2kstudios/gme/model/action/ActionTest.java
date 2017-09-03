@@ -38,7 +38,7 @@ public class ActionTest {
 	}
 	
 	@Test
-	public void execute_affectSpaceSetsOccupierToNull_callSetsOccupierOfAllSpacesInRangeToNull() {
+	public void execute_affectSpaceSetsOccupierToNull_setsOccupierSpacesInRangeOfEffectToNull() {
 		nullSettingAction.setSpaceToExecuteAt(playingGrid.getSpaceAt(1, 1));
 		nullSettingAction.execute();
 		

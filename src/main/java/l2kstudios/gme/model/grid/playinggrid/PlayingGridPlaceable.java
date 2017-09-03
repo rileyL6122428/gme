@@ -1,7 +1,7 @@
 package l2kstudios.gme.model.grid.playinggrid;
 
 import l2kstudios.gme.model.grid.Placeable;
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 
 public class PlayingGridPlaceable extends Placeable {
 	

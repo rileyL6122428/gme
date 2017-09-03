@@ -6,10 +6,10 @@ import java.util.Set;
 import l2kstudios.gme.model.action.Action;
 import l2kstudios.gme.model.action.ActionUtil;
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGridSpace;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.model.turn.TurnPhaseSequence.PhaseProgressionFlag;
 import l2kstudios.gme.swing.view.View;
 

@@ -6,7 +6,7 @@ import static l2kstudios.gme.swing.view.ColorConstants.ActionPlacement.SELECTABL
 import java.awt.Graphics;
 
 import l2kstudios.gme.model.action.rangeofeffect.RangeOfEffect;
-import l2kstudios.gme.model.grid.Position;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.swing.view.View;
 import l2kstudios.gme.swing.view.ViewUtils;
 

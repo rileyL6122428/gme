@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.grid;
+package l2kstudios.gme.model.grid.position;
 
 import java.util.HashMap;
 import java.util.Map;

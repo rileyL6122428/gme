@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import l2kstudios.gme.model.grid.position.Position;
+
 public class GridUtilsTest {
 	
 	class DistanceBetweenTestData {
@@ -44,8 +46,8 @@ public class GridUtilsTest {
 		return new ArrayList<DistanceBetweenTestData>() {{
 			add(new DistanceBetweenTestData() {{
 				setExpectedDistance(3);
-				setPosA(new Position(1, 1));
-				setPosB(new Position(2, 3));
+				setPosA(Position.fromCached(1, 1));
+				setPosB(Position.fromCached(2, 3));
 			}});
 		}};
 	}

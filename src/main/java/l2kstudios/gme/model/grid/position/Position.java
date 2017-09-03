@@ -1,4 +1,4 @@
-package l2kstudios.gme.model.grid;
+package l2kstudios.gme.model.grid.position;
 
 public class Position {
 	
@@ -15,9 +15,9 @@ public class Position {
 	
 	private int x, y;
 	
-	public Position() { }
+	Position() { }
 	
-	public Position(int x, int y) {
+	Position(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}

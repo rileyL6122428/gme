@@ -9,9 +9,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import l2kstudios.gme.model.grid.Position;
 import l2kstudios.gme.model.grid.Space;
 import l2kstudios.gme.model.grid.playinggrid.PlayingGrid;
+import l2kstudios.gme.model.grid.position.Position;
 import l2kstudios.gme.testutils.SpacesFactory;
 
 public class RangeOfEffectTest {
@@ -40,7 +40,7 @@ public class RangeOfEffectTest {
 	
 	@Test
 	public void affectedSpaces_allSpacesDerivedFromDeltasInBounds_returnsAllSpacesDerivedFromDeltas() {
-		List<Space> spaces = rangeOfEffect.affectedSpaces(new Position(3, 3));
+		List<Space> spaces = rangeOfEffect.affectedSpaces(Position.fromCached(3, 3));
 		
 		assertEquals(5, spaces.size());
 		assertListContainsSpaceWithCoordsSetTo(3, 3, spaces);
@@ -52,7 +52,7 @@ public class RangeOfEffectTest {
 	
 	@Test
 	public void affectedSpaces_NotAllSpacesDerivedFromDeltasInBounds_returnedSpacesExcludeOutOfBoundSpaces() {
-		List<Space> spaces = rangeOfEffect.affectedSpaces(new Position(0, 0));
+		List<Space> spaces = rangeOfEffect.affectedSpaces(Position.fromCached(0, 0));
 		
 		assertEquals(3, spaces.size());
 		assertListContainsSpaceWithCoordsSetTo(0, 0, spaces);
