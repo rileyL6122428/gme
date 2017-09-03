@@ -33,8 +33,8 @@ public class BoardAnimationTest {
 	
 	@Before
 	public void setup() {
-		initializeUnit();
-		initializeDrawingContext();
+		initializeUnitMock();
+		drawingCtx = mock(Graphics.class);
 		initializeFrames();
 		
 		boardAnimation = new BoardAnimation(){{
@@ -43,14 +43,10 @@ public class BoardAnimationTest {
 		}};
 	}
 
-	private void initializeUnit() {
+	private void initializeUnitMock() {
 		unit = mock(Unit.class);
 		unitPosition = Position.fromCached(2, 3);
 		when(unit.getPosition()).thenReturn(unitPosition);
-	}
-	
-	private void initializeDrawingContext() {
-		drawingCtx = mock(Graphics.class);
 	}
 	
 	private void initializeFrames() {

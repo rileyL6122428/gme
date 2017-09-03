@@ -32,13 +32,13 @@ public class PathTest {
 	}
 
 	@Test(expected=Exception.class)
-	public void addSpace_spaceNotAdjacentToSpaceAtEndOfPath_throws() {
+	public void addSpace_spaceNotAdjacentToSpaceAtEndOfPath_throwsException() {
 		path.add(playingGrid.getSpaceAt(0, 0));
 		path.add(playingGrid.getSpaceAt(2, 0));
 	}
 	
 	@Test(expected=Exception.class)
-	public void addSpace_spaceAlreadyInPath_throws() {
+	public void addSpace_spaceAlreadyInPath_throwsException() {
 		path.add(playingGrid.getSpaceAt(0, 0));
 		path.add(playingGrid.getSpaceAt(1, 0));
 		path.add(playingGrid.getSpaceAt(1, 1));

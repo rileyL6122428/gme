@@ -2,6 +2,7 @@ package l2kstudios.gme.model.path;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class PathUtilTest {
 	}
 	
 	@Test
-	public void moveablePaths_unitHasZeroEnergy_canOnlyMoveablePathIsToCurrentPosition() {
+	public void moveablePaths_unitHasZeroEnergy_onlyMoveablePathIsToCurrentPosition() {
 		Unit unit = newUnitWithEnergySetTo(0);
 		playingGrid.place(unit, 5, 5);
 		
@@ -47,7 +48,7 @@ public class PathUtilTest {
 	}
 	
 	@Test
-	public void moveablePaths_unitHasThreeEnergyNoBlockers_moveablePathExistForAllSpacesWithinThreeSpaces() {
+	public void moveablePaths_unitHasThreeEnergyAndNoPathBlockers_moveablePathExistForAllSpacesWithinThreeSpaces() {
 		Unit unit = newUnitWithEnergySetTo(3);
 		playingGrid.place(unit, 5, 5);
 		
@@ -89,6 +90,7 @@ public class PathUtilTest {
 			add(playingGrid.getSpaceAt(5, 8));
 			
 		}}.forEach( (space) -> assertNotNull(moveablePaths.get(space)) );
+		
 	}
 	
 	@Test
