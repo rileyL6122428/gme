@@ -61,10 +61,6 @@ public class Path {
 		if(!orderedSpaces.isEmpty() && !getEnd().isAdjacentTo(space))
 			throw new RuntimeException("Attempted to append non adjacent space to the end of a path");
 	}
-	
-	public boolean spaceIsAdjacentToo(Space otherSpace) {
-		return !orderedSpaces.isEmpty() && !getEnd().isAdjacentTo(otherSpace);
-	}
 
 	public PlayingGridSpace getStart() {
 		return orderedSpaces.isEmpty() ? null : orderedSpaces.get(0);
