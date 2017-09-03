@@ -10,9 +10,6 @@ public class Position {
 	
 	public static Position fromCached(int x, int y) {
 		Position position = POSITION_CACHE.get(x, y);
-		if(position.getX() != x || position.getY() != y) {
-			System.out.println("ERROR");
-		}
 		return POSITION_CACHE.get(x, y);
 	}
 	

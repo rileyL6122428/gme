@@ -2,8 +2,18 @@ package l2kstudios.gme.model.grid;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import l2kstudios.gme.model.action.rangeofeffect.Delta;
 
 public class Space {
+	
+	public static List<Delta> ADJACENT_SPACE_DELTAS = new ArrayList<Delta>(){{
+		add(new Delta( 0,  1));
+		add(new Delta( 0, -1));
+		add(new Delta( 1,  0));
+		add(new Delta(-1,  0));
+	}};
 	
 	private Placeable occupier;
 	private RectangularGrid grid;
@@ -43,43 +53,12 @@ public class Space {
 
 	public List<Space> getAdjacentSpaces() {
 		Position position = getPosition();
-		List<Space> adjacentSpaces = new ArrayList<Space>();
-		
-		if(grid.isInBounds(position.getX(), position.getY() + 1)) {
-			Space adjacentSpace = grid.getSpaceAt(position.getX(), position.getY() + 1);
-			if(!isAdjacentTo(adjacentSpace)) {
-				System.out.println("ERROR OCCURRING");
-			}
-			adjacentSpace = grid.getSpaceAt(position.getX(), position.getY() + 1);
-			Position position2 = adjacentSpace.getPosition();
-			adjacentSpaces.add(adjacentSpace);
-		}
-		
-		if(grid.isInBounds(position.getX(), position.getY() - 1)) {
-			Space adjacentSpace = grid.getSpaceAt(position.getX(), position.getY() - 1);
-			if(!isAdjacentTo(adjacentSpace)) {
-				System.out.println("ERROR OCCURRING");
-			}
-			adjacentSpaces.add(adjacentSpace);
-		}
-		
-		if(grid.isInBounds(position.getX() + 1, position.getY())) {
-			Space adjacentSpace = grid.getSpaceAt(position.getX() + 1, position.getY());
-			if(!isAdjacentTo(adjacentSpace)) {
-				System.out.println("ERROR OCCURRING");
-			}
-			adjacentSpaces.add(adjacentSpace);
-		}
-		
-		if(grid.isInBounds(position.getX() - 1, position.getY())) {
-			Space adjacentSpace = grid.getSpaceAt(position.getX() - 1, position.getY());
-			if(!isAdjacentTo(adjacentSpace)) {
-				System.out.println("ERROR OCCURRING");
-			}
-			adjacentSpaces.add(adjacentSpace);			
-		}
-		
-		return adjacentSpaces;
+
+		return ADJACENT_SPACE_DELTAS.stream()
+								     .map((Delta delta) -> delta.getRelativePosition(position))
+								     .filter((Position adjacentPosition) ->  grid.isInBounds(adjacentPosition))
+								     .map((Position adjacentPosition) -> grid.getSpaceAt(adjacentPosition))
+								     .collect(Collectors.toList());
 	}
 	
 }
