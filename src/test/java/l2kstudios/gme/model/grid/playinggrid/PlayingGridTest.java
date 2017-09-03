@@ -22,7 +22,7 @@ public class PlayingGridTest {
 	}
 	
 	@Test
-	public void getUnits__returnsAListOfAllUnitsOnThePlayingGrid() {
+	public void getUnits__returnsListOfAllUnitsOnThePlayingGrid() {
 		Unit unit1 = new Unit();
 		Unit unit2 = new Unit();
 		Unit unit3 = new Unit();

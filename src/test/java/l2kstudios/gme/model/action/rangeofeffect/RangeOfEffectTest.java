@@ -51,7 +51,7 @@ public class RangeOfEffectTest {
 	}
 	
 	@Test
-	public void affectedSpaces_NotAllSpacesDerivedFromDeltasInBounds_returnedSpacesExcludeOutOfBoundSpaces() {
+	public void affectedSpaces_NotAllSpacesDerivedFromDeltasInBounds_returnedSpacesNotOutOfBounds() {
 		List<Space> spaces = rangeOfEffect.affectedSpaces(Position.fromCached(0, 0));
 		
 		assertEquals(3, spaces.size());

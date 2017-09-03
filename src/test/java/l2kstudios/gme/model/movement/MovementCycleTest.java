@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import l2kstudios.gme.model.unit.Stat;
@@ -15,24 +16,33 @@ import static l2kstudios.gme.model.unit.Unit.StatType.*;
 
 public class MovementCycleTest {
 	
-	private MovementCycle moveCycle;
+	private Unit fastestUnit;
+	private Unit midSpeedUnit;
+	private Unit slowestUnit;
+	private List<Unit> units;
+	
+	private MovementCycle movementCycle;
+	
+	@Before
+	public void setup() {
+		fastestUnit = unitWithHealthAndSpeedSetTo(1, 7);
+		midSpeedUnit = unitWithHealthAndSpeedSetTo(1, 3);
+		slowestUnit = unitWithHealthAndSpeedSetTo(1, 2);
+		units = Arrays.asList(slowestUnit, midSpeedUnit, fastestUnit);
+		
+		movementCycle = new MovementCycle();
+	}
 	
 	@After
 	public void tearDown() {
-		moveCycle = null;
+		movementCycle = null;
 	}
 	
 	@Test
 	public void getCycle__returnsAInverseSpeedMultipleListOfUnits() {
-		Unit fastestUnit = unitWithHealthAndSpeedSetTo(1, 7);
-		Unit midSpeedUnit = unitWithHealthAndSpeedSetTo(1, 3);
-		Unit slowestUnit = unitWithHealthAndSpeedSetTo(1, 2);
-		List<Unit> units = Arrays.asList(slowestUnit, midSpeedUnit, fastestUnit);
+		movementCycle.setUnits(units);
 		
-		moveCycle = new MovementCycle();
-		moveCycle.setUnits(units);
-		
-		List<Unit> moveOrder = moveCycle.getOrder();
+		List<Unit> moveOrder = movementCycle.getOrder();
 		
 		List<Unit> expectedOrder = Arrays.asList(
 				fastestUnit, //6
@@ -56,17 +66,11 @@ public class MovementCycleTest {
 	
 	@Test
 	public void rebase_unitsDefeated_moveOrderDoesNotContainDefeatedUnits() {
-		Unit fastestUnit = unitWithHealthAndSpeedSetTo(1, 7);
-		Unit midSpeedUnit = unitWithHealthAndSpeedSetTo(1, 3);
-		Unit slowestUnit = unitWithHealthAndSpeedSetTo(1, 2);
-		List<Unit> units = Arrays.asList(slowestUnit, midSpeedUnit, fastestUnit);
-		
-		moveCycle = new MovementCycle();
-		moveCycle.setUnits(units);
+		movementCycle.setUnits(units);
 		midSpeedUnit.decreaseStat(HEALTH, midSpeedUnit.get(HEALTH));
-		moveCycle.rebase(units);
+		movementCycle.rebase(units);
 		
-		List<Unit> moveOrder = moveCycle.getOrder();
+		List<Unit> moveOrder = movementCycle.getOrder();
 		
 		List<Unit> expectedOrder = Arrays.asList(
 				fastestUnit, //6

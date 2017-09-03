@@ -22,7 +22,7 @@ public class DeltaTest {
 	}
 
 	@Test
-	public void constructor_providedTwoPositions_xAndYAreDifferenceOfPositionCoords() {
+	public void constructor_providedTwoPositions_fieldXAndfieldYAreDifferenceOfPositionCoords() {
 		Position positionA = Position.fromCached(3, 4);
 		Position positionB = Position.fromCached(4, 4);
 		

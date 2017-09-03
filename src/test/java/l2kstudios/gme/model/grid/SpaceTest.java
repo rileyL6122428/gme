@@ -29,13 +29,13 @@ public class SpaceTest {
 	}
 
 	@Test
-	public void isOccupied_occupierSet_returnsTrue() {
+	public void isOccupied_occupierNotSet_returnsFalse() {
 		Space space = new Space();
 		assertFalse(space.isOccupied());
 	}
 	
 	@Test
-	public void isOccupied_occupierNotSet_returnsTrue() {
+	public void isOccupied_occupierSet_returnsTrue() {
 		Space space = new Space();
 		Placeable placeable = mock(Placeable.class);		
 		space.setOccupier(placeable);
@@ -43,7 +43,7 @@ public class SpaceTest {
 	}
 	
 	@Test
-	public void isAdjacentTo_spaceWithinOneSpaceOfSpace_returnsTrue() {
+	public void isAdjacentTo_distanceBetweenSpacesIsOne_returnsTrue() {
 		PlayingGrid playingGrid = new PlayingGrid();
 		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(12, 12));
 		
@@ -56,12 +56,13 @@ public class SpaceTest {
 	}
 	
 	@Test
-	public void isAdjacentTo_spaceNotWithinOneSpaceOfSpace_returnsFalse() {
+	public void isAdjacentTo_distanceBetweenSpacesIsNotOne_returnsFalse() {
 		PlayingGrid playingGrid = new PlayingGrid();
 		playingGrid.setSpaces(SpacesFactory.emptyPlayingGridSpaces(12, 12));
 		
 		Space space = playingGrid.getSpaceAt(3, 3);
 		
+		assertFalse(space.isAdjacentTo(playingGrid.getSpaceAt(3, 3)));
 		
 		assertFalse(space.isAdjacentTo(playingGrid.getSpaceAt(4, 4)));
 		assertFalse(space.isAdjacentTo(playingGrid.getSpaceAt(2, 2)));
