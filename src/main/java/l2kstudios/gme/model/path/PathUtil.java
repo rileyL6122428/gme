@@ -25,9 +25,19 @@ public class PathUtil {
 		endPointToPathMap.put(unit.getOccupiedSpace(), stationaryPath);
 		distanceToPathsMap.addPath(0, stationaryPath);
 		
+		/*For Each Movement Point*/
 		for(int movement = 1; movement <= unit.get(MOVEMENT); movement++) {
+			
+			/*For Prev Movement point paths*/
 			for(Path prevPath : distanceToPathsMap.getPathsWithDistance(movement - 1)) {
+				
+				/*For Adjacent Spaces next to Prev MovementPointPaths*/
 				for(PlayingGridSpace adjacentSpace : prevPath.getEnd().getAdjacentPlayingGridSpaces()) {
+					
+					if(!prevPath.getEnd().isAdjacentTo(adjacentSpace)) {
+						System.out.println("ERROR IS OCCURRING");
+					}
+					
 					if(adjacentSpace.canBeTraversedBy(unit) && !endPointToPathMap.containsKey(adjacentSpace))
 						addPathLeadingToAdjacentSpace(endPointToPathMap, distanceToPathsMap, adjacentSpace, prevPath, movement);
 				}

@@ -8,3 +8,5 @@
 win screen design decisions
 	put Over level view
 	disable interface switching
+	
+	*FOUND ISSUE: Postition.fromCached returns incorrect Position, WHY?*

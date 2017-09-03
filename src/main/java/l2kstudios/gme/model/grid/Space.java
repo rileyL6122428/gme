@@ -45,17 +45,39 @@ public class Space {
 		Position position = getPosition();
 		List<Space> adjacentSpaces = new ArrayList<Space>();
 		
-		if(grid.isInBounds(position.getX(), position.getY() + 1))
-			adjacentSpaces.add(grid.getSpaceAt(position.getX(), position.getY() + 1));
+		if(grid.isInBounds(position.getX(), position.getY() + 1)) {
+			Space adjacentSpace = grid.getSpaceAt(position.getX(), position.getY() + 1);
+			if(!isAdjacentTo(adjacentSpace)) {
+				System.out.println("ERROR OCCURRING");
+			}
+			adjacentSpace = grid.getSpaceAt(position.getX(), position.getY() + 1);
+			Position position2 = adjacentSpace.getPosition();
+			adjacentSpaces.add(adjacentSpace);
+		}
 		
-		if(grid.isInBounds(position.getX(), position.getY() - 1))
-			adjacentSpaces.add(grid.getSpaceAt(position.getX(), position.getY() - 1));
+		if(grid.isInBounds(position.getX(), position.getY() - 1)) {
+			Space adjacentSpace = grid.getSpaceAt(position.getX(), position.getY() - 1);
+			if(!isAdjacentTo(adjacentSpace)) {
+				System.out.println("ERROR OCCURRING");
+			}
+			adjacentSpaces.add(adjacentSpace);
+		}
 		
-		if(grid.isInBounds(position.getX() + 1, position.getY()))
-			adjacentSpaces.add(grid.getSpaceAt(position.getX() + 1, position.getY()));
+		if(grid.isInBounds(position.getX() + 1, position.getY())) {
+			Space adjacentSpace = grid.getSpaceAt(position.getX() + 1, position.getY());
+			if(!isAdjacentTo(adjacentSpace)) {
+				System.out.println("ERROR OCCURRING");
+			}
+			adjacentSpaces.add(adjacentSpace);
+		}
 		
-		if(grid.isInBounds(position.getX() - 1, position.getY()))
-			adjacentSpaces.add(grid.getSpaceAt(position.getX() - 1, position.getY()));
+		if(grid.isInBounds(position.getX() - 1, position.getY())) {
+			Space adjacentSpace = grid.getSpaceAt(position.getX() - 1, position.getY());
+			if(!isAdjacentTo(adjacentSpace)) {
+				System.out.println("ERROR OCCURRING");
+			}
+			adjacentSpaces.add(adjacentSpace);			
+		}
 		
 		return adjacentSpaces;
 	}

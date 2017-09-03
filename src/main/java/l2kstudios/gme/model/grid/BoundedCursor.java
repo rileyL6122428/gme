@@ -54,11 +54,17 @@ public class BoundedCursor extends Cursor {
 	public void incrementPosition(int deltaX, int deltaY) {
 		super.incrementPosition(deltaX, deltaY);
 		
-		if(position.getX() < 0) position.setX(maxX - 1);
-		if(position.getY() < 0) position.setY(maxY - 1);
+		if(position.getX() < 0) 
+			position = Position.fromCached(maxX - 1, position.getY());
 		
-		if(position.getX() >= maxX) position.setX(0);
-		if(position.getY() >= maxY) position.setY(0);
+		if(position.getY() < 0)
+			position = Position.fromCached(position.getX(), maxY - 1);
+		
+		if(position.getX() >= maxX)
+			position = Position.fromCached(0, position.getY());
+		
+		if(position.getY() >= maxY)
+			position = Position.fromCached(position.getX(), 0);
 	}
 	
 	public void setXBound(int maxX) {
