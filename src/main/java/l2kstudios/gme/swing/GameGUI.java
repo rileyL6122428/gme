@@ -8,14 +8,14 @@ import javax.swing.JApplet;
 public class GameGUI extends JApplet {
 
 	public void init() {
-		GamePanel gamePanel = new GamePanel(); 
+		GamePanel gamePanel = new GamePanel();
 		Container contentPane = getContentPane();
 		contentPane.add(BorderLayout.CENTER, gamePanel);
-		
+
 		GameUpdateThread gameUpdateThread = new GameUpdateThread();
 		gameUpdateThread.setGamePanel(gamePanel);
 		gameUpdateThread.start();
-		
+
 	}
-	
+
 }

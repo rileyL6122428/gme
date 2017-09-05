@@ -11,8 +11,9 @@ public class SequenceEngine implements Interface {
 	protected LinkedList<Interaction> interactionSequence;
 	
 	public void update() {
-		if(getCurrentInteraction().isFinished()) 
-			interactionSequence.removeFirst();
+		if(getCurrentInteraction().isFinished())
+			 interactionSequence.removeFirst();
+		
 	}
 	
 	@Override
@@ -37,8 +38,8 @@ public class SequenceEngine implements Interface {
 		return interactionSequence;
 	}
 
-	public void setInterationSequence(LinkedList<Interaction> interationSequence) {
-		this.interactionSequence = interationSequence;
+	public void setInterationSequence(LinkedList<Interaction> interactionSequence) {
+		this.interactionSequence = interactionSequence;
 	}
 	
 }

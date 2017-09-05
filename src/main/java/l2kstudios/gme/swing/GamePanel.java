@@ -40,5 +40,5 @@ public class GamePanel extends JPanel implements Interactable {
 		if(!sequenceEngine.isFinished())
 			sequenceEngine.update();
 	}
-	
+
 }

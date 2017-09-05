@@ -9,6 +9,7 @@ import l2kstudios.gme.model.Finishable;
 import l2kstudios.gme.model.interaction.Input;
 import l2kstudios.gme.model.interaction.Interface;
 import l2kstudios.gme.model.level.Level;
+import l2kstudios.gme.swing.audio.AudioFactory;
 import l2kstudios.gme.swing.gameinterface.turn.TurnInterfaceManager;
 import l2kstudios.gme.swing.gameinterface.unitdetail.UnitDetailInterface;
 import l2kstudios.gme.swing.view.BoardView;
@@ -38,6 +39,10 @@ public class LevelInterface implements Interface, Finishable {
 		focusedInteractable.draw(drawingCtx);
 		
 		if(level.isFinished()) {
+			if(finishedTimer == 0) {
+				AudioFactory.startAudioClip("/Users/rileylittlefield/Desktop/Tales of Graces Soundtrack - Raise the song of Victory!.wav", 1);
+			}
+			
 			drawingCtx.setColor(Color.GREEN);
 			drawingCtx.drawString(levelFinishedMessage(), 300, 300);
 			finishedTimer++;
@@ -73,7 +78,7 @@ public class LevelInterface implements Interface, Finishable {
 
 	@Override
 	public boolean isFinished() {
-		return level.isFinished() && finishedTimer >= 100;
+		return level.isFinished() && finishedTimer >= 1000;
 	}
 	
 	public TurnInterfaceManager getTurnInterfaceManager() {

@@ -6,9 +6,10 @@ import l2kstudios.gme.model.dialogue.Dialogue;
 import l2kstudios.gme.model.dialogue.DialogueInteraction;
 import l2kstudios.gme.model.dialogue.Paragraph;
 
-public class DemoDialogueInteractions extends DialogueInteraction {
+public class DemoDialogueInteraction extends DialogueInteraction {
 	
-	{
+	
+	{	
 		dialogue = new Dialogue(){{
 			
 			setParagraphs(new LinkedList<Paragraph>(){{
